@@ -28,7 +28,7 @@ The server will run on `http://localhost:3001` with the following endpoints:
 #### Step 1: HTTP Request Node
 Configure your n8n workflow to send a POST request to the webhook endpoint:
 
-**URL:** `http://localhost:3001/api/blog/webhook`
+**URL:** `https://effective-marketer-dashobard.onrender.com/api/blog/webhook`
 **Method:** `POST`
 **Headers:**
 ```json
@@ -108,7 +108,7 @@ return [{ json: article }];
 ### Node 2: HTTP Request to Webhook
 Send the article to your blog API:
 
-**URL:** `http://localhost:3001/api/blog/webhook`
+**URL:** `https://effective-marketer-dashobard.onrender.com/api/blog/webhook`
 **Method:** `POST`
 **Body:** `{{ $json }}`
 
@@ -178,7 +178,7 @@ app.post('/api/blog/webhook', authenticateToken, (req, res) => {
 
 ### 1. Test Webhook Manually
 ```bash
-curl -X POST http://localhost:3001/api/blog/webhook \
+curl -X POST https://effective-marketer-dashobard.onrender.com/api/blog/webhook \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Test Article",
@@ -190,12 +190,12 @@ curl -X POST http://localhost:3001/api/blog/webhook \
 
 ### 2. Verify Draft Creation
 ```bash
-curl http://localhost:3001/api/blog/drafts
+curl https://effective-marketer-dashobard.onrender.com/api/blog/drafts
 ```
 
 ### 3. Test Publishing
 ```bash
-curl -X POST http://localhost:3001/api/blog/drafts/draft_123456789/publish
+curl -X POST https://effective-marketer-dashobard.onrender.com/api/blog/drafts/draft_123456789/publish
 ```
 
 ## 🔍 Monitoring & Logging

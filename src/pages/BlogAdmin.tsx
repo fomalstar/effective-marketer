@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import { BlogAPI, DraftBlogPost } from '../api/blogApi';
+import { apiClient } from '../config/apiConfig';
 
 const BlogAdmin: React.FC = () => {
   const [drafts, setDrafts] = useState<DraftBlogPost[]>([]);
@@ -26,38 +27,43 @@ const BlogAdmin: React.FC = () => {
     loadDrafts();
   }, []);
 
-  const loadDrafts = () => {
+  const loadDrafts = async () => {
     setLoading(true);
-    // In a real app, this would be an API call
-    const draftList = BlogAPI.getDrafts();
-    setDrafts(draftList);
+    try {
+      const draftList = await apiClient.getDrafts();
+      setDrafts(draftList);
+    } catch (error) {
+      console.error('Error loading drafts:', error);
+      // Fallback to local storage or empty array
+      setDrafts([]);
+    }
     setLoading(false);
   };
 
   const handlePublish = async (draftId: string) => {
     if (window.confirm('Are you sure you want to publish this article?')) {
-      const result = BlogAPI.publishDraft(draftId);
-      
-      if (result.success) {
+      try {
+        const result = await apiClient.publishDraft(draftId);
         alert('Article published successfully!');
         loadDrafts();
         setSelectedDraft(null);
-      } else {
-        alert('Error publishing article: ' + result.errors?.join(', '));
+      } catch (error) {
+        console.error('Error publishing article:', error);
+        alert('Error publishing article: ' + error);
       }
     }
   };
 
   const handleDelete = async (draftId: string) => {
     if (window.confirm('Are you sure you want to delete this draft? This action cannot be undone.')) {
-      const result = BlogAPI.deleteDraft(draftId);
-      
-      if (result.success) {
+      try {
+        await apiClient.deleteDraft(draftId);
         alert('Draft deleted successfully!');
         loadDrafts();
         setSelectedDraft(null);
-      } else {
-        alert('Error deleting draft: ' + result.errors?.join(', '));
+      } catch (error) {
+        console.error('Error deleting draft:', error);
+        alert('Error deleting draft: ' + error);
       }
     }
   };
@@ -72,19 +78,19 @@ const BlogAdmin: React.FC = () => {
     setShowPreview(true);
   };
 
-  const handleSaveDraft = (updatedDraft: Partial<DraftBlogPost>) => {
+  const handleSaveDraft = async (updatedDraft: Partial<DraftBlogPost>) => {
     if (!selectedDraft) return;
     
-    const result = BlogAPI.updateDraft(selectedDraft.id, updatedDraft);
-    
-    if (result.success) {
+    try {
+      await apiClient.updateDraft(selectedDraft.id, updatedDraft);
       alert('Draft updated successfully!');
       loadDrafts();
       // Update selected draft
-      const updated = BlogAPI.getDraft(selectedDraft.id);
+      const updated = await apiClient.getDraft(selectedDraft.id);
       setSelectedDraft(updated);
-    } else {
-      alert('Error updating draft: ' + result.errors?.join(', '));
+    } catch (error) {
+      console.error('Error updating draft:', error);
+      alert('Error updating draft: ' + error);
     }
   };
 
