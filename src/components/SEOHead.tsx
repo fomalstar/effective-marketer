@@ -15,9 +15,9 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "Effective Marketer - AI Engine Optimization & Search Suggestion Mastery",
-  description = "Transform your digital presence with cutting-edge AI Engine Optimization and search suggestion mastery. Position your brand as the top choice across ChatGPT, Claude, Gemini, and major search platforms.",
-  keywords = "AI Engine Optimization, AEO, search suggestion optimization, ChatGPT optimization, Claude optimization, Gemini optimization, AI platform authority, digital marketing, SEO agency",
+  title = "#1 Google Autosuggests & AI SEO Services - Effective Marketer",
+  description = "Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete. Our specialized agency provides cutting-edge AI SEO strategies that optimize your brand for maximum visibility.",
+  keywords = "AI SEO agency, Google autosuggests optimization, AI SEO solutions, autosuggests ranking, Google Autocomplete optimization, AI SEO services, search suggestion optimization, ranking optimization, digital marketing agency, SEO agency",
   canonical = "https://effectivemarketer.com",
   ogTitle,
   ogDescription,
@@ -30,7 +30,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Effective Marketer",
-    "description": "Pioneering agency specializing in AI Engine Optimization (AEO) and search suggestion mastery",
+    "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
     "url": "https://effectivemarketer.com",
     "logo": {
       "@type": "ImageObject",
@@ -76,11 +76,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       }
     ],
     "serviceType": [
-      "AI Engine Optimization",
-      "Search Suggestion Mastery",
-      "AI Platform Authority Building",
-      "Digital Marketing",
-      "Content Intelligence"
+      "AI SEO Services",
+      "Google Autosuggests Optimization",
+      "Ranking Optimization",
+      "Digital Marketing Agency Services",
+      "Search Suggestion Optimization"
     ]
   };
 
