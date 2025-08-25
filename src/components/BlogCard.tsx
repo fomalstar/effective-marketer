@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
 import { BlogPost, blogCategories } from '../data/blogPosts';
 
@@ -28,10 +29,10 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
         
         <div className={`p-6 ${featured ? 'lg:w-1/2 lg:flex lg:flex-col lg:justify-between' : ''}`}>
           <div>
-            <h3 className={`font-bold text-gray-900 mb-3 group-hover:text-red-500 transition-colors duration-200 leading-tight ${featured ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-lg sm:text-xl'}`}>
-              <a href={`/blog/${post.slug}`} className="hover:underline">
+            <h3 className={`font-bold text-gray-900 mb-3 group-hover:text-cyan-600 transition-colors duration-200 leading-tight ${featured ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-lg sm:text-xl'}`}>
+              <Link to={`/blog/${post.slug}`} className="hover:underline">
                 {post.title}
-              </a>
+              </Link>
             </h3>
             
             <p className={`text-gray-600 mb-4 leading-relaxed ${featured ? 'text-base sm:text-lg' : 'text-sm sm:text-base'}`}>
@@ -68,13 +69,13 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
                 </div>
               </div>
               
-              <a
-                href={`/blog/${post.slug}`}
-                className="inline-flex items-center space-x-1 text-red-500 hover:text-red-600 font-medium text-sm group-hover:translate-x-1 transition-transform duration-200"
+              <Link
+                to={`/blog/${post.slug}`}
+                className="inline-flex items-center space-x-1 text-cyan-600 hover:text-cyan-700 font-medium text-sm group-hover:translate-x-1 transition-transform duration-200"
               >
                 <span>Read More</span>
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,19 @@
+// Utility function to calculate reading time based on content length
+const calculateReadingTime = (content: string): string => {
+  const wordsPerMinute = 200; // Average reading speed
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+};
+
+// Default author configuration for consistency
+export const defaultAuthor = {
+  name: 'Steve',
+  role: 'SEO Director',
+  image: '/steve.jpg',
+  bio: 'Steve is a leading expert in AI SEO and Google Autosuggest optimization at Effective Marketer, helping businesses dominate search results through innovative strategies and proven methodologies.'
+};
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -27,38 +43,38 @@ export interface BlogCategory {
 export const blogCategories: BlogCategory[] = [
   {
     id: '1',
-    name: 'SEO Strategy',
-    slug: 'seo-strategy',
-    description: 'Advanced SEO strategies and techniques',
-    color: 'bg-blue-500'
+    name: 'AI SEO Strategy',
+    slug: 'ai-seo-strategy',
+    description: 'Advanced AI SEO strategies and techniques',
+    color: 'bg-gradient-to-r from-cyan-500 to-blue-600'
   },
   {
     id: '2',
     name: 'Autocomplete SEO',
     slug: 'autocomplete-seo',
-    description: 'Google autocomplete optimization insights',
-    color: 'bg-red-500'
+    description: 'Google Autosuggest optimization insights',
+    color: 'bg-gradient-to-r from-purple-500 to-pink-600'
   },
   {
     id: '3',
-    name: 'Digital Marketing',
-    slug: 'digital-marketing',
-    description: 'Digital marketing trends and best practices',
-    color: 'bg-green-500'
+    name: 'Lead Generation',
+    slug: 'lead-generation',
+    description: 'AI automation and lead generation strategies',
+    color: 'bg-gradient-to-r from-green-500 to-emerald-600'
   },
   {
     id: '4',
     name: 'Case Studies',
     slug: 'case-studies',
     description: 'Real client success stories and results',
-    color: 'bg-blue-500'
+    color: 'bg-gradient-to-r from-orange-500 to-red-600'
   },
   {
     id: '5',
     name: 'Industry News',
     slug: 'industry-news',
-    description: 'Latest updates in search and marketing',
-    color: 'bg-gray-500'
+    description: 'Latest updates in AI SEO and marketing',
+    color: 'bg-gradient-to-r from-gray-500 to-slate-600'
   }
 ];
 
@@ -125,11 +141,67 @@ Autocomplete optimization requires specialized knowledge and tools that most age
 
 If you're ready to dominate search before your competitors even appear, contact us for a free autocomplete analysis of your industry.
     `,
-    author: 'Yavor Stoyanov',
-    authorRole: 'CEO',
-    authorImage: '/ya.png',
+    author: 'Steve',
+    authorRole: 'SEO Director',
+    authorImage: '/steve.jpg',
     publishDate: '2024-01-15',
-    readTime: '8 min read',
+    readTime: calculateReadingTime(`
+# How to Dominate Google Autocomplete Suggestions in 2024
+
+Google's autocomplete feature processes over 8.5 billion searches daily, making it one of the most valuable real estate in digital marketing. When users start typing a query, the suggestions that appear can dramatically influence their search behavior and, ultimately, their purchasing decisions.
+
+## Why Autocomplete Matters More Than Ever
+
+In 2024, the competition for traditional organic rankings has intensified. With featured snippets, ads, and local results taking up prime real estate, organic listings are pushed further down. However, autocomplete suggestions appear immediately when users start typing, giving you unprecedented visibility.
+
+### The Psychology Behind Autocomplete
+
+When users see your brand in autocomplete suggestions, several psychological factors come into play:
+
+- **Authority**: Your brand appears as a suggested completion, implying Google recognizes its relevance
+- **Convenience**: Users are more likely to select a suggestion than complete their own query
+- **First-mover advantage**: You appear before competitors even have a chance to show up
+
+## Our Proprietary Autocomplete Strategy
+
+At Effective Marketer, we've developed a scientific approach to autocomplete optimization that combines:
+
+### 1. Search Volume Analysis
+We analyze millions of search queries to identify the most valuable autocomplete opportunities for your industry.
+
+### 2. Competitive Intelligence
+Our team monitors competitor autocomplete presence and identifies gaps in the market.
+
+### 3. Strategic Content Creation
+We create targeted content that signals to Google's algorithms that your brand should appear in specific autocomplete suggestions.
+
+### 4. Backlink Amplification
+High-authority backlinks pointing to your autocomplete-optimized content strengthen the signals we're sending to Google.
+
+## Real Results from Real Clients
+
+One of our supplement industry clients saw a 340% increase in branded search traffic within 60 days of implementing our autocomplete strategy. When users typed "buy protein powder," our client's brand appeared as the top suggestion, driving thousands of qualified visitors monthly.
+
+## The Technical Implementation
+
+While we can't reveal all our proprietary methods, the process involves:
+
+1. **Keyword Research**: Identifying high-value autocomplete opportunities
+2. **Content Strategy**: Creating content that targets specific autocomplete phrases
+3. **Technical SEO**: Optimizing site structure and metadata
+4. **Link Building**: Acquiring high-authority backlinks to strengthen signals
+5. **Monitoring**: Continuous tracking and optimization
+
+## Why Traditional SEO Isn't Enough
+
+Traditional SEO focuses on ranking for completed searches. By the time someone searches for "best protein powder," they're already comparing options. But when they see "buy protein powder [YourBrand]" in autocomplete, you've influenced their search before they've even decided what to look for.
+
+## Getting Started
+
+Autocomplete optimization requires specialized knowledge and tools that most agencies don't possess. Our team has spent years developing these capabilities, and we're one of the few agencies worldwide offering this service.
+
+If you're ready to dominate search before your competitors even appear, contact us for a free autocomplete analysis of your industry.
+    `),
     category: 'Autocomplete SEO',
     tags: ['Google Autocomplete', 'SEO Strategy', 'Search Marketing'],
     featuredImage: 'https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -240,12 +312,12 @@ Mastering autocomplete optimization requires a deep understanding of search algo
 
 At Effective Marketer, we've invested years in understanding these algorithms and developing proprietary methods for autocomplete optimization. Our scientific approach has helped dozens of clients achieve dominant positions in their target autocomplete suggestions.
     `,
-    author: 'Lucas Lenoir',
-    authorRole: 'Director Europe',
-    authorImage: '/lucas.png',
+    author: 'Steve',
+    authorRole: 'SEO Director',
+    authorImage: '/steve.jpg',
     publishDate: '2024-01-10',
     readTime: '12 min read',
-    category: 'SEO Strategy',
+    category: 'AI SEO Strategy',
     tags: ['Algorithms', 'Technical SEO', 'Search Science'],
     featuredImage: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1200',
     metaDescription: 'Explore the complex algorithms behind search engine autocomplete suggestions and learn the ranking factors that determine brand visibility.',
@@ -397,11 +469,11 @@ The key to success was understanding that autocomplete optimization isn't just a
 
 If you're interested in achieving similar results for your business, contact us for a free autocomplete analysis of your industry.
     `,
-    author: 'Lorenzo Payman',
-    authorRole: 'SEO Director USA',
-    authorImage: '/WhatsApp Image 2025-07-04 at 16.14.17_49746d6b.jpg',
+    author: 'Steve',
+    authorRole: 'SEO Director',
+    authorImage: '/steve.jpg',
     publishDate: '2024-01-05',
-    readTime: '15 min read',
+    readTime: '8 min read',
     category: 'Case Studies',
     tags: ['Case Study', 'Results', 'Supplement Industry', 'Traffic Growth'],
     featuredImage: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -571,11 +643,11 @@ The key is to start now, while the opportunity is still relatively untapped. By 
 
 At Effective Marketer, we're at the forefront of this trend, helping businesses dominate autocomplete suggestions in their industries. If you're ready to get ahead of the curve, contact us for a free autocomplete analysis.
     `,
-    author: 'Nga Vũ',
-    authorRole: 'SEO Director Asia',
-    authorImage: '/z6743367463015_a433bc2984395bc69c640d30ad23b488.jpg',
+    author: 'Steve',
+    authorRole: 'SEO Director',
+    authorImage: '/steve.jpg',
     publishDate: '2024-01-01',
-    readTime: '10 min read',
+    readTime: '7 min read',
     category: 'Industry News',
     tags: ['SEO Trends', '2024', 'Autocomplete Marketing', 'Future of SEO'],
     featuredImage: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -832,12 +904,12 @@ At Effective Marketer, we've refined this process through hundreds of client imp
 
 Ready to start your autocomplete keyword research? Contact us for a free analysis of autocomplete opportunities in your industry.
     `,
-    author: 'Rusi Zhelev',
-    authorRole: 'SEO Director Bulgaria',
-    authorImage: '/WhatsApp Image 2025-06-18 at 15.30.43_bb69c7a1.jpg',
+    author: 'Steve',
+    authorRole: 'SEO Director',
+    authorImage: '/steve.jpg',
     publishDate: '2023-12-28',
-    readTime: '18 min read',
-    category: 'SEO Strategy',
+    readTime: '15 min read',
+    category: 'AI SEO Strategy',
     tags: ['Keyword Research', 'Autocomplete', 'SEO Strategy', 'Research Methods'],
     featuredImage: 'https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=1200',
     metaDescription: 'Complete guide to keyword research for autocomplete optimization with proven methodologies and advanced techniques for finding opportunities.',

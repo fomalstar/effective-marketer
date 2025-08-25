@@ -11,7 +11,8 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: string;
   twitterCard?: string;
-  structuredData?: object;
+  structuredData?: object | object[];
+  noIndex?: boolean;
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
@@ -24,7 +25,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   ogImage = "https://effectivemarketer.com/og-image.jpg",
   ogType = "website",
   twitterCard = "summary_large_image",
-  structuredData
+  structuredData,
+  noIndex = false
 }) => {
   const defaultStructuredData = {
     "@context": "https://schema.org",
@@ -108,9 +110,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:site" content="@effectivemarketer" />
       
       {/* Additional SEO Meta Tags */}
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta name="googlebot" content="index, follow" />
-      <meta name="bingbot" content="index, follow" />
+      <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+      <meta name="googlebot" content={noIndex ? "noindex, nofollow" : "index, follow"} />
+      <meta name="bingbot" content={noIndex ? "noindex, nofollow" : "index, follow"} />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <meta name="author" content="Effective Marketer" />
@@ -124,16 +126,39 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel="manifest" href="/site.webmanifest" />
       
       {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData || defaultStructuredData)}
-      </script>
+      {Array.isArray(structuredData) ? (
+        structuredData.map((data, index) => (
+          <script key={index} type="application/ld+json">
+            {JSON.stringify(data)}
+          </script>
+        ))
+      ) : (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData || defaultStructuredData)}
+        </script>
+      )}
+      
+      {/* Performance and Core Web Vitals Optimization */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://calendly.com" />
+      <link rel="dns-prefetch" href="https://effectivemarketer.com" />
+      
+      {/* Critical Resource Hints */}
+      <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
       
       {/* Additional Performance and SEO Tags */}
       <meta name="theme-color" content="#ff312b" />
       <meta name="msapplication-TileColor" content="#ff312b" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      
+      {/* Performance Hints */}
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     </Helmet>
   );
 };

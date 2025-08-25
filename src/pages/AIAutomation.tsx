@@ -103,36 +103,56 @@ const AIAutomation = () => {
     }
   ];
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "AI Automation Lead Generation Service",
-    "description": "AI-powered cold email and LinkedIn outreach automation with 93% lead generation success rate",
-    "provider": {
-      "@type": "Organization",
-      "name": "Effective Marketer",
-      "url": "https://effectivemarketer.com"
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI Automation Lead Generation Service",
+      "description": "AI-powered cold email and LinkedIn outreach automation with 93% lead generation success rate",
+      "provider": {
+        "@type": "Organization",
+        "name": "Effective Marketer",
+        "url": "https://effectivemarketer.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "1997",
+        "priceCurrency": "USD",
+        "description": "AI automation lead generation service"
+      },
+      "areaServed": "Worldwide",
+      "serviceType": "Lead Generation and Email Automation"
     },
-    "offers": {
-      "@type": "Offer",
-      "price": "1997",
-      "priceCurrency": "USD",
-      "description": "AI automation lead generation service"
-    },
-    "areaServed": "Worldwide",
-    "serviceType": "Lead Generation and Email Automation"
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((faq, index) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ];
 
-  return (
+    return (
     <PageLayout
       title="AI Automation Lead Generation Service | Effective Marketer"
       description="Transform your B2B lead generation with AI-powered cold email and LinkedIn outreach automation. 93% of leads from cold outreach. See results in 30 days."
       keywords="AI automation lead generation, cold email automation, LinkedIn outreach, lead generation service, AI email automation, B2B lead generation"
-             canonical="https://effectivemarketer.com/lead-gen-ai-automation"
-      ogTitle="AI Automation Lead Generation Service"
-      ogDescription="Transform your B2B lead generation with AI-powered cold email and LinkedIn outreach automation."
+      canonical="https://effectivemarketer.com/lead-gen-ai-automation"
+      ogTitle="AI Automation Lead Generation Service | 93% Success Rate"
+      ogDescription="🎯 Transform B2B lead generation with AI automation. 📧 Cold email + LinkedIn outreach. ⚡ 95% inbox rate. 🤖 AI replies in 2 minutes!"
       ogType="website"
+      ogImage="https://effectivemarketer.com/og-leadgen.jpg"
       structuredData={structuredData}
+      breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/#services' },
+        { label: 'AI Lead Generation' }
+      ]}
     >
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 lg:py-20">
@@ -148,18 +168,26 @@ const AIAutomation = () => {
               <Brain className="h-5 w-5 text-cyan-400" />
               <span className="text-cyan-300 font-medium text-sm lg:text-base">AI-Powered Lead Generation</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               AI Automation Lead Generation Service
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0">
               Transform your B2B lead generation with AI-powered cold email and LinkedIn outreach automation. 93% of our leads come from cold outreach.
             </p>
-            <a
-              href="https://calendly.com/effectivemarketer/demo"
-              className="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Start Your Automation
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center px-4 sm:px-0">
+              <a
+                href="https://calendly.com/effectivemarketer/demo"
+                className="w-full sm:w-auto inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+              >
+                Start Your Automation
+              </a>
+              <a
+                href="#features"
+                className="w-full sm:w-auto inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 transition-all duration-300 text-center"
+              >
+                See Features
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -369,7 +397,7 @@ const AIAutomation = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section id="features" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">

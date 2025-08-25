@@ -1,0 +1,28 @@
+{
+  "name": "effectivemarketer-blog-api",
+  "version": "1.0.0",
+  "description": "Blog API server for n8n integration",
+  "main": "express-server.js",
+  "scripts": {
+    "start": "node express-server.js",
+    "dev": "nodemon express-server.js",
+    "test": "curl -X POST http://localhost:3001/api/blog/webhook -H 'Content-Type: application/json' -d '{\"title\":\"Test Article\",\"content\":\"<h1>Test</h1><p>This is a test.</p>\"}'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "blog",
+    "api",
+    "n8n",
+    "webhook",
+    "cms"
+  ],
+  "author": "Effective Marketer",
+  "license": "MIT"
+}
