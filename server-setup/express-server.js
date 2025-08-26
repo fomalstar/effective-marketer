@@ -50,16 +50,36 @@ const generateExcerpt = (content, maxLength = 200) => {
 const htmlToMarkdown = (html) => {
   let markdown = html;
   
-  // Convert headers with proper spacing
+  // First, handle special containers (like table of contents) before processing other elements
+  markdown = markdown.replace(/<div[^>]*>[\s]*<h4[^>]*>Table of Contents<\/h4>(.*?)<\/div>/gis, (match, content) => {
+    return '\n## Table of Contents\n\n' + content + '\n\n';
+  });
+  
+  // Convert headers with proper spacing (handle id attributes)
+  markdown = markdown.replace(/<h1[^>]*id=['"](.*?)['"][^>]*>(.*?)<\/h1>/gi, '\n# $2 {#$1}\n\n');
   markdown = markdown.replace(/<h1[^>]*>(.*?)<\/h1>/gi, '\n# $1\n\n');
+  markdown = markdown.replace(/<h2[^>]*id=['"](.*?)['"][^>]*>(.*?)<\/h2>/gi, '\n## $2 {#$1}\n\n');
   markdown = markdown.replace(/<h2[^>]*>(.*?)<\/h2>/gi, '\n## $1\n\n');
+  markdown = markdown.replace(/<h3[^>]*id=['"](.*?)['"][^>]*>(.*?)<\/h3>/gi, '\n### $2 {#$1}\n\n');
   markdown = markdown.replace(/<h3[^>]*>(.*?)<\/h3>/gi, '\n### $1\n\n');
+  markdown = markdown.replace(/<h4[^>]*id=['"](.*?)['"][^>]*>(.*?)<\/h4>/gi, '\n#### $2 {#$1}\n\n');
   markdown = markdown.replace(/<h4[^>]*>(.*?)<\/h4>/gi, '\n#### $1\n\n');
+  markdown = markdown.replace(/<h5[^>]*id=['"](.*?)['"][^>]*>(.*?)<\/h5>/gi, '\n##### $2 {#$1}\n\n');
   markdown = markdown.replace(/<h5[^>]*>(.*?)<\/h5>/gi, '\n##### $1\n\n');
+  markdown = markdown.replace(/<h6[^>]*id=['"](.*?)['"][^>]*>(.*?)<\/h6>/gi, '\n###### $2 {#$1}\n\n');
   markdown = markdown.replace(/<h6[^>]*>(.*?)<\/h6>/gi, '\n###### $1\n\n');
   
-  // Convert paragraphs with proper spacing
-  markdown = markdown.replace(/<p[^>]*>(.*?)<\/p>/gi, '\n$1\n\n');
+  // Convert links BEFORE processing lists (so list item links work)
+  markdown = markdown.replace(/<a[^>]*href=['"](.*?)['"][^>]*>(.*?)<\/a>/gi, '[$2]($1)');
+  
+  // Convert images (handle both src-alt and alt-src orders)
+  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*alt=['"](.*?)['"][^>]*[^>]*>/gi, '![$2]($1)');
+  markdown = markdown.replace(/<img[^>]*alt=['"](.*?)['"][^>]*src=['"](.*?)['"][^>]*[^>]*>/gi, '![$1]($2)');
+  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*>/gi, '![]($1)');
+  
+  // Convert code elements (before processing other text formatting)
+  markdown = markdown.replace(/<pre[^>]*><code[^>]*>(.*?)<\/code><\/pre>/gis, '\n```\n$1\n```\n\n');
+  markdown = markdown.replace(/<code[^>]*>(.*?)<\/code>/gi, '`$1`');
   
   // Convert bold and italic
   markdown = markdown.replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**');
@@ -67,22 +87,42 @@ const htmlToMarkdown = (html) => {
   markdown = markdown.replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*');
   markdown = markdown.replace(/<i[^>]*>(.*?)<\/i>/gi, '*$1*');
   
-  // Convert ordered lists
+  // Convert ordered lists (preserve nested structure)
   markdown = markdown.replace(/<ol[^>]*>(.*?)<\/ol>/gis, (match, content) => {
     let counter = 1;
-    const listContent = content.replace(/<li[^>]*>(.*?)<\/li>/gi, (liMatch, liContent) => {
-      return `${counter++}. ${liContent.trim()}\n`;
+    const listContent = content.replace(/<li[^>]*>(.*?)<\/li>/gis, (liMatch, liContent) => {
+      // Clean up the list item content and preserve any formatting
+      const cleanContent = liContent
+        .replace(/^\s+|\s+$/g, '') // trim whitespace
+        .replace(/\n+/g, ' '); // replace newlines with spaces
+      return `${counter++}. ${cleanContent}\n`;
     });
     return '\n' + listContent + '\n';
   });
   
-  // Convert unordered lists
+  // Convert unordered lists (preserve nested structure)  
   markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, (match, content) => {
-    const listContent = content.replace(/<li[^>]*>(.*?)<\/li>/gi, (liMatch, liContent) => {
-      return `- ${liContent.trim()}\n`;
+    const listContent = content.replace(/<li[^>]*>(.*?)<\/li>/gis, (liMatch, liContent) => {
+      // Clean up the list item content and preserve any formatting
+      const cleanContent = liContent
+        .replace(/^\s+|\s+$/g, '') // trim whitespace
+        .replace(/\n+/g, ' '); // replace newlines with spaces
+      return `- ${cleanContent}\n`;
     });
     return '\n' + listContent + '\n';
   });
+  
+  // Convert blockquotes
+  markdown = markdown.replace(/<blockquote[^>]*>(.*?)<\/blockquote>/gis, (match, content) => {
+    const cleanContent = content.replace(/<[^>]*>/g, '').trim();
+    return '\n> ' + cleanContent.replace(/\n/g, '\n> ') + '\n\n';
+  });
+  
+  // Convert paragraphs with proper spacing
+  markdown = markdown.replace(/<p[^>]*>(.*?)<\/p>/gis, '\n$1\n\n');
+  
+  // Convert line breaks
+  markdown = markdown.replace(/<br\s*\/?>/gi, '\n');
   
   // Convert tables
   markdown = markdown.replace(/<table[^>]*>(.*?)<\/table>/gis, (match, tableContent) => {
@@ -92,51 +132,52 @@ const htmlToMarkdown = (html) => {
     rows.forEach((row, index) => {
       const cells = row.match(/<t[hd][^>]*>(.*?)<\/t[hd]>/gis) || [];
       const cellContent = cells.map(cell => 
-        cell.replace(/<t[hd][^>]*>(.*?)<\/t[hd]>/i, '$1').trim()
+        cell.replace(/<t[hd][^>]*>(.*?)<\/t[hd]>/gis, '$1')
+           .replace(/<[^>]*>/g, '') // Remove any remaining HTML tags
+           .trim()
       );
       
-      tableMarkdown += '| ' + cellContent.join(' | ') + ' |\n';
-      
-      // Add header separator after first row
-      if (index === 0) {
-        tableMarkdown += '|' + cellContent.map(() => ' --- ').join('|') + '|\n';
+      if (cellContent.length > 0) {
+        tableMarkdown += '| ' + cellContent.join(' | ') + ' |\n';
+        
+        // Add header separator after first row
+        if (index === 0) {
+          tableMarkdown += '|' + cellContent.map(() => ' --- ').join('|') + '|\n';
+        }
       }
     });
     
     return tableMarkdown + '\n';
   });
   
-  // Convert links
-  markdown = markdown.replace(/<a[^>]*href=['"](.*?)['"][^>]*>(.*?)<\/a>/gi, '[$2]($1)');
-  
-  // Convert images
-  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*alt=['"](.*?)['"][^>]*>/gi, '![$2]($1)');
-  markdown = markdown.replace(/<img[^>]*alt=['"](.*?)['"][^>]*src=['"](.*?)['"][^>]*>/gi, '![$1]($2)');
-  
-  // Convert line breaks
-  markdown = markdown.replace(/<br\s*\/?>/gi, '\n');
-  
-  // Convert blockquotes
-  markdown = markdown.replace(/<blockquote[^>]*>(.*?)<\/blockquote>/gis, (match, content) => {
-    return '\n> ' + content.trim().replace(/\n/g, '\n> ') + '\n\n';
-  });
-  
-  // Convert code blocks
-  markdown = markdown.replace(/<pre[^>]*><code[^>]*>(.*?)<\/code><\/pre>/gis, '\n```\n$1\n```\n\n');
-  markdown = markdown.replace(/<code[^>]*>(.*?)<\/code>/gi, '`$1`');
+  // Remove any remaining div, span, and other container tags
+  markdown = markdown.replace(/<\/?(?:div|span|section|article|aside|nav|header|footer|main)[^>]*>/gi, '');
   
   // Clean up remaining HTML tags
   markdown = markdown.replace(/<[^>]*>/g, '');
   
+  // Decode HTML entities
+  markdown = markdown
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+  
   // Clean up extra whitespace and normalize spacing
   markdown = markdown
-    .replace(/\n\s*\n\s*\n/g, '\n\n') // Multiple newlines to double newlines
+    .replace(/\n\s*\n\s*\n+/g, '\n\n') // Multiple newlines to double newlines
     .replace(/^\s+/gm, '') // Remove leading whitespace from lines
     .replace(/\s+$/gm, '') // Remove trailing whitespace from lines
+    .replace(/\n\n\n+/g, '\n\n') // No more than 2 consecutive newlines
     .trim();
   
   // Ensure proper spacing after headers
-  markdown = markdown.replace(/(#{1,6}\s+[^\n]+)\n([^\n])/g, '$1\n\n$2');
+  markdown = markdown.replace(/(#{1,6}\s+[^\n]+)\n([^\n#])/g, '$1\n\n$2');
+  
+  // Clean up any remaining double spaces
+  markdown = markdown.replace(/  +/g, ' ');
   
   return markdown;
 };
