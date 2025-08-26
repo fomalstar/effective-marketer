@@ -209,9 +209,128 @@ const BlogPost = () => {
                   {/* Content with improved typography */}
                   <div className="prose prose-lg prose-gray max-w-none">
                     <div className="space-y-6 text-gray-800 leading-relaxed">
-                      {post.content.split('\n\n').map((block, index) => {
+                      {(() => {
+                        // Split by both \n\n and single \n for better parsing
+                        let contentBlocks = post.content.split(/\n\n+/);
+                        
+                        // If no double newlines found, try single newlines
+                        if (contentBlocks.length === 1) {
+                          contentBlocks = post.content.split(/\n/);
+                        }
+                        
+                        return contentBlocks;
+                      })().map((block, index) => {
                         // Skip empty blocks
                         if (!block.trim()) return null;
+                        
+                        // Handle mixed content blocks that contain lists and images
+                        if ((block.includes('- ') || /^\d+\.\s/.test(block)) && !block.startsWith('- ') && !block.startsWith(/^\d+\.\s/)) {
+                          // Split mixed content by lines and render appropriately
+                          const lines = block.split('\n');
+                          const elements = [];
+                          let currentList = [];
+                          let listType = null;
+                          
+                          lines.forEach((line, lineIndex) => {
+                            if (line.startsWith('- ')) {
+                              if (listType !== 'ul') {
+                                // Close previous list if different type
+                                if (currentList.length > 0) {
+                                  elements.push(listType === 'ol' ? 
+                                    <ol key={`${index}-ol-${elements.length}`} className="space-y-3 my-6">{currentList}</ol> :
+                                    <ul key={`${index}-ul-${elements.length}`} className="space-y-3 my-6">{currentList}</ul>
+                                  );
+                                  currentList = [];
+                                }
+                                listType = 'ul';
+                              }
+                              currentList.push(
+                                <li key={lineIndex} className="flex items-start">
+                                  <span className="text-cyan-500 mr-3 mt-1 text-lg">•</span>
+                                  <span dangerouslySetInnerHTML={{
+                                    __html: line.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:underline">$1</a>')
+                                  }} />
+                                </li>
+                              );
+                            } else if (/^\d+\.\s/.test(line)) {
+                              if (listType !== 'ol') {
+                                // Close previous list if different type
+                                if (currentList.length > 0) {
+                                  elements.push(listType === 'ol' ? 
+                                    <ol key={`${index}-ol-${elements.length}`} className="space-y-3 my-6">{currentList}</ol> :
+                                    <ul key={`${index}-ul-${elements.length}`} className="space-y-3 my-6">{currentList}</ul>
+                                  );
+                                  currentList = [];
+                                }
+                                listType = 'ol';
+                              }
+                              currentList.push(
+                                <li key={lineIndex} className="flex items-start">
+                                  <span className="text-cyan-600 mr-3 mt-1 font-semibold">{currentList.length + 1}.</span>
+                                  <span dangerouslySetInnerHTML={{
+                                    __html: line.replace(/^\d+\.\s/, '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:underline">$1</a>')
+                                  }} />
+                                </li>
+                              );
+                            } else if (line.startsWith('![')) {
+                              // Close any open list
+                              if (currentList.length > 0) {
+                                elements.push(listType === 'ol' ? 
+                                  <ol key={`${index}-ol-${elements.length}`} className="space-y-3 my-6">{currentList}</ol> :
+                                  <ul key={`${index}-ul-${elements.length}`} className="space-y-3 my-6">{currentList}</ul>
+                                );
+                                currentList = [];
+                                listType = null;
+                              }
+                              
+                              const imageMatch = line.match(/!\[(.*?)\]\((.*?)\)/);
+                              if (imageMatch) {
+                                const [, altText, imageUrl] = imageMatch;
+                                elements.push(
+                                  <div key={`${index}-img-${lineIndex}`} className="my-8">
+                                    <img 
+                                      src={imageUrl} 
+                                      alt={altText} 
+                                      className="w-full h-auto rounded-lg shadow-lg"
+                                    />
+                                    {altText && (
+                                      <p className="text-sm text-gray-600 text-center mt-2 italic">
+                                        {altText}
+                                      </p>
+                                    )}
+                                  </div>
+                                );
+                              }
+                            } else if (line.trim()) {
+                              // Close any open list
+                              if (currentList.length > 0) {
+                                elements.push(listType === 'ol' ? 
+                                  <ol key={`${index}-ol-${elements.length}`} className="space-y-3 my-6">{currentList}</ol> :
+                                  <ul key={`${index}-ul-${elements.length}`} className="space-y-3 my-6">{currentList}</ul>
+                                );
+                                currentList = [];
+                                listType = null;
+                              }
+                              
+                              // Regular paragraph
+                              elements.push(
+                                <p key={`${index}-p-${lineIndex}`} className="text-lg leading-relaxed my-4" dangerouslySetInnerHTML={{
+                                  __html: line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:underline">$1</a>')
+                                }} />
+                              );
+                            }
+                          });
+                          
+                          // Close any remaining list
+                          if (currentList.length > 0) {
+                            elements.push(listType === 'ol' ? 
+                              <ol key={`${index}-ol-final`} className="space-y-3 my-6">{currentList}</ol> :
+                              <ul key={`${index}-ul-final`} className="space-y-3 my-6">{currentList}</ul>
+                            );
+                          }
+                          
+                          return <div key={index}>{elements}</div>;
+                        }
                         
                         // Headers
                         if (block.startsWith('# ')) {
@@ -361,6 +480,31 @@ const BlogPost = () => {
                               </table>
                             </div>
                           );
+                        }
+                        
+                        // Images
+                        if (block.startsWith('![')) {
+                          const imageMatch = block.match(/!\[(.*?)\]\((.*?)\)/);
+                          if (imageMatch) {
+                            const [, altText, imageUrl] = imageMatch;
+                            return (
+                              <div key={index} className="my-8">
+                                <img 
+                                  src={imageUrl} 
+                                  alt={altText} 
+                                  className="w-full h-auto rounded-lg shadow-lg"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                  }}
+                                />
+                                {altText && (
+                                  <p className="text-sm text-gray-600 text-center mt-2 italic">
+                                    {altText}
+                                  </p>
+                                )}
+                              </div>
+                            );
+                          }
                         }
                         
                         // Regular paragraphs

@@ -72,10 +72,10 @@ const htmlToMarkdown = (html) => {
   // Convert links BEFORE processing lists (so list item links work)
   markdown = markdown.replace(/<a[^>]*href=['"](.*?)['"][^>]*>(.*?)<\/a>/gi, '[$2]($1)');
   
-  // Convert images (handle both src-alt and alt-src orders)
-  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*alt=['"](.*?)['"][^>]*[^>]*>/gi, '![$2]($1)');
-  markdown = markdown.replace(/<img[^>]*alt=['"](.*?)['"][^>]*src=['"](.*?)['"][^>]*[^>]*>/gi, '![$1]($2)');
-  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*>/gi, '![]($1)');
+  // Convert images (handle both src-alt and alt-src orders) with proper spacing
+  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*alt=['"](.*?)['"][^>]*[^>]*>/gi, '\n\n![$2]($1)\n\n');
+  markdown = markdown.replace(/<img[^>]*alt=['"](.*?)['"][^>]*src=['"](.*?)['"][^>]*[^>]*>/gi, '\n\n![$1]($2)\n\n');
+  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*>/gi, '\n\n![]($1)\n\n');
   
   // Convert code elements (before processing other text formatting)
   markdown = markdown.replace(/<pre[^>]*><code[^>]*>(.*?)<\/code><\/pre>/gis, '\n```\n$1\n```\n\n');
@@ -97,7 +97,7 @@ const htmlToMarkdown = (html) => {
         .replace(/\n+/g, ' '); // replace newlines with spaces
       return `${counter++}. ${cleanContent}\n`;
     });
-    return '\n' + listContent + '\n';
+    return '\n\n' + listContent + '\n';
   });
   
   // Convert unordered lists (preserve nested structure)  
@@ -109,7 +109,7 @@ const htmlToMarkdown = (html) => {
         .replace(/\n+/g, ' '); // replace newlines with spaces
       return `- ${cleanContent}\n`;
     });
-    return '\n' + listContent + '\n';
+    return '\n\n' + listContent + '\n';
   });
   
   // Convert blockquotes
@@ -174,10 +174,16 @@ const htmlToMarkdown = (html) => {
     .trim();
   
   // Ensure proper spacing after headers
-  markdown = markdown.replace(/(#{1,6}\s+[^\n]+)\n([^\n#])/g, '$1\n\n$2');
+  markdown = markdown.replace(/(#{1,6}\s+[^\n]+)\n([^\n#-])/g, '$1\n\n$2');
+  
+  // Ensure proper spacing before headers (except at start)
+  markdown = markdown.replace(/([^\n])\n(#{1,6}\s+)/g, '$1\n\n$2');
   
   // Clean up any remaining double spaces
   markdown = markdown.replace(/  +/g, ' ');
+  
+  // Final cleanup to ensure consistent line breaks
+  markdown = markdown.replace(/([.!?:])\n([A-Z#])/g, '$1\n\n$2');
   
   return markdown;
 };
