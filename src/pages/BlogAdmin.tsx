@@ -110,7 +110,7 @@ const BlogAdmin: React.FC = () => {
             ...prev,
             published: prev.published.filter(p => p.id !== postId)
           }));
-          alert('Post removed from view successfully!');
+          alert('Static post hidden from view (will return after page refresh). To permanently remove, delete from blogPosts.ts file.');
         } else {
           // API post - delete from server
           await apiClient.deletePublishedPost(postId);
@@ -144,10 +144,12 @@ const BlogAdmin: React.FC = () => {
               p.id === editingPost.id ? editingPost as BlogPost : p
             )
           }));
-          alert('Post updated locally!');
+          alert('Static post updated locally (changes will reset after page refresh). To make permanent changes, edit blogPosts.ts file.');
         } else {
           // API post - update on server
-          await apiClient.updatePublishedPost(editingPost.id, editingPost);
+          console.log('Updating API post:', editingPost.id, editingPost);
+          const result = await apiClient.updatePublishedPost(editingPost.id, editingPost);
+          console.log('Update result:', result);
           alert('Post updated successfully!');
           loadAllPosts();
         }
