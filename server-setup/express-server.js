@@ -50,34 +50,95 @@ const generateExcerpt = (content, maxLength = 200) => {
 const htmlToMarkdown = (html) => {
   let markdown = html;
   
-  // Convert headers
-  markdown = markdown.replace(/<h1[^>]*>(.*?)<\/h1>/gi, '# $1');
-  markdown = markdown.replace(/<h2[^>]*>(.*?)<\/h2>/gi, '## $1');
-  markdown = markdown.replace(/<h3[^>]*>(.*?)<\/h3>/gi, '### $1');
-  markdown = markdown.replace(/<h4[^>]*>(.*?)<\/h4>/gi, '#### $1');
+  // Convert headers with proper spacing
+  markdown = markdown.replace(/<h1[^>]*>(.*?)<\/h1>/gi, '\n# $1\n\n');
+  markdown = markdown.replace(/<h2[^>]*>(.*?)<\/h2>/gi, '\n## $1\n\n');
+  markdown = markdown.replace(/<h3[^>]*>(.*?)<\/h3>/gi, '\n### $1\n\n');
+  markdown = markdown.replace(/<h4[^>]*>(.*?)<\/h4>/gi, '\n#### $1\n\n');
+  markdown = markdown.replace(/<h5[^>]*>(.*?)<\/h5>/gi, '\n##### $1\n\n');
+  markdown = markdown.replace(/<h6[^>]*>(.*?)<\/h6>/gi, '\n###### $1\n\n');
   
-  // Convert paragraphs
-  markdown = markdown.replace(/<p[^>]*>(.*?)<\/p>/gi, '$1\n\n');
+  // Convert paragraphs with proper spacing
+  markdown = markdown.replace(/<p[^>]*>(.*?)<\/p>/gi, '\n$1\n\n');
   
   // Convert bold and italic
   markdown = markdown.replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**');
   markdown = markdown.replace(/<b[^>]*>(.*?)<\/b>/gi, '**$1**');
   markdown = markdown.replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*');
+  markdown = markdown.replace(/<i[^>]*>(.*?)<\/i>/gi, '*$1*');
   
-  // Convert lists
-  markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, '$1');
-  markdown = markdown.replace(/<li[^>]*>(.*?)<\/li>/gi, '- $1');
+  // Convert ordered lists
+  markdown = markdown.replace(/<ol[^>]*>(.*?)<\/ol>/gis, (match, content) => {
+    let counter = 1;
+    const listContent = content.replace(/<li[^>]*>(.*?)<\/li>/gi, (liMatch, liContent) => {
+      return `${counter++}. ${liContent.trim()}\n`;
+    });
+    return '\n' + listContent + '\n';
+  });
+  
+  // Convert unordered lists
+  markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, (match, content) => {
+    const listContent = content.replace(/<li[^>]*>(.*?)<\/li>/gi, (liMatch, liContent) => {
+      return `- ${liContent.trim()}\n`;
+    });
+    return '\n' + listContent + '\n';
+  });
+  
+  // Convert tables
+  markdown = markdown.replace(/<table[^>]*>(.*?)<\/table>/gis, (match, tableContent) => {
+    let tableMarkdown = '\n';
+    const rows = tableContent.match(/<tr[^>]*>(.*?)<\/tr>/gis) || [];
+    
+    rows.forEach((row, index) => {
+      const cells = row.match(/<t[hd][^>]*>(.*?)<\/t[hd]>/gis) || [];
+      const cellContent = cells.map(cell => 
+        cell.replace(/<t[hd][^>]*>(.*?)<\/t[hd]>/i, '$1').trim()
+      );
+      
+      tableMarkdown += '| ' + cellContent.join(' | ') + ' |\n';
+      
+      // Add header separator after first row
+      if (index === 0) {
+        tableMarkdown += '|' + cellContent.map(() => ' --- ').join('|') + '|\n';
+      }
+    });
+    
+    return tableMarkdown + '\n';
+  });
+  
+  // Convert links
+  markdown = markdown.replace(/<a[^>]*href=['"](.*?)['"][^>]*>(.*?)<\/a>/gi, '[$2]($1)');
+  
+  // Convert images
+  markdown = markdown.replace(/<img[^>]*src=['"](.*?)['"][^>]*alt=['"](.*?)['"][^>]*>/gi, '![$2]($1)');
+  markdown = markdown.replace(/<img[^>]*alt=['"](.*?)['"][^>]*src=['"](.*?)['"][^>]*>/gi, '![$1]($2)');
   
   // Convert line breaks
   markdown = markdown.replace(/<br\s*\/?>/gi, '\n');
   
-  // Clean up HTML tags
+  // Convert blockquotes
+  markdown = markdown.replace(/<blockquote[^>]*>(.*?)<\/blockquote>/gis, (match, content) => {
+    return '\n> ' + content.trim().replace(/\n/g, '\n> ') + '\n\n';
+  });
+  
+  // Convert code blocks
+  markdown = markdown.replace(/<pre[^>]*><code[^>]*>(.*?)<\/code><\/pre>/gis, '\n```\n$1\n```\n\n');
+  markdown = markdown.replace(/<code[^>]*>(.*?)<\/code>/gi, '`$1`');
+  
+  // Clean up remaining HTML tags
   markdown = markdown.replace(/<[^>]*>/g, '');
   
-  // Clean up extra whitespace
-  markdown = markdown.replace(/\n\s*\n\s*\n/g, '\n\n');
+  // Clean up extra whitespace and normalize spacing
+  markdown = markdown
+    .replace(/\n\s*\n\s*\n/g, '\n\n') // Multiple newlines to double newlines
+    .replace(/^\s+/gm, '') // Remove leading whitespace from lines
+    .replace(/\s+$/gm, '') // Remove trailing whitespace from lines
+    .trim();
   
-  return markdown.trim();
+  // Ensure proper spacing after headers
+  markdown = markdown.replace(/(#{1,6}\s+[^\n]+)\n([^\n])/g, '$1\n\n$2');
+  
+  return markdown;
 };
 
 // ============================================

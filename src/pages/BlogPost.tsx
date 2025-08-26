@@ -209,9 +209,13 @@ const BlogPost = () => {
                   {/* Content with improved typography */}
                   <div className="prose prose-lg prose-gray max-w-none">
                     <div className="space-y-6 text-gray-800 leading-relaxed">
-                      {post.content.split('\n\n').map((paragraph, index) => {
-                        if (paragraph.startsWith('# ')) {
-                          const text = paragraph.replace('# ', '');
+                      {post.content.split('\n\n').map((block, index) => {
+                        // Skip empty blocks
+                        if (!block.trim()) return null;
+                        
+                        // Headers
+                        if (block.startsWith('# ')) {
+                          const text = block.replace('# ', '');
                           const id = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
                           return (
                             <h1 key={index} id={id} className="text-3xl font-bold text-gray-900 mt-12 mb-6 first:mt-0 scroll-mt-20">
@@ -219,8 +223,8 @@ const BlogPost = () => {
                             </h1>
                           );
                         }
-                        if (paragraph.startsWith('## ')) {
-                          const text = paragraph.replace('## ', '');
+                        if (block.startsWith('## ')) {
+                          const text = block.replace('## ', '');
                           const id = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
                           return (
                             <h2 key={index} id={id} className="text-2xl font-bold text-gray-900 mt-10 mb-4 scroll-mt-20">
@@ -228,8 +232,8 @@ const BlogPost = () => {
                             </h2>
                           );
                         }
-                        if (paragraph.startsWith('### ')) {
-                          const text = paragraph.replace('### ', '');
+                        if (block.startsWith('### ')) {
+                          const text = block.replace('### ', '');
                           const id = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
                           return (
                             <h3 key={index} id={id} className="text-xl font-bold text-gray-900 mt-8 mb-3 scroll-mt-20">
@@ -237,8 +241,8 @@ const BlogPost = () => {
                             </h3>
                           );
                         }
-                        if (paragraph.startsWith('#### ')) {
-                          const text = paragraph.replace('#### ', '');
+                        if (block.startsWith('#### ')) {
+                          const text = block.replace('#### ', '');
                           const id = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
                           return (
                             <h4 key={index} id={id} className="text-lg font-semibold text-gray-900 mt-6 mb-2 scroll-mt-20">
@@ -246,28 +250,130 @@ const BlogPost = () => {
                             </h4>
                           );
                         }
-                        if (paragraph.startsWith('- ')) {
-                          const listItems = paragraph.split('\n').filter(item => item.startsWith('- '));
+                        
+                        // Unordered lists
+                        if (block.includes('\n- ') || block.startsWith('- ')) {
+                          const listItems = block.split('\n').filter(item => item.startsWith('- '));
                           return (
-                            <ul key={index} className="space-y-2 ml-6">
+                            <ul key={index} className="space-y-3 my-6">
                               {listItems.map((item, itemIndex) => (
                                 <li key={itemIndex} className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span dangerouslySetInnerHTML={{ 
-                                    __html: item.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                                  }} />
+                                  <span className="text-cyan-500 mr-3 mt-1 text-lg">•</span>
+                                  <span 
+                                    className="flex-1"
+                                    dangerouslySetInnerHTML={{ 
+                                      __html: item
+                                        .replace('- ', '')
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                                        .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+                                        .replace(/`(.*?)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
+                                    }} 
+                                  />
                                 </li>
                               ))}
                             </ul>
                           );
                         }
-                        if (paragraph.trim() === '') return null;
+                        
+                        // Ordered lists
+                        if (/^\d+\.\s/.test(block) || block.includes('\n1. ')) {
+                          const listItems = block.split('\n').filter(item => /^\d+\.\s/.test(item));
+                          return (
+                            <ol key={index} className="space-y-3 my-6 counter-reset">
+                              {listItems.map((item, itemIndex) => (
+                                <li key={itemIndex} className="flex items-start">
+                                  <span className="text-cyan-600 mr-3 mt-1 font-semibold">
+                                    {itemIndex + 1}.
+                                  </span>
+                                  <span 
+                                    className="flex-1"
+                                    dangerouslySetInnerHTML={{ 
+                                      __html: item
+                                        .replace(/^\d+\.\s/, '')
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                                        .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+                                        .replace(/`(.*?)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
+                                    }} 
+                                  />
+                                </li>
+                              ))}
+                            </ol>
+                          );
+                        }
+                        
+                        // Blockquotes
+                        if (block.startsWith('> ')) {
+                          return (
+                            <blockquote key={index} className="border-l-4 border-cyan-500 pl-6 my-6 italic bg-gray-50 py-4 rounded-r-lg">
+                              <div 
+                                dangerouslySetInnerHTML={{ 
+                                  __html: block
+                                    .replace(/^> /gm, '')
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+                                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                }} 
+                              />
+                            </blockquote>
+                          );
+                        }
+                        
+                        // Code blocks
+                        if (block.startsWith('```')) {
+                          const codeContent = block.replace(/^```[\w]*\n?/, '').replace(/\n?```$/, '');
+                          return (
+                            <pre key={index} className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto my-6">
+                              <code>{codeContent}</code>
+                            </pre>
+                          );
+                        }
+                        
+                        // Tables
+                        if (block.includes('|') && block.includes('---')) {
+                          const lines = block.split('\n').filter(line => line.trim());
+                          const headerRow = lines[0];
+                          const dataRows = lines.slice(2); // Skip header separator
+                          
+                          return (
+                            <div key={index} className="overflow-x-auto my-6">
+                              <table className="min-w-full border-collapse border border-gray-300">
+                                <thead className="bg-gray-50">
+                                  <tr>
+                                    {headerRow.split('|').map((cell, cellIndex) => (
+                                      <th key={cellIndex} className="border border-gray-300 px-4 py-2 text-left font-semibold">
+                                        {cell.trim()}
+                                      </th>
+                                    )).filter((_, idx) => idx > 0 && idx < headerRow.split('|').length - 1)}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {dataRows.map((row, rowIndex) => (
+                                    <tr key={rowIndex} className="even:bg-gray-50">
+                                      {row.split('|').map((cell, cellIndex) => (
+                                        <td key={cellIndex} className="border border-gray-300 px-4 py-2">
+                                          <span dangerouslySetInnerHTML={{
+                                            __html: cell.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                          }} />
+                                        </td>
+                                      )).filter((_, idx) => idx > 0 && idx < row.split('|').length - 1)}
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          );
+                        }
+                        
+                        // Regular paragraphs
                         return (
                           <p 
                             key={index} 
-                            className="text-lg leading-relaxed"
+                            className="text-lg leading-relaxed my-4"
                             dangerouslySetInnerHTML={{ 
-                              __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                              __html: block
+                                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                                .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700">$1</em>')
+                                .replace(/`(.*?)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">$1</code>')
+                                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:text-cyan-700 underline" target="_blank" rel="noopener noreferrer">$1</a>')
                             }} 
                           />
                         );

@@ -306,30 +306,161 @@ const BlogAdmin: React.FC = () => {
                           </div>
                         </div>
                         
-                        <div 
-                          className="prose-content"
-                          dangerouslySetInnerHTML={{ 
-                            __html: selectedDraft.content
-                              .split('\n\n')
-                              .map(paragraph => {
-                                if (paragraph.startsWith('# ')) {
-                                  return `<h1 class="text-2xl font-bold mt-8 mb-4">${paragraph.replace('# ', '')}</h1>`;
-                                }
-                                if (paragraph.startsWith('## ')) {
-                                  return `<h2 class="text-xl font-bold mt-6 mb-3">${paragraph.replace('## ', '')}</h2>`;
-                                }
-                                if (paragraph.startsWith('### ')) {
-                                  return `<h3 class="text-lg font-bold mt-4 mb-2">${paragraph.replace('### ', '')}</h3>`;
-                                }
-                                if (paragraph.startsWith('- ')) {
-                                  const items = paragraph.split('\n').filter(item => item.startsWith('- '));
-                                  return `<ul class="list-disc ml-6 mb-4">${items.map(item => `<li>${item.replace('- ', '')}</li>`).join('')}</ul>`;
-                                }
-                                return `<p class="mb-4">${paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
-                              })
-                              .join('')
-                          }}
-                        />
+                        <div className="prose-content space-y-4">
+                          {selectedDraft.content.split('\n\n').map((block, index) => {
+                            if (!block.trim()) return null;
+                            
+                            // Headers
+                            if (block.startsWith('# ')) {
+                              return (
+                                <h1 key={index} className="text-2xl font-bold mt-8 mb-4 text-gray-900">
+                                  {block.replace('# ', '')}
+                                </h1>
+                              );
+                            }
+                            if (block.startsWith('## ')) {
+                              return (
+                                <h2 key={index} className="text-xl font-bold mt-6 mb-3 text-gray-900">
+                                  {block.replace('## ', '')}
+                                </h2>
+                              );
+                            }
+                            if (block.startsWith('### ')) {
+                              return (
+                                <h3 key={index} className="text-lg font-bold mt-4 mb-2 text-gray-900">
+                                  {block.replace('### ', '')}
+                                </h3>
+                              );
+                            }
+                            if (block.startsWith('#### ')) {
+                              return (
+                                <h4 key={index} className="text-base font-semibold mt-3 mb-2 text-gray-900">
+                                  {block.replace('#### ', '')}
+                                </h4>
+                              );
+                            }
+                            
+                            // Lists
+                            if (block.includes('\n- ') || block.startsWith('- ')) {
+                              const items = block.split('\n').filter(item => item.startsWith('- '));
+                              return (
+                                <ul key={index} className="space-y-2 ml-6 mb-4">
+                                  {items.map((item, itemIndex) => (
+                                    <li key={itemIndex} className="flex items-start">
+                                      <span className="text-cyan-500 mr-2 mt-1">•</span>
+                                      <span 
+                                        dangerouslySetInnerHTML={{
+                                          __html: item
+                                            .replace('- ', '')
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+                                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                        }}
+                                      />
+                                    </li>
+                                  ))}
+                                </ul>
+                              );
+                            }
+                            
+                            // Ordered lists
+                            if (/^\d+\.\s/.test(block) || block.includes('\n1. ')) {
+                              const items = block.split('\n').filter(item => /^\d+\.\s/.test(item));
+                              return (
+                                <ol key={index} className="space-y-2 ml-6 mb-4">
+                                  {items.map((item, itemIndex) => (
+                                    <li key={itemIndex} className="flex items-start">
+                                      <span className="text-cyan-600 mr-2 font-semibold">
+                                        {itemIndex + 1}.
+                                      </span>
+                                      <span 
+                                        dangerouslySetInnerHTML={{
+                                          __html: item
+                                            .replace(/^\d+\.\s/, '')
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+                                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                        }}
+                                      />
+                                    </li>
+                                  ))}
+                                </ol>
+                              );
+                            }
+                            
+                            // Tables
+                            if (block.includes('|') && block.includes('---')) {
+                              const lines = block.split('\n').filter(line => line.trim());
+                              const headerRow = lines[0];
+                              const dataRows = lines.slice(2);
+                              
+                              return (
+                                <div key={index} className="overflow-x-auto mb-6">
+                                  <table className="min-w-full border-collapse border border-gray-300">
+                                    <thead className="bg-gray-50">
+                                      <tr>
+                                        {headerRow.split('|').slice(1, -1).map((cell, cellIndex) => (
+                                          <th key={cellIndex} className="border border-gray-300 px-3 py-2 text-left font-semibold text-sm">
+                                            {cell.trim()}
+                                          </th>
+                                        ))}
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {dataRows.map((row, rowIndex) => (
+                                        <tr key={rowIndex}>
+                                          {row.split('|').slice(1, -1).map((cell, cellIndex) => (
+                                            <td key={cellIndex} className="border border-gray-300 px-3 py-2 text-sm">
+                                              <span dangerouslySetInnerHTML={{
+                                                __html: cell.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                              }} />
+                                            </td>
+                                          ))}
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              );
+                            }
+                            
+                            // Blockquotes
+                            if (block.startsWith('> ')) {
+                              return (
+                                <blockquote key={index} className="border-l-4 border-cyan-500 pl-4 py-2 mb-4 bg-gray-50 italic">
+                                  <div dangerouslySetInnerHTML={{
+                                    __html: block
+                                      .replace(/^> /gm, '')
+                                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                  }} />
+                                </blockquote>
+                              );
+                            }
+                            
+                            // Code blocks
+                            if (block.startsWith('```')) {
+                              const codeContent = block.replace(/^```[\w]*\n?/, '').replace(/\n?```$/, '');
+                              return (
+                                <pre key={index} className="bg-gray-900 text-gray-100 p-4 rounded text-sm overflow-x-auto mb-4">
+                                  <code>{codeContent}</code>
+                                </pre>
+                              );
+                            }
+                            
+                            // Regular paragraphs
+                            return (
+                              <p 
+                                key={index} 
+                                className="mb-4 text-gray-700 leading-relaxed"
+                                dangerouslySetInnerHTML={{
+                                  __html: block
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+                                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                    .replace(/`(.*?)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
+                                    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:underline" target="_blank">$1</a>')
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
                         
                         <div className="mt-8 pt-4 border-t">
                           <div className="flex flex-wrap gap-2">
