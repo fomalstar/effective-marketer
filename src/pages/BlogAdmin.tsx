@@ -102,9 +102,21 @@ const BlogAdmin: React.FC = () => {
   const handleDeletePublished = async (postId: string) => {
     if (window.confirm('Are you sure you want to delete this published post? This action cannot be undone.')) {
       try {
-        await apiClient.deletePublishedPost(postId);
-        alert('Post deleted successfully!');
-        loadAllPosts();
+        // Check if it's a static post (IDs 1-5) that can't be deleted from server
+        const numericId = parseInt(postId);
+        if (numericId >= 1 && numericId <= 5) {
+          // Static post - just remove from local state
+          setAllPosts(prev => ({
+            ...prev,
+            published: prev.published.filter(p => p.id !== postId)
+          }));
+          alert('Post removed from view successfully!');
+        } else {
+          // API post - delete from server
+          await apiClient.deletePublishedPost(postId);
+          alert('Post deleted successfully!');
+          loadAllPosts();
+        }
         setSelectedPost(null);
       } catch (error) {
         console.error('Error deleting post:', error);
@@ -123,12 +135,25 @@ const BlogAdmin: React.FC = () => {
         alert('Draft updated successfully!');
       } else {
         // It's a published post
-        await apiClient.updatePublishedPost(editingPost.id, editingPost);
-        alert('Post updated successfully!');
+        const numericId = parseInt(editingPost.id);
+        if (numericId >= 1 && numericId <= 5) {
+          // Static post - just update local state
+          setAllPosts(prev => ({
+            ...prev,
+            published: prev.published.map(p => 
+              p.id === editingPost.id ? editingPost as BlogPost : p
+            )
+          }));
+          alert('Post updated locally!');
+        } else {
+          // API post - update on server
+          await apiClient.updatePublishedPost(editingPost.id, editingPost);
+          alert('Post updated successfully!');
+          loadAllPosts();
+        }
       }
       
       setEditingPost(null);
-      loadAllPosts();
     } catch (error) {
       console.error('Error saving:', error);
       alert('Error saving changes');
