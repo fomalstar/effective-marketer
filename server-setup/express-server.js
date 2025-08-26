@@ -4,6 +4,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -13,9 +15,41 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// In-memory storage (replace with database in production)
+// File-based storage paths
+const DRAFTS_FILE = path.join(__dirname, 'drafts.json');
+const PUBLISHED_FILE = path.join(__dirname, 'published.json');
+
+// Load data from files
 let draftPosts = [];
 let publishedPosts = [];
+
+try {
+  if (fs.existsSync(DRAFTS_FILE)) {
+    draftPosts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
+  }
+  if (fs.existsSync(PUBLISHED_FILE)) {
+    publishedPosts = JSON.parse(fs.readFileSync(PUBLISHED_FILE, 'utf8'));
+  }
+} catch (error) {
+  console.log('Error loading saved data, starting fresh:', error.message);
+}
+
+// Save data to files
+const saveDrafts = () => {
+  try {
+    fs.writeFileSync(DRAFTS_FILE, JSON.stringify(draftPosts, null, 2));
+  } catch (error) {
+    console.error('Error saving drafts:', error.message);
+  }
+};
+
+const savePublished = () => {
+  try {
+    fs.writeFileSync(PUBLISHED_FILE, JSON.stringify(publishedPosts, null, 2));
+  } catch (error) {
+    console.error('Error saving published posts:', error.message);
+  }
+};
 
 // Utility functions (copy from your TypeScript files)
 const calculateReadingTime = (content) => {
@@ -234,6 +268,7 @@ app.post('/api/blog/webhook', (req, res) => {
     };
 
     draftPosts.push(draftPost);
+    saveDrafts();
     
     console.log(`New draft received: ${title} (ID: ${draftId})`);
     
@@ -326,6 +361,8 @@ app.post('/api/blog/drafts/:id/publish', (req, res) => {
 
   publishedPosts.push(publishedPost);
   draftPosts.splice(draftIndex, 1);
+  savePublished();
+  saveDrafts();
 
   console.log(`Published article: ${publishedPost.title} (ID: ${publishedId})`);
 
@@ -380,6 +417,7 @@ app.put('/api/blog/published/:id', (req, res) => {
     id: req.params.id, // Preserve original ID
     slug: generateSlug(req.body.title || publishedPosts[postIndex].title)
   };
+  savePublished();
 
   console.log(`Updated published post: ${publishedPosts[postIndex].title} (ID: ${req.params.id})`);
 
@@ -399,6 +437,7 @@ app.delete('/api/blog/published/:id', (req, res) => {
   }
 
   const deleted = publishedPosts.splice(postIndex, 1)[0];
+  savePublished();
   console.log(`Deleted published post: ${deleted.title} (ID: ${deleted.id})`);
 
   res.json({ success: true, message: 'Published post deleted' });
