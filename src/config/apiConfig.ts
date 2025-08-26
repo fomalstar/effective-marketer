@@ -32,6 +32,7 @@ export const API_ENDPOINTS = {
   PUBLISH_DRAFT: (id: string) => `/blog/drafts/${id}/publish`,
   DELETE_DRAFT: (id: string) => `/blog/drafts/${id}`,
   PUBLISHED_POSTS: '/blog/published',
+  PUBLISHED_POST_BY_ID: (id: string) => `/blog/published/${id}`,
   HEALTH: '/health'
 };
 
@@ -93,6 +94,23 @@ export class ApiClient {
 
   async getPublishedPosts() {
     return this.request(API_ENDPOINTS.PUBLISHED_POSTS);
+  }
+
+  async getPublishedPost(id: string) {
+    return this.request(API_ENDPOINTS.PUBLISHED_POST_BY_ID(id));
+  }
+
+  async updatePublishedPost(id: string, data: any) {
+    return this.request(API_ENDPOINTS.PUBLISHED_POST_BY_ID(id), {
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+  }
+
+  async deletePublishedPost(id: string) {
+    return this.request(API_ENDPOINTS.PUBLISHED_POST_BY_ID(id), {
+      method: 'DELETE'
+    });
   }
 
   async checkHealth() {

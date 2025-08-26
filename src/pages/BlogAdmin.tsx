@@ -102,13 +102,9 @@ const BlogAdmin: React.FC = () => {
   const handleDeletePublished = async (postId: string) => {
     if (window.confirm('Are you sure you want to delete this published post? This action cannot be undone.')) {
       try {
-        // For now, we'll just remove from local state
-        // In a real app, you'd call an API endpoint to delete from database
-        setAllPosts(prev => ({
-          ...prev,
-          published: prev.published.filter(p => p.id !== postId)
-        }));
+        await apiClient.deletePublishedPost(postId);
         alert('Post deleted successfully!');
+        loadAllPosts();
         setSelectedPost(null);
       } catch (error) {
         console.error('Error deleting post:', error);
@@ -126,13 +122,8 @@ const BlogAdmin: React.FC = () => {
         await apiClient.updateDraft(editingPost.id, editingPost);
         alert('Draft updated successfully!');
       } else {
-        // It's a published post - for now just update local state
-        setAllPosts(prev => ({
-          ...prev,
-          published: prev.published.map(p => 
-            p.id === editingPost.id ? editingPost as BlogPost : p
-          )
-        }));
+        // It's a published post
+        await apiClient.updatePublishedPost(editingPost.id, editingPost);
         alert('Post updated successfully!');
       }
       

@@ -354,6 +354,56 @@ app.get('/api/blog/published', (req, res) => {
   res.json(sortedPosts);
 });
 
+// GET /api/blog/published/:id - get single published post
+app.get('/api/blog/published/:id', (req, res) => {
+  const post = publishedPosts.find(p => p.id === req.params.id);
+  
+  if (!post) {
+    return res.status(404).json({ error: 'Published post not found' });
+  }
+  
+  res.json(post);
+});
+
+// PUT /api/blog/published/:id - update published post
+app.put('/api/blog/published/:id', (req, res) => {
+  const postIndex = publishedPosts.findIndex(p => p.id === req.params.id);
+  
+  if (postIndex === -1) {
+    return res.status(404).json({ error: 'Published post not found' });
+  }
+
+  // Update the published post
+  publishedPosts[postIndex] = {
+    ...publishedPosts[postIndex],
+    ...req.body,
+    id: req.params.id, // Preserve original ID
+    slug: generateSlug(req.body.title || publishedPosts[postIndex].title)
+  };
+
+  console.log(`Updated published post: ${publishedPosts[postIndex].title} (ID: ${req.params.id})`);
+
+  res.json({ 
+    success: true, 
+    message: 'Published post updated', 
+    post: publishedPosts[postIndex] 
+  });
+});
+
+// DELETE /api/blog/published/:id - delete published post
+app.delete('/api/blog/published/:id', (req, res) => {
+  const postIndex = publishedPosts.findIndex(p => p.id === req.params.id);
+  
+  if (postIndex === -1) {
+    return res.status(404).json({ error: 'Published post not found' });
+  }
+
+  const deleted = publishedPosts.splice(postIndex, 1)[0];
+  console.log(`Deleted published post: ${deleted.title} (ID: ${deleted.id})`);
+
+  res.json({ success: true, message: 'Published post deleted' });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ 
