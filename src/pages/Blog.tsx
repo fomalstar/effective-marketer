@@ -1,14 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, User, ChevronRight, TrendingUp } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
-import { blogPosts, blogCategories } from '../data/blogPosts';
+import { apiClient } from '../config/apiConfig';
+const blogCategories = [
+  {
+    id: '1',
+    name: 'AI SEO Strategy',
+    slug: 'ai-seo-strategy',
+    description: 'Advanced AI SEO strategies and techniques',
+    color: 'bg-gradient-to-r from-cyan-500 to-blue-600'
+  },
+  {
+    id: '2',
+    name: 'Autocomplete SEO',
+    slug: 'autocomplete-seo',
+    description: 'Google Autosuggest optimization insights',
+    color: 'bg-gradient-to-r from-purple-500 to-pink-600'
+  },
+  {
+    id: '3',
+    name: 'Lead Generation',
+    slug: 'lead-generation',
+    description: 'AI automation and lead generation strategies',
+    color: 'bg-gradient-to-r from-green-500 to-emerald-600'
+  },
+  {
+    id: '4',
+    name: 'Case Studies',
+    slug: 'case-studies',
+    description: 'Real client success stories and results',
+    color: 'bg-gradient-to-r from-orange-500 to-red-600'
+  },
+  {
+    id: '5',
+    name: 'Industry News',
+    slug: 'industry-news',
+    description: 'Latest updates in AI SEO and marketing',
+    color: 'bg-gradient-to-r from-gray-500 to-slate-600'
+  }
+];
 
 const Blog = () => {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const filteredPosts = blogPosts.filter(post => {
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const publishedPosts = await apiClient.getPublishedPosts();
+        setPosts(publishedPosts);
+      } catch (error) {
+        console.error('Error fetching published posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const filteredPosts = posts.filter(post => {
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -106,7 +157,7 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {blogCategories.map((category) => {
-              const categoryPosts = blogPosts.filter(post => post.category === category.name);
+              const categoryPosts = posts.filter(post => post.category === category.name);
               return (
                 <div
                   key={category.id}
