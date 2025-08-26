@@ -1,33 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft, Share2, Bookmark, Tag, TrendingUp, MessageCircle, Heart, Eye, Users, Target, Zap } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import TableOfContents from '../components/TableOfContents';
-import { blogPosts, blogCategories, defaultAuthor } from '../data/blogPosts';
+import { blogPosts, blogCategories, defaultAuthor, BlogPost } from '../data/blogPosts';
+import { apiClient } from '../config/apiConfig';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = blogPosts.find(p => p.slug === slug);
+  const [allPosts, setAllPosts] = useState<BlogPost[]>(blogPosts);
+  const [isLoading, setIsLoading] = useState(true);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [likes, setLikes] = useState(Math.floor(Math.random() * 50) + 10);
   const [isLiked, setIsLiked] = useState(false);
+
+  // Fetch all posts (static + API)
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      try {
+        const publishedPosts = await apiClient.getPublishedPosts();
+        // Combine API posts with static posts
+        const combinedPosts = [...publishedPosts, ...blogPosts];
+        setAllPosts(combinedPosts);
+      } catch (error) {
+        console.error('Error fetching published posts:', error);
+        // Fallback to static posts if API fails
+        setAllPosts(blogPosts);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAllPosts();
+  }, []);
+
+  const post = allPosts.find(p => p.slug === slug);
+
+  if (isLoading) {
+    return (
+      <PageLayout title="Loading..." description="Loading blog post...">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading article...</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
 
   if (!post) {
     return <Navigate to="/blog" replace />;
   }
 
   const category = blogCategories.find(cat => cat.name === post.category);
-  const relatedPosts = blogPosts
+  const relatedPosts = allPosts
     .filter(p => p.id !== post.id && (p.category === post.category || p.tags.some(tag => post.tags.includes(tag))))
     .slice(0, 3);
   
   // Popular posts for sidebar
-  const popularPosts = blogPosts
+  const popularPosts = allPosts
     .filter(p => p.id !== post.id)
     .slice(0, 4);
     
   // Recent posts for sidebar
-  const recentPosts = blogPosts
+  const recentPosts = allPosts
     .filter(p => p.id !== post.id)
     .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
     .slice(0, 5);
@@ -315,7 +352,7 @@ const BlogPost = () => {
                 <h3 className="font-semibold text-gray-900 mb-4">Categories</h3>
                 <div className="space-y-2">
                   {blogCategories.map(category => {
-                    const categoryPostCount = blogPosts.filter(p => p.category === category.name).length;
+                    const categoryPostCount = allPosts.filter(p => p.category === category.name).length;
                     return (
                       <a
                         key={category.id}
