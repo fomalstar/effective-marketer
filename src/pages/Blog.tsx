@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Clock, User, ChevronRight, TrendingUp } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import { apiClient } from '../config/apiConfig';
+import { BlogPost, blogPosts } from '../data/blogPosts';
 const blogCategories = [
   {
     id: '1',
@@ -50,9 +51,13 @@ const Blog = () => {
     const fetchPosts = async () => {
       try {
         const publishedPosts = await apiClient.getPublishedPosts();
-        setPosts(publishedPosts);
+        // Combine API posts with static posts
+        const allPosts = [...publishedPosts, ...blogPosts];
+        setPosts(allPosts);
       } catch (error) {
         console.error('Error fetching published posts:', error);
+        // Fallback to static posts if API fails
+        setPosts(blogPosts);
       }
     };
 
