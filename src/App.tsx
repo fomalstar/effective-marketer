@@ -16,36 +16,45 @@ import Onboarding from './pages/Onboarding';
 import GoogleAutosuggestRanking from './pages/GoogleAutosuggestRanking';
 import AIAutomation from './pages/AIAutomation';
 import BlogAdmin from './pages/BlogAdmin';
+import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './contexts/AuthContext';
 
 import SEOHead from './components/SEOHead';
 
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-grow">
-                <SEOHead />
-                <Hero />
-                <Future />
-                <Dashboard />
-                <Roadmap />
-                <GetStarted />
-                <Contact />
-                <FinalCTA />
-              </main>
-              <Footer />
-            </div>
-          } />
-                      <Route path="/blog" element={<Blog />} />
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={
+              <div className="min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-grow">
+                  <SEOHead />
+                  <Hero />
+                  <Future />
+                  <Dashboard />
+                  <Roadmap />
+                  <GetStarted />
+                  <Contact />
+                  <FinalCTA />
+                </main>
+                <Footer />
+              </div>
+            } />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/blog-admin" element={<BlogAdmin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/blog-admin" element={
+              <ProtectedRoute>
+                <BlogAdmin />
+              </ProtectedRoute>
+            } />
             <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
-                      <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
+            <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
+            <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
           <Route path="*" element={
             <div className="min-h-screen flex flex-col">
               <Header />
@@ -72,7 +81,8 @@ function App() {
             </div>
           } />
         </Routes>
-      </Router>
+        </Router>
+      </AuthProvider>
     </HelmetProvider>
   );
 }

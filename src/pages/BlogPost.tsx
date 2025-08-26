@@ -276,6 +276,56 @@ const BlogPost = () => {
                           }
                         }
                         
+                        // Handle blocks with images mixed in 
+                        if (block.includes('![')) {
+                          // Split mixed content and render each part
+                          const parts = [];
+                          const lines = block.split('\n');
+                          
+                          lines.forEach((line, lineIndex) => {
+                            if (line.trim().startsWith('![')) {
+                              const imageMatch = line.match(/!\[(.*?)\]\((.*?)\)/);
+                              if (imageMatch) {
+                                const [, altText, imageUrl] = imageMatch;
+                                parts.push(
+                                  <div key={`${index}-img-${lineIndex}`} className="my-8">
+                                    <img 
+                                      src={imageUrl} 
+                                      alt={altText} 
+                                      className="w-full h-auto rounded-lg shadow-lg"
+                                      onError={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                      }}
+                                    />
+                                    {altText && (
+                                      <p className="text-sm text-gray-600 text-center mt-2 italic">
+                                        {altText}
+                                      </p>
+                                    )}
+                                  </div>
+                                );
+                              }
+                            } else if (line.startsWith('- ')) {
+                              parts.push(
+                                <li key={`${index}-li-${lineIndex}`} className="flex items-start mb-2">
+                                  <span className="text-cyan-500 mr-3 mt-1">•</span>
+                                  <span dangerouslySetInnerHTML={{
+                                    __html: line.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:underline">$1</a>')
+                                  }} />
+                                </li>
+                              );
+                            } else if (line.trim()) {
+                              parts.push(
+                                <p key={`${index}-p-${lineIndex}`} className="mb-2" dangerouslySetInnerHTML={{
+                                  __html: line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-cyan-600 hover:underline">$1</a>')
+                                }} />
+                              );
+                            }
+                          });
+                          
+                          return <div key={index}>{parts}</div>;
+                        }
+                        
                         // Lists (simple approach - render as mixed content)
                         if (block.includes('- **') || block.includes('- ') || /^\d+\.\s/.test(block)) {
                           return (
