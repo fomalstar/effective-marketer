@@ -4,8 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
+const BlogDatabase = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,41 +14,8 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// File-based storage paths
-const DRAFTS_FILE = path.join(__dirname, 'drafts.json');
-const PUBLISHED_FILE = path.join(__dirname, 'published.json');
-
-// Load data from files
-let draftPosts = [];
-let publishedPosts = [];
-
-try {
-  if (fs.existsSync(DRAFTS_FILE)) {
-    draftPosts = JSON.parse(fs.readFileSync(DRAFTS_FILE, 'utf8'));
-  }
-  if (fs.existsSync(PUBLISHED_FILE)) {
-    publishedPosts = JSON.parse(fs.readFileSync(PUBLISHED_FILE, 'utf8'));
-  }
-} catch (error) {
-  console.log('Error loading saved data, starting fresh:', error.message);
-}
-
-// Save data to files
-const saveDrafts = () => {
-  try {
-    fs.writeFileSync(DRAFTS_FILE, JSON.stringify(draftPosts, null, 2));
-  } catch (error) {
-    console.error('Error saving drafts:', error.message);
-  }
-};
-
-const savePublished = () => {
-  try {
-    fs.writeFileSync(PUBLISHED_FILE, JSON.stringify(publishedPosts, null, 2));
-  } catch (error) {
-    console.error('Error saving published posts:', error.message);
-  }
-};
+// Initialize database
+const db = new BlogDatabase();
 
 // Utility functions (copy from your TypeScript files)
 const calculateReadingTime = (content) => {
@@ -227,7 +193,7 @@ const htmlToMarkdown = (html) => {
 // ============================================
 
 // POST /api/blog/webhook - n8n webhook endpoint
-app.post('/api/blog/webhook', (req, res) => {
+app.post('/api/blog/webhook', async (req, res) => {
   try {
     const { title, content, category, tags, featuredImage, metaDescription } = req.body;
     
@@ -267,8 +233,7 @@ app.post('/api/blog/webhook', (req, res) => {
       originalHtml: content
     };
 
-    draftPosts.push(draftPost);
-    saveDrafts();
+    await db.createDraft(draftPost);
     
     console.log(`New draft received: ${title} (ID: ${draftId})`);
     
@@ -294,164 +259,167 @@ app.post('/api/blog/webhook', (req, res) => {
 });
 
 // GET /api/blog/drafts - get all drafts
-app.get('/api/blog/drafts', (req, res) => {
-  const sortedDrafts = draftPosts.sort((a, b) => 
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
-  res.json(sortedDrafts);
+app.get('/api/blog/drafts', async (req, res) => {
+  try {
+    const drafts = await db.getAllDrafts();
+    res.json(drafts);
+  } catch (error) {
+    console.error('Error getting drafts:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // GET /api/blog/drafts/:id - get single draft
-app.get('/api/blog/drafts/:id', (req, res) => {
-  const draft = draftPosts.find(post => post.id === req.params.id);
-  
-  if (!draft) {
-    return res.status(404).json({ error: 'Draft not found' });
+app.get('/api/blog/drafts/:id', async (req, res) => {
+  try {
+    const draft = await db.getDraft(req.params.id);
+    
+    if (!draft) {
+      return res.status(404).json({ error: 'Draft not found' });
+    }
+    
+    res.json(draft);
+  } catch (error) {
+    console.error('Error getting draft:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-  
-  res.json(draft);
 });
 
 // PUT /api/blog/drafts/:id - update draft
-app.put('/api/blog/drafts/:id', (req, res) => {
-  const draftIndex = draftPosts.findIndex(post => post.id === req.params.id);
-  
-  if (draftIndex === -1) {
-    return res.status(404).json({ error: 'Draft not found' });
+app.put('/api/blog/drafts/:id', async (req, res) => {
+  try {
+    const result = await db.updateDraft(req.params.id, req.body);
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
+    }
+    
+    res.json({ success: true, message: 'Draft updated' });
+  } catch (error) {
+    console.error('Error updating draft:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-
-  draftPosts[draftIndex] = {
-    ...draftPosts[draftIndex],
-    ...req.body,
-    updatedAt: new Date().toISOString()
-  };
-
-  saveDrafts();
-  res.json({ success: true, message: 'Draft updated' });
 });
 
 // POST /api/blog/drafts/:id/publish - publish draft
-app.post('/api/blog/drafts/:id/publish', (req, res) => {
-  const draftIndex = draftPosts.findIndex(post => post.id === req.params.id);
-  
-  if (draftIndex === -1) {
-    return res.status(404).json({ error: 'Draft not found' });
+app.post('/api/blog/drafts/:id/publish', async (req, res) => {
+  try {
+    const result = await db.publishDraft(req.params.id);
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
+    }
+
+    console.log(`Published article (ID: ${result.publishedId})`);
+    res.json({ success: true, message: 'Draft published', publishedId: result.publishedId });
+  } catch (error) {
+    console.error('Error publishing draft:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-
-  const draft = draftPosts[draftIndex];
-  
-  // Create published post
-  const publishedId = `pub_${Date.now()}`;
-  const publishedPost = {
-    id: publishedId,
-    title: draft.title,
-    slug: draft.slug,
-    excerpt: draft.excerpt,
-    content: draft.content,
-    author: draft.author,
-    authorRole: draft.authorRole,
-    authorImage: draft.authorImage,
-    publishDate: new Date().toISOString().split('T')[0],
-    readTime: draft.readTime,
-    category: draft.category,
-    tags: draft.tags,
-    featuredImage: draft.featuredImage,
-    metaDescription: draft.metaDescription,
-    featured: draft.featured
-  };
-
-  publishedPosts.push(publishedPost);
-  draftPosts.splice(draftIndex, 1);
-  savePublished();
-  saveDrafts();
-
-  console.log(`Published article: ${publishedPost.title} (ID: ${publishedId})`);
-
-  res.json({ success: true, message: 'Draft published', publishedId });
 });
 
 // DELETE /api/blog/drafts/:id - delete draft
-app.delete('/api/blog/drafts/:id', (req, res) => {
-  const draftIndex = draftPosts.findIndex(post => post.id === req.params.id);
-  
-  if (draftIndex === -1) {
-    return res.status(404).json({ error: 'Draft not found' });
+app.delete('/api/blog/drafts/:id', async (req, res) => {
+  try {
+    const result = await db.deleteDraft(req.params.id);
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
+    }
+
+    console.log(`Deleted draft (ID: ${req.params.id})`);
+    res.json({ success: true, message: 'Draft deleted' });
+  } catch (error) {
+    console.error('Error deleting draft:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-
-  const deleted = draftPosts.splice(draftIndex, 1)[0];
-  console.log(`Deleted draft: ${deleted.title} (ID: ${deleted.id})`);
-
-  res.json({ success: true, message: 'Draft deleted' });
 });
 
 // GET /api/blog/published - get all published posts
-app.get('/api/blog/published', (req, res) => {
-  const sortedPosts = publishedPosts.sort((a, b) => 
-    new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-  );
-  res.json(sortedPosts);
+app.get('/api/blog/published', async (req, res) => {
+  try {
+    const posts = await db.getAllPublishedPosts();
+    res.json(posts);
+  } catch (error) {
+    console.error('Error getting published posts:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // GET /api/blog/published/:id - get single published post
-app.get('/api/blog/published/:id', (req, res) => {
-  const post = publishedPosts.find(p => p.id === req.params.id);
-  
-  if (!post) {
-    return res.status(404).json({ error: 'Published post not found' });
+app.get('/api/blog/published/:id', async (req, res) => {
+  try {
+    const post = await db.getPublishedPost(req.params.id);
+    
+    if (!post) {
+      return res.status(404).json({ error: 'Published post not found' });
+    }
+    
+    res.json(post);
+  } catch (error) {
+    console.error('Error getting published post:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-  
-  res.json(post);
 });
 
 // PUT /api/blog/published/:id - update published post
-app.put('/api/blog/published/:id', (req, res) => {
-  const postIndex = publishedPosts.findIndex(p => p.id === req.params.id);
-  
-  if (postIndex === -1) {
-    return res.status(404).json({ error: 'Published post not found' });
+app.put('/api/blog/published/:id', async (req, res) => {
+  try {
+    // Generate slug if title is being updated
+    const updates = { ...req.body };
+    if (updates.title) {
+      updates.slug = generateSlug(updates.title);
+    }
+    
+    const result = await db.updatePublishedPost(req.params.id, updates);
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
+    }
+
+    console.log(`Updated published post (ID: ${req.params.id})`);
+    res.json({ success: true, message: 'Published post updated' });
+  } catch (error) {
+    console.error('Error updating published post:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-
-  // Update the published post
-  publishedPosts[postIndex] = {
-    ...publishedPosts[postIndex],
-    ...req.body,
-    id: req.params.id, // Preserve original ID
-    slug: generateSlug(req.body.title || publishedPosts[postIndex].title)
-  };
-  savePublished();
-
-  console.log(`Updated published post: ${publishedPosts[postIndex].title} (ID: ${req.params.id})`);
-
-  res.json({ 
-    success: true, 
-    message: 'Published post updated', 
-    post: publishedPosts[postIndex] 
-  });
 });
 
 // DELETE /api/blog/published/:id - delete published post
-app.delete('/api/blog/published/:id', (req, res) => {
-  const postIndex = publishedPosts.findIndex(p => p.id === req.params.id);
-  
-  if (postIndex === -1) {
-    return res.status(404).json({ error: 'Published post not found' });
+app.delete('/api/blog/published/:id', async (req, res) => {
+  try {
+    const result = await db.deletePublishedPost(req.params.id);
+    
+    if (!result.success) {
+      return res.status(404).json({ error: result.error });
+    }
+
+    console.log(`Deleted published post (ID: ${req.params.id})`);
+    res.json({ success: true, message: 'Published post deleted' });
+  } catch (error) {
+    console.error('Error deleting published post:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-
-  const deleted = publishedPosts.splice(postIndex, 1)[0];
-  savePublished();
-  console.log(`Deleted published post: ${deleted.title} (ID: ${deleted.id})`);
-
-  res.json({ success: true, message: 'Published post deleted' });
 });
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    timestamp: new Date().toISOString(),
-    drafts: draftPosts.length,
-    published: publishedPosts.length
-  });
+app.get('/api/health', async (req, res) => {
+  try {
+    const drafts = await db.getAllDrafts();
+    const published = await db.getAllPublishedPosts();
+    
+    res.json({ 
+      status: 'ok', 
+      timestamp: new Date().toISOString(),
+      drafts: drafts.length,
+      published: published.length
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      error: 'Database connection failed'
+    });
+  }
 });
 
 // Start server
@@ -464,5 +432,6 @@ app.listen(PORT, () => {
 // Graceful shutdown
 process.on('SIGINT', () => {
   console.log('\nShutting down server...');
+  db.close();
   process.exit(0);
 });
