@@ -70,6 +70,19 @@ class BlogDatabase {
 
       console.log('Database tables initialized successfully');
       
+      // Create indices for better performance
+      console.log('Creating database indices for performance...');
+      await this.pool.query(`
+        CREATE INDEX IF NOT EXISTS idx_blog_drafts_created_at ON blog_drafts(created_at DESC);
+      `);
+      await this.pool.query(`
+        CREATE INDEX IF NOT EXISTS idx_blog_published_posts_publish_date ON blog_published_posts(publish_date DESC);
+      `);
+      await this.pool.query(`
+        CREATE INDEX IF NOT EXISTS idx_blog_drafts_status ON blog_drafts(status);
+      `);
+      console.log('Database indices created successfully');
+      
       // Verify tables exist
       const tablesResult = await this.pool.query(`
         SELECT table_name FROM information_schema.tables 
