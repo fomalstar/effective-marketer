@@ -125,6 +125,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
       <link rel="manifest" href="/site.webmanifest" />
       
+      {/* RSS Feed */}
+      <link rel="alternate" type="application/rss+xml" title="Effective Marketer Blog RSS Feed" href="https://effectivemarketer.com/rss.xml" />
+      
       {/* Structured Data */}
       {Array.isArray(structuredData) ? (
         structuredData.map((data, index) => (

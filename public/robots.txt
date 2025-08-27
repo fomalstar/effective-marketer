@@ -7,6 +7,9 @@ Allow: /
 # Sitemap
 Sitemap: https://effectivemarketer.com/sitemap.xml
 
+# RSS Feed
+Sitemap: https://effectivemarketer.com/rss.xml
+
 # Crawl-delay
 Crawl-delay: 1
 

@@ -318,7 +318,15 @@ app.post('/api/blog/drafts/:id/publish', async (req, res) => {
     }
 
     console.log(`Published article (ID: ${result.publishedId})`);
-    res.json({ success: true, message: 'Draft published', publishedId: result.publishedId });
+    
+    // Log sitemap update notification
+    console.log('📝 New blog post published - sitemap should be updated on next build');
+    
+    res.json({ 
+      success: true, 
+      message: 'Draft published and sitemap will be updated on next build', 
+      publishedId: result.publishedId 
+    });
   } catch (error) {
     console.error('Error publishing draft:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -429,6 +437,75 @@ app.get('/api/health', async (req, res) => {
       error: 'Database connection failed',
       details: error.message
     });
+  }
+});
+
+// Dynamic sitemap endpoint
+app.get('/api/sitemap.xml', async (req, res) => {
+  try {
+    // Get all published posts from database
+    const publishedPosts = await db.getAllPublishedPosts();
+    
+    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Static Pages -->
+  <url>
+    <loc>https://effectivemarketer.com/</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://effectivemarketer.com/google-autosuggest-ranking</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://effectivemarketer.com/lead-gen-ai-automation</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://effectivemarketer.com/blog</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://effectivemarketer.com/onboarding</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+
+    // Add dynamic blog posts
+    publishedPosts.forEach(post => {
+      sitemap += `
+  <url>
+    <loc>https://effectivemarketer.com/blog/${post.slug}</loc>
+    <lastmod>${post.publish_date || new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+    });
+
+    sitemap += `
+</urlset>`;
+
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap);
+    
+    console.log(`📊 Sitemap generated with ${publishedPosts.length} blog posts`);
+    
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+    res.status(500).send('Error generating sitemap');
   }
 });
 

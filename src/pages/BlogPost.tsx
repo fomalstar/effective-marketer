@@ -3,7 +3,8 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft, Share2, Bookmark, Tag, TrendingUp, MessageCircle, Heart, Eye, Users, Target, Zap } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 import TableOfContents from '../components/TableOfContents';
-import { blogPosts, blogCategories, defaultAuthor, BlogPost } from '../data/blogPosts';
+import InternalLinking from '../components/InternalLinking';
+import { blogPosts, blogCategories, defaultAuthor, type BlogPost } from '../data/blogPosts';
 import { apiClient } from '../config/apiConfig';
 
 const BlogPost = () => {
@@ -74,27 +75,107 @@ const BlogPost = () => {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.metaDescription,
-    "image": post.featuredImage,
+    "image": {
+      "@type": "ImageObject",
+      "url": post.featuredImage,
+      "width": 1200,
+      "height": 630,
+      "alt": post.title
+    },
     "author": {
       "@type": "Person",
       "name": post.author,
-      "jobTitle": post.authorRole
+      "jobTitle": post.authorRole,
+      "image": post.authorImage,
+      "url": "https://effectivemarketer.com/about"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Effective Marketer",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://effectivemarketer.com/logo.png"
-      }
+        "url": "https://effectivemarketer.com/logo.png",
+        "width": 600,
+        "height": 60
+      },
+      "url": "https://effectivemarketer.com"
     },
     "datePublished": post.publishDate,
     "dateModified": post.publishDate,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://effectivemarketer.com/blog/${post.slug}`
+    },
+    "articleSection": post.category,
+    "keywords": post.tags.join(', '),
+    "wordCount": post.content.split(' ').length,
+    "timeRequired": `PT${post.readTime.split(' ')[0]}M`,
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "h2", "h3", "p"]
+    },
+    "potentialAction": {
+      "@type": "ReadAction",
+      "target": `https://effectivemarketer.com/blog/${post.slug}`
     }
   };
+
+  // Generate FAQ schema from content headings
+  const generateFAQSchema = (content: string) => {
+    const lines = content.split('\n');
+    const faqs = [];
+    let currentQuestion = '';
+    let currentAnswer = '';
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // Look for question patterns (lines ending with ? or starting with common question words)
+      if (line.endsWith('?') || 
+          /^(what|how|why|when|where|which|who|can|could|would|should|do|does|is|are|will)/i.test(line)) {
+        
+        // Save previous FAQ if exists
+        if (currentQuestion && currentAnswer) {
+          faqs.push({
+            "@type": "Question",
+            "name": currentQuestion,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": currentAnswer.trim()
+            }
+          });
+        }
+        
+        currentQuestion = line;
+        currentAnswer = '';
+      } else if (currentQuestion && line && !line.startsWith('#')) {
+        // Add to answer if we have a question
+        currentAnswer += line + ' ';
+      }
+    }
+
+    // Add the last FAQ
+    if (currentQuestion && currentAnswer) {
+      faqs.push({
+        "@type": "Question",
+        "name": currentQuestion,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": currentAnswer.trim()
+        }
+      });
+    }
+
+    return faqs.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.slice(0, 10) // Limit to 10 FAQs
+    } : null;
+  };
+
+  const faqSchema = generateFAQSchema(post.content);
 
   return (
     <PageLayout
@@ -106,7 +187,7 @@ const BlogPost = () => {
       ogDescription={post.metaDescription}
       ogImage={post.featuredImage}
       ogType="article"
-      structuredData={structuredData}
+      structuredData={faqSchema ? [structuredData, faqSchema] : structuredData}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Blog', href: '/blog' },
@@ -279,7 +360,7 @@ const BlogPost = () => {
                         // Handle blocks with images mixed in 
                         if (block.includes('![')) {
                           // Split mixed content and render each part
-                          const parts = [];
+                          const parts: React.ReactNode[] = [];
                           const lines = block.split('\n');
                           
                           lines.forEach((line, lineIndex) => {
@@ -512,54 +593,12 @@ const BlogPost = () => {
         </div>
       </div>
 
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedPosts.map(relatedPost => {
-                const relatedCategory = blogCategories.find(cat => cat.name === relatedPost.category);
-                return (
-                  <article key={relatedPost.id} className="group cursor-pointer">
-                    <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group-hover:transform group-hover:scale-[1.02]">
-                      <div className="aspect-video relative">
-                        <img
-                          src={relatedPost.featuredImage}
-                          alt={relatedPost.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute top-3 left-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${relatedCategory?.color || 'bg-gray-500'}`}>
-                            {relatedPost.category}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-cyan-600 transition-colors">
-                          {relatedPost.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-3">{relatedPost.excerpt}</p>
-                        <div className="flex items-center justify-between text-sm text-gray-500">
-                          <div className="flex items-center">
-                            <img
-                              src={relatedPost.authorImage}
-                              alt={relatedPost.author}
-                              className="w-6 h-6 rounded-full mr-2"
-                            />
-                            <span>{relatedPost.author}</span>
-                          </div>
-                          <span>{relatedPost.readTime}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Internal Linking Section */}
+      <InternalLinking 
+        currentPost={post}
+        allPosts={allPosts}
+        maxLinks={3}
+      />
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-cyan-500 to-purple-600">
