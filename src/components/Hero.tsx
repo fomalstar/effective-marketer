@@ -31,11 +31,8 @@ const Hero = () => {
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white leading-tight">
                 
-                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Autocomplete Optimization</span>
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Autocomplete SEO Optimization</span>
               </h1>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl">
-                Revolutionize digital visibility with our pioneering GEO (Generative Engine Optimization) and proprietary Search Intelligence technology. Get your brand recommended by ChatGPT, Gemini, and other leading AI platforms.
-              </p>
             </div>
 
             {/* Benefits */}
