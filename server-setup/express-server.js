@@ -326,6 +326,7 @@ app.put('/api/blog/drafts/:id', (req, res) => {
     updatedAt: new Date().toISOString()
   };
 
+  saveDrafts();
   res.json({ success: true, message: 'Draft updated' });
 });
 
