@@ -148,38 +148,65 @@ class BlogDatabase {
   }
 
   async updateDraft(id, updates) {
-    // Build dynamic update query
-    const fields = [];
-    const values = [];
-    let paramIndex = 1;
-    
-    Object.keys(updates).forEach(key => {
-      const dbKey = this.camelToSnake(key);
-      if (key === 'tags') {
-        fields.push(`${dbKey} = $${paramIndex}`);
-        values.push(JSON.stringify(updates[key] || []));
-      } else {
-        fields.push(`${dbKey} = $${paramIndex}`);
-        values.push(updates[key]);
-      }
+    try {
+      // Build dynamic update query with proper field mapping
+      const fields = [];
+      const values = [];
+      let paramIndex = 1;
+      
+      // Map frontend fields to database fields
+      const fieldMap = {
+        'title': 'title',
+        'content': 'content', 
+        'category': 'category',
+        'tags': 'tags',
+        'authorRole': 'author_role',
+        'authorImage': 'author_image',
+        'publishDate': 'publish_date',
+        'readTime': 'read_time',
+        'featuredImage': 'featured_image',
+        'metaDescription': 'meta_description',
+        'featured': 'featured',
+        'excerpt': 'excerpt',
+        'slug': 'slug',
+        'author': 'author'
+      };
+      
+      Object.keys(updates).forEach(key => {
+        const dbKey = fieldMap[key] || key;
+        if (key === 'tags') {
+          fields.push(`${dbKey} = $${paramIndex}`);
+          values.push(JSON.stringify(updates[key] || []));
+        } else {
+          fields.push(`${dbKey} = $${paramIndex}`);
+          values.push(updates[key]);
+        }
+        paramIndex++;
+      });
+
+      // Always update the updated_at timestamp
+      fields.push(`updated_at = $${paramIndex}`);
+      values.push(new Date().toISOString());
       paramIndex++;
-    });
 
-    fields.push(`updated_at = $${paramIndex}`);
-    values.push(new Date().toISOString());
-    paramIndex++;
+      values.push(id);
 
-    values.push(id);
+      console.log('Updating draft with query:', `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`);
+      console.log('Values:', values);
 
-    const result = await this.pool.query(
-      `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
-      values
-    );
+      const result = await this.pool.query(
+        `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
+        values
+      );
 
-    return {
-      success: result.rowCount > 0,
-      error: result.rowCount === 0 ? 'Draft not found' : null
-    };
+      return {
+        success: result.rowCount > 0,
+        error: result.rowCount === 0 ? 'Draft not found' : null
+      };
+    } catch (error) {
+      console.error('Error updating draft:', error);
+      throw error;
+    }
   }
 
   async deleteDraft(id) {
@@ -264,34 +291,60 @@ class BlogDatabase {
   }
 
   async updatePublishedPost(id, updates) {
-    // Build dynamic update query
-    const fields = [];
-    const values = [];
-    let paramIndex = 1;
-    
-    Object.keys(updates).forEach(key => {
-      const dbKey = this.camelToSnake(key);
-      if (key === 'tags') {
-        fields.push(`${dbKey} = $${paramIndex}`);
-        values.push(JSON.stringify(updates[key] || []));
-      } else {
-        fields.push(`${dbKey} = $${paramIndex}`);
-        values.push(updates[key]);
-      }
-      paramIndex++;
-    });
+    try {
+      // Build dynamic update query with proper field mapping
+      const fields = [];
+      const values = [];
+      let paramIndex = 1;
+      
+      // Map frontend fields to database fields
+      const fieldMap = {
+        'title': 'title',
+        'content': 'content', 
+        'category': 'category',
+        'tags': 'tags',
+        'authorRole': 'author_role',
+        'authorImage': 'author_image',
+        'publishDate': 'publish_date',
+        'readTime': 'read_time',
+        'featuredImage': 'featured_image',
+        'metaDescription': 'meta_description',
+        'featured': 'featured',
+        'excerpt': 'excerpt',
+        'slug': 'slug',
+        'author': 'author'
+      };
+      
+      Object.keys(updates).forEach(key => {
+        const dbKey = fieldMap[key] || key;
+        if (key === 'tags') {
+          fields.push(`${dbKey} = $${paramIndex}`);
+          values.push(JSON.stringify(updates[key] || []));
+        } else {
+          fields.push(`${dbKey} = $${paramIndex}`);
+          values.push(updates[key]);
+        }
+        paramIndex++;
+      });
 
-    values.push(id);
+      values.push(id);
 
-    const result = await this.pool.query(
-      `UPDATE blog_published_posts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
-      values
-    );
+      console.log('Updating published post with query:', `UPDATE blog_published_posts SET ${fields.join(', ')} WHERE id = $${paramIndex}`);
+      console.log('Values:', values);
 
-    return {
-      success: result.rowCount > 0,
-      error: result.rowCount === 0 ? 'Published post not found' : null
-    };
+      const result = await this.pool.query(
+        `UPDATE blog_published_posts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
+        values
+      );
+
+      return {
+        success: result.rowCount > 0,
+        error: result.rowCount === 0 ? 'Published post not found' : null
+      };
+    } catch (error) {
+      console.error('Error updating published post:', error);
+      throw error;
+    }
   }
 
   async deletePublishedPost(id) {
@@ -343,21 +396,6 @@ class BlogDatabase {
     }
   }
 
-  // Helper method to convert camelCase to snake_case
-  camelToSnake(str) {
-    const conversions = {
-      'authorRole': 'author_role',
-      'authorImage': 'author_image',
-      'publishDate': 'publish_date',
-      'readTime': 'read_time',
-      'featuredImage': 'featured_image',
-      'metaDescription': 'meta_description',
-      'createdAt': 'created_at',
-      'updatedAt': 'updated_at',
-      'originalHtml': 'original_html'
-    };
-    return conversions[str] || str;
-  }
 
   async close() {
     await this.pool.end();

@@ -288,16 +288,23 @@ app.get('/api/blog/drafts/:id', async (req, res) => {
 // PUT /api/blog/drafts/:id - update draft
 app.put('/api/blog/drafts/:id', async (req, res) => {
   try {
+    console.log(`Updating draft ${req.params.id} with data:`, req.body);
     const result = await db.updateDraft(req.params.id, req.body);
     
     if (!result.success) {
+      console.error('Draft update failed:', result.error);
       return res.status(404).json({ error: result.error });
     }
     
+    console.log(`Draft ${req.params.id} updated successfully`);
     res.json({ success: true, message: 'Draft updated' });
   } catch (error) {
-    console.error('Error updating draft:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error updating draft:', error.message);
+    console.error('Stack trace:', error.stack);
+    res.status(500).json({ 
+      error: 'Internal server error',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 });
 
