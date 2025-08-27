@@ -167,13 +167,22 @@ class BlogDatabase {
 
   async updateDraft(id, updates) {
     try {
-      // Build dynamic update query with proper field mapping
+      console.log('updateDraft called with id:', id);
+      console.log('updateDraft called with updates:', JSON.stringify(updates, null, 2));
+
+      // First check if draft exists
+      const existingDraft = await this.getDraft(id);
+      if (!existingDraft) {
+        return { success: false, error: 'Draft not found' };
+      }
+
+      // Build safe update query with proper field mapping and type checking
       const fields = [];
       const values = [];
       let paramIndex = 1;
       
-      // Map frontend fields to database fields
-      const fieldMap = {
+      // Only update allowed fields
+      const allowedFields = {
         'title': 'title',
         'content': 'content', 
         'category': 'category',
@@ -191,16 +200,31 @@ class BlogDatabase {
       };
       
       Object.keys(updates).forEach(key => {
-        const dbKey = fieldMap[key] || key;
-        if (key === 'tags') {
-          fields.push(`${dbKey} = $${paramIndex}`);
-          values.push(JSON.stringify(updates[key] || []));
-        } else {
-          fields.push(`${dbKey} = $${paramIndex}`);
-          values.push(updates[key]);
+        if (!allowedFields[key]) {
+          console.log('Skipping unknown field:', key);
+          return;
         }
+
+        const dbKey = allowedFields[key];
+        let value = updates[key];
+
+        // Handle special field types
+        if (key === 'tags') {
+          value = JSON.stringify(Array.isArray(value) ? value : []);
+        } else if (key === 'featured') {
+          value = Boolean(value);
+        } else if (value === null || value === undefined) {
+          value = null;
+        }
+
+        fields.push(`${dbKey} = $${paramIndex}`);
+        values.push(value);
         paramIndex++;
       });
+
+      if (fields.length === 0) {
+        return { success: false, error: 'No valid fields to update' };
+      }
 
       // Always update the updated_at timestamp
       fields.push(`updated_at = $${paramIndex}`);
@@ -209,20 +233,26 @@ class BlogDatabase {
 
       values.push(id);
 
-      console.log('Updating draft with query:', `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`);
-      console.log('Values:', values);
+      const query = `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`;
+      console.log('Executing query:', query);
+      console.log('With values:', values);
 
-      const result = await this.pool.query(
-        `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
-        values
-      );
+      const result = await this.pool.query(query, values);
+
+      console.log('Update result - rows affected:', result.rowCount);
 
       return {
         success: result.rowCount > 0,
         error: result.rowCount === 0 ? 'Draft not found' : null
       };
     } catch (error) {
-      console.error('Error updating draft:', error);
+      console.error('DETAILED ERROR updating draft:', {
+        message: error.message,
+        code: error.code,
+        detail: error.detail,
+        where: error.where,
+        stack: error.stack
+      });
       throw error;
     }
   }
