@@ -419,12 +419,52 @@ app.get('/api/health', async (req, res) => {
       status: 'ok', 
       timestamp: new Date().toISOString(),
       drafts: drafts.length,
-      published: published.length
+      published: published.length,
+      database: 'connected'
+    });
+  } catch (error) {
+    console.error('Health check failed:', error);
+    res.status(500).json({
+      status: 'error',
+      error: 'Database connection failed',
+      details: error.message
+    });
+  }
+});
+
+// Debug endpoint
+app.get('/api/debug', async (req, res) => {
+  try {
+    // Check environment variables
+    const hasDbUrl = !!process.env.DATABASE_URL;
+    
+    // Test database connection
+    const dbTest = await db.pool.query('SELECT NOW() as current_time');
+    
+    // Check tables
+    const tables = await db.pool.query(`
+      SELECT table_name FROM information_schema.tables 
+      WHERE table_name LIKE 'blog_%'
+    `);
+    
+    res.json({
+      status: 'debug_info',
+      environment: {
+        NODE_ENV: process.env.NODE_ENV,
+        hasDbUrl,
+        dbUrlLength: process.env.DATABASE_URL ? process.env.DATABASE_URL.length : 0
+      },
+      database: {
+        connected: true,
+        currentTime: dbTest.rows[0].current_time,
+        tables: tables.rows.map(r => r.table_name)
+      }
     });
   } catch (error) {
     res.status(500).json({
-      status: 'error',
-      error: 'Database connection failed'
+      status: 'debug_error',
+      error: error.message,
+      stack: error.stack
     });
   }
 });

@@ -13,7 +13,14 @@ class BlogDatabase {
 
   async init() {
     try {
+      console.log('Initializing database connection...');
+      
+      // Test connection first
+      await this.pool.query('SELECT NOW()');
+      console.log('Database connection successful');
+      
       // Create tables if they don't exist
+      console.log('Creating blog_drafts table...');
       await this.pool.query(`
         CREATE TABLE IF NOT EXISTS blog_drafts (
           id TEXT PRIMARY KEY,
@@ -39,6 +46,7 @@ class BlogDatabase {
         )
       `);
 
+      console.log('Creating blog_published_posts table...');
       await this.pool.query(`
         CREATE TABLE IF NOT EXISTS blog_published_posts (
           id TEXT PRIMARY KEY,
@@ -61,8 +69,18 @@ class BlogDatabase {
       `);
 
       console.log('Database tables initialized successfully');
+      
+      // Verify tables exist
+      const tablesResult = await this.pool.query(`
+        SELECT table_name FROM information_schema.tables 
+        WHERE table_name IN ('blog_drafts', 'blog_published_posts')
+      `);
+      console.log('Tables found:', tablesResult.rows.map(r => r.table_name));
+      
     } catch (error) {
-      console.error('Error initializing database:', error);
+      console.error('CRITICAL: Error initializing database:', error.message);
+      console.error('Stack:', error.stack);
+      throw error;
     }
   }
 
