@@ -1,0 +1,367 @@
+const { Pool } = require('pg');
+
+class BlogDatabase {
+  constructor() {
+    // Initialize PostgreSQL connection
+    this.pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    });
+    
+    this.init();
+  }
+
+  async init() {
+    try {
+      // Create tables if they don't exist
+      await this.pool.query(`
+        CREATE TABLE IF NOT EXISTS blog_drafts (
+          id TEXT PRIMARY KEY,
+          title TEXT NOT NULL,
+          slug TEXT NOT NULL,
+          excerpt TEXT,
+          content TEXT NOT NULL,
+          author TEXT,
+          author_role TEXT,
+          author_image TEXT,
+          publish_date TEXT,
+          read_time TEXT,
+          category TEXT,
+          tags JSONB DEFAULT '[]'::jsonb,
+          featured_image TEXT,
+          meta_description TEXT,
+          featured BOOLEAN DEFAULT false,
+          status TEXT DEFAULT 'draft',
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          source TEXT,
+          original_html TEXT
+        )
+      `);
+
+      await this.pool.query(`
+        CREATE TABLE IF NOT EXISTS blog_published_posts (
+          id TEXT PRIMARY KEY,
+          title TEXT NOT NULL,
+          slug TEXT NOT NULL,
+          excerpt TEXT,
+          content TEXT NOT NULL,
+          author TEXT,
+          author_role TEXT,
+          author_image TEXT,
+          publish_date TEXT,
+          read_time TEXT,
+          category TEXT,
+          tags JSONB DEFAULT '[]'::jsonb,
+          featured_image TEXT,
+          meta_description TEXT,
+          featured BOOLEAN DEFAULT false,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+
+      console.log('Database tables initialized successfully');
+    } catch (error) {
+      console.error('Error initializing database:', error);
+    }
+  }
+
+  // Draft methods
+  async getAllDrafts() {
+    const result = await this.pool.query(
+      'SELECT * FROM blog_drafts ORDER BY created_at DESC'
+    );
+    
+    return result.rows.map(row => ({
+      id: row.id,
+      title: row.title,
+      slug: row.slug,
+      excerpt: row.excerpt,
+      content: row.content,
+      author: row.author,
+      authorRole: row.author_role,
+      authorImage: row.author_image,
+      publishDate: row.publish_date,
+      readTime: row.read_time,
+      category: row.category,
+      tags: row.tags || [],
+      featuredImage: row.featured_image,
+      metaDescription: row.meta_description,
+      featured: row.featured,
+      status: row.status,
+      createdAt: row.created_at?.toISOString(),
+      updatedAt: row.updated_at?.toISOString(),
+      source: row.source,
+      originalHtml: row.original_html
+    }));
+  }
+
+  async getDraft(id) {
+    const result = await this.pool.query(
+      'SELECT * FROM blog_drafts WHERE id = $1',
+      [id]
+    );
+    
+    if (result.rows.length === 0) return null;
+    
+    const row = result.rows[0];
+    return {
+      id: row.id,
+      title: row.title,
+      slug: row.slug,
+      excerpt: row.excerpt,
+      content: row.content,
+      author: row.author,
+      authorRole: row.author_role,
+      authorImage: row.author_image,
+      publishDate: row.publish_date,
+      readTime: row.read_time,
+      category: row.category,
+      tags: row.tags || [],
+      featuredImage: row.featured_image,
+      metaDescription: row.meta_description,
+      featured: row.featured,
+      status: row.status,
+      createdAt: row.created_at?.toISOString(),
+      updatedAt: row.updated_at?.toISOString(),
+      source: row.source,
+      originalHtml: row.original_html
+    };
+  }
+
+  async createDraft(draft) {
+    await this.pool.query(`
+      INSERT INTO blog_drafts (
+        id, title, slug, excerpt, content, author, author_role, author_image,
+        publish_date, read_time, category, tags, featured_image, meta_description,
+        featured, status, created_at, updated_at, source, original_html
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
+    `, [
+      draft.id, draft.title, draft.slug, draft.excerpt, draft.content,
+      draft.author, draft.authorRole, draft.authorImage, draft.publishDate,
+      draft.readTime, draft.category, JSON.stringify(draft.tags || []),
+      draft.featuredImage, draft.metaDescription, draft.featured,
+      draft.status, draft.createdAt, draft.updatedAt, draft.source, draft.originalHtml
+    ]);
+    
+    return { success: true };
+  }
+
+  async updateDraft(id, updates) {
+    // Build dynamic update query
+    const fields = [];
+    const values = [];
+    let paramIndex = 1;
+    
+    Object.keys(updates).forEach(key => {
+      const dbKey = this.camelToSnake(key);
+      if (key === 'tags') {
+        fields.push(`${dbKey} = $${paramIndex}`);
+        values.push(JSON.stringify(updates[key] || []));
+      } else {
+        fields.push(`${dbKey} = $${paramIndex}`);
+        values.push(updates[key]);
+      }
+      paramIndex++;
+    });
+
+    fields.push(`updated_at = $${paramIndex}`);
+    values.push(new Date().toISOString());
+    paramIndex++;
+
+    values.push(id);
+
+    const result = await this.pool.query(
+      `UPDATE blog_drafts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
+      values
+    );
+
+    return {
+      success: result.rowCount > 0,
+      error: result.rowCount === 0 ? 'Draft not found' : null
+    };
+  }
+
+  async deleteDraft(id) {
+    const result = await this.pool.query(
+      'DELETE FROM blog_drafts WHERE id = $1',
+      [id]
+    );
+
+    return {
+      success: result.rowCount > 0,
+      error: result.rowCount === 0 ? 'Draft not found' : null
+    };
+  }
+
+  // Published posts methods
+  async getAllPublishedPosts() {
+    const result = await this.pool.query(
+      'SELECT * FROM blog_published_posts ORDER BY publish_date DESC'
+    );
+    
+    return result.rows.map(row => ({
+      id: row.id,
+      title: row.title,
+      slug: row.slug,
+      excerpt: row.excerpt,
+      content: row.content,
+      author: row.author,
+      authorRole: row.author_role,
+      authorImage: row.author_image,
+      publishDate: row.publish_date,
+      readTime: row.read_time,
+      category: row.category,
+      tags: row.tags || [],
+      featuredImage: row.featured_image,
+      metaDescription: row.meta_description,
+      featured: row.featured
+    }));
+  }
+
+  async getPublishedPost(id) {
+    const result = await this.pool.query(
+      'SELECT * FROM blog_published_posts WHERE id = $1',
+      [id]
+    );
+    
+    if (result.rows.length === 0) return null;
+    
+    const row = result.rows[0];
+    return {
+      id: row.id,
+      title: row.title,
+      slug: row.slug,
+      excerpt: row.excerpt,
+      content: row.content,
+      author: row.author,
+      authorRole: row.author_role,
+      authorImage: row.author_image,
+      publishDate: row.publish_date,
+      readTime: row.read_time,
+      category: row.category,
+      tags: row.tags || [],
+      featuredImage: row.featured_image,
+      metaDescription: row.meta_description,
+      featured: row.featured
+    };
+  }
+
+  async createPublishedPost(post) {
+    await this.pool.query(`
+      INSERT INTO blog_published_posts (
+        id, title, slug, excerpt, content, author, author_role, author_image,
+        publish_date, read_time, category, tags, featured_image, meta_description, featured
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+    `, [
+      post.id, post.title, post.slug, post.excerpt, post.content,
+      post.author, post.authorRole, post.authorImage, post.publishDate,
+      post.readTime, post.category, JSON.stringify(post.tags || []),
+      post.featuredImage, post.metaDescription, post.featured
+    ]);
+    
+    return { success: true };
+  }
+
+  async updatePublishedPost(id, updates) {
+    // Build dynamic update query
+    const fields = [];
+    const values = [];
+    let paramIndex = 1;
+    
+    Object.keys(updates).forEach(key => {
+      const dbKey = this.camelToSnake(key);
+      if (key === 'tags') {
+        fields.push(`${dbKey} = $${paramIndex}`);
+        values.push(JSON.stringify(updates[key] || []));
+      } else {
+        fields.push(`${dbKey} = $${paramIndex}`);
+        values.push(updates[key]);
+      }
+      paramIndex++;
+    });
+
+    values.push(id);
+
+    const result = await this.pool.query(
+      `UPDATE blog_published_posts SET ${fields.join(', ')} WHERE id = $${paramIndex}`,
+      values
+    );
+
+    return {
+      success: result.rowCount > 0,
+      error: result.rowCount === 0 ? 'Published post not found' : null
+    };
+  }
+
+  async deletePublishedPost(id) {
+    const result = await this.pool.query(
+      'DELETE FROM blog_published_posts WHERE id = $1',
+      [id]
+    );
+
+    return {
+      success: result.rowCount > 0,
+      error: result.rowCount === 0 ? 'Published post not found' : null
+    };
+  }
+
+  // Publish a draft (move from drafts to published_posts)
+  async publishDraft(draftId) {
+    try {
+      const draft = await this.getDraft(draftId);
+      if (!draft) {
+        return { success: false, error: 'Draft not found' };
+      }
+
+      // Create published post
+      const publishedId = `pub_${Date.now()}`;
+      const publishedPost = {
+        id: publishedId,
+        title: draft.title,
+        slug: draft.slug,
+        excerpt: draft.excerpt,
+        content: draft.content,
+        author: draft.author,
+        authorRole: draft.authorRole,
+        authorImage: draft.authorImage,
+        publishDate: new Date().toISOString().split('T')[0],
+        readTime: draft.readTime,
+        category: draft.category,
+        tags: draft.tags,
+        featuredImage: draft.featuredImage,
+        metaDescription: draft.metaDescription,
+        featured: draft.featured
+      };
+
+      await this.createPublishedPost(publishedPost);
+      await this.deleteDraft(draftId);
+
+      return { success: true, publishedId };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  }
+
+  // Helper method to convert camelCase to snake_case
+  camelToSnake(str) {
+    const conversions = {
+      'authorRole': 'author_role',
+      'authorImage': 'author_image',
+      'publishDate': 'publish_date',
+      'readTime': 'read_time',
+      'featuredImage': 'featured_image',
+      'metaDescription': 'meta_description',
+      'createdAt': 'created_at',
+      'updatedAt': 'updated_at',
+      'originalHtml': 'original_html'
+    };
+    return conversions[str] || str;
+  }
+
+  async close() {
+    await this.pool.end();
+  }
+}
+
+module.exports = BlogDatabase;
