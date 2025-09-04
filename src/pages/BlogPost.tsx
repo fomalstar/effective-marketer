@@ -37,9 +37,19 @@ const BlogPost = () => {
 
   const post = allPosts.find(p => p.slug === cleanSlug);
 
+  // Debug logging
+  console.log('BlogPost Debug:', {
+    slug,
+    cleanSlug,
+    allPostsCount: allPosts.length,
+    foundPost: !!post,
+    postTitle: post?.title
+  });
+
   // Remove loading state - show content immediately
 
   if (!post) {
+    console.log('Post not found, redirecting to /blog');
     return <Navigate to="/blog" replace />;
   }
 
