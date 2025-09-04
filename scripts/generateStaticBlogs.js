@@ -260,11 +260,15 @@ async function generateStaticBlogs() {
   try {
     console.log('🚀 Starting static blog generation...');
     
-    // Create blog directory if it doesn't exist
-    const blogDir = path.join(__dirname, '../public/blog');
+    // Create blog directory if it doesn't exist (in dist for production, public for development)
+    const isProduction = process.env.NODE_ENV === 'production';
+    const blogDir = isProduction 
+      ? path.join(__dirname, '../dist/blog')
+      : path.join(__dirname, '../public/blog');
+    
     if (!fs.existsSync(blogDir)) {
       fs.mkdirSync(blogDir, { recursive: true });
-      console.log('✅ Created blog directory');
+      console.log(`✅ Created blog directory: ${blogDir}`);
     }
 
     // Fetch blog posts from API (same as sitemap generation)

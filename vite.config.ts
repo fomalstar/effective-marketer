@@ -16,9 +16,11 @@ export default defineConfig({
     },
     {
       name: 'generate-static-blogs',
-      closeBundle: async () => {
-        console.log('🔧 Running static blog generation...');
+      writeBundle: async () => {
+        console.log('🔧 Running static blog generation after build...');
         try {
+          // Set production environment for correct directory
+          process.env.NODE_ENV = 'production';
           execSync('npm run generate-blogs', { stdio: 'inherit' });
         } catch (error) {
           console.error('❌ Static blog generation failed:', error);
@@ -49,8 +51,12 @@ export default defineConfig({
         main: 'index.html'
         // Static blog posts will be added dynamically during build
       }
-    }
+    },
+    // Copy static blog files to dist directory
+    copyPublicDir: true
   },
+  // Ensure static blog files are served correctly
+  publicDir: 'public',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
