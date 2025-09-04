@@ -718,6 +718,7 @@ function generateBlogIndexHTML(posts) {
 app.get('/blog/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
+    console.log(`🔍 Looking for blog post with slug: ${slug}`);
     
     // Get the blog post from database
     const result = await db.pool.query(
@@ -725,7 +726,10 @@ app.get('/blog/:slug', async (req, res) => {
       [slug, 'published']
     );
     
+    console.log(`📊 Found ${result.rows.length} posts for slug: ${slug}`);
+    
     if (result.rows.length === 0) {
+      console.log(`❌ No published post found for slug: ${slug}`);
       return res.status(404).send(`
         <!DOCTYPE html>
         <html>
@@ -736,6 +740,7 @@ app.get('/blog/:slug', async (req, res) => {
         <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
           <h1>Blog Post Not Found</h1>
           <p>The blog post you're looking for doesn't exist.</p>
+          <p>Slug: ${slug}</p>
           <a href="/blog">← Back to Blog</a>
         </body>
         </html>
@@ -743,6 +748,7 @@ app.get('/blog/:slug', async (req, res) => {
     }
     
     const post = result.rows[0];
+    console.log(`✅ Found post: ${post.title}`);
     
     // Generate HTML for the blog post
     const html = generateBlogPostHTML(post);
@@ -751,8 +757,23 @@ app.get('/blog/:slug', async (req, res) => {
     res.send(html);
     
   } catch (error) {
-    console.error('Error serving blog post:', error);
-    res.status(500).send('Error loading blog post');
+    console.error('❌ Error serving blog post:', error);
+    console.error('Error stack:', error.stack);
+    res.status(500).send(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Error Loading Blog Post</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+        <h1>Error Loading Blog Post</h1>
+        <p>There was an error loading the blog post.</p>
+        <p>Error: ${error.message}</p>
+        <a href="/blog">← Back to Blog</a>
+      </body>
+      </html>
+    `);
   }
 });
 
@@ -780,6 +801,29 @@ app.get('/blog', async (req, res) => {
   } catch (error) {
     console.error('Error serving blog index:', error);
     res.status(500).send('Error loading blog');
+  }
+});
+
+// Blog debug endpoint
+app.get('/api/blog/debug', async (req, res) => {
+  try {
+    // Get all blog posts
+    const result = await db.pool.query('SELECT slug, title, status FROM blog_posts ORDER BY publish_date DESC');
+    
+    res.json({
+      status: 'blog_debug',
+      total_posts: result.rows.length,
+      posts: result.rows.map(post => ({
+        slug: post.slug,
+        title: post.title,
+        status: post.status
+      }))
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'blog_debug_error',
+      error: error.message
+    });
   }
 });
 
