@@ -18,6 +18,8 @@ import AIAutomation from './pages/AIAutomation';
 import BlogAdmin from './pages/BlogAdmin';
 import Login from './pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import Sitemap from './pages/Sitemap';
+import RSSFeed from './pages/RSSFeed';
 import { AuthProvider } from './contexts/AuthContext';
 
 import SEOHead from './components/SEOHead';
@@ -53,6 +55,8 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/sitemap.xml" element={<Sitemap />} />
+            <Route path="/rss.xml" element={<RSSFeed />} />
             <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
             <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
           <Route path="*" element={

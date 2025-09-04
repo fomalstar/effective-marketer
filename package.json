@@ -11,7 +11,9 @@
     "generate-sitemap": "tsx scripts/generateSitemap.ts",
     "generate-rss": "tsx scripts/generateRSS.ts",
     "build-with-sitemap": "npm run build && npm run generate-sitemap",
-    "build-with-feeds": "npm run build && npm run generate-sitemap && npm run generate-rss"
+    "build-with-feeds": "npm run build && npm run generate-sitemap && npm run generate-rss",
+    "generate-blogs": "node scripts/generateStaticBlogs.js",
+    "build:static": "npm run generate-blogs && npm run build"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

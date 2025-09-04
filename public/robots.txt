@@ -17,3 +17,8 @@ Crawl-delay: 1
 Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
+Disallow: /blog-admin/
+
+# Allow crawling of blog posts
+Allow: /blog/
+Allow: /blog/*

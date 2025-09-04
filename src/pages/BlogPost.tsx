@@ -10,12 +10,11 @@ import { apiClient } from '../config/apiConfig';
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const [allPosts, setAllPosts] = useState<BlogPost[]>(blogPosts);
-  const [isLoading, setIsLoading] = useState(true);
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 50) + 10);
+  const [likes, setLiked] = useState(Math.floor(Math.random() * 50) + 10);
   const [isLiked, setIsLiked] = useState(false);
 
-  // Fetch all posts (static + API)
+  // Fetch all posts (static + API) - but don't show loading state
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
@@ -27,8 +26,6 @@ const BlogPost = () => {
         console.error('Error fetching published posts:', error);
         // Fallback to static posts if API fails
         setAllPosts(blogPosts);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -37,18 +34,7 @@ const BlogPost = () => {
 
   const post = allPosts.find(p => p.slug === slug);
 
-  if (isLoading) {
-    return (
-      <PageLayout title="Loading..." description="Loading blog post...">
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading article...</p>
-          </div>
-        </div>
-      </PageLayout>
-    );
-  }
+  // Remove loading state - show content immediately
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -106,6 +92,7 @@ const BlogPost = () => {
       "@type": "WebPage",
       "@id": `https://effectivemarketer.com/blog/${post.slug}`
     },
+    "url": `https://effectivemarketer.com/blog/${post.slug}`,
     "articleSection": post.category,
     "keywords": post.tags.join(', '),
     "wordCount": post.content.split(' ').length,
@@ -119,6 +106,10 @@ const BlogPost = () => {
     "potentialAction": {
       "@type": "ReadAction",
       "target": `https://effectivemarketer.com/blog/${post.slug}`
+    },
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": `https://effectivemarketer.com/blog/${post.slug}`
     }
   };
 
