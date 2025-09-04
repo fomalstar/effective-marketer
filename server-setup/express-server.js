@@ -509,6 +509,280 @@ app.get('/api/sitemap.xml', async (req, res) => {
   }
 });
 
+// HTML generation functions
+function generateBlogPostHTML(post) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${post.title} - Effective Marketer</title>
+    <meta name="description" content="${post.excerpt || post.title}">
+    <meta name="author" content="${post.author || 'Steve'}">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://effectivemarketer.com/blog/${post.slug}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="${post.title}">
+    <meta property="og:description" content="${post.excerpt || post.title}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://effectivemarketer.com/blog/${post.slug}">
+    <meta property="og:site_name" content="Effective Marketer">
+    <meta property="og:image" content="${post.featured_image || 'https://effectivemarketer.com/googleautosuggests.jpg'}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${post.title}">
+    <meta name="twitter:description" content="${post.excerpt || post.title}">
+    <meta name="twitter:image" content="${post.featured_image || 'https://effectivemarketer.com/googleautosuggests.jpg'}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "${post.title}",
+      "description": "${post.excerpt || post.title}",
+      "author": {
+        "@type": "Person",
+        "name": "${post.author || 'Steve'}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Effective Marketer",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://effectivemarketer.com/e logo 2.png"
+        }
+      },
+      "datePublished": "${post.publish_date}",
+      "dateModified": "${post.updated_at || post.publish_date}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://effectivemarketer.com/blog/${post.slug}"
+      },
+      "url": "https://effectivemarketer.com/blog/${post.slug}",
+      "image": "${post.featured_image || 'https://effectivemarketer.com/googleautosuggests.jpg'}"
+    }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-gray-900">Effective Marketer</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-gray-900">Home</a>
+                    <a href="/google-autosuggest-ranking" class="text-gray-600 hover:text-gray-900">AI SEO</a>
+                    <a href="/lead-gen-ai-automation" class="text-gray-600 hover:text-gray-900">AI Lead Gen</a>
+                    <a href="/blog" class="text-gray-600 hover:text-gray-900">Blog</a>
+                    <a href="/contact" class="text-gray-600 hover:text-gray-900">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Breadcrumb -->
+        <nav class="mb-8">
+            <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                <li><a href="/" class="hover:text-gray-700">Home</a></li>
+                <li>/</li>
+                <li><a href="/blog" class="hover:text-gray-700">Blog</a></li>
+                <li>/</li>
+                <li class="text-gray-900">${post.title}</li>
+            </ol>
+        </nav>
+
+        <!-- Article -->
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <!-- Featured Image -->
+            ${post.featured_image ? `<img src="${post.featured_image}" alt="${post.title}" class="w-full h-64 object-cover">` : ''}
+            
+            <div class="p-8">
+                <!-- Title -->
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">${post.title}</h1>
+                
+                <!-- Meta -->
+                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-6">
+                    <span>By ${post.author || 'Steve'}</span>
+                    <span>•</span>
+                    <span>${new Date(post.publish_date).toLocaleDateString()}</span>
+                    <span>•</span>
+                    <span>${calculateReadingTime(post.content)}</span>
+                </div>
+                
+                <!-- Content -->
+                <div class="prose prose-lg max-w-none">
+                    ${post.content.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p>&copy; 2024 Effective Marketer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>`;
+}
+
+function generateBlogIndexHTML(posts) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Effective Marketer</title>
+    <meta name="description" content="Latest insights on AI SEO, Google Autosuggest optimization, and lead generation automation.">
+    <link rel="canonical" href="https://effectivemarketer.com/blog">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-gray-900">Effective Marketer</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-gray-900">Home</a>
+                    <a href="/google-autosuggest-ranking" class="text-gray-600 hover:text-gray-900">AI SEO</a>
+                    <a href="/lead-gen-ai-automation" class="text-gray-600 hover:text-gray-900">AI Lead Gen</a>
+                    <a href="/blog" class="text-gray-600 hover:text-gray-900">Blog</a>
+                    <a href="/contact" class="text-gray-600 hover:text-gray-900">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
+            <p class="text-xl text-gray-600">Latest insights on AI SEO and marketing automation</p>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            ${posts.map(post => `
+            <article class="bg-white rounded-lg shadow-lg overflow-hidden">
+                ${post.featured_image ? `<img src="${post.featured_image}" alt="${post.title}" class="w-full h-48 object-cover">` : ''}
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-3">
+                        <a href="/blog/${post.slug}" class="hover:text-blue-600">${post.title}</a>
+                    </h2>
+                    <p class="text-gray-600 mb-4">${post.excerpt || post.title}</p>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <span>By ${post.author || 'Steve'}</span>
+                        <span>${new Date(post.publish_date).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            </article>
+            `).join('')}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p>&copy; 2024 Effective Marketer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>`;
+}
+
+// Blog post serving endpoints
+app.get('/blog/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    
+    // Get the blog post from database
+    const result = await db.pool.query(
+      'SELECT * FROM blog_posts WHERE slug = $1 AND status = $2',
+      [slug, 'published']
+    );
+    
+    if (result.rows.length === 0) {
+      return res.status(404).send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Blog Post Not Found</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+          <h1>Blog Post Not Found</h1>
+          <p>The blog post you're looking for doesn't exist.</p>
+          <a href="/blog">← Back to Blog</a>
+        </body>
+        </html>
+      `);
+    }
+    
+    const post = result.rows[0];
+    
+    // Generate HTML for the blog post
+    const html = generateBlogPostHTML(post);
+    
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
+    
+  } catch (error) {
+    console.error('Error serving blog post:', error);
+    res.status(500).send('Error loading blog post');
+  }
+});
+
+// Blog post with .html extension
+app.get('/blog/:slug.html', async (req, res) => {
+  // Redirect to the clean URL
+  res.redirect(301, `/blog/${req.params.slug}`);
+});
+
+// Blog index page
+app.get('/blog', async (req, res) => {
+  try {
+    // Get all published posts
+    const result = await db.pool.query(
+      'SELECT * FROM blog_posts WHERE status = $1 ORDER BY publish_date DESC',
+      ['published']
+    );
+    
+    const posts = result.rows;
+    const html = generateBlogIndexHTML(posts);
+    
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
+    
+  } catch (error) {
+    console.error('Error serving blog index:', error);
+    res.status(500).send('Error loading blog');
+  }
+});
+
 // Debug endpoint
 app.get('/api/debug', async (req, res) => {
   try {
