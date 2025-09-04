@@ -406,8 +406,8 @@ async function generateStaticBlogs() {
     let generatedCount = 0;
     for (const post of blogPosts) {
       const html = blogPostTemplate(post);
-      // Generate in root directory with blog- prefix for Render compatibility
-      const fileName = `blog-${post.slug}.html`;
+      // Generate in root directory with original slug for clean URLs
+      const fileName = `${post.slug}.html`;
       const filePath = path.join(rootDir, fileName);
       
       fs.writeFileSync(filePath, html);

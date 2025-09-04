@@ -14,8 +14,8 @@ const BlogPost = () => {
   const [likes, setLiked] = useState(Math.floor(Math.random() * 50) + 10);
   const [isLiked, setIsLiked] = useState(false);
   
-  // Remove .html extension and blog- prefix from slug if present
-  const cleanSlug = slug?.replace('.html', '').replace('blog-', '') || '';
+  // Remove .html extension from slug if present
+  const cleanSlug = slug?.replace('.html', '') || '';
 
   // Fetch all posts (static + API) - but don't show loading state
   useEffect(() => {
@@ -493,7 +493,7 @@ const BlogPost = () => {
                   {popularPosts.map((popularPost, index) => (
                     <Link
                       key={popularPost.id}
-                      to={`/blog-${popularPost.slug}.html`}
+                      to={`/${popularPost.slug}.html`}
                       className="block group"
                     >
                       <div className="flex space-x-3">
@@ -560,7 +560,7 @@ const BlogPost = () => {
                   {recentPosts.map(recentPost => (
                     <Link
                       key={recentPost.id}
-                      to={`/blog-${recentPost.slug}.html`}
+                      to={`/${recentPost.slug}.html`}
                       className="block group"
                     >
                       <div className="flex space-x-3">
