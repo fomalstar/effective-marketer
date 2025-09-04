@@ -402,22 +402,16 @@ async function generateStaticBlogs() {
       }
     }
 
-    // Generate HTML for each blog post
+    // Generate HTML for each blog post in root directory (Render compatibility)
     let generatedCount = 0;
     for (const post of blogPosts) {
       const html = blogPostTemplate(post);
-      // For Render, we need .html extension for proper MIME type detection
-      const fileName = `${post.slug}.html`;
-      const filePath = path.join(blogDir, fileName);
+      // Generate in root directory with blog- prefix for Render compatibility
+      const fileName = `blog-${post.slug}.html`;
+      const filePath = path.join(rootDir, fileName);
       
       fs.writeFileSync(filePath, html);
       console.log(`✅ Generated: ${fileName}`);
-      
-      // Also generate in root directory for Render compatibility
-      const rootFilePath = path.join(rootDir, `blog-${post.slug}.html`);
-      fs.writeFileSync(rootFilePath, html);
-      console.log(`✅ Generated in root: blog-${post.slug}.html`);
-      
       generatedCount++;
     }
 

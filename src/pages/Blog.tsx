@@ -212,7 +212,7 @@ const Blog = () => {
               {featuredPosts.slice(0, 2).map(post => {
                 const category = blogCategories.find(cat => cat.name === post.category);
                 return (
-                  <Link key={post.id} to={`/blog/${post.slug}.html`} className="group cursor-pointer">
+                  <Link key={post.id} to={`/blog-${post.slug}.html`} className="group cursor-pointer">
                     <article className="relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 group-hover:transform group-hover:scale-[1.02]">
                       <div className="aspect-video relative">
                         <img
@@ -276,7 +276,7 @@ const Blog = () => {
               {regularPosts.map(post => {
                 const category = blogCategories.find(cat => cat.name === post.category);
                 return (
-                  <Link key={post.id} to={`/blog/${post.slug}.html`} className="group cursor-pointer">
+                  <Link key={post.id} to={`/blog-${post.slug}.html`} className="group cursor-pointer">
                     <article className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group-hover:transform group-hover:scale-[1.02]">
                       <div className="aspect-video relative">
                         <img

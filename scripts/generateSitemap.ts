@@ -78,7 +78,7 @@ export async function generateSitemap(): Promise<void> {
       console.log(`📄 Adding blog post to sitemap: ${post.slug}`);
       sitemap += `
   <url>
-    <loc>https://effectivemarketer.com/blog/${post.slug}.html</loc>
+    <loc>https://effectivemarketer.com/blog-${post.slug}.html</loc>
     <lastmod>${post.publishDate || new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

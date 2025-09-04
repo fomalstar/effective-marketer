@@ -99,7 +99,7 @@ const InternalLinking: React.FC<InternalLinkingProps> = ({
               <div className="p-4">
                 <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
                   <Link 
-                    to={`/blog/${post.slug}.html`}
+                    to={`/blog-${post.slug}.html`}
                     className="hover:text-cyan-600 transition-colors duration-200"
                   >
                     {post.title}
@@ -123,7 +123,7 @@ const InternalLinking: React.FC<InternalLinkingProps> = ({
                   </div>
                   
                   <Link 
-                    to={`/blog/${post.slug}.html`}
+                    to={`/blog-${post.slug}.html`}
                     className="text-cyan-600 hover:text-cyan-700 text-sm font-medium flex items-center"
                   >
                     Read More
