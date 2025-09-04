@@ -60,7 +60,7 @@ function blogPostTemplate(post) {
         "url": "https://effectivemarketer.com/blog/${post.slug}",
         "articleSection": "${post.category || 'Digital Marketing'}",
         "keywords": "${post.tags ? post.tags.join(', ') : 'SEO, Digital Marketing, AI'}",
-        "image": "${post.featuredImage || 'https://effectivemarketer.com/default-blog-image.jpg'}"
+        "image": "${post.featuredImage && post.featuredImage !== '/images/ai-seo.jpg' && post.featuredImage !== '/images/autosuggest.jpg' ? post.featuredImage : 'https://effectivemarketer.com/googleautosuggests.jpg'}"
     }
     </script>
     
@@ -124,7 +124,9 @@ function blogPostTemplate(post) {
                     </div>
 
                     <!-- Featured Image -->
-                    ${post.featuredImage ? `<img src="${post.featuredImage}" alt="${post.title}" class="w-full h-64 object-cover rounded-lg mb-6">` : ''}
+                    ${post.featuredImage && post.featuredImage !== '/images/ai-seo.jpg' && post.featuredImage !== '/images/autosuggest.jpg' ? 
+                      `<img src="${post.featuredImage}" alt="${post.title}" class="w-full h-64 object-cover rounded-lg mb-6">` : 
+                      `<img src="/googleautosuggests.jpg" alt="${post.title}" class="w-full h-64 object-cover rounded-lg mb-6">`}
                     
                     <!-- Excerpt -->
                     ${post.excerpt ? `<p class="text-xl text-gray-600 mb-6">${post.excerpt}</p>` : ''}
@@ -229,7 +231,9 @@ function generateBlogIndex(posts) {
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 ${posts.map(post => `
                 <article class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    ${post.featuredImage ? `<img src="${post.featuredImage}" alt="${post.title}" class="w-full h-48 object-cover">` : ''}
+                    ${post.featuredImage && post.featuredImage !== '/images/ai-seo.jpg' && post.featuredImage !== '/images/autosuggest.jpg' ? 
+                      `<img src="${post.featuredImage}" alt="${post.title}" class="w-full h-48 object-cover">` : 
+                      `<img src="/googleautosuggests.jpg" alt="${post.title}" class="w-full h-48 object-cover">`}
                     <div class="p-6">
                         <h2 class="text-xl font-semibold mb-3">
                             <a href="/blog/${post.slug}" class="hover:text-blue-600">${post.title}</a>

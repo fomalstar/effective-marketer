@@ -79,38 +79,6 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
-  {
-    id: '1',
-    title: 'AI SEO Automation Complete Guide',
-    slug: 'ai-seo-automation-complete-guide',
-    excerpt: 'Learn how to automate your SEO processes with AI tools and strategies.',
-    content: '<h2>Introduction to AI SEO</h2><p>AI is revolutionizing how we approach SEO. With the right automation tools, you can save hours of manual work while improving your search rankings.</p><h2>Key Benefits of AI SEO</h2><p>Automation saves time and improves results. AI can analyze data faster than humans and identify patterns that lead to better optimization.</p><h2>Implementation Strategy</h2><p>Start with keyword research automation, then move to content optimization and performance monitoring.</p>',
-    author: 'Steve',
-    authorRole: 'SEO Director',
-    authorImage: '/steve/steve-avatar.jpg',
-    publishDate: '2024-01-15',
-    readTime: '5 min read',
-    category: 'AI SEO Strategy',
-    tags: ['AI', 'SEO', 'Automation'],
-    featuredImage: '/images/ai-seo.jpg',
-    metaDescription: 'Learn how to automate your SEO processes with AI tools and strategies.',
-    featured: true
-  },
-  {
-    id: '2',
-    title: 'Google Autosuggest SEO Strategies',
-    slug: 'google-autosuggest-seo-strategies',
-    excerpt: 'Master the art of ranking in Google Autosuggest for maximum visibility.',
-    content: '<h2>Understanding Google Autosuggest</h2><p>Google Autosuggest is a powerful feature that shows users relevant search suggestions as they type. Ranking here can significantly boost your visibility.</p><h2>Optimization Techniques</h2><p>Here are proven strategies to improve your autosuggest rankings: keyword research, content optimization, and user experience improvements.</p><h2>Measuring Success</h2><p>Track your autosuggest performance with tools like Google Search Console and third-party SEO platforms.</p>',
-    author: 'Steve',
-    authorRole: 'SEO Director',
-    authorImage: '/steve/steve-avatar.jpg',
-    publishDate: '2024-01-20',
-    readTime: '7 min read',
-    category: 'Autocomplete SEO',
-    tags: ['Google', 'Autosuggest', 'SEO'],
-    featuredImage: '/images/autosuggest.jpg',
-    metaDescription: 'Master the art of ranking in Google Autosuggest for maximum visibility.',
-    featured: true
-  }
+  // Local blog posts are now managed through the API
+  // This array is kept for fallback purposes only
 ];
