@@ -13,6 +13,9 @@ const BlogPost = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [likes, setLiked] = useState(Math.floor(Math.random() * 50) + 10);
   const [isLiked, setIsLiked] = useState(false);
+  
+  // Remove .html extension from slug if present
+  const cleanSlug = slug?.replace('.html', '') || '';
 
   // Fetch all posts (static + API) - but don't show loading state
   useEffect(() => {
@@ -32,7 +35,7 @@ const BlogPost = () => {
     fetchAllPosts();
   }, []);
 
-  const post = allPosts.find(p => p.slug === slug);
+  const post = allPosts.find(p => p.slug === cleanSlug);
 
   // Remove loading state - show content immediately
 

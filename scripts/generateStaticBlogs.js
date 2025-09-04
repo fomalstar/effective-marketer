@@ -401,6 +401,7 @@ async function generateStaticBlogs() {
     let generatedCount = 0;
     for (const post of blogPosts) {
       const html = blogPostTemplate(post);
+      // For Render, we need .html extension for proper MIME type detection
       const fileName = `${post.slug}.html`;
       const filePath = path.join(blogDir, fileName);
       
