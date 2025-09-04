@@ -401,10 +401,13 @@ async function generateStaticBlogs() {
     let generatedCount = 0;
     for (const post of blogPosts) {
       const html = blogPostTemplate(post);
-      const filePath = path.join(blogDir, `${post.slug}.html`);
+      // Generate both with and without .html extension for compatibility
+      const filePathWithExt = path.join(blogDir, `${post.slug}.html`);
+      const filePathWithoutExt = path.join(blogDir, post.slug);
       
-      fs.writeFileSync(filePath, html);
-      console.log(`✅ Generated: ${post.slug}.html`);
+      fs.writeFileSync(filePathWithExt, html);
+      fs.writeFileSync(filePathWithoutExt, html);
+      console.log(`✅ Generated: ${post.slug}.html and ${post.slug}`);
       generatedCount++;
     }
 

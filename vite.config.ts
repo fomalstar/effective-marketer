@@ -57,6 +57,11 @@ export default defineConfig({
   },
   // Ensure static blog files are served correctly
   publicDir: 'public',
+  // Configure static file serving
+  preview: {
+    port: 4173,
+    strictPort: true,
+  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
