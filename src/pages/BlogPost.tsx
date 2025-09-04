@@ -493,7 +493,7 @@ const BlogPost = () => {
                   {popularPosts.map((popularPost, index) => (
                     <Link
                       key={popularPost.id}
-                      to={`/blog/${popularPost.slug}`}
+                      to={`/blog/${popularPost.slug}.html`}
                       className="block group"
                     >
                       <div className="flex space-x-3">
@@ -560,7 +560,7 @@ const BlogPost = () => {
                   {recentPosts.map(recentPost => (
                     <Link
                       key={recentPost.id}
-                      to={`/blog/${recentPost.slug}`}
+                      to={`/blog/${recentPost.slug}.html`}
                       className="block group"
                     >
                       <div className="flex space-x-3">
