@@ -30,7 +30,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
         <div className={`p-6 ${featured ? 'lg:w-1/2 lg:flex lg:flex-col lg:justify-between' : ''}`}>
           <div>
             <h3 className={`font-bold text-gray-900 mb-3 group-hover:text-cyan-600 transition-colors duration-200 leading-tight ${featured ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-lg sm:text-xl'}`}>
-              <Link to={`/${post.slug}.html`} className="hover:underline">
+              <Link to={`/blog/${post.slug}.html`} className="hover:underline">
                 {post.title}
               </Link>
             </h3>
@@ -70,7 +70,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false }) => {
               </div>
               
               <Link
-                to={`/${post.slug}.html`}
+                to={`/blog/${post.slug}.html`}
                 className="inline-flex items-center space-x-1 text-cyan-600 hover:text-cyan-700 font-medium text-sm group-hover:translate-x-1 transition-transform duration-200"
               >
                 <span>Read More</span>

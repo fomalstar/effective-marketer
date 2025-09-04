@@ -402,16 +402,16 @@ async function generateStaticBlogs() {
       }
     }
 
-    // Generate HTML for each blog post in root directory (Render compatibility)
+    // Generate HTML for each blog post in blog directory
     let generatedCount = 0;
     for (const post of blogPosts) {
       const html = blogPostTemplate(post);
-      // Generate in root directory with original slug for clean URLs
+      // Generate in blog directory to match React Router URLs
       const fileName = `${post.slug}.html`;
-      const filePath = path.join(rootDir, fileName);
+      const filePath = path.join(blogDir, fileName);
       
       fs.writeFileSync(filePath, html);
-      console.log(`✅ Generated: ${fileName}`);
+      console.log(`✅ Generated: blog/${fileName}`);
       generatedCount++;
     }
 
