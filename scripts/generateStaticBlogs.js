@@ -274,6 +274,11 @@ async function generateStaticBlogs() {
       fs.mkdirSync(blogDir, { recursive: true });
       console.log(`✅ Created blog directory: ${blogDir}`);
     }
+    
+    // Also create files in root dist directory for Render compatibility
+    const rootDir = isProduction 
+      ? path.join(__dirname, '../dist')
+      : path.join(__dirname, '../public');
 
     // Fetch blog posts from API (same as sitemap generation)
     let blogPosts = [];
@@ -407,6 +412,12 @@ async function generateStaticBlogs() {
       
       fs.writeFileSync(filePath, html);
       console.log(`✅ Generated: ${fileName}`);
+      
+      // Also generate in root directory for Render compatibility
+      const rootFilePath = path.join(rootDir, `blog-${post.slug}.html`);
+      fs.writeFileSync(rootFilePath, html);
+      console.log(`✅ Generated in root: blog-${post.slug}.html`);
+      
       generatedCount++;
     }
 
