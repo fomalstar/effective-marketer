@@ -1,33 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { generateSitemap } from './scripts/generateSitemap';
-import { execSync } from 'child_process';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    {
-      name: 'generate-sitemap',
-      closeBundle: async () => {
-        console.log('🔧 Running sitemap generation...');
-        await generateSitemap();
-      }
-    },
-    {
-      name: 'generate-static-blogs',
-      writeBundle: async () => {
-        console.log('🔧 Running static blog generation after build...');
-        try {
-          // Set production environment for correct directory
-          process.env.NODE_ENV = 'production';
-          execSync('npm run generate-blogs', { stdio: 'inherit' });
-        } catch (error) {
-          console.error('❌ Static blog generation failed:', error);
-        }
-      }
-    },
-
   ],
   server: {
     proxy: {
@@ -49,15 +26,11 @@ export default defineConfig({
       },
       input: {
         main: 'index.html'
-        // Static blog posts will be added dynamically during build
       }
     },
-    // Copy static blog files to dist directory
     copyPublicDir: true
   },
-  // Ensure static blog files are served correctly
   publicDir: 'public',
-  // Configure static file serving
   preview: {
     port: 4173,
     strictPort: true,
