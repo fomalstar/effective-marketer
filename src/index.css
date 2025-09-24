@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Base typography */
+html { font-feature-settings: 'cv02','cv03','cv04','cv11'; }
+body { @apply font-sans text-gray-800; }
+
+h1, h2, .display { @apply font-display; }
 
 /* Custom Blog Styles */
 .line-clamp-2 {
