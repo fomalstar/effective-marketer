@@ -75,6 +75,10 @@ const AITopicalMap: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-xl"></div>
             </div>
             <div className="order-1 lg:order-2">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-4 border border-cyan-500/30">
+                <Layers className="h-5 w-5 text-cyan-500" />
+                <span className="text-cyan-700 font-medium text-sm lg:text-base">Entity-Rich Architecture</span>
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Entity-Rich, Citation-Ready Architecture</h2>
               <div className="space-y-5">
                 <div className="flex items-start space-x-3">
@@ -110,86 +114,108 @@ const AITopicalMap: React.FC = () => {
 
       {/* Value Proposition */}
       <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Build Unrivaled Topical Authority — Watch Your Organic Traffic Soar</h2>
-          <p className="text-xl text-gray-600">SEO gets you ranked. GEO gets you cited.</p>
-          <p className="mt-4 text-gray-700">We craft topic hierarchies that align with how AI systems summarize, attribute, and cite answers — so your brand shows up when it matters.</p>
-        </div>
-      </section>
-
-      {/* Key Benefits */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[{
-            title: 'Built for answer engines',
-            desc: 'Entity-driven maps structured for AI Overviews, ChatGPT, Perplexity and Bing.'
-          },{
-            title: 'Complete topic coverage',
-            desc: 'Close gaps, eliminate cannibalization, and secure topical authority.'
-          },{
-            title: 'Ready-to-brief content plans',
-            desc: 'Buyer-journey mapping and content-type recommendations per cluster.'
-          }].map((b, i) => (
-            <div key={i} className="bg-white rounded-xl p-6 border border-gray-100">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{b.title}</h3>
-              <p className="text-gray-600">{b.desc}</p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-gray-100 shadow-sm p-8 md:p-10 bg-gradient-to-br from-white to-gray-50">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center space-x-2 bg-cyan-50 text-cyan-700 rounded-full px-3 py-1 text-sm font-medium mb-4">
+                <Sparkles className="h-4 w-4" />
+                <span>Topical Authority</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Build Unrivaled Topical Authority</h2>
+              <p className="text-lg text-gray-600">SEO gets you ranked. <span className="text-purple-600 font-semibold">GEO gets you cited.</span></p>
             </div>
-          ))}
+            <p className="text-gray-700 text-center max-w-3xl mx-auto">We craft topic hierarchies that align with how AI systems summarize, attribute, and cite answers — so your brand shows up when it matters.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+              <div className="bg-white rounded-xl p-6 border border-gray-100">
+                <Network className="h-6 w-6 text-cyan-600 mb-3" />
+                <h3 className="font-semibold text-gray-900 mb-1">Built for answer engines</h3>
+                <p className="text-gray-600">Entity-driven maps structured for AI Overviews, ChatGPT, Perplexity and Bing.</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 border border-gray-100">
+                <Layers className="h-6 w-6 text-cyan-600 mb-3" />
+                <h3 className="font-semibold text-gray-900 mb-1">Complete topic coverage</h3>
+                <p className="text-gray-600">Close gaps, eliminate cannibalization, and secure topical authority.</p>
+              </div>
+              <div className="bg-white rounded-xl p-6 border border-gray-100">
+                <Sparkles className="h-6 w-6 text-cyan-600 mb-3" />
+                <h3 className="font-semibold text-gray-900 mb-1">Ready-to-brief plans</h3>
+                <p className="text-gray-600">Buyer-journey mapping and content-type recommendations per cluster.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Generative Intent */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Generative Intent</h2>
-          <p className="text-gray-700 mb-6">Most searches fit four classic intents. AI assistants added a fifth: Generative Intent — “do-the-thinking-for-me” queries where people want synthesized plans, comparisons, or step-by-step guidance with sources.</p>
-          <p className="text-gray-700">Our maps structure entities, relationships, decision criteria, and evidence so assistants can synthesize, attribute, and cite your brand in answer experiences.</p>
-          <div className="mt-6 text-gray-600">Informational · Navigational · Transactional · Commercial · <strong>Generative Intent</strong></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div className="lg:col-span-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Generative Intent</h2>
+              <p className="text-gray-700 mb-4">Most searches fit four classic intents. AI assistants added a fifth: <span className="font-semibold">Generative Intent</span> — “do-the-thinking-for-me” queries where people want synthesized plans, comparisons, or step-by-step guidance with sources.</p>
+              <p className="text-gray-700">Our maps structure entities, relationships, decision criteria, and evidence so assistants can synthesize, attribute, and cite your brand in answer experiences.</p>
+              <div className="flex flex-wrap gap-2 mt-6">
+                {['Informational','Navigational','Transactional','Commercial','Generative Intent'].map((tag) => (
+                  <span key={tag} className="px-3 py-1 rounded-full text-sm bg-white border border-gray-200 text-gray-700">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+              <div className="flex items-center space-x-2 text-cyan-700 mb-3">
+                <Sparkles className="h-5 w-5" />
+                <span className="font-medium">Why it matters</span>
+              </div>
+              <p className="text-gray-700">Generative Intent queries drive AI answers. Structuring content for these intents increases your likelihood of being cited by assistants when users ask complex, comparative, or planning questions.</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* How GEO-Ready Maps Work */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">How GEO-Ready Maps Work</h2>
-          <div className="space-y-6 text-gray-700">
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">1. Ask the Right Questions</h3>
-              <p>We analyze search intent, competitors, and user questions, then extract Generative Intent prompts you should win across AI and classic search.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">2. Design the Topical Blueprint</h3>
-              <p>We arrange topics and subtopics into a clear, hierarchical map. We connect entities and relationships so LLMs can reason across clusters and surface you for Generative Intent requests.</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">3. We Deliver the GEO Topical Map</h3>
-              <p>Spreadsheet + mind map deliverable with keywords, clusters, volume/CPC, SERP analysis, buyer journey stages, content types, and Generative Intent prompts per cluster.</p>
+          <div className="relative">
+            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 to-purple-600 hidden md:block" />
+            <div className="space-y-8">
+              {[
+                { n: '1', t: 'Ask the Right Questions', d: 'We analyze search intent, competitors, and user questions, then extract Generative Intent prompts you should win across AI and classic search.' },
+                { n: '2', t: 'Design the Topical Blueprint', d: 'We arrange topics and subtopics into a clear, hierarchical map. We connect entities and relationships so LLMs can reason across clusters and surface you for Generative Intent requests.' },
+                { n: '3', t: 'We Deliver the GEO Topical Map', d: 'Spreadsheet + mind map deliverable with keywords, clusters, volume/CPC, SERP analysis, buyer journey stages, content types, and Generative Intent prompts per cluster.' },
+              ].map((step) => (
+                <div key={step.n} className="relative md:pl-16">
+                  <div className="hidden md:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white items-center justify-center font-bold shadow-lg">
+                    {step.n}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.t}</h3>
+                  <p className="text-gray-700">{step.d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Why Our Maps Win */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[{
-            title: 'AI Citation-Ready', desc: 'Entity-rich hierarchy and evidence notes AI assistants trust and cite.'
-          },{
-            title: 'Generative Intent Coverage', desc: 'Synthesized answers mapped to topic silos and clusters.'
-          },{
-            title: 'LLM-Friendly Clusters', desc: 'Four-level hierarchy humans and models can navigate without context drift.'
-          },{
-            title: 'Complete Coverage', desc: 'Zero cannibalization. Separate intents so each cluster stays focused.'
-          },{
-            title: 'Internal Linking', desc: 'Preplanned routes that retain users and guide assistants.'
-          },{
-            title: 'Plug-and-Play, Save Time', desc: 'Ship in days, not months, with ready-to-use artifacts.'
-          }].map((b, i) => (
-            <div key={i} className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{b.title}</h3>
-              <p className="text-gray-700">{b.desc}</p>
-            </div>
-          ))}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Why Our Topical Maps Win AI Search</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { i: <CheckCircle className="h-6 w-6 text-cyan-600" />, t: 'AI Citation-Ready', d: 'Entity-rich hierarchy and evidence notes AI assistants trust and cite.' },
+              { i: <Sparkles className="h-6 w-6 text-cyan-600" />, t: 'Generative Intent Coverage', d: 'Synthesized answers mapped to topic silos and clusters.' },
+              { i: <Layers className="h-6 w-6 text-cyan-600" />, t: 'LLM-Friendly Clusters', d: 'Four-level hierarchy humans and models can navigate without context drift.' },
+              { i: <Network className="h-6 w-6 text-cyan-600" />, t: 'Complete Coverage', d: 'Zero cannibalization. Separate intents so each cluster stays focused.' },
+              { i: <Network className="h-6 w-6 text-cyan-600" />, t: 'Internal Linking', d: 'Preplanned routes that retain users and guide assistants.' },
+              { i: <Sparkles className="h-6 w-6 text-cyan-600" />, t: 'Plug-and-Play, Save Time', d: 'Ship in days, not months, with ready-to-use artifacts.' },
+            ].map((b, idx) => (
+              <div key={idx} className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <div className="mb-3">{b.i}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-1">{b.t}</h3>
+                <p className="text-gray-700">{b.d}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
