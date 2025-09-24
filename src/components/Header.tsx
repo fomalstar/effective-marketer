@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Target, Menu, X, Monitor, Sparkles, Map, Search, Brain } from 'lucide-react';
+import { Target, Menu, X, Monitor, Sparkles, Map, Search, Brain, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const hoverTimerRef = useRef<number | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
   const services = [
-    { name: 'Google Autosuggests', href: 'https://effectivemarketer.com/google-autosuggest-ranking', icon: Search },
-    { name: 'AI SEO', href: 'https://effectivemarketer.com/ai-seo', icon: Brain },
-    { name: 'AI Topical Map', href: 'https://effectivemarketer.com/ai-topical-map', icon: Map },
-    { name: 'AI Lead Gen', href: 'https://effectivemarketer.com/lead-gen-ai-automation', icon: Sparkles },
+    { name: 'Google Autosuggests', href: 'https://effectivemarketer.com/google-autosuggest-ranking', icon: Search, desc: 'Dominate search suggestions before results appear.' },
+    { name: 'AI SEO', href: 'https://effectivemarketer.com/ai-seo', icon: Brain, desc: 'Get cited by ChatGPT, Gemini, and AI Overviews.' },
+    { name: 'AI Topical Map', href: 'https://effectivemarketer.com/ai-topical-map', icon: Map, desc: 'Entity-rich blueprints built for Generative Intent.' },
+    { name: 'AI Lead Gen', href: 'https://effectivemarketer.com/lead-gen-ai-automation', icon: Mail, desc: 'Automated multi-channel lead generation with AI.' },
   ];
 
   const navigation = [
@@ -24,11 +25,22 @@ const Header = () => {
   const handleNavigation = (href: string) => {
     window.location.href = href;
     setIsMenuOpen(false);
+    setIsServicesOpen(false);
   };
 
   const handleLogoClick = () => {
     window.location.href = 'https://effectivemarketer.com/';
     setIsMenuOpen(false);
+    setIsServicesOpen(false);
+  };
+
+  const openWithDelay = () => {
+    if (hoverTimerRef.current) window.clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = window.setTimeout(() => setIsServicesOpen(true), 100);
+  };
+  const closeWithDelay = () => {
+    if (hoverTimerRef.current) window.clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = window.setTimeout(() => setIsServicesOpen(false), 180);
   };
 
   return (
@@ -64,11 +76,11 @@ const Header = () => {
             {/* Services Mega Menu Trigger */}
             <div 
               className="relative"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
+              onMouseEnter={openWithDelay}
+              onMouseLeave={closeWithDelay}
             >
               <button 
-                className="text-gray-700 hover:text-red-500 transition-colors duration-200 font-medium inline-flex items-center"
+                className="text-gray-700 hover:text-red-500 transition-colors duration-200 font-medium inline-flex items-center py-2"
                 aria-haspopup="true"
                 aria-expanded={isServicesOpen}
                 onClick={(e) => {
@@ -84,8 +96,8 @@ const Header = () => {
 
               {/* Mega Menu Panel */}
               {isServicesOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-[720px] bg-white border border-gray-100 shadow-xl rounded-2xl p-6">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-[900px] bg-white/95 backdrop-blur-md border border-gray-100 shadow-2xl rounded-2xl p-8" onMouseEnter={openWithDelay} onMouseLeave={closeWithDelay}>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {services.map((svc) => (
                       <a
                         key={svc.name}
@@ -94,15 +106,27 @@ const Header = () => {
                           e.preventDefault();
                           handleNavigation(svc.href);
                         }}
-                        className="group rounded-xl p-4 hover:bg-gray-50 transition-colors duration-200 border border-transparent hover:border-gray-100"
+                        className="group rounded-xl p-5 hover:bg-gray-50 transition-colors duration-200 border border-gray-100/50 hover:border-gray-200"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center text-white mb-3 group-hover:scale-105 transition-transform">
-                          <svc.icon className="h-5 w-5" />
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+                          <svc.icon className="h-6 w-6" />
                         </div>
-                        <div className="text-gray-900 font-semibold text-sm">{svc.name}</div>
-                        <div className="text-gray-500 text-xs mt-1">Learn more →</div>
+                        <div className="text-gray-900 font-semibold text-base">{svc.name}</div>
+                        <div className="text-gray-500 text-sm mt-1 leading-snug">{svc.desc}</div>
+                        <div className="text-cyan-700 text-xs font-medium mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Learn more →</div>
                       </a>
                     ))}
+                  </div>
+
+                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="col-span-1 md:col-span-2 hidden md:block rounded-xl border border-gray-100 p-5 bg-white">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Why choose us</h4>
+                      <p className="text-sm text-gray-600">We specialize in AI-first visibility: AI SEO, Topical Maps, and Google Autosuggests — engineered for citations, not just rankings.</p>
+                    </div>
+                    <a href="https://calendly.com/effectivemarketer/demo" className="rounded-xl border border-cyan-200 p-5 bg-gradient-to-r from-cyan-50 to-purple-50 hover:from-cyan-100 hover:to-purple-100 transition-colors">
+                      <div className="text-sm font-semibold text-cyan-800">Talk to an expert</div>
+                      <div className="text-xs text-cyan-700">Book a free consult →</div>
+                    </a>
                   </div>
                 </div>
               )}
@@ -168,35 +192,25 @@ const Header = () => {
 
               {/* Services accordion */}
               <div className="px-3">
-                <button
-                  className="w-full flex items-center justify-between py-2 text-gray-700 hover:text-red-500 transition-colors duration-200"
-                  onClick={() => setIsServicesOpen((v) => !v)}
-                >
-                  <span className="font-medium">Services</span>
-                  <svg className={`ml-2 h-4 w-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
-                  </svg>
-                </button>
-                {isServicesOpen && (
-                  <div className="mt-1 space-y-1">
-                    {services.map((svc) => (
-                      <a
-                        key={svc.name}
-                        href={svc.href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleNavigation(svc.href);
-                        }}
-                        className="flex items-center space-x-2 px-2 py-2 rounded text-gray-700 hover:text-red-500 transition-colors duration-200"
-                      >
-                        <div className="w-8 h-8 rounded-md bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center text-white">
-                          <svc.icon className="h-4 w-4" />
-                        </div>
-                        <span>{svc.name}</span>
-                      </a>
-                    ))}
-                  </div>
-                )}
+                <div className="text-gray-500 text-xs uppercase tracking-wide mb-2">Services</div>
+                <div className="mt-1 space-y-1">
+                  {services.map((svc) => (
+                    <a
+                      key={svc.name}
+                      href={svc.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavigation(svc.href);
+                      }}
+                      className="flex items-center space-x-2 px-2 py-2 rounded text-gray-700 hover:text-red-500 transition-colors duration-200"
+                    >
+                      <div className="w-8 h-8 rounded-md bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center text-white">
+                        <svc.icon className="h-4 w-4" />
+                      </div>
+                      <span className="font-medium">{svc.name}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
 
               {/* Contact */}
