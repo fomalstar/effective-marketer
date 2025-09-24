@@ -1,8 +1,31 @@
 import React from 'react';
 import PageLayout from '../components/PageLayout';
-import { Map, Layers, Sparkles, Network, CheckCircle } from 'lucide-react';
+import { Map, Layers, Sparkles, Network, CheckCircle, HelpCircle, ArrowRight } from 'lucide-react';
 
 const AITopicalMap: React.FC = () => {
+  const faqs = [
+    {
+      q: 'What is an AI Topical Map?',
+      a: 'An AI Topical Map is an entity-rich blueprint of your topic space. It organizes clusters, subtopics, entities, and relationships so AI systems can understand, synthesize, and cite your brand in answer experiences.'
+    },
+    {
+      q: 'How is this different from a normal content plan?',
+      a: 'Traditional content plans target keywords; our maps target Generative Intent. We structure decision criteria, relationships, and evidence notes that AI assistants rely on when attributing and citing sources.'
+    },
+    {
+      q: 'Where will this help me appear?',
+      a: 'Across Google AI Overviews, ChatGPT, Perplexity, Bing AI, Gemini, and other AI surfaces where users receive synthesized answers.'
+    },
+    {
+      q: 'What deliverables do I receive?',
+      a: 'A plug-and-play spreadsheet and mind map including clusters, search volumes, CPC, SERP analysis, buyer-journey stages, content-type recommendations, and Generative Intent prompts per cluster.'
+    },
+    {
+      q: 'How long does it take to build?',
+      a: 'Most maps are delivered in 10–15 business days depending on topic scope and complexity.'
+    }
+  ];
+
   return (
     <PageLayout
       title="AI Topical Map Services | Effective Marketer"
@@ -21,7 +44,67 @@ const AITopicalMap: React.FC = () => {
             <span className="text-cyan-300 font-medium text-sm lg:text-base">AI Topical Map</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">Own AI Search with GEO-Ready Topical Maps</h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">We design your topical blueprint — built around Generative Intent — so answer engines cite you on Google AI Mode, AI Overviews, ChatGPT, Perplexity, Bing, and beyond.</p>
+          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8">We design your topical blueprint — built around Generative Intent — so answer engines cite you on Google AI Mode, AI Overviews, ChatGPT, Perplexity, Bing, and beyond.</p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
+            <a
+              href="https://calendly.com/effectivemarketer/demo"
+              className="w-full sm:w-auto inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Start Your Topical Map
+            </a>
+            <a
+              href="/ai-seo"
+              className="w-full sm:w-auto inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 transition-all duration-300"
+            >
+              Explore AI SEO
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Image + Highlights */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative order-2 lg:order-1">
+              <img
+                src="/topicalmape.png"
+                alt="AI Topical Map example showing entity-rich hierarchy and Generative Intent structure"
+                className="w-full h-auto rounded-xl shadow-2xl border border-gray-200"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-xl"></div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Entity-Rich, Citation-Ready Architecture</h2>
+              <div className="space-y-5">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">Four-level clusters humans and LLMs can navigate without context drift.</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">Zero cannibalization — each cluster has a clear intent and role.</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">Pre-planned internal linking that guides users and models across your map.</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">Ready-to-brief content plans aligned to buyer journey and Generative Intent.</p>
+                </div>
+              </div>
+              <div className="mt-8">
+                <a
+                  href="/ai-seo"
+                  className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium"
+                >
+                  See how we use maps in AI SEO
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -107,6 +190,28 @@ const AITopicalMap: React.FC = () => {
               <p className="text-gray-700">{b.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-16 bg-gradient-to-r from-cyan-500 to-purple-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Build Your AI Topical Map?</h2>
+          <p className="text-xl text-cyan-100 mb-8">Get a citation-ready blueprint designed for Generative Intent and AI answers.</p>
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <a
+              href="https://calendly.com/effectivemarketer/demo"
+              className="w-full sm:w-auto inline-block bg-white text-cyan-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
+            >
+              Start Your Topical Map
+            </a>
+            <a
+              href="/ai-seo"
+              className="w-full sm:w-auto inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300"
+            >
+              Explore AI SEO
+            </a>
+          </div>
         </div>
       </section>
 
