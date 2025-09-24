@@ -3,10 +3,10 @@ import { CheckCircle, Brain } from 'lucide-react';
 
 const Hero = () => {
   const benefits = [
-    'Dominate Google autocomplete suggestions before competitors appear',
-    'Get your brand featured in search suggestions instantly',
-    'Establish authority across AI platforms like ChatGPT and Gemini',
-    'Achieve measurable results in 6-10 weeks'
+    'Get your brand recommended by ChatGPT, Gemini, and Claude AI platforms',
+    'Advanced AI SEO Topical Map for ranking in AI-powered searches',
+    'Reddit growth strategies to build authority and social signals',
+    'Achieve measurable results in 6-10 weeks with proven methodology'
   ];
 
   return (
@@ -27,12 +27,14 @@ const Hero = () => {
             <div className="space-y-4 lg:space-y-6">
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-4 border border-cyan-500/30">
                 <Brain className="h-5 w-5 text-cyan-400" />
-                <span className="text-cyan-300 font-medium text-sm lg:text-base">GEO & Autocomplete Mastery</span>
+                <span className="text-cyan-300 font-medium text-sm lg:text-base">AI SEO & Platform Optimization</span>
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white leading-tight">
-                
-                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Autocomplete SEO Optimization</span>
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">AI SEO Optimization</span>
               </h1>
+              <p className="text-xl text-gray-300 mt-4">
+                Get your brand featured in ChatGPT, Gemini, and other AI platforms when users ask about your industry
+              </p>
             </div>
 
             {/* Benefits */}

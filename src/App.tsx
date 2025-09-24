@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import Onboarding from './pages/Onboarding';
 import GoogleAutosuggestRanking from './pages/GoogleAutosuggestRanking';
 import AIAutomation from './pages/AIAutomation';
+import AISEO from './pages/AISEO';
+import AITopicalMap from './pages/AITopicalMap';
 
 import SEOHead from './components/SEOHead';
 
@@ -40,6 +42,8 @@ function App() {
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
             <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
+            <Route path="/ai-seo" element={<AISEO />} />
+            <Route path="/ai-topical-map" element={<AITopicalMap />} />
           <Route path="*" element={
             <div className="min-h-screen flex flex-col">
               <Header />

@@ -9,7 +9,8 @@ const Header = () => {
 
   const navigation = [
     { name: 'Home', href: 'https://effectivemarketer.com/' },
-    { name: 'AI SEO', href: 'https://effectivemarketer.com/google-autosuggest-ranking' },
+    { name: 'Google Autosuggests', href: 'https://effectivemarketer.com/google-autosuggest-ranking' },
+    { name: 'AI SEO', href: 'https://effectivemarketer.com/ai-seo' },
     { name: 'AI Lead Gen', href: 'https://effectivemarketer.com/lead-gen-ai-automation' },
     { name: 'Contact', href: 'https://effectivemarketer.com/#contact' },
   ];

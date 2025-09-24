@@ -16,7 +16,7 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "#1 Google Autosuggests & AI SEO Services - Effective Marketer",
+  title = "#1 Google Autosuggests & AI SEO Agency - Effective Marketer",
   description = "Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete. Our specialized agency provides cutting-edge AI SEO strategies that optimize your brand for maximum visibility.",
   keywords = "AI SEO agency, Google autosuggests optimization, AI SEO solutions, autosuggests ranking, Google Autocomplete optimization, AI SEO services, search suggestion optimization, ranking optimization, digital marketing agency, SEO agency",
   canonical = "https://effectivemarketer.com",
@@ -51,7 +51,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "sameAs": [
       "https://www.linkedin.com/company/effective-marketer",
       "https://twitter.com/effectivemarketer",
-      "https://www.facebook.com/effectivemarketer"
+      "https://www.facebook.com/effective-marketer"
     ],
     "founder": {
       "@type": "Person",
