@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, Target, TrendingUp, Share2, Network, Map, HelpCircle, CheckCircle } from 'lucide-react';
+import { Brain, Target, TrendingUp, Share2, Network, Map, HelpCircle, CheckCircle, ArrowRight, Users, Zap, BarChart3 } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
 
 const AISEO: React.FC = () => {
@@ -11,10 +11,30 @@ const AISEO: React.FC = () => {
   ];
 
   const faqs = [
-    { q: 'What is AI SEO?', a: 'AI SEO optimizes your brand to be recommended and cited by AI systems like ChatGPT, Gemini, and Google AI Overviews — not just ranked in classic search.' },
-    { q: 'How does Reddit help AI SEO?', a: 'Reddit authority and community engagement provide high-trust signals and topical depth that AI assistants use when forming answers.' },
-    { q: 'What is an AI Topical Map?', a: 'A structured, entity-driven topic blueprint that maps clusters, relationships and Generative Intent prompts — making your content citation-ready for AI.' },
-    { q: 'How long to see results?', a: 'Most clients see lift in 6–10 weeks depending on baseline authority and execution speed.' },
+    { 
+      q: 'What is AI SEO and how is it different from traditional SEO?', 
+      a: 'AI SEO optimizes your brand to be recommended and cited by AI systems like ChatGPT, Gemini, and Google AI Overviews — not just ranked in classic search. While traditional SEO focuses on ranking in search results, AI SEO ensures your brand appears in AI-generated answers, recommendations, and summaries across multiple platforms.' 
+    },
+    { 
+      q: 'How does Reddit growth contribute to AI SEO success?', 
+      a: 'Reddit provides high-authority, community-driven content that AI models heavily weight when forming answers. Our Reddit growth strategies build genuine community engagement, establish topical authority, and create the social signals that AI assistants use to determine source credibility and relevance.' 
+    },
+    { 
+      q: 'What makes your AI Topical Maps different from regular content planning?', 
+      a: 'Our AI Topical Maps are built specifically for Generative Intent — the "do-the-thinking-for-me" queries where users want synthesized answers. We structure entities, relationships, and evidence so AI assistants can easily synthesize, attribute, and cite your brand in their responses.' 
+    },
+    { 
+      q: 'Which AI platforms do you optimize for?', 
+      a: 'We optimize for ChatGPT, Google AI Overviews, Gemini, Claude, Perplexity, Bing AI, and emerging AI search platforms. Each platform has different citation patterns, so we tailor our approach accordingly.' 
+    },
+    { 
+      q: 'How long does it take to see results from AI SEO?', 
+      a: 'Most clients see initial AI citations within 6-8 weeks, with full optimization achieved in 10-12 weeks. This timeline depends on your current domain authority, content velocity, and the competitive landscape in your industry.' 
+    },
+    { 
+      q: 'Do you provide ongoing monitoring and optimization?', 
+      a: 'Yes, we continuously monitor your AI citations across platforms, track Generative Intent performance, and optimize your topical maps based on AI algorithm updates and new opportunities in your space.' 
+    },
   ];
 
   const structuredData = [
@@ -49,16 +69,30 @@ const AISEO: React.FC = () => {
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">Own AI Search with AI SEO</h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8">Get your brand recommended by AI assistants with Generative Intent-ready topical maps, Reddit growth, and cross-platform signals.</p>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center px-4 sm:px-0">
+              <a
+                href="https://calendly.com/effectivemarketer/demo"
+                className="w-full sm:w-auto inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+              >
+                Start Your AI SEO Campaign
+              </a>
+              <a
+                href="#features"
+                className="w-full sm:w-auto inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 transition-all duration-300 text-center"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why Choose AI SEO */}
-      <section className="py-16 bg-white">
+      <section id="features" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose AI SEO?</h2>
-            <p className="text-xl text-gray-600">SEO gets you ranked. AI SEO gets you cited. We align your content with how AI systems summarize, attribute, and cite answers.</p>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">SEO gets you ranked. AI SEO gets you cited. We align your content with how AI systems summarize, attribute, and cite answers — ensuring your brand appears when it matters most.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((f, i) => (
@@ -75,45 +109,161 @@ const AISEO: React.FC = () => {
       {/* How AI SEO Works */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">How AI SEO Works</h2>
-              <ol className="space-y-6 list-decimal list-inside text-gray-700">
-                <li><strong>Ask the Right Questions:</strong> Analyze search intent, competitors and user questions. Extract Generative Intent prompts you should win.</li>
-                <li><strong>Design the Topical Blueprint:</strong> Human-curated topic hierarchy with entities and relationships. Semantic SEO that LLMs can follow.</li>
-                <li><strong>Reddit Growth & Signals:</strong> Build community trust and high-signal discussions that AI models consider when citing sources.</li>
-                <li><strong>Ship & Interlink:</strong> Publish focused content with internal links that keep users (and models) inside your cluster.</li>
-              </ol>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Ask the Right Questions</h3>
+                    <p className="text-gray-600">Analyze search intent, competitors and user questions. Extract Generative Intent prompts you should win across AI and classic search.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Design the Topical Blueprint</h3>
+                    <p className="text-gray-600">Human-curated topic hierarchy with entities and relationships. Semantic SEO that LLMs can follow and cite.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Reddit Growth & Signals</h3>
+                    <p className="text-gray-600">Build community trust and high-signal discussions that AI models consider when citing sources.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-sm font-bold">4</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Ship & Interlink</h3>
+                    <p className="text-gray-600">Publish focused content with internal links that keep users (and models) inside your cluster.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="bg-white rounded-xl p-6 border border-gray-100">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">AI Topical Map</h3>
-              <p className="text-gray-600 mb-4">Entity-rich hierarchy built for Generative Intent. Four-level clusters, zero cannibalization, and preplanned internal linking.</p>
-              <a href="/ai-topical-map" className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium">Learn about AI Topical Maps</a>
+            
+            {/* ChatGPT Mockup */}
+            <div className="relative">
+              <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-4 sm:p-6 max-w-lg mx-auto border border-cyan-500/30">
+                {/* ChatGPT Header */}
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
+                  <div className="text-base sm:text-lg font-semibold text-white">ChatGPT</div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full flex items-center justify-center">
+                      <Brain className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* User Query */}
+                <div className="mb-4">
+                  <div className="bg-slate-700/50 border border-cyan-500/30 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                    <div className="text-cyan-300 text-sm mb-1">You:</div>
+                    <div className="text-white text-sm sm:text-base">What are the best AI SEO strategies for 2025?</div>
+                  </div>
+                </div>
+                
+                {/* AI Response */}
+                <div className="bg-slate-700/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-3 sm:p-4">
+                  <div className="text-purple-300 text-sm mb-2 flex items-center">
+                    <Brain className="w-4 h-4 mr-2" />
+                    ChatGPT:
+                  </div>
+                  <div className="text-white text-xs sm:text-sm leading-relaxed mb-3">
+                    Based on current trends and successful implementations, here are the top AI SEO strategies:
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center text-xs sm:text-sm">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                      <span className="text-white"><strong className="text-cyan-400">Generative Intent Mapping</strong> - Structure content for AI synthesis</span>
+                    </div>
+                    <div className="flex items-center text-xs sm:text-sm">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                      <span className="text-white"><strong className="text-cyan-400">Reddit Authority Building</strong> - Community-driven signals</span>
+                    </div>
+                    <div className="flex items-center text-xs sm:text-sm">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                      <span className="text-white"><strong className="text-cyan-400">Entity-Rich Topical Maps</strong> - Citation-ready content</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Advanced AI SEO Features */}
+      {/* AI Topical Map Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Advanced AI SEO Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Generative Intent Coverage</h3>
-              <p className="text-gray-600">We map plan, compare, explain and do prompts to your clusters so assistants can synthesize and cite you.</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Advanced AI Topical Maps</h2>
+              <p className="text-xl text-gray-600 mb-6">Entity-rich topical blueprints built for Generative Intent and AI citations across ChatGPT, Google AI Mode, Perplexity, and beyond.</p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Generative Intent Coverage</h3>
+                    <p className="text-gray-600">We map plan, compare, explain and do prompts to your clusters so assistants can synthesize and cite you.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">LLM-Friendly Clusters</h3>
+                    <p className="text-gray-600">Four-level hierarchy that prevents context drift and keeps models within your topical boundaries.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Complete Coverage</h3>
+                    <p className="text-gray-600">Zero keyword cannibalization. Each cluster has a clear intent and outcome.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-6 w-6 text-cyan-500 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Plug-and-Play Delivery</h3>
+                    <p className="text-gray-600">Spreadsheet + mind map you can ship in days, not months.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <a
+                href="/ai-topical-map"
+                className="inline-flex items-center bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Learn About AI Topical Maps
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">LLM-Friendly Clusters</h3>
-              <p className="text-gray-600">Four-level hierarchy that prevents context drift and keeps models within your topical boundaries.</p>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Complete Coverage</h3>
-              <p className="text-gray-600">Zero keyword cannibalization. Each cluster has a clear intent and outcome.</p>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Plug-and-Play Delivery</h3>
-              <p className="text-gray-600">Spreadsheet + mind map you can ship in days, not months.</p>
+            
+            <div className="relative">
+              <img 
+                src="/topicalmape.png" 
+                alt="AI Topical Map example showing entity-rich hierarchy and Generative Intent structure" 
+                className="w-full h-auto rounded-xl shadow-2xl border border-gray-200"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
             </div>
           </div>
         </div>
@@ -122,14 +272,46 @@ const AISEO: React.FC = () => {
       {/* FAQ */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">AI SEO — FAQ</h2>
-          <div className="space-y-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600">Everything you need to know about AI SEO and our services</p>
+          </div>
+          <div className="space-y-6">
             {faqs.map((f, i) => (
-              <div key={i} className="bg-white rounded-lg p-6 border border-gray-100">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{f.q}</h3>
-                <p className="text-gray-700">{f.a}</p>
+              <div key={i} className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-start">
+                  <HelpCircle className="h-6 w-6 text-cyan-500 mr-3 flex-shrink-0 mt-0.5" />
+                  {f.q}
+                </h3>
+                <p className="text-gray-700 leading-relaxed ml-9">{f.a}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-cyan-500 to-purple-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Own AI Search?
+          </h2>
+          <p className="text-xl text-cyan-100 mb-8">
+            Join forward-thinking brands that are already winning AI citations with our proven AI SEO methodology.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <a
+              href="https://calendly.com/effectivemarketer/demo"
+              className="w-full sm:w-auto inline-block bg-white text-cyan-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
+            >
+              Start Your AI SEO Campaign
+            </a>
+            <a
+              href="/ai-topical-map"
+              className="w-full sm:w-auto inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300"
+            >
+              Learn About Topical Maps
+            </a>
           </div>
         </div>
       </section>

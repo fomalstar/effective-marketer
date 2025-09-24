@@ -69,7 +69,23 @@ const Future = () => {
                 <feature.icon className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <p className="text-gray-600 mb-4">{feature.description}</p>
+              {index === 1 && (
+                <a 
+                  href="/ai-seo" 
+                  className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium text-sm"
+                >
+                  Learn more about AI SEO →
+                </a>
+              )}
+              {index === 0 && (
+                <a 
+                  href="/google-autosuggest-ranking" 
+                  className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium text-sm"
+                >
+                  Learn more about Google Autosuggests →
+                </a>
+              )}
             </div>
           ))}
         </div>
