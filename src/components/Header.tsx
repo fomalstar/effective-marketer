@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Target, Menu, X, Monitor, Sparkles, Map, Search, Brain, Mail } from 'lucide-react';
+import { Menu, X, Monitor, Sparkles, Map, Search, Brain, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,21 +54,20 @@ const Header = () => {
               e.preventDefault();
               handleLogoClick();
             }}
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200"
+            className="flex items-center space-x-2 hover:opacity-90 transition-opacity duration-200"
           >
-            <Target className="h-8 w-8 text-red-500" />
-            <span className="text-xl font-bold text-gray-900">Effective Marketer</span>
+            <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">Effective Marketer</span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-9">
             <a
               href={navigation[0].href}
               onClick={(e) => {
                 e.preventDefault();
                 handleNavigation(navigation[0].href);
               }}
-              className="text-gray-700 hover:text-red-500 transition-colors duration-200 font-medium"
+              className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-cyan-700 transition-colors duration-200"
             >
               {navigation[0].name}
             </a>
@@ -80,7 +79,7 @@ const Header = () => {
               onMouseLeave={closeWithDelay}
             >
               <button 
-                className="text-gray-700 hover:text-red-500 transition-colors duration-200 font-medium inline-flex items-center py-2"
+                className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-cyan-700 transition-colors duration-200 inline-flex items-center py-2"
                 aria-haspopup="true"
                 aria-expanded={isServicesOpen}
                 onClick={(e) => {
@@ -96,7 +95,7 @@ const Header = () => {
 
               {/* Mega Menu Panel */}
               {isServicesOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-[900px] bg-white/95 backdrop-blur-md border border-gray-100 shadow-2xl rounded-2xl p-8" onMouseEnter={openWithDelay} onMouseLeave={closeWithDelay}>
+                <div className="absolute left-1/2 -translate-x-1/2 mt-3 w-[960px] bg-white/95 backdrop-blur-md border border-gray-100 shadow-2xl rounded-2xl p-8" onMouseEnter={openWithDelay} onMouseLeave={closeWithDelay}>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {services.map((svc) => (
                       <a
@@ -111,14 +110,14 @@ const Header = () => {
                         <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
                           <svc.icon className="h-6 w-6" />
                         </div>
-                        <div className="text-gray-900 font-semibold text-base">{svc.name}</div>
-                        <div className="text-gray-500 text-sm mt-1 leading-snug">{svc.desc}</div>
+                        <div className="font-display text-[15px] leading-tight text-gray-900 font-semibold">{svc.name}</div>
+                        <div className="text-[13px] leading-snug text-gray-600 mt-1">{svc.desc}</div>
                         <div className="text-cyan-700 text-xs font-medium mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Learn more →</div>
                       </a>
                     ))}
                   </div>
 
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="col-span-1 md:col-span-2 hidden md:block rounded-xl border border-gray-100 p-5 bg-white">
                       <h4 className="text-sm font-semibold text-gray-900 mb-2">Why choose us</h4>
                       <p className="text-sm text-gray-600">We specialize in AI-first visibility: AI SEO, Topical Maps, and Google Autosuggests — engineered for citations, not just rankings.</p>
@@ -138,7 +137,7 @@ const Header = () => {
                 e.preventDefault();
                 handleNavigation(navigation[2].href);
               }}
-              className="text-gray-700 hover:text-red-500 transition-colors duration-200 font-medium"
+              className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-cyan-700 transition-colors duration-200"
             >
               {navigation[2].name}
             </a>
@@ -150,7 +149,7 @@ const Header = () => {
               href="https://dash.effectivemarketer.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-gray-700 hover:text-red-500 transition-colors duration-200"
+              className="p-2 text-gray-700 hover:text-cyan-700 transition-colors duration-200"
               title="Dashboard"
             >
               <Monitor className="h-6 w-6" />
@@ -159,7 +158,7 @@ const Header = () => {
               href="https://calendly.com/effectivemarketer/demo"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-red-500 text-white px-4 lg:px-6 py-2 rounded-lg font-medium hover:bg-red-600 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-sm lg:text-base"
+              className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 lg:px-6 py-2 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-sm lg:text-base"
             >
               Book a Demo
             </a>
@@ -185,12 +184,12 @@ const Header = () => {
                   e.preventDefault();
                   handleNavigation(navigation[0].href);
                 }}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-red-500 transition-colors duration-200"
+                className="block w-full text-left px-3 py-2 text-[15px] font-semibold tracking-tight text-gray-800 hover:text-cyan-700 transition-colors duration-200"
               >
                 {navigation[0].name}
               </a>
 
-              {/* Services accordion */}
+              {/* Services list */}
               <div className="px-3">
                 <div className="text-gray-500 text-xs uppercase tracking-wide mb-2">Services</div>
                 <div className="mt-1 space-y-1">
@@ -202,12 +201,12 @@ const Header = () => {
                         e.preventDefault();
                         handleNavigation(svc.href);
                       }}
-                      className="flex items-center space-x-2 px-2 py-2 rounded text-gray-700 hover:text-red-500 transition-colors duration-200"
+                      className="flex items-center space-x-2 px-2 py-2 rounded text-[14px] font-semibold tracking-tight text-gray-800 hover:text-cyan-700 transition-colors duration-200"
                     >
-                      <div className="w-8 h-8 rounded-md bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center text-white">
+                      <div className="w-8 h-8 rounded-md bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center text-white">
                         <svc.icon className="h-4 w-4" />
                       </div>
-                      <span className="font-medium">{svc.name}</span>
+                      <span className="">{svc.name}</span>
                     </a>
                   ))}
                 </div>
@@ -220,7 +219,7 @@ const Header = () => {
                   e.preventDefault();
                   handleNavigation(navigation[2].href);
                 }}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-red-500 transition-colors duration-200"
+                className="block w-full text-left px-3 py-2 text-[15px] font-semibold tracking-tight text-gray-800 hover:text-cyan-700 transition-colors duration-200"
               >
                 {navigation[2].name}
               </a>
@@ -230,7 +229,7 @@ const Header = () => {
                 href="https://dash.effectivemarketer.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-3 py-2 text-gray-700 hover:text-red-500 transition-colors duration-200"
+                className="flex items-center px-3 py-2 text-gray-700 hover:text-cyan-700 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Monitor className="h-5 w-5 mr-2" />
@@ -240,7 +239,7 @@ const Header = () => {
                 href="https://calendly.com/effectivemarketer/demo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-red-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-600 transition-all duration-300 shadow-md hover:shadow-lg mt-4"
+                className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg mt-4"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Book a Demo
