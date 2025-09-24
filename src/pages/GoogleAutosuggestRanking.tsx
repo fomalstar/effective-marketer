@@ -110,7 +110,7 @@ const GoogleAutosuggestRanking = () => {
     >
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 lg:py-20">
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
           <div className="absolute top-10 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
           <div className="absolute top-20 right-20 w-1 h-1 bg-purple-400 rounded-full animate-ping delay-1000"></div>
         </div>

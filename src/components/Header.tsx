@@ -11,7 +11,6 @@ const Header = () => {
     { name: 'Home', href: 'https://effectivemarketer.com/' },
     { name: 'AI SEO', href: 'https://effectivemarketer.com/google-autosuggest-ranking' },
     { name: 'AI Lead Gen', href: 'https://effectivemarketer.com/lead-gen-ai-automation' },
-    { name: 'Blog', href: 'https://effectivemarketer.com/blog' },
     { name: 'Contact', href: 'https://effectivemarketer.com/#contact' },
   ];
 

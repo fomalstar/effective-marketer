@@ -30,7 +30,6 @@ const Footer = () => {
     {
       title: 'Resources',
       links: [
-        { name: 'Blog', href: '#' },
         { name: 'Success Stories', href: '#' },
         { name: 'Optimization Tools', href: '#' },
         { name: 'Knowledge Center', href: '#' }

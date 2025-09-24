@@ -1,11 +1,2 @@
-# Redirect blog posts to backend server
-# This ensures blog posts appear on the main domain for SEO
-
-# Redirect individual blog posts to backend
-/blog/* https://effective-marketer-dashboard.onrender.com/blog/:splat 200
-
-# Redirect blog index page to backend
-/blog https://effective-marketer-dashboard.onrender.com/blog 200
-
-# Fallback for React Router (all other routes)
+# Fallback for React Router (all routes)
 /* /index.html 200

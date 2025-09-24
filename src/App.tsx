@@ -10,25 +10,16 @@ import GetStarted from './components/GetStarted';
 import Contact from './components/Contact';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
 import Onboarding from './pages/Onboarding';
 import GoogleAutosuggestRanking from './pages/GoogleAutosuggestRanking';
 import AIAutomation from './pages/AIAutomation';
-import BlogAdmin from './pages/BlogAdmin';
-import Login from './pages/Login';
-import ProtectedRoute from './components/ProtectedRoute';
-import Sitemap from './pages/Sitemap';
-import RSSFeed from './pages/RSSFeed';
-import { AuthProvider } from './contexts/AuthContext';
 
 import SEOHead from './components/SEOHead';
 
 function App() {
   return (
     <HelmetProvider>
-      <AuthProvider>
-        <Router>
+      <Router>
           <Routes>
             <Route path="/" element={
               <div className="min-h-screen flex flex-col">
@@ -46,18 +37,7 @@ function App() {
                 <Footer />
               </div>
             } />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/blog/:slug.html" element={<BlogPost />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/blog-admin" element={
-              <ProtectedRoute>
-                <BlogAdmin />
-              </ProtectedRoute>
-            } />
             <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/sitemap.xml" element={<Sitemap />} />
-            <Route path="/rss.xml" element={<RSSFeed />} />
             <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
             <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
           <Route path="*" element={
@@ -87,7 +67,6 @@ function App() {
           } />
         </Routes>
         </Router>
-      </AuthProvider>
     </HelmetProvider>
   );
 }

@@ -38,7 +38,7 @@ const Future = () => {
   return (
     <section id="services" className="py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
       {/* AI-themed background */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none" aria-hidden="true">
         <div className="absolute top-20 left-20 w-40 h-40 border border-blue-400 rounded-full animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-32 h-32 border border-purple-400 rounded-full animate-pulse delay-1000"></div>
       </div>
