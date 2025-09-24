@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Header from './Header';
 import Footer from './Footer';
 import SEOHead from './SEOHead';
+import Breadcrumb from './Breadcrumb';
 
 interface BreadcrumbItem {
   label: string;
@@ -72,8 +73,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         
         <Header />
         
-        {/* breadcrumbs intentionally not rendered; prop is referenced to avoid unused warnings */}
-        {breadcrumbs && null}
+        {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
         
         <main className="flex-grow">
           {children}
