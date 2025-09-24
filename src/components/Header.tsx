@@ -118,10 +118,11 @@ const Header = () => {
                   </div>
 
                   <div className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="col-span-1 md:col-span-2 hidden md:block rounded-xl border border-gray-100 p-5 bg-white">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Why choose us</h4>
-                      <p className="text-sm text-gray-600">We specialize in AI-first visibility: AI SEO, Topical Maps, and Google Autosuggests — engineered for citations, not just rankings.</p>
-                    </div>
+                    <a href="https://dash.effectivemarketer.com/" target="_blank" rel="noopener noreferrer" className="col-span-1 md:col-span-2 hidden md:block rounded-xl border border-gray-100 p-5 bg-white hover:bg-gray-50 transition-colors">
+                      <div className="text-sm font-semibold text-gray-900 mb-1">Professional SEO Dashboard</div>
+                      <p className="text-sm text-gray-600">Track everything in one place with our AI SEO Dashboard — autosuggest rankings, topical map, AI SEO and more.</p>
+                      <div className="text-cyan-700 text-xs font-medium mt-3">Open dashboard →</div>
+                    </a>
                     <a href="https://calendly.com/effectivemarketer/demo" className="rounded-xl border border-cyan-200 p-5 bg-gradient-to-r from-cyan-50 to-purple-50 hover:from-cyan-100 hover:to-purple-100 transition-colors">
                       <div className="text-sm font-semibold text-cyan-800">Talk to an expert</div>
                       <div className="text-xs text-cyan-700">Book a free consult →</div>

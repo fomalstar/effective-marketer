@@ -1,24 +1,20 @@
 import React from 'react';
-import { Target, Mail, Globe, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Globe, Facebook, Linkedin, Search, Brain, Map, Mail as MailIcon } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Facebook, href: '#' },
-    { icon: Twitter, href: '#' },
-    { icon: Linkedin, href: '#' },
-    { icon: Instagram, href: '#' }
+    { icon: Facebook, href: 'https://www.facebook.com/effectivemarketercom' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/effective-marketer' }
+  ];
+
+  const services = [
+    { name: 'Google Autosuggests', href: 'https://effectivemarketer.com/google-autosuggest-ranking', icon: Search },
+    { name: 'AI SEO', href: 'https://effectivemarketer.com/ai-seo', icon: Brain },
+    { name: 'AI Topical Map', href: 'https://effectivemarketer.com/ai-topical-map', icon: Map },
+    { name: 'AI Lead Gen', href: 'https://effectivemarketer.com/lead-gen-ai-automation', icon: MailIcon }
   ];
 
   const footerLinks = [
-    {
-      title: 'Services',
-      links: [
-        { name: 'Search Suggestion SEO', href: '#services' },
-        { name: 'AI Platform Optimization', href: '#services' },
-        { name: 'Content Authority Building', href: '#services' },
-        { name: 'Digital Presence Enhancement', href: '#services' }
-      ]
-    },
     {
       title: 'Company',
       links: [
@@ -43,23 +39,40 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <Target className="h-8 w-8 text-red-500" />
-              <span className="text-xl font-bold">Effective Marketer</span>
+            <div className="mb-4">
+              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Effective Marketer</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              We transform digital marketing by positioning your brand directly in search suggestions and establishing authority across AI platforms, ensuring you appear before competitors even enter the conversation.
+              Leading AI SEO agency specializing in Google Autosuggests, AI platform optimization, and Generative Engine Optimization (GEO). We get your brand cited by ChatGPT, Gemini, and AI Overviews while dominating search suggestions.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-red-500" />
+                <Mail className="h-5 w-5 text-cyan-400" />
                 <span className="text-gray-400">contact@effectivemarketer.com</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Globe className="h-5 w-5 text-red-500" />
+                <Globe className="h-5 w-5 text-cyan-400" />
                 <span className="text-gray-400">effectivemarketer.com</span>
               </div>
             </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              {services.map((service, index) => (
+                <li key={index}>
+                  <a
+                    href={service.href}
+                    className="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+                  >
+                    <service.icon className="h-4 w-4" />
+                    <span>{service.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Links */}
@@ -71,7 +84,7 @@ const Footer = () => {
                   <li key={linkIndex}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+                      className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -86,7 +99,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 mb-4 md:mb-0">
-              <p>&copy; 2024 Effective Marketer. All rights reserved.</p>
+              <p>&copy; 2025 Effective Marketer. All rights reserved.</p>
             </div>
 
             {/* Social Links */}
@@ -95,7 +108,9 @@ const Footer = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors duration-200"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -104,10 +119,10 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div className="flex space-x-6 text-gray-400">
-              <a href="#" className="hover:text-red-500 transition-colors duration-200">
+              <a href="#" className="hover:text-cyan-400 transition-colors duration-200">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-red-500 transition-colors duration-200">
+              <a href="#" className="hover:text-cyan-400 transition-colors duration-200">
                 Terms of Service
               </a>
             </div>
