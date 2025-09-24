@@ -38,6 +38,23 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   noIndex = false,
   breadcrumbs
 }) => {
+  const breadcrumbStructuredData = breadcrumbs && breadcrumbs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.label,
+          ...(item.href ? { "item": typeof window !== 'undefined' && item.href.startsWith('http') ? item.href : `${typeof window !== 'undefined' ? window.location.origin : ''}${item.href}` } : {})
+        }))
+      }
+    : undefined;
+
+  const combinedStructuredData = breadcrumbStructuredData
+    ? (Array.isArray(structuredData) ? [...structuredData, breadcrumbStructuredData] : structuredData ? [structuredData, breadcrumbStructuredData] : [breadcrumbStructuredData])
+    : structuredData;
+
   return (
     <HelmetProvider>
       <div className="min-h-screen flex flex-col">
@@ -50,7 +67,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
           ogDescription={ogDescription}
           ogImage={ogImage}
           ogType={ogType}
-          structuredData={structuredData}
+          structuredData={combinedStructuredData}
         />
         
         <Header />
