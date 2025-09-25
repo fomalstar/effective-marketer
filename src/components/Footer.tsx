@@ -40,18 +40,21 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Effective Marketer</span>
+              <span className="text-xl font-extrabold tracking-tight">
+                <span className="text-primary-500">Effective</span>
+                <span className="text-white"> Marketer</span>
+              </span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Leading AI SEO agency specializing in Google Autosuggests, AI platform optimization, and Generative Engine Optimization (GEO). We get your brand cited by ChatGPT, Gemini, and AI Overviews while dominating search suggestions.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-cyan-400" />
+                <Mail className="h-5 w-5 text-primary-500" />
                 <span className="text-gray-400">contact@effectivemarketer.com</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Globe className="h-5 w-5 text-cyan-400" />
+                <Globe className="h-5 w-5 text-primary-500" />
                 <span className="text-gray-400">effectivemarketer.com</span>
               </div>
             </div>
@@ -65,7 +68,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={service.href}
-                    className="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-primary-500 transition-colors duration-200"
                   >
                     <service.icon className="h-4 w-4" />
                     <span>{service.name}</span>
@@ -84,7 +87,7 @@ const Footer = () => {
                   <li key={linkIndex}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+                      className="text-gray-400 hover:text-primary-500 transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -110,7 +113,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition-colors duration-200"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-500 transition-colors duration-200"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -119,10 +122,10 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div className="flex space-x-6 text-gray-400">
-              <a href="#" className="hover:text-cyan-400 transition-colors duration-200">
+              <a href="#" className="hover:text-primary-500 transition-colors duration-200">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-cyan-400 transition-colors duration-200">
+              <a href="#" className="hover:text-primary-500 transition-colors duration-200">
                 Terms of Service
               </a>
             </div>

@@ -56,7 +56,10 @@ const Header = () => {
             }}
             className="flex items-center space-x-2 hover:opacity-90 transition-opacity duration-200"
           >
-            <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">Effective Marketer</span>
+            <span className="text-xl font-extrabold tracking-tight">
+              <span className="text-primary-500">Effective</span>
+              <span className="text-black"> Marketer</span>
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -67,7 +70,7 @@ const Header = () => {
                 e.preventDefault();
                 handleNavigation(navigation[0].href);
               }}
-              className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-cyan-700 transition-colors duration-200"
+              className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-primary-600 transition-colors duration-200"
             >
               {navigation[0].name}
             </a>
@@ -79,7 +82,7 @@ const Header = () => {
               onMouseLeave={closeWithDelay}
             >
               <button 
-                className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-cyan-700 transition-colors duration-200 inline-flex items-center py-2"
+                className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-primary-600 transition-colors duration-200 inline-flex items-center py-2"
                 aria-haspopup="true"
                 aria-expanded={isServicesOpen}
                 onClick={(e) => {
@@ -107,12 +110,12 @@ const Header = () => {
                         }}
                         className="group rounded-xl p-5 hover:bg-gray-50 transition-colors duration-200 border border-gray-100/50 hover:border-gray-200"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
                           <svc.icon className="h-6 w-6" />
                         </div>
                         <div className="font-display text-[15px] leading-tight text-gray-900 font-semibold">{svc.name}</div>
                         <div className="text-[13px] leading-snug text-gray-600 mt-1">{svc.desc}</div>
-                        <div className="text-cyan-700 text-xs font-medium mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Learn more →</div>
+                        <div className="text-primary-600 text-xs font-medium mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Learn more →</div>
                       </a>
                     ))}
                   </div>
@@ -121,11 +124,11 @@ const Header = () => {
                     <a href="https://dash.effectivemarketer.com/" target="_blank" rel="noopener noreferrer" className="col-span-1 md:col-span-2 hidden md:block rounded-xl border border-gray-100 p-5 bg-white hover:bg-gray-50 transition-colors">
                       <div className="text-sm font-semibold text-gray-900 mb-1">Professional SEO Dashboard</div>
                       <p className="text-sm text-gray-600">Track everything in one place with our AI SEO Dashboard — autosuggest rankings, topical map, AI SEO and more.</p>
-                      <div className="text-cyan-700 text-xs font-medium mt-3">Open dashboard →</div>
+                      <div className="text-primary-600 text-xs font-medium mt-3">Open dashboard →</div>
                     </a>
-                    <a href="https://calendly.com/effectivemarketer/demo" className="rounded-xl border border-cyan-200 p-5 bg-gradient-to-r from-cyan-50 to-purple-50 hover:from-cyan-100 hover:to-purple-100 transition-colors">
-                      <div className="text-sm font-semibold text-cyan-800">Talk to an expert</div>
-                      <div className="text-xs text-cyan-700">Book a free consult →</div>
+                    <a href="https://calendly.com/effectivemarketer/demo" className="rounded-xl border border-primary-200 p-5 bg-gradient-to-r from-primary-50 to-secondary-50 hover:from-primary-100 hover:to-secondary-100 transition-colors">
+                      <div className="text-sm font-semibold text-primary-800">Talk to an expert</div>
+                      <div className="text-xs text-primary-600">Book a free consult →</div>
                     </a>
                   </div>
                 </div>
@@ -138,7 +141,7 @@ const Header = () => {
                 e.preventDefault();
                 handleNavigation(navigation[2].href);
               }}
-              className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-cyan-700 transition-colors duration-200"
+              className="text-[15px] tracking-tight font-semibold text-gray-800 hover:text-primary-600 transition-colors duration-200"
             >
               {navigation[2].name}
             </a>
@@ -150,7 +153,7 @@ const Header = () => {
               href="https://dash.effectivemarketer.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-gray-700 hover:text-cyan-700 transition-colors duration-200"
+              className="p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
               title="Dashboard"
             >
               <Monitor className="h-6 w-6" />
@@ -159,7 +162,7 @@ const Header = () => {
               href="https://calendly.com/effectivemarketer/demo"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 lg:px-6 py-2 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-sm lg:text-base"
+              className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-4 lg:px-6 py-2 rounded-lg font-semibold hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-sm lg:text-base"
             >
               Book a Demo
             </a>
@@ -185,7 +188,7 @@ const Header = () => {
                   e.preventDefault();
                   handleNavigation(navigation[0].href);
                 }}
-                className="block w-full text-left px-3 py-2 text-[15px] font-semibold tracking-tight text-gray-800 hover:text-cyan-700 transition-colors duration-200"
+                className="block w-full text-left px-3 py-2 text-[15px] font-semibold tracking-tight text-gray-800 hover:text-primary-600 transition-colors duration-200"
               >
                 {navigation[0].name}
               </a>
@@ -202,9 +205,9 @@ const Header = () => {
                         e.preventDefault();
                         handleNavigation(svc.href);
                       }}
-                      className="flex items-center space-x-2 px-2 py-2 rounded text-[14px] font-semibold tracking-tight text-gray-800 hover:text-cyan-700 transition-colors duration-200"
+                      className="flex items-center space-x-2 px-2 py-2 rounded text-[14px] font-semibold tracking-tight text-gray-800 hover:text-primary-600 transition-colors duration-200"
                     >
-                      <div className="w-8 h-8 rounded-md bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center text-white">
+                      <div className="w-8 h-8 rounded-md bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white">
                         <svc.icon className="h-4 w-4" />
                       </div>
                       <span className="">{svc.name}</span>
@@ -220,7 +223,7 @@ const Header = () => {
                   e.preventDefault();
                   handleNavigation(navigation[2].href);
                 }}
-                className="block w-full text-left px-3 py-2 text-[15px] font-semibold tracking-tight text-gray-800 hover:text-cyan-700 transition-colors duration-200"
+                className="block w-full text-left px-3 py-2 text-[15px] font-semibold tracking-tight text-gray-800 hover:text-primary-600 transition-colors duration-200"
               >
                 {navigation[2].name}
               </a>
@@ -230,7 +233,7 @@ const Header = () => {
                 href="https://dash.effectivemarketer.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-3 py-2 text-gray-700 hover:text-cyan-700 transition-colors duration-200"
+                className="flex items-center px-3 py-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Monitor className="h-5 w-5 mr-2" />
@@ -240,7 +243,7 @@ const Header = () => {
                 href="https://calendly.com/effectivemarketer/demo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg mt-4"
+                className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 shadow-md hover:shadow-lg mt-4"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Book a Demo

@@ -8,13 +8,13 @@ const AIAutomation = () => {
       icon: <Workflow className="h-6 w-6" />,
       title: "Cold Email Automation",
       description: "Build the system on your side with our 'Build for You' service. 95% inbox rate, under 1% bounce rate",
-      color: "from-cyan-400 to-blue-500"
+      color: "from-primary-500 to-primary-600"
     },
     {
       icon: <Target className="h-6 w-6" />,
       title: "LinkedIn Outreach Automation",
       description: "Automated LinkedIn outreach with AI-powered personalization and lead qualification",
-      color: "from-purple-400 to-pink-500"
+      color: "from-secondary-500 to-secondary-600"
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
@@ -155,18 +155,18 @@ const AIAutomation = () => {
       ]}
     >
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-red-900 to-slate-900 py-16 lg:py-20">
         <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-10 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-          <div className="absolute top-20 right-20 w-1 h-1 bg-purple-400 rounded-full animate-ping delay-1000"></div>
-          <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping delay-2000"></div>
+          <div className="absolute top-10 left-10 w-2 h-2 bg-primary-500 rounded-full animate-ping"></div>
+          <div className="absolute top-20 right-20 w-1 h-1 bg-secondary-500 rounded-full animate-ping delay-1000"></div>
+          <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-primary-400 rounded-full animate-ping delay-2000"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-6 border border-cyan-500/30">
-              <Brain className="h-5 w-5 text-cyan-400" />
-              <span className="text-cyan-300 font-medium text-sm lg:text-base">AI-Powered Lead Generation</span>
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 mb-6 border border-primary-500/30">
+              <Brain className="h-5 w-5 text-primary-500" />
+              <span className="text-primary-300 font-medium text-sm lg:text-base">AI-Powered Lead Generation</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
               AI Automation Lead Generation Service
@@ -177,7 +177,7 @@ const AIAutomation = () => {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center px-4 sm:px-0">
               <a
                 href="https://calendly.com/effectivemarketer/demo"
-                className="w-full sm:w-auto inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+                className="w-full sm:w-auto inline-block bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
               >
                 Start Your Automation
               </a>
@@ -207,7 +207,7 @@ const AIAutomation = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {automationStats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="bg-gradient-to-r from-cyan-400 to-purple-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <div className="text-white">
                     {stat.icon}
                   </div>
@@ -300,7 +300,7 @@ const AIAutomation = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-2xl font-bold">1</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Lead Scraping & Verification</h3>
@@ -309,7 +309,7 @@ const AIAutomation = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-2xl font-bold">2</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">AI Email Personalization</h3>
@@ -318,7 +318,7 @@ const AIAutomation = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-2xl font-bold">3</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Auto-Pilot Calendar Booking</h3>
@@ -352,7 +352,7 @@ const AIAutomation = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-purple-400 to-pink-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <Clock className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -362,7 +362,7 @@ const AIAutomation = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-purple-400 to-pink-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <Target className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -372,7 +372,7 @@ const AIAutomation = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-purple-400 to-pink-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <Zap className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -382,7 +382,7 @@ const AIAutomation = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-purple-400 to-pink-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <BarChart3 className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -441,7 +441,7 @@ const AIAutomation = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {useCases.map((useCase, index) => (
               <div key={index} className="text-center">
-                <div className="bg-gradient-to-r from-cyan-400 to-purple-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                   <div className="text-white">
                     {useCase.icon}
                   </div>
@@ -482,17 +482,17 @@ const AIAutomation = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-cyan-500 to-purple-600">
+      <section className="py-16 bg-gradient-to-r from-primary-500 to-secondary-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Automate Your Lead Generation?
           </h2>
-          <p className="text-xl text-cyan-100 mb-8">
+          <p className="text-xl text-primary-100 mb-8">
             Join 500+ businesses that have transformed their lead generation with AI-powered cold email and LinkedIn automation.
           </p>
           <a
             href="https://calendly.com/effectivemarketer/demo"
-            className="inline-block bg-white text-cyan-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
+            className="inline-block bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg"
           >
             Start Your Automation Today
           </a>

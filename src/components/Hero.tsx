@@ -3,37 +3,29 @@ import { CheckCircle, Brain } from 'lucide-react';
 
 const Hero = () => {
   const benefits = [
-    'Get your brand recommended by ChatGPT, Gemini, and Claude AI platforms',
-    'Advanced AI SEO Topical Map for ranking in AI-powered searches',
-    'Reddit growth strategies to build authority and social signals',
-    'Achieve measurable results in 6-10 weeks with proven methodology'
+    'Get cited by ChatGPT, Gemini, and Claude AI',
+    'AI Topical Maps for Generative Intent',
+    'Reddit growth & social authority',
+    'Results in 6-10 weeks'
   ];
 
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 lg:py-20">
-      {/* AI-themed background elements */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-10 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-        <div className="absolute top-20 right-20 w-1 h-1 bg-purple-400 rounded-full animate-ping delay-1000"></div>
-        <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping delay-2000"></div>
-        <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-pink-400 rounded-full animate-ping delay-3000"></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 border border-cyan-400/30 rounded-full animate-pulse"></div>
-      </div>
+    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-red-900 to-slate-900 py-16 lg:py-20">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side - Content */}
           <div className="space-y-6 lg:space-y-8">
             <div className="space-y-4 lg:space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-4 border border-cyan-500/30">
-                <Brain className="h-5 w-5 text-cyan-400" />
-                <span className="text-cyan-300 font-medium text-sm lg:text-base">AI SEO & Platform Optimization</span>
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 mb-4 border border-primary-500/30">
+                <Brain className="h-5 w-5 text-primary-500" />
+                <span className="text-primary-300 font-medium text-sm lg:text-base">AI SEO & Platform Optimization</span>
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white leading-tight">
-                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">AI SEO Optimization</span>
+                <span className="text-primary-500">AI SEO</span> <span className="text-secondary-500">Optimization</span>
               </h1>
-              <p className="text-xl text-gray-300 mt-4">
-                Get your brand featured in ChatGPT, Gemini, and other AI platforms when users ask about your industry
+              <p className="text-lg text-white mt-4">
+                Get your brand featured in AI platforms when users ask about your industry
               </p>
             </div>
 
@@ -41,8 +33,8 @@ const Hero = () => {
             <div className="space-y-3 lg:space-y-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-cyan-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-300 text-lg">{benefit}</span>
+                  <CheckCircle className="h-6 w-6 text-primary-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-white text-base">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -51,7 +43,7 @@ const Hero = () => {
             <div className="pt-4">
               <a
                 href="https://calendly.com/effectivemarketer/demo"
-                className="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-block bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Get Started Today
               </a>
@@ -60,12 +52,12 @@ const Hero = () => {
 
           {/* Right Side - Google Search Mockup */}
           <div className="relative mt-8 lg:mt-0">
-            <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-4 sm:p-6 max-w-lg mx-auto border border-cyan-500/30">
+            <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-4 sm:p-6 max-w-lg mx-auto border border-primary-500/30">
               {/* ChatGPT Header */}
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <div className="text-base sm:text-lg font-semibold text-white">ChatGPT</div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center">
                     <Brain className="h-4 w-4 text-white" />
                   </div>
                 </div>
@@ -73,15 +65,15 @@ const Hero = () => {
               
               {/* User Query */}
               <div className="mb-4">
-                <div className="bg-slate-700/50 border border-cyan-500/30 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
-                  <div className="text-cyan-300 text-sm mb-1">You:</div>
+                <div className="bg-slate-700/50 border border-primary-500/30 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                  <div className="text-primary-300 text-sm mb-1">You:</div>
                   <div className="text-white text-sm sm:text-base">What are the best fitness equipment brands?</div>
                 </div>
               </div>
               
               {/* AI Response */}
-              <div className="bg-slate-700/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-3 sm:p-4">
-                <div className="text-purple-300 text-sm mb-2 flex items-center">
+              <div className="bg-slate-700/80 backdrop-blur-sm border border-secondary-500/30 rounded-lg p-3 sm:p-4">
+                <div className="text-secondary-300 text-sm mb-2 flex items-center">
                   <Brain className="w-4 h-4 mr-2" />
                   ChatGPT:
                 </div>
@@ -90,16 +82,16 @@ const Hero = () => {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center text-xs sm:text-sm">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    <span className="text-white"><strong className="text-cyan-400">NordicTrack</strong> - Premium treadmills and ellipticals</span>
+                    <div className="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
+                    <span className="text-white"><strong className="text-primary-500">NordicTrack</strong> - Premium treadmills and ellipticals</span>
                   </div>
                   <div className="flex items-center text-xs sm:text-sm">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    <span className="text-white"><strong className="text-cyan-400">Bowflex</strong> - Innovative home gym solutions</span>
+                    <div className="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
+                    <span className="text-white"><strong className="text-primary-500">Bowflex</strong> - Innovative home gym solutions</span>
                   </div>
                   <div className="flex items-center text-xs sm:text-sm">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    <span className="text-white"><strong className="text-cyan-400">Peloton</strong> - Connected fitness experiences</span>
+                    <div className="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
+                    <span className="text-white"><strong className="text-primary-500">Peloton</strong> - Connected fitness experiences</span>
                   </div>
                 </div>
               </div>

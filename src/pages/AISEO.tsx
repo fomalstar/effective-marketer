@@ -59,20 +59,20 @@ const AISEO: React.FC = () => {
       breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'AI SEO' }]}
     >
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-red-900 to-slate-900 py-16 lg:py-20">
         <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-6 border border-cyan-500/30">
-              <Brain className="h-5 w-5 text-cyan-400" />
-              <span className="text-cyan-300 font-medium text-sm lg:text-base">AI SEO Agency</span>
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 mb-6 border border-primary-500/30">
+              <Brain className="h-5 w-5 text-primary-500" />
+              <span className="text-primary-300 font-medium text-sm lg:text-base">AI SEO Agency</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">Own AI Search with AI SEO</h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8">Get your brand recommended by AI assistants with Generative Intent-ready topical maps, Reddit growth, and cross-platform signals.</p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center px-4 sm:px-0">
               <a
                 href="https://calendly.com/effectivemarketer/demo"
-                className="w-full sm:w-auto inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+                className="w-full sm:w-auto inline-block bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
               >
                 Start Your AI SEO Campaign
               </a>
@@ -97,7 +97,7 @@ const AISEO: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((f, i) => (
               <div key={i} className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="p-3 rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 text-white inline-flex mb-4">{f.icon}</div>
+                <div className="p-3 rounded-lg bg-gradient-to-r from-primary-500 to-secondary-500 text-white inline-flex mb-4">{f.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{f.title}</h3>
                 <p className="text-gray-600">{f.description}</p>
               </div>
@@ -114,7 +114,7 @@ const AISEO: React.FC = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">How AI SEO Works</h2>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm font-bold">1</span>
                   </div>
                   <div>
@@ -124,7 +124,7 @@ const AISEO: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm font-bold">2</span>
                   </div>
                   <div>
@@ -134,7 +134,7 @@ const AISEO: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm font-bold">3</span>
                   </div>
                   <div>
@@ -144,7 +144,7 @@ const AISEO: React.FC = () => {
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-r from-cyan-500 to-purple-600 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="bg-gradient-to-r from-primary-500 to-secondary-500 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm font-bold">4</span>
                   </div>
                   <div>
@@ -157,7 +157,7 @@ const AISEO: React.FC = () => {
             
             {/* ChatGPT Mockup */}
             <div className="relative">
-              <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-4 sm:p-6 max-w-lg mx-auto border border-cyan-500/30">
+              <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-4 sm:p-6 max-w-lg mx-auto border border-primary-500/30">
                 {/* ChatGPT Header */}
                 <div className="flex items-center justify-between mb-4 sm:mb-6">
                   <div className="text-base sm:text-lg font-semibold text-white">ChatGPT</div>
@@ -170,8 +170,8 @@ const AISEO: React.FC = () => {
                 
                 {/* User Query */}
                 <div className="mb-4">
-                  <div className="bg-slate-700/50 border border-cyan-500/30 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
-                    <div className="text-cyan-300 text-sm mb-1">You:</div>
+                  <div className="bg-slate-700/50 border border-primary-500/30 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                    <div className="text-primary-300 text-sm mb-1">You:</div>
                     <div className="text-white text-sm sm:text-base">What are the best AI SEO strategies for 2025?</div>
                   </div>
                 </div>
@@ -188,15 +188,15 @@ const AISEO: React.FC = () => {
                   <div className="space-y-2">
                     <div className="flex items-center text-xs sm:text-sm">
                       <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                      <span className="text-white"><strong className="text-cyan-400">Generative Intent Mapping</strong> - Structure content for AI synthesis</span>
+                      <span className="text-white"><strong className="text-primary-500">Generative Intent Mapping</strong> - Structure content for AI synthesis</span>
                     </div>
                     <div className="flex items-center text-xs sm:text-sm">
                       <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                      <span className="text-white"><strong className="text-cyan-400">Reddit Authority Building</strong> - Community-driven signals</span>
+                      <span className="text-white"><strong className="text-primary-500">Reddit Authority Building</strong> - Community-driven signals</span>
                     </div>
                     <div className="flex items-center text-xs sm:text-sm">
                       <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                      <span className="text-white"><strong className="text-cyan-400">Entity-Rich Topical Maps</strong> - Citation-ready content</span>
+                      <span className="text-white"><strong className="text-primary-500">Entity-Rich Topical Maps</strong> - Citation-ready content</span>
                     </div>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ const AISEO: React.FC = () => {
               
               <a
                 href="/ai-topical-map"
-                className="inline-flex items-center bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-3 rounded-xl font-semibold hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Learn About AI Topical Maps
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -291,7 +291,7 @@ const AISEO: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-cyan-500 to-purple-600">
+      <section className="py-16 bg-gradient-to-r from-primary-500 to-secondary-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Own AI Search?

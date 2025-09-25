@@ -36,19 +36,19 @@ const AITopicalMap: React.FC = () => {
       breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'AI Topical Map' }]}
     >
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-red-900 to-slate-900 py-16 lg:py-20">
         <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-6 border border-cyan-500/30">
-            <Map className="h-5 w-5 text-cyan-400" />
-            <span className="text-cyan-300 font-medium text-sm lg:text-base">AI Topical Map</span>
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 mb-6 border border-primary-500/30">
+            <Map className="h-5 w-5 text-primary-500" />
+            <span className="text-primary-300 font-medium text-sm lg:text-base">AI Topical Map</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">Own AI Search with GEO-Ready Topical Maps</h1>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8">We design your topical blueprint — built around Generative Intent — so answer engines cite you on Google AI Mode, AI Overviews, ChatGPT, Perplexity, Bing, and beyond.</p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
             <a
               href="https://calendly.com/effectivemarketer/demo"
-              className="w-full sm:w-auto inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="w-full sm:w-auto inline-block bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Start Your Topical Map
             </a>
@@ -75,7 +75,7 @@ const AITopicalMap: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-xl"></div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 mb-4 border border-cyan-500/30">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 mb-4 border border-primary-500/30">
                 <Layers className="h-5 w-5 text-cyan-500" />
                 <span className="text-cyan-700 font-medium text-sm lg:text-base">Entity-Rich Architecture</span>
               </div>
@@ -176,7 +176,7 @@ const AITopicalMap: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">How GEO-Ready Maps Work</h2>
           <div className="relative">
-            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 to-purple-600 hidden md:block" />
+            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 to-secondary-500 hidden md:block" />
             <div className="space-y-8">
               {[
                 { n: '1', t: 'Ask the Right Questions', d: 'We analyze search intent, competitors, and user questions, then extract Generative Intent prompts you should win across AI and classic search.' },
@@ -184,7 +184,7 @@ const AITopicalMap: React.FC = () => {
                 { n: '3', t: 'We Deliver the GEO Topical Map', d: 'Spreadsheet + mind map deliverable with keywords, clusters, volume/CPC, SERP analysis, buyer journey stages, content types, and Generative Intent prompts per cluster.' },
               ].map((step) => (
                 <div key={step.n} className="relative md:pl-16">
-                  <div className="hidden md:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white items-center justify-center font-bold shadow-lg">
+                  <div className="hidden md:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white items-center justify-center font-bold shadow-lg">
                     {step.n}
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.t}</h3>
@@ -220,7 +220,7 @@ const AITopicalMap: React.FC = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-cyan-500 to-purple-600">
+      <section className="py-16 bg-gradient-to-r from-primary-500 to-secondary-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Build Your AI Topical Map?</h2>
           <p className="text-xl text-cyan-100 mb-8">Get a citation-ready blueprint designed for Generative Intent and AI answers.</p>
