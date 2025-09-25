@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:static": "npm run build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
