@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://effectivemarketer.com/sitemap.xml
+
+# RSS Feed
+Sitemap: https://effectivemarketer.com/rss.xml
+
+# Disallow admin areas
+Disallow: /blog-admin/
+Disallow: /admin/
+
+# Allow all other content
+Allow: /google-autosuggest-ranking
+Allow: /ai-seo
+Allow: /ai-topical-map
+Allow: /lead-gen-ai-automation
+Allow: /onboarding
