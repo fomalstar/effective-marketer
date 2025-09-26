@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import Team from './components/Team';
+import CaseStudyLogos from './components/CaseStudyLogos';
 import Onboarding from './pages/Onboarding';
 import GoogleAutosuggestRanking from './pages/GoogleAutosuggestRanking';
 import AIAutomation from './pages/AIAutomation';
@@ -32,6 +33,7 @@ function App() {
                 <main className="flex-grow">
                   <SEOHead />
                   <Hero />
+                  <CaseStudyLogos />
                   <Future />
                   <Dashboard />
                   <Roadmap />

@@ -317,7 +317,6 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel="dns-prefetch" href="https://www.google-analytics.com" />
       
       {/* Critical Resource Hints */}
-      <link rel="preload" href="/favicon/favicon.ico" as="image" type="image/x-icon" />
       
       {/* Additional Performance and SEO Tags */}
       <meta name="theme-color" content="#ff312b" />
