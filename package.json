@@ -9,7 +9,10 @@
     "build:static": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL"
+    "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "build:full": "npm run sitemap && npm run build",
+    "deploy": "npm run sitemap && npm run build && npm run indexnow"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
