@@ -202,15 +202,52 @@ const CaseStudies: React.FC = () => {
                   {/* Image */}
                   <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
                     <div className="relative">
-                      <img 
-                        src={study.image} 
-                        alt={`${study.clientName} case study`}
-                        className="w-full h-96 object-cover rounded-2xl shadow-lg"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
-                      <div className="absolute bottom-6 left-6 text-white">
-                        <div className="text-2xl font-bold mb-2">{study.clientName}</div>
-                        <div className="text-white/90">{study.industry} Success Story</div>
+                      {/* Design Frame Background */}
+                      <div className="w-full h-96 bg-gradient-to-br from-slate-100 via-red-50 to-slate-100 rounded-2xl shadow-lg border-2 border-gray-200 relative overflow-hidden">
+                        {/* Decorative Elements */}
+                        <div className="absolute top-4 left-4 w-8 h-8 bg-primary-500/20 rounded-full"></div>
+                        <div className="absolute top-8 right-8 w-6 h-6 bg-secondary-500/20 rounded-full"></div>
+                        <div className="absolute bottom-8 left-8 w-4 h-4 bg-primary-500/30 rounded-full"></div>
+                        <div className="absolute bottom-4 right-4 w-10 h-10 bg-secondary-500/20 rounded-full"></div>
+                        
+                        {/* Grid Pattern */}
+                        <div className="absolute inset-0 opacity-5">
+                          <div className="w-full h-full" style={{
+                            backgroundImage: `radial-gradient(circle at 1px 1px, #666 1px, transparent 0)`,
+                            backgroundSize: '20px 20px'
+                          }}></div>
+                        </div>
+                        
+                        {/* Brand Logo in Center */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 max-w-48 max-h-48 flex items-center justify-center">
+                            <img 
+                              src={study.clientLogo} 
+                              alt={`${study.clientName} logo`}
+                              className="max-w-32 max-h-32 object-contain"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                target.nextElementSibling?.classList.remove('hidden');
+                              }}
+                            />
+                            <div className="w-24 h-24 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center hidden">
+                              <span className="text-white font-bold text-2xl">{study.clientName.charAt(0)}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Success Badge */}
+                        <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                          ✓ Success
+                        </div>
+                        
+                        {/* Company Info Overlay */}
+                        <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4">
+                          <div className="text-lg font-bold text-gray-900 mb-1">{study.clientName}</div>
+                          <div className="text-sm text-gray-600">{study.industry} • {study.location}</div>
+                          <div className="text-xs text-primary-600 font-medium mt-1">Case Study Success</div>
+                        </div>
                       </div>
                     </div>
                   </div>

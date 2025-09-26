@@ -35,10 +35,10 @@ function App() {
                   <Hero />
                   <CaseStudyLogos />
                   <Future />
+                  <Team />
                   <Dashboard />
                   <Roadmap />
                   <GetStarted />
-                  <Team />
                   <Contact />
                   <FinalCTA />
                 </main>

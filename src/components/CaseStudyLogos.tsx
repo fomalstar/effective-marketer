@@ -1,9 +1,9 @@
 import React from 'react';
 import { Star, TrendingUp, Users, Award } from 'lucide-react';
-import { getFeaturedCaseStudies } from '../data/caseStudiesData';
+import { getAllCaseStudies } from '../data/caseStudiesData';
 
 const CaseStudyLogos: React.FC = () => {
-  const featuredCaseStudies = getFeaturedCaseStudies();
+  const allCaseStudies = getAllCaseStudies();
 
   const stats = [
     {
@@ -54,7 +54,7 @@ const CaseStudyLogos: React.FC = () => {
         {/* Client Logos Grid */}
         <div className="mb-16">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-            {featuredCaseStudies.map((study, index) => (
+            {allCaseStudies.map((study, index) => (
               <div key={study.id} className="group">
                 <div className="w-24 h-24 bg-white rounded-xl flex items-center justify-center border-2 border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:border-primary-200 group-hover:scale-105">
                   <img 

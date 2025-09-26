@@ -37,7 +37,7 @@ export const caseStudiesData: CaseStudyData[] = [
     description: "Boleron is a leading Bulgarian digital insurance broker specializing in car insurance and comprehensive coverage solutions for the Bulgarian market.",
     challenge: "Zero autocomplete visibility and competitive keywords about car insurance in the Bulgarian market",
     solution: "Autosuggests visibility on key terms and AI chat visibility with Reddit posts and backlinks from biggest media news outlets",
-    image: "/steve.jpg",
+    image: "/case studies/boleron.jpg",
     results: {
       autocompleteRankings: "10 keywords ranked",
       trafficIncrease: "124%",
@@ -63,7 +63,7 @@ export const caseStudiesData: CaseStudyData[] = [
     description: "Vision Express is a leading Latvian optika store providing comprehensive eye care services, prescription glasses, contact lenses, and vision health solutions.",
     challenge: "Lack of autosuggests and AI visibility in the competitive eye care market",
     solution: "Autosuggests optimization and AI platform visibility with strategic content and local market focus",
-    image: "/lucas.png",
+    image: "/case studies/VISION_EXPRESS.png",
     results: {
       autocompleteRankings: "8 healthcare keywords to top 3",
       trafficIncrease: "198%",
@@ -89,7 +89,7 @@ export const caseStudiesData: CaseStudyData[] = [
     description: "XXL Lashes is a premium German eyelash extensions beauty brand specializing in high-quality lash products, professional training, and beauty enhancement services.",
     challenge: "Zero autocomplete visibility and competing with major beauty brands in AI search results",
     solution: "Autosuggests optimization and AI platform visibility with beauty industry focus and local market optimization",
-    image: "/steve.jpg",
+    image: "/case studies/xxl lashes.png",
     results: {
       autocompleteRankings: "15 beauty keywords to #1-2 positions",
       trafficIncrease: "312%",
@@ -115,7 +115,7 @@ export const caseStudiesData: CaseStudyData[] = [
     description: "Podvertise FM is an innovative US-based podcast platform that connects podcasters with advertisers, providing monetization solutions and audience growth tools for content creators.",
     challenge: "New podcast platform with zero autocomplete visibility and no AI platform presence",
     solution: "Autosuggests optimization and AI platform visibility with podcast-specific optimization and US market focus",
-    image: "/lucas.png",
+    image: "/case studies/podvertise fm.png",
     results: {
       autocompleteRankings: "10 podcast keywords to top 3",
       trafficIncrease: "289%",
@@ -141,7 +141,7 @@ export const caseStudiesData: CaseStudyData[] = [
     description: "Remotek is a Bulgarian B2B technology company specializing in remote work solutions, enterprise software, and digital transformation services for businesses across Eastern Europe.",
     challenge: "B2B tech company with zero autocomplete visibility and low visibility in AI searches",
     solution: "Autosuggests optimization and AI platform visibility with enterprise focus and Eastern European market optimization",
-    image: "/steve.jpg",
+    image: "/case studies/remotek.png",
     results: {
       autocompleteRankings: "14 tech keywords to #1-2 positions",
       trafficIncrease: "234%",
@@ -167,7 +167,7 @@ export const caseStudiesData: CaseStudyData[] = [
     description: "Revita is a Bulgarian health and wellness brand offering holistic wellness solutions, natural health products, and comprehensive wellness programs for individuals and families.",
     challenge: "Wellness brand with zero autocomplete visibility competing with major health companies in AI search results",
     solution: "Autosuggests optimization and AI platform visibility with holistic approach and Bulgarian market optimization",
-    image: "/lucas.png",
+    image: "/case studies/revita.jpg",
     results: {
       autocompleteRankings: "11 wellness keywords to top 3",
       trafficIncrease: "276%",
