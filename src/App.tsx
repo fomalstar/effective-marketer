@@ -21,6 +21,7 @@ import LocationPage from './pages/LocationPage';
 import CaseStudies from './pages/CaseStudies';
 import SaaSCompanies from './pages/SaaSCompanies';
 import EcommerceCompanies from './pages/EcommerceCompanies';
+import HealthcareCompanies from './pages/HealthcareCompanies';
 
 import SEOHead from './components/SEOHead';
 
@@ -55,6 +56,7 @@ function App() {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/ai-seo-for-saas-companies" element={<SaaSCompanies />} />
             <Route path="/ai-seo-for-ecommerce" element={<EcommerceCompanies />} />
+            <Route path="/ai-seo-for-healthcare" element={<HealthcareCompanies />} />
             <Route path="/ai-seo-agency-:location" element={<LocationPage />} />
             <Route path="*" element={
               <div className="min-h-screen flex flex-col">

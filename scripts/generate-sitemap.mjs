@@ -101,6 +101,16 @@ const staticPages = [
     }
   },
   {
+    url: 'https://effectivemarketer.com/ai-seo-for-healthcare',
+    priority: '0.8',
+    changefreq: 'weekly',
+    image: {
+      loc: 'https://effectivemarketer.com/og-image-healthcare.jpg',
+      title: 'AI SEO Services for Healthcare Companies',
+      caption: 'Dominate Google Autocomplete and AI platforms for healthcare keywords'
+    }
+  },
+  {
     url: 'https://effectivemarketer.com/onboarding',
     priority: '0.5',
     changefreq: 'monthly',
