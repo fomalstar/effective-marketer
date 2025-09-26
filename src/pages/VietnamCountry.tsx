@@ -442,16 +442,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnam SEO Pro</div>
-                        <div className="text-sm text-gray-600">Vietnam Market Specialists</div>
+                        <div className="font-bold text-lg text-gray-900">FPT Digital</div>
+                        <div className="text-sm text-gray-600">Vietnam Tech Giant</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Vietnam-focused SEO agency specializing in Vietnamese market optimization with local SEO and national campaign strategies for Vietnamese businesses.
+                        FPT Digital is the digital transformation arm of FPT Corporation, Vietnam's largest IT company. They provide comprehensive digital marketing and SEO services for Vietnamese businesses and international companies entering the Vietnamese market.
                       </td>
-                      <td className="px-6 py-6 text-center">$45</td>
-                      <td className="px-6 py-6 text-center">25+</td>
-                      <td className="px-6 py-6 text-center">$1,800</td>
-                      <td className="px-6 py-6 text-center">Ho Chi Minh City, Vietnam</td>
+                      <td className="px-6 py-6 text-center">$65</td>
+                      <td className="px-6 py-6 text-center">200+</td>
+                      <td className="px-6 py-6 text-center">$2,500</td>
+                      <td className="px-6 py-6 text-center">Hanoi, Ho Chi Minh City, Vietnam</td>
                     </tr>
 
                     {/* Competitor 3 */}
@@ -462,16 +462,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnamese Digital</div>
-                        <div className="text-sm text-gray-600">Full-Service Vietnam Agency</div>
+                        <div className="font-bold text-lg text-gray-900">VNG Corporation</div>
+                        <div className="text-sm text-gray-600">Vietnam Internet Pioneer</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Comprehensive Vietnamese marketing including SEO, PPC, and digital strategy for Vietnamese businesses and international companies targeting Vietnamese markets.
+                        VNG is Vietnam's leading internet company, operating Zalo, VNG Cloud, and other digital platforms. They offer digital marketing and SEO services leveraging their extensive Vietnamese user base and market knowledge.
                       </td>
-                      <td className="px-6 py-6 text-center">$50</td>
-                      <td className="px-6 py-6 text-center">30+</td>
-                      <td className="px-6 py-6 text-center">$2,200</td>
-                      <td className="px-6 py-6 text-center">Hanoi, Vietnam</td>
+                      <td className="px-6 py-6 text-center">$70</td>
+                      <td className="px-6 py-6 text-center">150+</td>
+                      <td className="px-6 py-6 text-center">$2,800</td>
+                      <td className="px-6 py-6 text-center">Ho Chi Minh City, Vietnam</td>
                     </tr>
 
                     {/* Competitor 4 */}
@@ -482,16 +482,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnam SEO Solutions</div>
-                        <div className="text-sm text-gray-600">Vietnam SEO Specialists</div>
+                        <div className="font-bold text-lg text-gray-900">CMC Technology</div>
+                        <div className="text-sm text-gray-600">Vietnam IT Solutions</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Specialized in Vietnam SEO, local search optimization, and national campaigns for Vietnamese businesses and international companies.
+                        CMC Technology is a leading Vietnamese IT company providing digital transformation services including SEO, digital marketing, and web development for Vietnamese businesses and international clients.
                       </td>
-                      <td className="px-6 py-6 text-center">$40</td>
-                      <td className="px-6 py-6 text-center">20+</td>
-                      <td className="px-6 py-6 text-center">$1,600</td>
-                      <td className="px-6 py-6 text-center">Da Nang, Vietnam</td>
+                      <td className="px-6 py-6 text-center">$55</td>
+                      <td className="px-6 py-6 text-center">100+</td>
+                      <td className="px-6 py-6 text-center">$2,200</td>
+                      <td className="px-6 py-6 text-center">Hanoi, Ho Chi Minh City, Vietnam</td>
                     </tr>
 
                     {/* Competitor 5 */}
@@ -502,16 +502,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnam Marketing Hub</div>
-                        <div className="text-sm text-gray-600">Vietnam-Focused Agency</div>
+                        <div className="font-bold text-lg text-gray-900">Viettel Solutions</div>
+                        <div className="text-sm text-gray-600">Vietnam Telecom Leader</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Dedicated Vietnam marketing services including SEO, content marketing, and conversion optimization for Vietnamese businesses.
+                        Viettel Solutions, part of Vietnam's largest telecom company, offers digital marketing and SEO services for Vietnamese businesses, leveraging their extensive network and customer base across Vietnam.
                       </td>
-                      <td className="px-6 py-6 text-center">$42</td>
-                      <td className="px-6 py-6 text-center">18+</td>
-                      <td className="px-6 py-6 text-center">$1,700</td>
-                      <td className="px-6 py-6 text-center">Can Tho, Vietnam</td>
+                      <td className="px-6 py-6 text-center">$60</td>
+                      <td className="px-6 py-6 text-center">80+</td>
+                      <td className="px-6 py-6 text-center">$2,400</td>
+                      <td className="px-6 py-6 text-center">Hanoi, Vietnam</td>
                     </tr>
 
                     {/* Competitor 6 */}
@@ -522,16 +522,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnamese SEO Pro</div>
-                        <div className="text-sm text-gray-600">Vietnamese SEO Specialists</div>
+                        <div className="font-bold text-lg text-gray-900">TMA Solutions</div>
+                        <div className="text-sm text-gray-600">Vietnam Software Development</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Specialized SEO services for Vietnamese companies, Vietnam startups, and international businesses targeting Vietnamese markets with focus on local and national SEO.
+                        TMA Solutions is a leading Vietnamese software development company that also provides digital marketing and SEO services for Vietnamese businesses and international companies targeting the Vietnamese market.
                       </td>
-                      <td className="px-6 py-6 text-center">$38</td>
-                      <td className="px-6 py-6 text-center">15+</td>
-                      <td className="px-6 py-6 text-center">$1,500</td>
-                      <td className="px-6 py-6 text-center">Hue, Vietnam</td>
+                      <td className="px-6 py-6 text-center">$50</td>
+                      <td className="px-6 py-6 text-center">60+</td>
+                      <td className="px-6 py-6 text-center">$2,000</td>
+                      <td className="px-6 py-6 text-center">Ho Chi Minh City, Vietnam</td>
                     </tr>
 
                     {/* Competitor 7 */}
@@ -542,16 +542,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnam Growth Agency</div>
-                        <div className="text-sm text-gray-600">Full-Service Vietnam Marketing</div>
+                        <div className="font-bold text-lg text-gray-900">Global CyberSoft</div>
+                        <div className="text-sm text-gray-600">Vietnam Digital Agency</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Comprehensive Vietnam marketing including SEO, PPC, social media, and growth hacking for Vietnamese businesses and international companies.
+                        Global CyberSoft is a Vietnamese digital agency specializing in web development, digital marketing, and SEO services for Vietnamese businesses and international companies entering the Vietnamese market.
                       </td>
-                      <td className="px-6 py-6 text-center">$48</td>
-                      <td className="px-6 py-6 text-center">22+</td>
-                      <td className="px-6 py-6 text-center">$1,900</td>
-                      <td className="px-6 py-6 text-center">Nha Trang, Vietnam</td>
+                      <td className="px-6 py-6 text-center">$45</td>
+                      <td className="px-6 py-6 text-center">40+</td>
+                      <td className="px-6 py-6 text-center">$1,800</td>
+                      <td className="px-6 py-6 text-center">Ho Chi Minh City, Vietnam</td>
                     </tr>
 
                     {/* Competitor 8 */}
@@ -562,16 +562,16 @@ const VietnamCountry: React.FC = () => {
                         </div>
                       </td>
                       <td className="px-6 py-6">
-                        <div className="font-bold text-lg text-gray-900">Vietnam SEO Experts</div>
-                        <div className="text-sm text-gray-600">Vietnam SEO Agency</div>
+                        <div className="font-bold text-lg text-gray-900">Vietnam Digital Marketing</div>
+                        <div className="text-sm text-gray-600">Local SEO Specialists</div>
                       </td>
                       <td className="px-6 py-6 text-sm text-gray-700">
-                        Vietnam-focused SEO agency specializing in Vietnamese business optimization, local search, and national campaigns for Vietnamese companies and international businesses.
+                        A specialized Vietnamese digital marketing agency focusing on local SEO, Google My Business optimization, and Vietnamese market-specific digital strategies for local businesses.
                       </td>
                       <td className="px-6 py-6 text-center">$35</td>
-                      <td className="px-6 py-6 text-center">12+</td>
-                      <td className="px-6 py-6 text-center">$1,400</td>
-                      <td className="px-6 py-6 text-center">Vung Tau, Vietnam</td>
+                      <td className="px-6 py-6 text-center">25+</td>
+                      <td className="px-6 py-6 text-center">$1,500</td>
+                      <td className="px-6 py-6 text-center">Hanoi, Ho Chi Minh City, Vietnam</td>
                     </tr>
                   </tbody>
                 </table>

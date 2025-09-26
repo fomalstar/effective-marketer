@@ -67,17 +67,31 @@ Each answer must include the country name 3-5 times:
 
 ### **Step 4: Competitor Research & Table**
 
+**⚠️ CRITICAL: Use Real Competitors Only**
+- **MUST READ**: `docs/COMPETITOR_RESEARCH_GUIDE.md` before proceeding
+- **NO FICTIONAL COMPANIES**: Never create made-up company names
+- **REAL CITIES ONLY**: Use actual cities where companies operate
+- **VERIFY EVERYTHING**: Confirm each company exists and offers relevant services
+
+#### **Competitor Research Process**:
+1. **Web Search**: Use web search function to find real companies
+2. **Company Verification**: Verify each company exists and operates in target country
+3. **Service Confirmation**: Confirm they offer SEO/digital marketing services
+4. **Location Verification**: Verify actual office locations
+5. **Market Research**: Research local market pricing and conditions
+
 #### **Competitor Count Guidelines**:
 - **Large Countries (100M+)**: 10-12 competitors
 - **Medium Countries (20M-100M)**: 6-8 competitors
 - **Small Countries (5M-20M)**: 4-6 competitors
 - **Very Small Countries (<5M)**: 3-4 competitors
 
-#### **Competitor Research**:
-1. **Local Agencies**: Search "[Country] SEO agency", "[Country] digital marketing"
-2. **International Agencies**: Include global agencies with local presence
-3. **Pricing Research**: Research local market rates
-4. **Service Offerings**: Understand local market expectations
+#### **Required Research Steps**:
+1. **Search Terms**: Use "[Country] SEO agency", "[Country] digital marketing", "[Country] IT companies"
+2. **Major Companies**: Research tech giants, IT companies, digital agencies in the country
+3. **Verification**: Confirm company existence, services, locations, and market position
+4. **Pricing Research**: Research realistic local market rates
+5. **Quality Check**: Ensure all information is factual and professional
 
 #### **Competitor Table Structure**:
 - **Rank 1**: Effective Marketer (always #1)
