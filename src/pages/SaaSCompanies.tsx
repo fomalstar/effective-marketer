@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Contact from '../components/Contact';
 import GetStarted from '../components/GetStarted';
+import Team from '../components/Team';
+import Roadmap from '../components/Roadmap';
 
 const SaaSCompanies: React.FC = () => {
   const features = [
