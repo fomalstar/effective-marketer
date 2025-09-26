@@ -19,6 +19,7 @@ const Header = () => {
   const navigation = [
     { name: 'Home', href: 'https://effectivemarketer.com/' },
     { name: 'Services', href: '#services-mega' },
+    { name: 'Case Studies', href: 'https://effectivemarketer.com/case-studies' },
     { name: 'Contact', href: 'https://effectivemarketer.com/#contact' },
   ];
 
