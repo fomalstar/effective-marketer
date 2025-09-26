@@ -78,7 +78,7 @@ const Team: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-white" />
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">5</div>
+              <div className="text-3xl font-bold text-gray-900 mb-2">6</div>
               <div className="text-gray-600">Expert Team Members</div>
             </div>
             <div className="text-center">

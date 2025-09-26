@@ -16,7 +16,7 @@
 ### **Team Members Added**
 1. **Yavor Stoyanov** - Founder & CEO
    - **Photo**: `/ya.png`
-   - **LinkedIn**: https://www.linkedin.com/in/yavor-stoyanov
+   - **LinkedIn**: https://www.linkedin.com/in/yavorseo/
    - **Description**: Visionary leader with 10+ years in digital marketing and AI SEO innovation
 
 2. **Anne Vu** - CFO
@@ -26,18 +26,23 @@
 
 3. **Lorenzo Payman** - VP Sales
    - **Photo**: `/WhatsApp Image 2025-07-04 at 16.14.17_49746d6b.jpg`
-   - **LinkedIn**: https://www.linkedin.com/in/lorenzo-payman
+   - **LinkedIn**: https://www.linkedin.com/in/lorenzopayman/
    - **Description**: Sales leader driving client acquisition and relationship management
 
 4. **Rusi Zhelev** - SEO Specialist
-   - **Photo**: `/WhatsApp Image 2025-06-18 at 15.30.43_bb69c7a1.jpg`
-   - **LinkedIn**: https://www.linkedin.com/in/rusi-zhelev
+   - **Photo**: `/1597586218054.jpg`
+   - **LinkedIn**: https://www.linkedin.com/in/zhelev/
    - **Description**: Technical SEO expert specializing in Google Autosuggest optimization
 
 5. **Lucas Lenoir** - AI Director
    - **Photo**: `/lucas.png`
-   - **LinkedIn**: https://www.linkedin.com/in/lucas-lenoir
+   - **LinkedIn**: https://www.linkedin.com/in/lucaslenoir/
    - **Description**: AI strategist leading our ChatGPT and AI platform optimization initiatives
+
+6. **Ivaylo Dimitrov** - Growth Strategist
+   - **Photo**: `/1757946188540.png`
+   - **LinkedIn**: https://www.linkedin.com/in/ivaylo-dimitrov-7a2865381/
+   - **Description**: Growth expert specializing in scaling businesses through strategic marketing and optimization
 
 ### **Team Section Features**
 - **Professional Layout**: Grid-based design with hover effects
@@ -276,3 +281,87 @@ interface CaseStudyData {
 - ✅ **teamData.ts** - All team member data preserved  
 - ✅ **CaseStudies.tsx** - Now properly using centralized data
 - ✅ **No data loss** - All original content maintained
+
+---
+
+## 👥 **Team Updates - January 2025**
+
+### **New Team Member Added**
+- **Ivaylo Dimitrov** - Growth Strategist
+  - **Photo**: `/1757946188540.png`
+  - **LinkedIn**: https://www.linkedin.com/in/ivaylo-dimitrov-7a2865381/
+  - **Description**: Growth expert specializing in scaling businesses through strategic marketing and optimization
+
+### **LinkedIn Profile Updates**
+- **Yavor Stoyanov**: Updated to https://www.linkedin.com/in/yavorseo/
+- **Anne Vu**: Updated to https://www.linkedin.com/in/anne-thuy-nga-645105180
+- **Lorenzo Payman**: Updated to https://www.linkedin.com/in/lorenzopayman/
+- **Rusi Zhelev**: Updated to https://www.linkedin.com/in/zhelev/
+- **Lucas Lenoir**: Updated to https://www.linkedin.com/in/lucaslenoir/
+
+### **Photo Updates**
+- **Rusi Zhelev**: Updated photo to `/1597586218054.jpg`
+
+### **Team Statistics Updated**
+- **Team Size**: Updated from 5 to 6 expert team members
+- **Grid Layout**: Automatically adjusts to accommodate new team member
+
+---
+
+## 📊 **Case Studies Updates - January 2025**
+
+### **Client Information Updates**
+All case studies have been updated with accurate client information and improved metrics:
+
+#### **1. Boleron (Bulgaria)**
+- **Industry**: Digital Insurance Broker
+- **Location**: Bulgaria (corrected from Malaysia)
+- **Challenge**: Zero autocomplete visibility and competitive keywords about car insurance
+- **Solution**: Autosuggests visibility on key terms and AI chat visibility with Reddit posts and backlinks from biggest media news outlets
+- **Results**: 
+  - Traffic Increase: 124% (updated from 247%)
+  - Autosuggests Visibility: 10 keywords (updated from lead increase)
+  - Keywords Ranked: 10 (updated from "12 keywords to #1 position")
+- **Testimonial**: Updated to Alexander, CEO
+
+#### **2. Vision Express (Latvia)**
+- **Industry**: Optika Store (corrected from Healthcare)
+- **Location**: Latvia (corrected from UAE)
+- **Challenge**: Lack of autosuggests and AI visibility in competitive eye care market
+- **Solution**: Autosuggests optimization and AI platform visibility with strategic content and local market focus
+- **Testimonial**: Updated to Andis, CEO
+
+#### **3. XXL Lashes (Vietnam)**
+- **Industry**: Beauty & Eyelash Extensions (updated from Beauty & Fashion)
+- **Challenge**: Zero autocomplete visibility and competing with major beauty brands
+- **Solution**: Autosuggests optimization and AI platform visibility with beauty industry focus
+- **Results**: Autosuggests Visibility: 15 keywords (updated from lead increase)
+
+#### **4. Podvertise FM (France)**
+- **Industry**: Podcast Platform (updated from Media & Entertainment)
+- **Challenge**: New podcast platform with zero autocomplete visibility and no AI platform presence
+- **Solution**: Autosuggests optimization and AI platform visibility with podcast-specific optimization
+- **Results**: Autosuggests Visibility: 10 keywords (updated from lead increase)
+
+#### **5. Remotek (Bulgaria)**
+- **Industry**: B2B Technology (updated from Technology)
+- **Challenge**: B2B tech company with zero autocomplete visibility and low visibility in AI searches
+- **Solution**: Autosuggests optimization and AI platform visibility with enterprise focus
+- **Results**: Autosuggests Visibility: 14 keywords (updated from lead increase)
+
+#### **6. Revita (USA)**
+- **Industry**: Health & Wellness (unchanged)
+- **Challenge**: Wellness brand with zero autocomplete visibility competing with major health companies
+- **Solution**: Autosuggests optimization and AI platform visibility with holistic approach
+- **Results**: Autosuggests Visibility: 11 keywords (updated from lead increase)
+
+### **Logo Display Fixes**
+- **Issue**: Client logos were not displaying due to URL encoding issues with spaces in folder names
+- **Solution**: Updated all logo paths to use URL-encoded format (`/case%20studies/` instead of `/case studies/`)
+- **Status**: ✅ **RESOLVED** - All client logos now display correctly
+
+### **Metrics Standardization**
+- **Lead Increase**: Replaced with "Autosuggests Visibility X keywords" for all clients
+- **Keywords Ranked**: Updated from "X keywords to #1 position" to "X keywords ranked"
+- **Traffic Increase**: Updated with accurate percentages for each client
+- **Consistency**: All case studies now follow the same format and terminology
