@@ -7,6 +7,7 @@ import Contact from '../components/Contact';
 import GetStarted from '../components/GetStarted';
 import Team from '../components/Team';
 import FAQ from '../components/FAQ';
+import CaseStudyLogos from '../components/CaseStudyLogos';
 
 const USACountry: React.FC = () => {
   const features = [
@@ -373,6 +374,9 @@ const USACountry: React.FC = () => {
 
         {/* Team Section */}
         <Team />
+
+        {/* Case Studies Section */}
+        <CaseStudyLogos />
 
         {/* Best AI SEO Agencies in USA Ranking */}
         <section className="py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-red-50">
