@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 interface FAQItem {
   question: string;
@@ -33,29 +33,27 @@ const FAQ: React.FC<FAQProps> = ({ title, subtitle, faqs, className = "" }) => {
         </div>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
-              >
-                <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
-                <div className="flex-shrink-0">
-                  {openIndex === index ? (
-                    <ChevronUp className="h-5 w-5 text-primary-500" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-400" />
-                  )}
+            <div key={index} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <div className="px-6 py-6">
+                <div className="flex items-start justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900 pr-4 flex-1">{faq.question}</h3>
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 transition-all duration-200 ease-in-out"
+                  >
+                    {openIndex === index ? (
+                      <Minus className="h-4 w-4 text-gray-600" />
+                    ) : (
+                      <Plus className="h-4 w-4 text-gray-600" />
+                    )}
+                  </button>
                 </div>
-              </button>
-              <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div className="px-6 pb-6">
-                  <div className="border-t border-gray-100 pt-4">
-                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                  </div>
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openIndex === index ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                 </div>
               </div>
             </div>

@@ -46,10 +46,11 @@ Get fast results — just 1 to 3 months is enough to start seeing a positive ROI
 ### **FAQ Component System**
 **Component**: `src/components/FAQ.tsx`
 **Features**:
-- Click-to-show/hide functionality with smooth animations
-- Chevron icons for visual feedback
-- Hover effects and focus states
-- Clean, modern design with borders and shadows
+- Always expanded by default with smooth open/close animations
+- Plus/minus button on the right for clean interaction
+- No hover colors or click effects for minimal design
+- Smooth transitions with `max-height` and `opacity` animations
+- Clean, modern design with subtle borders
 - Responsive design for all screen sizes
 
 **Usage**:

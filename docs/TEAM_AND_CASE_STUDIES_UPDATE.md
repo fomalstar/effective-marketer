@@ -863,11 +863,12 @@ import Roadmap from '../components/Roadmap';
 - **Issue**: Competitor counts were too low and not realistic for competitive industries
 
 **Solution**: 
-- **New FAQ Component**: Created `src/components/FAQ.tsx` with click-to-show/hide functionality
-  - Smooth animations with `max-height` and `opacity` transitions
-  - Chevron icons (up/down) for visual feedback
-  - Hover effects and focus states for accessibility
-  - Clean, modern design with borders and shadows
+- **New FAQ Component**: Created `src/components/FAQ.tsx` with improved design
+  - Always expanded by default with smooth open/close animations
+  - Plus/minus button on the right for clean interaction
+  - No hover colors or click effects for minimal design
+  - Smooth transitions with `max-height` and `opacity` animations
+  - Clean, modern design with subtle borders
 - **Enhanced Competitor Counts**: Added more realistic competitor numbers based on industry research
   - **SaaS**: Expanded from 5 to 10 competitors (SaaS has many agencies)
   - **E-commerce**: Expanded from 5 to 10 competitors (E-commerce is highly competitive)
