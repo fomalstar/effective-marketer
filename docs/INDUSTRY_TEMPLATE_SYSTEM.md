@@ -46,8 +46,9 @@ Get fast results — just 1 to 3 months is enough to start seeing a positive ROI
 ### **FAQ Component System**
 **Component**: `src/components/FAQ.tsx`
 **Features**:
-- Always expanded by default with smooth open/close animations
-- Plus/minus button on the right for clean interaction
+- **Always expanded by default** - All questions and answers are visible initially
+- **Minus button** to hide answers (click to collapse)
+- **Plus button** to show answers (click to expand)
 - No hover colors or click effects for minimal design
 - Smooth transitions with `max-height` and `opacity` animations
 - Clean, modern design with subtle borders

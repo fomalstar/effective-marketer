@@ -14,10 +14,18 @@ interface FAQProps {
 }
 
 const FAQ: React.FC<FAQProps> = ({ title, subtitle, faqs, className = "" }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [closedIndexes, setClosedIndexes] = useState<Set<number>>(new Set());
 
   const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setClosedIndexes(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
   };
 
   return (
@@ -41,16 +49,16 @@ const FAQ: React.FC<FAQProps> = ({ title, subtitle, faqs, className = "" }) => {
                     onClick={() => toggleFAQ(index)}
                     className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 transition-all duration-200 ease-in-out"
                   >
-                    {openIndex === index ? (
-                      <Minus className="h-4 w-4 text-gray-600" />
-                    ) : (
+                    {closedIndexes.has(index) ? (
                       <Plus className="h-4 w-4 text-gray-600" />
+                    ) : (
+                      <Minus className="h-4 w-4 text-gray-600" />
                     )}
                   </button>
                 </div>
                 <div 
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    openIndex === index ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                    closedIndexes.has(index) ? 'max-h-0 opacity-0' : 'max-h-96 opacity-100 mt-4'
                   }`}
                 >
                   <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
