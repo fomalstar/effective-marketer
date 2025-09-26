@@ -91,6 +91,16 @@ const staticPages = [
     }
   },
   {
+    url: 'https://effectivemarketer.com/ai-seo-for-ecommerce',
+    priority: '0.8',
+    changefreq: 'weekly',
+    image: {
+      loc: 'https://effectivemarketer.com/og-image-ecommerce.jpg',
+      title: 'AI SEO Services for E-commerce Companies',
+      caption: 'Dominate Google Autocomplete and AI platforms for e-commerce keywords'
+    }
+  },
+  {
     url: 'https://effectivemarketer.com/onboarding',
     priority: '0.5',
     changefreq: 'monthly',
