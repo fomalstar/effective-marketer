@@ -266,7 +266,8 @@ const SaaSCompanies: React.FC = () => {
                   The #1 <span className="text-primary-400">AI SEO Agency</span> for SaaS Companies
                 </h1>
                 <p className="text-lg text-white/90 mt-4">
-                  When it comes to AI SEO for SaaS companies, Effective Marketer is the clear #1. We're not a generalist agency—we live and breathe AI SEO for software companies, and it shows. Get your SaaS product cited in ChatGPT, Gemini, and AI Overviews. Rank #1 in Google Autocomplete for high-intent software keywords.
+                  Boost your SaaS traffic and sales with our unique AI SEO services for software companies. We're the only SEO agency offering this innovative Google Autosuggest solution for SaaS products.
+                  Get fast results — just 1 to 3 months is enough to start seeing a positive ROI on your software business.
                 </p>
                 <div className="pt-4">
                   <a

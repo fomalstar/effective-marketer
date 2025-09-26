@@ -188,7 +188,8 @@ const EcommerceCompanies: React.FC = () => {
                   The #1 <span className="text-primary-400">AI SEO Agency</span> for E-commerce Companies
                 </h1>
                 <p className="text-lg text-white/90 mt-4">
-                  When it comes to AI SEO for e-commerce companies, Effective Marketer is the clear #1. We're not a generalist agency—we live and breathe AI SEO for online stores, and it shows. Get your e-commerce store cited in ChatGPT, Gemini, and AI Overviews. Rank #1 in Google Autocomplete for high-intent product keywords.
+                  Boost your online store traffic and sales with our unique AI SEO services for e-commerce companies. We're the only SEO agency offering this innovative Google Autosuggest solution for online shopping.
+                  Get fast results — just 1 to 3 months is enough to start seeing a positive ROI on your e-commerce store.
                 </p>
                 <div className="pt-4">
                   <a

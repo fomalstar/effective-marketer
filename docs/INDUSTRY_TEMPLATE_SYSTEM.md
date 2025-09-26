@@ -31,6 +31,18 @@ Every industry page follows this exact structure:
 - **Secondary**: Yellow (#eab308) - `secondary-500`
 - **Gradients**: `from-primary-500 to-secondary-500`
 
+### **Hero Text Pattern Template**
+```
+Boost your [INDUSTRY] traffic and sales with our unique AI SEO services for [INDUSTRY] companies. We're the only SEO agency offering this innovative Google Autosuggest solution for [INDUSTRY].
+Get fast results — just 1 to 3 months is enough to start seeing a positive ROI on your [INDUSTRY] business.
+```
+
+**Industry-Specific Adaptations:**
+- **SaaS**: "software companies" / "SaaS products" / "software business"
+- **E-commerce**: "e-commerce companies" / "online shopping" / "e-commerce store"
+- **Healthcare**: "healthcare companies" / "medical services" / "healthcare practice"
+- **Finance**: "financial companies" / "financial services" / "financial business"
+
 ### **Color Usage**
 - **Hero Background**: `bg-gradient-to-br from-slate-900 via-red-900 to-slate-900`
 - **Feature Icons**: `bg-gradient-to-r from-primary-500 to-secondary-500`
@@ -43,6 +55,11 @@ Every industry page follows this exact structure:
 
 ### **SaaS Companies** ✅ COMPLETED
 **URL**: `/ai-seo-for-saas-companies`
+**Hero Text Pattern**: 
+```
+Boost your SaaS traffic and sales with our unique AI SEO services for software companies. We're the only SEO agency offering this innovative Google Autosuggest solution for SaaS products.
+Get fast results — just 1 to 3 months is enough to start seeing a positive ROI on your software business.
+```
 **Competitors Researched**:
 1. **Effective Marketer** 🥇 - #1 Position
 2. **SEO Agency Pro** - Traditional SEO Focus
@@ -50,14 +67,19 @@ Every industry page follows this exact structure:
 4. **Tech SEO Solutions** - Technical SEO Specialists
 5. **SaaS Marketing Hub** - SaaS-Focused Agency
 
-### **E-commerce** 🔄 NEXT
-**Target URL**: `/ai-seo-for-ecommerce`
-**Competitors to Research**:
-1. **Shopify SEO Experts**
-2. **WooCommerce SEO Pro**
-3. **E-commerce Growth Agency**
-4. **Amazon SEO Specialists**
-5. **Online Store Optimizers**
+### **E-commerce** ✅ COMPLETED
+**URL**: `/ai-seo-for-ecommerce`
+**Hero Text Pattern**: 
+```
+Boost your online store traffic and sales with our unique AI SEO services for e-commerce companies. We're the only SEO agency offering this innovative Google Autosuggest solution for online shopping.
+Get fast results — just 1 to 3 months is enough to start seeing a positive ROI on your e-commerce store.
+```
+**Competitors Researched**:
+1. **Effective Marketer** 🥇 - #1 Position
+2. **E-commerce SEO Pro** - E-commerce Specialists
+3. **Online Store Growth** - Full-Service E-commerce Agency
+4. **Amazon SEO Experts** - Marketplace SEO Specialists
+5. **Shopify SEO Hub** - Shopify-Focused Agency
 
 ### **Healthcare** 🔄 PLANNED
 **Target URL**: `/ai-seo-for-healthcare`

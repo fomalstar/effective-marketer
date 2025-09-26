@@ -815,3 +815,18 @@ import Roadmap from '../components/Roadmap';
 5. **Shopify SEO Hub** - Shopify-Focused Agency ($220/hour, $1,900/month)
 
 **Result**: E-commerce page successfully created at `/ai-seo-for-ecommerce` with complete template validation and industry-specific optimization
+
+### **Hero Text Template Update**
+**Problem**: Original hero text was too aggressive with "clear #1" claims
+- **Issue**: Text felt unnatural and overly promotional
+- **Issue**: Needed more natural, competitor-inspired messaging
+
+**Solution**: 
+- **New Hero Text Pattern**: "Boost your [INDUSTRY] traffic and sales with our unique AI SEO services for [INDUSTRY] companies. We're the only SEO agency offering this innovative Google Autosuggest solution for [INDUSTRY]. Get fast results — just 1 to 3 months is enough to start seeing a positive ROI on your [INDUSTRY] business."
+- **Industry Adaptations**: 
+  - **SaaS**: "software companies" / "SaaS products" / "software business"
+  - **E-commerce**: "e-commerce companies" / "online shopping" / "e-commerce store"
+- **Template Documentation**: Updated `docs/INDUSTRY_TEMPLATE_SYSTEM.md` with new hero text pattern for future pages
+- **Pages Updated**: Both SaaS and E-commerce pages now use the new natural messaging
+
+**Result**: More natural, competitor-inspired hero text that maintains industry focus while being less aggressive about #1 claims
