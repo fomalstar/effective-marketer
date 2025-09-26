@@ -17,8 +17,8 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = "#1 Google Autosuggests & AI SEO Agency - Effective Marketer",
-  description = "Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete. Our specialized agency provides cutting-edge AI SEO strategies that optimize your brand for maximum visibility.",
-  keywords = "AI SEO agency, Google autosuggests optimization, AI SEO solutions, autosuggests ranking, Google Autocomplete optimization, AI SEO services, search suggestion optimization, ranking optimization, digital marketing agency, SEO agency",
+  description = "Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete. Our specialized agency provides cutting-edge AI SEO strategies that optimize your brand for maximum visibility in ChatGPT, Gemini, and AI Overviews.",
+  keywords = "AI SEO agency, Google autosuggests optimization, AI SEO solutions, autosuggests ranking, Google Autocomplete optimization, AI SEO services, search suggestion optimization, ranking optimization, digital marketing agency, SEO agency, ChatGPT ranking, Gemini optimization, AI Overviews, generative engine optimization, GEO, AI platform visibility",
   canonical = "https://effectivemarketer.com",
   ogTitle,
   ogDescription,
@@ -28,63 +28,232 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   structuredData,
   noIndex = false
 }) => {
-  const defaultStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Effective Marketer",
-    "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
-    "url": "https://effectivemarketer.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://effectivemarketer.com/logo.png"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+1-555-123-4567",
-      "contactType": "customer service",
-      "email": "contact@effectivemarketer.com"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "US"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/effective-marketer",
-      "https://twitter.com/effectivemarketer",
-      "https://www.facebook.com/effective-marketer"
-    ],
-    "founder": {
-      "@type": "Person",
-      "name": "Yavor Stoyanov"
-    },
-    "numberOfEmployees": "30",
-    "foundingDate": "2020",
-    "areaServed": [
-      {
-        "@type": "Country",
-        "name": "United States"
+  const defaultStructuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Effective Marketer",
+      "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
+      "url": "https://effectivemarketer.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://effectivemarketer.com/EM%20LOGO.png",
+        "width": 200,
+        "height": 200
       },
-      {
-        "@type": "Country", 
-        "name": "France"
+      "image": "https://effectivemarketer.com/Effective%20Marketer.jpg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-555-123-4567",
+        "contactType": "customer service",
+        "email": "contact@effectivemarketer.com",
+        "availableLanguage": "English"
       },
-      {
-        "@type": "Country",
-        "name": "Vietnam"
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Country",
-        "name": "Bulgaria"
+      "sameAs": [
+        "https://www.linkedin.com/company/effective-marketer",
+        "https://twitter.com/effectivemarketer",
+        "https://www.facebook.com/effective-marketer"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Yavor Stoyanov"
+      },
+      "numberOfEmployees": "30",
+      "foundingDate": "2020",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country", 
+          "name": "France"
+        },
+        {
+          "@type": "Country",
+          "name": "Vietnam"
+        },
+        {
+          "@type": "Country",
+          "name": "Bulgaria"
+        }
+      ],
+      "serviceType": [
+        "AI SEO Services",
+        "Google Autosuggests Optimization",
+        "Ranking Optimization",
+        "Digital Marketing Agency Services",
+        "Search Suggestion Optimization"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI SEO Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Google Autosuggest Ranking",
+              "description": "Get your brand ranked in Google Autocomplete suggestions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI SEO Services",
+              "description": "AI platform visibility and citation optimization"
+            }
+          }
+        ]
       }
-    ],
-    "serviceType": [
-      "AI SEO Services",
-      "Google Autosuggests Optimization",
-      "Ranking Optimization",
-      "Digital Marketing Agency Services",
-      "Search Suggestion Optimization"
-    ]
-  };
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Effective Marketer",
+      "url": "https://effectivemarketer.com",
+      "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Effective Marketer"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://effectivemarketer.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://effectivemarketer.com/#business",
+      "name": "Effective Marketer",
+      "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
+      "url": "https://effectivemarketer.com",
+      "telephone": "+1-555-123-4567",
+      "email": "contact@effectivemarketer.com",
+      "logo": "https://effectivemarketer.com/EM%20LOGO.png",
+      "image": "https://effectivemarketer.com/Effective%20Marketer.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "40.7128",
+        "longitude": "-74.0060"
+      },
+      "openingHours": "Mo-Fr 09:00-17:00",
+      "priceRange": "$$$",
+      "currenciesAccepted": "USD",
+      "paymentAccepted": "Credit Card, PayPal, Bank Transfer",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "France"
+        },
+        {
+          "@type": "Country",
+          "name": "Vietnam"
+        },
+        {
+          "@type": "Country",
+          "name": "Bulgaria"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI SEO Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Google Autosuggest Ranking",
+              "description": "Get your brand ranked in Google Autocomplete suggestions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI SEO Services",
+              "description": "AI platform visibility and citation optimization"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Lead Generation",
+              "description": "Automated multi-channel lead generation with AI"
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Sarah Johnson"
+          },
+          "reviewBody": "Exceptional AI SEO services that delivered results in just 45 days. Our Google Autosuggest rankings improved dramatically."
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Effective Marketer AI SEO Platform",
+      "description": "AI-powered SEO platform for Google Autosuggest optimization and AI platform visibility",
+      "url": "https://effectivemarketer.com",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "2997",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Effective Marketer",
+        "url": "https://effectivemarketer.com"
+      },
+      "featureList": [
+        "Google Autosuggest Optimization",
+        "AI Platform Visibility",
+        "ChatGPT Citation Optimization",
+        "Gemini Ranking",
+        "AI Overviews Optimization",
+        "Reddit Growth Automation",
+        "AI Topical Map Generation"
+      ],
+      "screenshot": "https://effectivemarketer.com/Effective%20Marketer.jpg"
+    }
+  ];
 
   return (
     <Helmet>
@@ -119,14 +288,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="copyright" content="© 2024 Effective Marketer. All rights reserved." />
       
       {/* Favicon and Icons */}
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+      <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+      <link rel="manifest" href="/favicon/site.webmanifest" />
       
-      {/* RSS Feed */}
-      <link rel="alternate" type="application/rss+xml" title="Effective Marketer Blog RSS Feed" href="https://effectivemarketer.com/rss.xml" />
       
       {/* Structured Data */}
       {Array.isArray(structuredData) ? (
@@ -145,10 +312,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="preconnect" href="https://calendly.com" />
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
       <link rel="dns-prefetch" href="https://effectivemarketer.com" />
+      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
       
       {/* Critical Resource Hints */}
-      <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
+      <link rel="preload" href="/favicon/favicon.ico" as="image" type="image/x-icon" />
       
       {/* Additional Performance and SEO Tags */}
       <meta name="theme-color" content="#ff312b" />

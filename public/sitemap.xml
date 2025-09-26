@@ -1,28 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://effectivemarketer.com/</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/Effective%20Marketer.jpg</image:loc>
+      <image:title>Effective Marketer - AI SEO Agency</image:title>
+      <image:caption>Leading AI SEO agency specializing in Google autosuggests optimization</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://effectivemarketer.com/google-autosuggest-ranking</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/googleautosuggests.jpg</image:loc>
+      <image:title>Google Autosuggest Ranking Services</image:title>
+      <image:caption>Get Google Autosuggest rankings in 45-60 days with SEO optimization</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/Effective%20Marketer.jpg</image:loc>
+      <image:title>AI SEO Agency Services</image:title>
+      <image:caption>AI platform visibility, Reddit growth, and advanced AI Topical Maps</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-topical-map</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/topicalmape.png</image:loc>
+      <image:title>AI Topical Map Services</image:title>
+      <image:caption>Entity-rich blueprints built for Generative Intent</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://effectivemarketer.com/lead-gen-ai-automation</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/leadgen.png</image:loc>
+      <image:title>AI Lead Generation Automation</image:title>
+      <image:caption>Automated multi-channel lead generation with AI</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://effectivemarketer.com/onboarding</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

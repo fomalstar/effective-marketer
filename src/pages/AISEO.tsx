@@ -43,8 +43,84 @@ const AISEO: React.FC = () => {
       "@type": "Service",
       "name": "AI SEO Agency Services",
       "description": "AI platform visibility, Reddit growth, and advanced AI Topical Maps for citation-ready presence in AI answers.",
-      "provider": { "@type": "Organization", "name": "Effective Marketer", "url": "https://effectivemarketer.com" },
-      "areaServed": "Worldwide",
+      "provider": { 
+        "@type": "Organization", 
+        "name": "Effective Marketer", 
+        "url": "https://effectivemarketer.com",
+        "logo": "https://effectivemarketer.com/EM%20LOGO.png"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Worldwide"
+      },
+      "serviceType": "AI SEO and Platform Visibility",
+      "category": "Digital Marketing Services",
+      "offers": {
+        "@type": "Offer",
+        "price": "3997",
+        "priceCurrency": "USD",
+        "description": "AI SEO agency services for platform visibility",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "priceValidUntil": "2025-12-31"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI SEO Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Platform Visibility",
+              "description": "Get cited in ChatGPT, Gemini, and AI Overviews"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reddit Growth",
+              "description": "Strategic Reddit presence for AI citation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Topical Maps",
+              "description": "Entity-rich blueprints for Generative Intent"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "AI SEO Agency Services | Effective Marketer",
+      "description": "Win AI Search with platform visibility, Reddit growth, and AI Topical Maps. Get cited in ChatGPT, Gemini, and AI Overviews.",
+      "url": "https://effectivemarketer.com/ai-seo",
+      "mainEntity": {
+        "@type": "Service",
+        "name": "AI SEO Agency Services"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://effectivemarketer.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "AI SEO"
+          }
+        ]
+      }
     }
   ];
 

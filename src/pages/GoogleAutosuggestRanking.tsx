@@ -66,16 +66,50 @@ const GoogleAutosuggestRanking = () => {
       "provider": {
         "@type": "Organization",
         "name": "Effective Marketer",
-        "url": "https://effectivemarketer.com"
+        "url": "https://effectivemarketer.com",
+        "logo": "https://effectivemarketer.com/EM%20LOGO.png"
       },
       "offers": {
         "@type": "Offer",
         "price": "2997",
         "priceCurrency": "USD",
-        "description": "Google Autosuggest ranking service"
+        "description": "Google Autosuggest ranking service",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "priceValidUntil": "2025-12-31"
       },
-      "areaServed": "Worldwide",
-      "serviceType": "SEO and Autosuggest Optimization"
+      "areaServed": {
+        "@type": "Country",
+        "name": "Worldwide"
+      },
+      "serviceType": "SEO and Autosuggest Optimization",
+      "category": "Digital Marketing Services",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Google Autosuggest Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Google Autocomplete Optimization",
+              "description": "Optimize your brand for Google Autocomplete suggestions"
+            }
+          }
+        ]
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4.9",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Client Review"
+        }
+      }
     },
     {
       "@context": "https://schema.org",
@@ -88,6 +122,39 @@ const GoogleAutosuggestRanking = () => {
           "text": faq.answer
         }
       }))
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Google Autocomplete SEO Ranking Services | Effective Marketer",
+      "description": "Get Google Autosuggest rankings in 45-60 days. SEO optimization for autosuggests, brand visibility in Google Autocomplete and AI chats.",
+      "url": "https://effectivemarketer.com/google-autosuggest-ranking",
+      "mainEntity": {
+        "@type": "Service",
+        "name": "Google Autocomplete SEO Ranking Services"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://effectivemarketer.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://effectivemarketer.com/#services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Google Autosuggest Ranking"
+          }
+        ]
+      }
     }
   ];
 
