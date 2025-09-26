@@ -142,6 +142,7 @@ const CaseStudies: React.FC = () => {
                         <div>
                           <h3 className="text-2xl font-bold text-gray-900">{study.clientName}</h3>
                           <p className="text-gray-600">{study.industry} • {study.location} • {study.duration}</p>
+                          <p className="text-gray-700 mt-3 text-sm leading-relaxed">{study.description}</p>
                         </div>
                       </div>
 
