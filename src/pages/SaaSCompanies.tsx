@@ -7,6 +7,7 @@ import Contact from '../components/Contact';
 import GetStarted from '../components/GetStarted';
 import Team from '../components/Team';
 import Roadmap from '../components/Roadmap';
+import FAQ from '../components/FAQ';
 
 const SaaSCompanies: React.FC = () => {
   const features = [
@@ -573,6 +574,106 @@ const SaaSCompanies: React.FC = () => {
                       <td className="px-6 py-6 text-center">$1,900</td>
                       <td className="px-6 py-6 text-center">Boston, USA</td>
                     </tr>
+
+                    {/* Competitor 6 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          6
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Software SEO Pro</div>
+                        <div className="text-sm text-gray-600">Software SEO Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Specialized SEO services for software companies, SaaS platforms, and tech startups with focus on technical SEO and content strategy.
+                      </td>
+                      <td className="px-6 py-6 text-center">$240</td>
+                      <td className="px-6 py-6 text-center">25+</td>
+                      <td className="px-6 py-6 text-center">$2,000</td>
+                      <td className="px-6 py-6 text-center">Austin, USA</td>
+                    </tr>
+
+                    {/* Competitor 7 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          7
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Tech Growth Agency</div>
+                        <div className="text-sm text-gray-600">Full-Service Tech Marketing</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Comprehensive tech marketing including SEO, PPC, social media, and growth hacking for SaaS and software companies.
+                      </td>
+                      <td className="px-6 py-6 text-center">$300</td>
+                      <td className="px-6 py-6 text-center">45+</td>
+                      <td className="px-6 py-6 text-center">$2,800</td>
+                      <td className="px-6 py-6 text-center">San Francisco, USA</td>
+                    </tr>
+
+                    {/* Competitor 8 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          8
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">SaaS SEO Solutions</div>
+                        <div className="text-sm text-gray-600">SaaS SEO Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        SaaS-focused SEO agency specializing in software company optimization, app store SEO, and SaaS content marketing.
+                      </td>
+                      <td className="px-6 py-6 text-center">$260</td>
+                      <td className="px-6 py-6 text-center">28+</td>
+                      <td className="px-6 py-6 text-center">$2,200</td>
+                      <td className="px-6 py-6 text-center">Seattle, USA</td>
+                    </tr>
+
+                    {/* Competitor 9 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          9
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Software Marketing Pro</div>
+                        <div className="text-sm text-gray-600">Software Marketing Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Software marketing experts offering SEO, content marketing, and lead generation for SaaS and software companies.
+                      </td>
+                      <td className="px-6 py-6 text-center">$280</td>
+                      <td className="px-6 py-6 text-center">35+</td>
+                      <td className="px-6 py-6 text-center">$2,500</td>
+                      <td className="px-6 py-6 text-center">Boston, USA</td>
+                    </tr>
+
+                    {/* Competitor 10 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          10
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Tech SEO Experts</div>
+                        <div className="text-sm text-gray-600">Technology SEO Agency</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Technology-focused SEO agency specializing in software, SaaS, and tech company optimization with technical SEO expertise.
+                      </td>
+                      <td className="px-6 py-6 text-center">$250</td>
+                      <td className="px-6 py-6 text-center">32+</td>
+                      <td className="px-6 py-6 text-center">$2,100</td>
+                      <td className="px-6 py-6 text-center">Chicago, USA</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -614,26 +715,11 @@ const SaaSCompanies: React.FC = () => {
 
 
         {/* FAQ Section */}
-        <section className="py-16 lg:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                SaaS AI SEO <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">FAQ</span>
-              </h2>
-              <p className="text-xl text-gray-600">
-                Common questions about AI SEO for SaaS companies
-              </p>
-            </div>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                  <p className="text-gray-700">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FAQ 
+          title="SaaS AI SEO"
+          subtitle="Common questions about AI SEO for SaaS companies"
+          faqs={faqs}
+        />
 
         <Contact />
         <GetStarted />

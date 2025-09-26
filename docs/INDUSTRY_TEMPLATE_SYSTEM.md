@@ -17,8 +17,8 @@ Every industry page follows this exact structure:
 3. **Features Section** - Industry-specific AI SEO features
 4. **Challenges & Solutions** - Industry problems vs our solutions
 5. **Team Section** - Professional team member profiles
-6. **Ranking Table Section** - "Best AI SEO Agencies for [Industry]" with competitors
-7. **FAQ Section** - Industry-specific questions with high keyword density
+6. **Ranking Table Section** - "Best AI SEO Agencies for [Industry]" with competitors (5-20 based on industry research)
+7. **FAQ Section** - Interactive FAQ component with click-to-show/hide functionality
 8. **Contact Section** - Lead generation form
 9. **Get Started Section** - Final CTA
 
@@ -42,6 +42,37 @@ Get fast results — just 1 to 3 months is enough to start seeing a positive ROI
 - **E-commerce**: "e-commerce companies" / "online shopping" / "e-commerce store"
 - **Healthcare**: "healthcare companies" / "medical services" / "healthcare practice"
 - **Finance**: "financial companies" / "financial services" / "financial business"
+
+### **FAQ Component System**
+**Component**: `src/components/FAQ.tsx`
+**Features**:
+- Click-to-show/hide functionality with smooth animations
+- Chevron icons for visual feedback
+- Hover effects and focus states
+- Clean, modern design with borders and shadows
+- Responsive design for all screen sizes
+
+**Usage**:
+```tsx
+<FAQ 
+  title="Industry AI SEO"
+  subtitle="Common questions about AI SEO for industry companies"
+  faqs={faqs}
+/>
+```
+
+### **Competitor Count Guidelines**
+**Industry Research-Based Counts**:
+- **SaaS**: 10+ competitors (highly competitive market)
+- **E-commerce**: 10+ competitors (many agencies)
+- **Healthcare**: 10+ competitors (many medical SEO agencies)
+- **Finance**: 8+ competitors (regulated industry)
+- **Real Estate**: 6+ competitors (local focus)
+- **Legal**: 5+ competitors (niche market)
+- **Education**: 5+ competitors (institutional focus)
+- **Manufacturing**: 5+ competitors (B2B focus)
+- **Food & Beverage**: 8+ competitors (local + national)
+- **Travel**: 8+ competitors (tourism industry)
 
 ### **Color Usage**
 - **Hero Background**: `bg-gradient-to-br from-slate-900 via-red-900 to-slate-900`

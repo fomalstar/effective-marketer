@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Contact from '../components/Contact';
 import GetStarted from '../components/GetStarted';
 import Team from '../components/Team';
+import FAQ from '../components/FAQ';
 
 const HealthcareCompanies: React.FC = () => {
   const features = [
@@ -531,6 +532,106 @@ const HealthcareCompanies: React.FC = () => {
                       <td className="px-6 py-6 text-center">$2,500</td>
                       <td className="px-6 py-6 text-center">Boston, USA</td>
                     </tr>
+
+                    {/* Competitor 6 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          6
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Doctor SEO Specialists</div>
+                        <div className="text-sm text-gray-600">Medical Practice SEO</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Specialized SEO services for doctors, dentists, and medical specialists with focus on local search and patient acquisition.
+                      </td>
+                      <td className="px-6 py-6 text-center">$240</td>
+                      <td className="px-6 py-6 text-center">25+</td>
+                      <td className="px-6 py-6 text-center">$1,900</td>
+                      <td className="px-6 py-6 text-center">Phoenix, USA</td>
+                    </tr>
+
+                    {/* Competitor 7 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          7
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Healthcare Growth Agency</div>
+                        <div className="text-sm text-gray-600">Full-Service Healthcare Marketing</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Comprehensive healthcare marketing including SEO, PPC, social media, and patient engagement for medical practices.
+                      </td>
+                      <td className="px-6 py-6 text-center">$320</td>
+                      <td className="px-6 py-6 text-center">40+</td>
+                      <td className="px-6 py-6 text-center">$3,000</td>
+                      <td className="px-6 py-6 text-center">Denver, USA</td>
+                    </tr>
+
+                    {/* Competitor 8 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          8
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Medical Marketing Pro</div>
+                        <div className="text-sm text-gray-600">Healthcare Digital Marketing</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Medical marketing specialists offering SEO, content marketing, and online reputation management for healthcare providers.
+                      </td>
+                      <td className="px-6 py-6 text-center">$260</td>
+                      <td className="px-6 py-6 text-center">30+</td>
+                      <td className="px-6 py-6 text-center">$2,100</td>
+                      <td className="px-6 py-6 text-center">Seattle, USA</td>
+                    </tr>
+
+                    {/* Competitor 9 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          9
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Clinic SEO Solutions</div>
+                        <div className="text-sm text-gray-600">Medical Clinic SEO</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Dedicated SEO services for medical clinics, urgent care centers, and specialty practices with local search optimization.
+                      </td>
+                      <td className="px-6 py-6 text-center">$220</td>
+                      <td className="px-6 py-6 text-center">22+</td>
+                      <td className="px-6 py-6 text-center">$1,800</td>
+                      <td className="px-6 py-6 text-center">Atlanta, USA</td>
+                    </tr>
+
+                    {/* Competitor 10 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          10
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Healthcare SEO Experts</div>
+                        <div className="text-sm text-gray-600">Healthcare SEO Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Healthcare-focused SEO agency specializing in medical practice optimization and patient acquisition strategies.
+                      </td>
+                      <td className="px-6 py-6 text-center">$290</td>
+                      <td className="px-6 py-6 text-center">35+</td>
+                      <td className="px-6 py-6 text-center">$2,400</td>
+                      <td className="px-6 py-6 text-center">Portland, USA</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -571,26 +672,11 @@ const HealthcareCompanies: React.FC = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 lg:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Healthcare AI SEO <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">FAQ</span>
-              </h2>
-              <p className="text-xl text-gray-600">
-                Common questions about AI SEO for healthcare companies
-              </p>
-            </div>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                  <p className="text-gray-700">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FAQ 
+          title="Healthcare AI SEO"
+          subtitle="Common questions about AI SEO for healthcare companies"
+          faqs={faqs}
+        />
 
         <Contact />
         <GetStarted />

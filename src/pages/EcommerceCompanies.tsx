@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Contact from '../components/Contact';
 import GetStarted from '../components/GetStarted';
 import Team from '../components/Team';
+import FAQ from '../components/FAQ';
 
 const EcommerceCompanies: React.FC = () => {
   const features = [
@@ -531,6 +532,106 @@ const EcommerceCompanies: React.FC = () => {
                       <td className="px-6 py-6 text-center">$1,900</td>
                       <td className="px-6 py-6 text-center">Toronto, Canada</td>
                     </tr>
+
+                    {/* Competitor 6 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          6
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">WooCommerce SEO Pro</div>
+                        <div className="text-sm text-gray-600">WooCommerce SEO Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Specialized WooCommerce SEO services including plugin optimization, store performance, and conversion optimization for WordPress e-commerce sites.
+                      </td>
+                      <td className="px-6 py-6 text-center">$200</td>
+                      <td className="px-6 py-6 text-center">25+</td>
+                      <td className="px-6 py-6 text-center">$1,800</td>
+                      <td className="px-6 py-6 text-center">Vancouver, Canada</td>
+                    </tr>
+
+                    {/* Competitor 7 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          7
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">E-commerce Growth Co</div>
+                        <div className="text-sm text-gray-600">Full-Service E-commerce Agency</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Comprehensive e-commerce marketing including SEO, PPC, social media, and conversion optimization for online retailers.
+                      </td>
+                      <td className="px-6 py-6 text-center">$300</td>
+                      <td className="px-6 py-6 text-center">50+</td>
+                      <td className="px-6 py-6 text-center">$3,000</td>
+                      <td className="px-6 py-6 text-center">Los Angeles, USA</td>
+                    </tr>
+
+                    {/* Competitor 8 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          8
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Online Store SEO</div>
+                        <div className="text-sm text-gray-600">E-commerce SEO Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        E-commerce-focused SEO agency specializing in online store optimization, product SEO, and marketplace visibility.
+                      </td>
+                      <td className="px-6 py-6 text-center">$240</td>
+                      <td className="px-6 py-6 text-center">28+</td>
+                      <td className="px-6 py-6 text-center">$2,000</td>
+                      <td className="px-6 py-6 text-center">Miami, USA</td>
+                    </tr>
+
+                    {/* Competitor 9 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          9
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">Retail SEO Solutions</div>
+                        <div className="text-sm text-gray-600">Retail SEO Specialists</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        Retail-focused SEO services for online stores, fashion brands, and consumer goods companies with product optimization expertise.
+                      </td>
+                      <td className="px-6 py-6 text-center">$260</td>
+                      <td className="px-6 py-6 text-center">32+</td>
+                      <td className="px-6 py-6 text-center">$2,200</td>
+                      <td className="px-6 py-6 text-center">New York, USA</td>
+                    </tr>
+
+                    {/* Competitor 10 */}
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-6 text-center">
+                        <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          10
+                        </div>
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="font-bold text-lg text-gray-900">E-commerce SEO Experts</div>
+                        <div className="text-sm text-gray-600">E-commerce SEO Agency</div>
+                      </td>
+                      <td className="px-6 py-6 text-sm text-gray-700">
+                        E-commerce-focused SEO agency specializing in online store optimization, product SEO, and marketplace visibility for retailers.
+                      </td>
+                      <td className="px-6 py-6 text-center">$250</td>
+                      <td className="px-6 py-6 text-center">35+</td>
+                      <td className="px-6 py-6 text-center">$2,100</td>
+                      <td className="px-6 py-6 text-center">Chicago, USA</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -571,26 +672,11 @@ const EcommerceCompanies: React.FC = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 lg:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                E-commerce AI SEO <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">FAQ</span>
-              </h2>
-              <p className="text-xl text-gray-600">
-                Common questions about AI SEO for e-commerce companies
-              </p>
-            </div>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                  <p className="text-gray-700">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FAQ 
+          title="E-commerce AI SEO"
+          subtitle="Common questions about AI SEO for e-commerce companies"
+          faqs={faqs}
+        />
 
         <Contact />
         <GetStarted />
