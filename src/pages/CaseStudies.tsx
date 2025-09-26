@@ -3,6 +3,11 @@ import { CheckCircle, TrendingUp, Clock, Users, Target, Brain, Search, Globe, Ar
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Team from '../components/Team';
+import WhyChooseUs from '../components/WhyChooseUs';
+import Roadmap from '../components/Roadmap';
+import Contact from '../components/Contact';
+import GetStarted from '../components/GetStarted';
 import { getAllCaseStudies } from '../data/caseStudiesData';
 
 const CaseStudies: React.FC = () => {
@@ -117,145 +122,111 @@ const CaseStudies: React.FC = () => {
               </p>
             </div>
 
-            <div className="space-y-16">
-              {caseStudies.map((study, index) => (
-                <div key={study.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                  {/* Content */}
-                  <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                    <div className="bg-white rounded-2xl p-8 shadow-lg">
-                      <div className="flex items-center space-x-4 mb-6">
-                        <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center border-2 border-gray-100 shadow-sm">
-                          <img 
-                            src={study.clientLogo} 
-                            alt={`${study.clientName} logo`}
-                            className="max-w-12 max-h-12 object-contain"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                              target.nextElementSibling?.classList.remove('hidden');
-                            }}
-                          />
-                          <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center hidden">
-                            <span className="text-white font-bold text-lg">{study.clientName.charAt(0)}</span>
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold text-gray-900">{study.clientName}</h3>
-                          <p className="text-gray-600">{study.industry} • {study.location} • {study.duration}</p>
-                          <p className="text-gray-700 mt-3 text-sm leading-relaxed">{study.description}</p>
+            {/* Improved Case Studies Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+              {caseStudies.slice(0, 4).map((study, index) => (
+                <div key={study.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  {/* Header with Logo and Info */}
+                  <div className="p-6 border-b border-gray-100">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center border-2 border-gray-100 shadow-sm">
+                        <img 
+                          src={study.clientLogo} 
+                          alt={`${study.clientName} logo`}
+                          className="max-w-12 max-h-12 object-contain"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                        <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center hidden">
+                          <span className="text-white font-bold text-lg">{study.clientName.charAt(0)}</span>
                         </div>
                       </div>
-
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-2">Challenge</h4>
-                          <p className="text-gray-700">{study.challenge}</p>
-                        </div>
-
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-2">Solution</h4>
-                          <p className="text-gray-700">{study.solution}</p>
-                        </div>
-
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-4">Results</h4>
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                              <div className="text-2xl font-bold text-primary-600">{study.results.autocompleteRankings}</div>
-                              <div className="text-sm text-gray-600">Autocomplete Rankings</div>
-                            </div>
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                              <div className="text-2xl font-bold text-primary-600">{study.results.trafficIncrease}</div>
-                              <div className="text-sm text-gray-600">Traffic Increase</div>
-                            </div>
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                              <div className="text-2xl font-bold text-primary-600">{study.results.aiCitations}</div>
-                              <div className="text-sm text-gray-600">AI Citations</div>
-                            </div>
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                              <div className="text-2xl font-bold text-primary-600">{study.results.leadIncrease}</div>
-                              <div className="text-sm text-gray-600">Lead Increase</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="bg-gradient-to-r from-primary-50 to-secondary-50 p-6 rounded-xl border border-primary-200">
-                          <div className="flex items-start space-x-3">
-                            <div className="flex-shrink-0">
-                              <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center">
-                                <span className="text-white font-bold text-sm">"</span>
-                              </div>
-                            </div>
-                            <div>
-                              <p className="text-gray-700 italic mb-3">"{study.testimonial.quote}"</p>
-                              <div className="text-sm">
-                                <div className="font-semibold text-gray-900">{study.testimonial.author}</div>
-                                <div className="text-gray-600">{study.testimonial.position}, {study.testimonial.company}</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-gray-900">{study.clientName}</h3>
+                        <p className="text-gray-600 text-sm">{study.industry} • {study.location}</p>
+                        <p className="text-gray-700 text-sm mt-1">{study.description}</p>
+                      </div>
+                      <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                        {study.duration}
                       </div>
                     </div>
                   </div>
 
-                  {/* Image */}
-                  <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                    <div className="relative">
-                      {/* Design Frame Background */}
-                      <div className="w-full h-96 bg-gradient-to-br from-slate-100 via-red-50 to-slate-100 rounded-2xl shadow-lg border-2 border-gray-200 relative overflow-hidden">
-                        {/* Decorative Elements */}
-                        <div className="absolute top-4 left-4 w-8 h-8 bg-primary-500/20 rounded-full"></div>
-                        <div className="absolute top-8 right-8 w-6 h-6 bg-secondary-500/20 rounded-full"></div>
-                        <div className="absolute bottom-8 left-8 w-4 h-4 bg-primary-500/30 rounded-full"></div>
-                        <div className="absolute bottom-4 right-4 w-10 h-10 bg-secondary-500/20 rounded-full"></div>
-                        
-                        {/* Grid Pattern */}
-                        <div className="absolute inset-0 opacity-5">
-                          <div className="w-full h-full" style={{
-                            backgroundImage: `radial-gradient(circle at 1px 1px, #666 1px, transparent 0)`,
-                            backgroundSize: '20px 20px'
-                          }}></div>
-                        </div>
-                        
-                        {/* Brand Logo in Center */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 max-w-48 max-h-48 flex items-center justify-center">
-                            <img 
-                              src={study.clientLogo} 
-                              alt={`${study.clientName} logo`}
-                              className="max-w-32 max-h-32 object-contain"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
-                                target.nextElementSibling?.classList.remove('hidden');
-                              }}
-                            />
-                            <div className="w-24 h-24 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center hidden">
-                              <span className="text-white font-bold text-2xl">{study.clientName.charAt(0)}</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Success Badge */}
-                        <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          ✓ Success
-                        </div>
-                        
-                        {/* Company Info Overlay */}
-                        <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-4">
-                          <div className="text-lg font-bold text-gray-900 mb-1">{study.clientName}</div>
-                          <div className="text-sm text-gray-600">{study.industry} • {study.location}</div>
-                          <div className="text-xs text-primary-600 font-medium mt-1">Case Study Success</div>
-                        </div>
+                  {/* Content */}
+                  <div className="p-6">
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Challenge</h4>
+                        <p className="text-gray-700 text-sm">{study.challenge}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Solution</h4>
+                        <p className="text-gray-700 text-sm">{study.solution}</p>
+                      </div>
+                    </div>
+
+                    {/* Results Grid */}
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                      <div className="bg-gray-50 p-3 rounded-lg text-center">
+                        <div className="text-lg font-bold text-primary-600">{study.results.autocompleteRankings}</div>
+                        <div className="text-xs text-gray-600">Autocomplete Rankings</div>
+                      </div>
+                      <div className="bg-gray-50 p-3 rounded-lg text-center">
+                        <div className="text-lg font-bold text-primary-600">{study.results.trafficIncrease}</div>
+                        <div className="text-xs text-gray-600">Traffic Increase</div>
+                      </div>
+                      <div className="bg-gray-50 p-3 rounded-lg text-center">
+                        <div className="text-lg font-bold text-primary-600">{study.results.aiCitations}</div>
+                        <div className="text-xs text-gray-600">AI Citations</div>
+                      </div>
+                      <div className="bg-gray-50 p-3 rounded-lg text-center">
+                        <div className="text-lg font-bold text-primary-600">{study.results.leadIncrease}</div>
+                        <div className="text-xs text-gray-600">Lead Increase</div>
+                      </div>
+                    </div>
+
+                    {/* Testimonial */}
+                    <div className="bg-gradient-to-r from-primary-50 to-secondary-50 p-4 rounded-lg border border-primary-200">
+                      <p className="text-gray-700 italic text-sm mb-2">"{study.testimonial.quote}"</p>
+                      <div className="text-xs">
+                        <div className="font-semibold text-gray-900">{study.testimonial.author}</div>
+                        <div className="text-gray-600">{study.testimonial.position}, {study.testimonial.company}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* View All Case Studies CTA */}
+            <div className="text-center">
+              <a
+                href="#contact"
+                className="inline-block bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Get Your Success Story
+              </a>
+            </div>
           </div>
         </section>
+
+        {/* Why Choose Us Section */}
+        <WhyChooseUs />
+
+        {/* Team Section */}
+        <Team />
+
+        {/* Roadmap Section */}
+        <Roadmap />
+
+        {/* Contact Section */}
+        <Contact />
+
+        {/* Get Started Section */}
+        <GetStarted />
       </main>
       <Footer />
     </div>
