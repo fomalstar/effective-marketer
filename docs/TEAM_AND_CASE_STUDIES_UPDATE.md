@@ -706,3 +706,28 @@ import Roadmap from '../components/Roadmap';
 - **Primary**: Red (#ff0000) - `primary-500`
 - **Secondary**: Yellow (#eab308) - `secondary-500`
 - **Result**: Consistent brand colors across all pages
+
+### **Case Studies Page Updates**
+**Problem**: Only 4 case studies showing instead of all 6, and outdated card design
+- **Issue**: Using `caseStudies.slice(0, 4)` limiting display to 4 studies
+- **Issue**: Old card design not visually appealing
+
+**Solution**: 
+- **Fixed Display**: Changed to `caseStudies.map()` to show all 6 case studies
+- **Updated Grid**: Changed to `grid-cols-1 lg:grid-cols-2 xl:grid-cols-3` for better layout
+- **New Card Design**: Modern 3D-style cards with:
+  - Rounded corners (`rounded-3xl`)
+  - Hover animations (`hover:-translate-y-2`)
+  - Gradient backgrounds and borders
+  - Color-coded sections (Challenge: red, Solution: blue)
+  - Enhanced testimonials with avatar circles
+  - Better typography and spacing
+
+**Result**: All 6 case studies (Boleron, Vision Express, XXL Lashes, Podvertise FM, Remotek, Revita) now display with modern, professional design
+
+### **SaaS Page Roadmap Removal**
+**Problem**: User requested removal of roadmap section from SaaS page
+- **Issue**: Roadmap section not needed on industry-specific page
+
+**Solution**: Removed `<Roadmap />` component from SaaS page
+- **Result**: Cleaner, more focused SaaS page without roadmap section

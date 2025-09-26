@@ -517,8 +517,6 @@ const SaaSCompanies: React.FC = () => {
           </div>
         </section>
 
-        {/* Roadmap Section */}
-        <Roadmap />
 
         {/* FAQ Section */}
         <section className="py-16 lg:py-20 bg-white">
