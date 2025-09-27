@@ -8,14 +8,10 @@ const getCurrentDate = () => {
   return new Date().toISOString().split('T')[0];
 };
 
-// Location data for dynamic pages
+// Location data for dynamic pages - ONLY include completed countries
 const locations = [
-  'malaysia',
   'usa', 
-  'uae',
-  'vietnam',
-  'france',
-  'bulgaria'
+  'vietnam'
 ];
 
 // Static pages data
@@ -85,7 +81,7 @@ const staticPages = [
     priority: '0.8',
     changefreq: 'weekly',
     image: {
-      loc: 'https://effectivemarketer.com/og-image-saas.jpg',
+      loc: 'https://effectivemarketer.com/og-image.jpg',
       title: 'AI SEO Services for SaaS Companies',
       caption: 'Dominate Google Autocomplete and AI platforms for SaaS keywords'
     }
@@ -95,7 +91,7 @@ const staticPages = [
     priority: '0.8',
     changefreq: 'weekly',
     image: {
-      loc: 'https://effectivemarketer.com/og-image-ecommerce.jpg',
+      loc: 'https://effectivemarketer.com/og-image.jpg',
       title: 'AI SEO Services for E-commerce Companies',
       caption: 'Dominate Google Autocomplete and AI platforms for e-commerce keywords'
     }
@@ -105,7 +101,7 @@ const staticPages = [
     priority: '0.8',
     changefreq: 'weekly',
     image: {
-      loc: 'https://effectivemarketer.com/og-image-healthcare.jpg',
+      loc: 'https://effectivemarketer.com/og-image.jpg',
       title: 'AI SEO Services for Healthcare Companies',
       caption: 'Dominate Google Autocomplete and AI platforms for healthcare keywords'
     }
@@ -124,7 +120,7 @@ const locationPages = locations.map(location => ({
   priority: '0.7',
   changefreq: 'weekly',
   image: {
-    loc: `https://effectivemarketer.com/og-image-${location}.jpg`,
+    loc: 'https://effectivemarketer.com/og-image.jpg',
     title: `Best AI SEO Agency in ${location.charAt(0).toUpperCase() + location.slice(1)}`,
     caption: `Leading AI SEO agency specializing in Google Autosuggest ranking in ${location.charAt(0).toUpperCase() + location.slice(1)}`
   }
