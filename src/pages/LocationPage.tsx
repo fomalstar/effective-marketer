@@ -25,7 +25,7 @@ import { getLocationData, LocationData } from '../data/locationData';
 
 const LocationPage: React.FC = () => {
   const { location } = useParams<{ location: string }>();
-  const data: LocationData = getLocationData(location || 'malaysia');
+  const data: LocationData = getLocationData(location || 'usa');
 
   const services = [
     {

@@ -107,7 +107,11 @@ const locationPages = locations.map(location => ({
   url: `https://effectivemarketer.com/ai-seo-agency-${location}`,
   priority: '0.7',
   changefreq: 'weekly',
-  image: null // No image until we have proper country-specific images
+  image: {
+    loc: 'https://effectivemarketer.com/og-image.jpg', // Using fallback until country-specific images are created
+    title: `Best AI SEO Agency in ${location.charAt(0).toUpperCase() + location.slice(1)}`,
+    caption: `Leading AI SEO agency specializing in Google Autosuggest ranking in ${location.charAt(0).toUpperCase() + location.slice(1)}`
+  }
 }));
 
 // Combine all pages
