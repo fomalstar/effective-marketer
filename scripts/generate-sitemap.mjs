@@ -80,31 +80,19 @@ const staticPages = [
     url: 'https://effectivemarketer.com/ai-seo-for-saas-companies',
     priority: '0.8',
     changefreq: 'weekly',
-    image: {
-      loc: 'https://effectivemarketer.com/og-image.jpg',
-      title: 'AI SEO Services for SaaS Companies',
-      caption: 'Dominate Google Autocomplete and AI platforms for SaaS keywords'
-    }
+    image: null // No image until we have proper industry-specific images
   },
   {
     url: 'https://effectivemarketer.com/ai-seo-for-ecommerce',
     priority: '0.8',
     changefreq: 'weekly',
-    image: {
-      loc: 'https://effectivemarketer.com/og-image.jpg',
-      title: 'AI SEO Services for E-commerce Companies',
-      caption: 'Dominate Google Autocomplete and AI platforms for e-commerce keywords'
-    }
+    image: null // No image until we have proper industry-specific images
   },
   {
     url: 'https://effectivemarketer.com/ai-seo-for-healthcare',
     priority: '0.8',
     changefreq: 'weekly',
-    image: {
-      loc: 'https://effectivemarketer.com/og-image.jpg',
-      title: 'AI SEO Services for Healthcare Companies',
-      caption: 'Dominate Google Autocomplete and AI platforms for healthcare keywords'
-    }
+    image: null // No image until we have proper industry-specific images
   },
   {
     url: 'https://effectivemarketer.com/onboarding',
@@ -119,11 +107,7 @@ const locationPages = locations.map(location => ({
   url: `https://effectivemarketer.com/ai-seo-agency-${location}`,
   priority: '0.7',
   changefreq: 'weekly',
-  image: {
-    loc: 'https://effectivemarketer.com/og-image.jpg',
-    title: `Best AI SEO Agency in ${location.charAt(0).toUpperCase() + location.slice(1)}`,
-    caption: `Leading AI SEO agency specializing in Google Autosuggest ranking in ${location.charAt(0).toUpperCase() + location.slice(1)}`
-  }
+  image: null // No image until we have proper country-specific images
 }));
 
 // Combine all pages
