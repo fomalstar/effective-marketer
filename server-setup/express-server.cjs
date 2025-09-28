@@ -112,12 +112,22 @@ function generateHTML(route, seo) {
 </html>`;
 }
 
-// Handle all routes with proper SEO
-app.get('/*', (req, res) => {
+// Handle specific routes with proper SEO
+Object.keys(seoData).forEach(route => {
+  app.get(route, (req, res) => {
+    const seo = seoData[route];
+    console.log(`📄 Serving route: ${route} with title: ${seo.title}`);
+    const html = generateHTML(route, seo);
+    res.send(html);
+  });
+});
+
+// Handle all other routes (fallback to homepage)
+app.get('*', (req, res) => {
   const route = req.path;
-  const seo = seoData[route] || seoData['/']; // Fallback to homepage SEO
+  const seo = seoData['/']; // Fallback to homepage SEO
   
-  console.log(`📄 Serving route: ${route} with title: ${seo.title}`);
+  console.log(`📄 Serving fallback route: ${route} with title: ${seo.title}`);
   
   const html = generateHTML(route, seo);
   res.send(html);
