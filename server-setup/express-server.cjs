@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -52,64 +53,27 @@ const seoData = {
 
 // Function to generate HTML with proper SEO and React app
 function generateHTML(route, seo) {
-  return `<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${seo.title}</title>
-    <meta name="description" content="${seo.description}" />
-    <meta name="keywords" content="${seo.keywords}" />
-    <link rel="canonical" href="${seo.canonical}" />
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="${seo.title}" />
-    <meta property="og:description" content="${seo.description}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${seo.canonical}" />
-    <meta property="og:image" content="https://effectivemarketer.com/og-image.jpg" />
-    <meta property="og:site_name" content="Effective Marketer" />
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${seo.title}" />
-    <meta name="twitter:description" content="${seo.description}" />
-    <meta name="twitter:image" content="https://effectivemarketer.com/og-image.jpg" />
-    <meta name="twitter:site" content="@effectivemarketer" />
-    
-    <!-- Additional SEO Meta Tags -->
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="bingbot" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="author" content="Effective Marketer" />
-    <meta name="copyright" content="© 2024 Effective Marketer. All rights reserved." />
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YK5XTB9L1C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YK5XTB9L1C');
-    </script>
-    
-    <script type="module" crossorigin src="/assets/main-DEFZx3vN.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-D3F3s8fL.js">
-    <link rel="modulepreload" crossorigin href="/assets/router-CeWAwckd.js">
-    <link rel="modulepreload" crossorigin href="/assets/helmet-BmDwPsnS.js">
-    <link rel="stylesheet" crossorigin href="/assets/main-Ci9Yw_6s.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>`;
+  // Read the built index.html file and inject SEO meta tags
+  const indexPath = path.join(__dirname, '../dist/index.html');
+  
+  let html = '';
+  try {
+    html = fs.readFileSync(indexPath, 'utf8');
+  } catch (error) {
+    console.error('Error reading index.html:', error);
+    return `<!doctype html><html><head><title>Error</title></head><body><h1>Error loading page</h1></body></html>`;
+  }
+  
+  // Inject SEO meta tags into the HTML
+  html = html.replace('<title>Google Autosuggests & AI SEO Agency - Effective Marketer</title>', `<title>${seo.title}</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${seo.description}" />`);
+  
+  // Add additional SEO meta tags if they don't exist
+  if (!html.includes('meta name="keywords"')) {
+    html = html.replace('</head>', `    <meta name="keywords" content="${seo.keywords}" />\n    <link rel="canonical" href="${seo.canonical}" />\n    \n    <!-- Open Graph Tags -->\n    <meta property="og:title" content="${seo.title}" />\n    <meta property="og:description" content="${seo.description}" />\n    <meta property="og:type" content="website" />\n    <meta property="og:url" content="${seo.canonical}" />\n    <meta property="og:image" content="https://effectivemarketer.com/og-image.jpg" />\n    <meta property="og:site_name" content="Effective Marketer" />\n    \n    <!-- Twitter Card Tags -->\n    <meta name="twitter:card" content="summary_large_image" />\n    <meta name="twitter:title" content="${seo.title}" />\n    <meta name="twitter:description" content="${seo.description}" />\n    <meta name="twitter:image" content="https://effectivemarketer.com/og-image.jpg" />\n    <meta name="twitter:site" content="@effectivemarketer" />\n    \n    <!-- Additional SEO Meta Tags -->\n    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />\n    <meta name="googlebot" content="index, follow" />\n    <meta name="bingbot" content="index, follow" />\n    <meta name="language" content="English" />\n    <meta name="revisit-after" content="7 days" />\n    <meta name="author" content="Effective Marketer" />\n    <meta name="copyright" content="© 2024 Effective Marketer. All rights reserved." />\n</head>`);
+  }
+  
+  return html;
 }
 
 
