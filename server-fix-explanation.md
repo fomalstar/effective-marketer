@@ -22,13 +22,14 @@ app.get('*', (req, res) => {
 
 To:
 ```javascript
-app.get('/*', (req, res) => {
+app.use((req, res) => {
 ```
 
 ## Why This Works
-- `/*` is the correct syntax for catch-all routes in newer Express versions
-- It matches any path that starts with `/`
-- This maintains the same functionality while being compatible with the current library versions
+- `app.use()` is the correct way to handle catch-all routes in Express 4.18.2
+- It catches all requests that haven't been handled by previous routes
+- This avoids the `path-to-regexp` compatibility issues with wildcard syntax
+- It maintains the same functionality while being compatible with the current Express version
 
 ## Result
 - ✅ Server should now start successfully on Render

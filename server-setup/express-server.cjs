@@ -115,7 +115,7 @@ function generateHTML(route, seo) {
 
 
 // Handle all routes - serve React app with proper SEO
-app.get('/*', (req, res) => {
+app.use((req, res) => {
   const route = req.path;
   
   // Get SEO data for this route, fallback to homepage
