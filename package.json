@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:static": "npm run build && npm run generate:static",
-    "generate:static": "node scripts/generate-static-pages.mjs",
+    "build:static": "npm run build && npm run fix:seo",
+    "fix:seo": "node scripts/fix-seo-build.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL",
