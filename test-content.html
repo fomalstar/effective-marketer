@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Content Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-link { display: block; margin: 10px 0; padding: 10px; background: #f0f0f0; text-decoration: none; color: #333; }
+        .test-link:hover { background: #e0e0e0; }
+        .instructions { background: #e8f4f8; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Full Content SEO Test</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Make sure backend server is running: <code>cd server-setup && npm start</code></li>
+            <li>Click the test links below</li>
+            <li>Right-click → "View Page Source"</li>
+            <li>Look for the full HTML content in the source</li>
+        </ol>
+    </div>
+    
+    <h2>Test Links:</h2>
+    <a href="http://localhost:3001/" class="test-link" target="_blank">
+        🏠 Homepage - Should show "Google Autosuggests & AI SEO Agency"
+    </a>
+    
+    <a href="http://localhost:3001/ai-seo-agency-usa" class="test-link" target="_blank">
+        🇺🇸 USA Page - Should show "The #1 AI SEO Agency in USA"
+    </a>
+    
+    <a href="http://localhost:3001/ai-seo-agency-vietnam" class="test-link" target="_blank">
+        🇻🇳 Vietnam Page - Should show "The #1 AI SEO Agency in Vietnam"
+    </a>
+    
+    <a href="http://localhost:3001/google-autosuggest-ranking" class="test-link" target="_blank">
+        🔍 Autosuggest Page - Should show "Google Autosuggest Ranking Services"
+    </a>
+    
+    <div class="instructions">
+        <h3>What to Look For:</h3>
+        <ul>
+            <li><strong>Title Tag:</strong> Each page should have a unique title</li>
+            <li><strong>H1 Tag:</strong> Each page should have a unique H1 heading</li>
+            <li><strong>Full Content:</strong> Complete HTML content should be visible in source</li>
+            <li><strong>SEO Meta Tags:</strong> Description, keywords, canonical URLs</li>
+        </ul>
+    </div>
+    
+    <div class="instructions">
+        <h3>Expected Results:</h3>
+        <p>✅ <strong>Before:</strong> Only empty &lt;div id="root"&gt;&lt;/div&gt;</p>
+        <p>✅ <strong>After:</strong> Full HTML content with headers, paragraphs, and all text</p>
+        <p>✅ <strong>SEO Benefit:</strong> Search engines can now crawl and index all content</p>
+    </div>
+</body>
+</html>
+
