@@ -106,34 +106,26 @@ function generateHTML(route, seo) {
   
   // Add additional SEO meta tags if they don't exist
   if (!html.includes('meta name="keywords"')) {
-    html = html.replace('</head>', `    <meta name="keywords" content="${seo.keywords}" />\n    <link rel="canonical" href="${seo.canonical}" />\n    \n    <!-- Open Graph Tags -->\n    <meta property="og:title" content="${seo.title}" />\n    <meta property="og:description" content="${seo.description}" />\n    <meta property="og:type" content="website" />\n    <meta property="og:url" content="${seo.canonical}" />\n    <meta property="og:image" content="https://effectivemarketer.com/og-image.jpg" />\n    <meta property="og:site_name" content="Effective Marketer" />\n    \n    <!-- Twitter Card Tags -->\n    <meta name="twitter:card" content="summary_large_image" />\n    <meta name="twitter:title" content="${seo.title}" />\n    <meta name="twitter:description" content="${seo.description}" />\n    <meta name="twitter:image" content="https://effectivemarketer.com/og-image.jpg" />\n    <meta name="twitter:site" content="@effectivemarketer" />\n    \n    <!-- Additional SEO Meta Tags -->\n    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />\n    <meta name="googlebot" content="index, follow" />\n    <meta name="bingbot" content="index, follow" />\n    <meta name="language" content="English" />\n    <meta name="revisit-after" content="7 days" />\n    <meta name="author" content="Effective Marketer" />\n    <meta name="copyright" content="© 2024 Effective Marketer. All rights reserved." />\n</head>`);
+    html = html.replace('</head>', `    <meta name="keywords" content="${seo.keywords}" />\n    <link rel="canonical" href="${seo.canonical}" />\n    \n    <!-- Open Graph Tags -->\n    <meta property="og:title" content="${seo.title}" />\n    <meta property="og:description" content="${seo.description}" />\n    <meta property="og:type" content="website" />\n    <meta property="og:url" content="${seo.canonical}" />\n    <meta property="og:image" content="https://effectivemarketer.com/og-image.jpg" />\n    <meta property="og:site_name" content="Effective Marketer" />\n    \n    <!-- Twitter Card Tags -->\n    <meta name="twitter:card" content="summary_large_image" />\n    <meta name="twitter:title" content="${seo.title}" />\n    <meta name="twitter:description" content="${seo.description}" />\n    <meta name="twitter:image" content="https://effectivemarketer.com/og-image.jpg" />\n    <meta name="twitter:site" content="@effectivemarketer" />\n    \n    <!-- Additional SEO Meta Tags -->\n    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />\n    <meta name="googlebot" content="index, follow" />\n    <meta name="bingbot" content="index, follow" />\n    <meta name="language" content="English" />\n    <meta name="revisit-after" content="7 days" />\n    <meta name="author" content="Effective Marketer" />\n    <meta name="copyright" content="© 2024 Effective Marketer. All rights reserved." />\n    \n    <!-- Debug script to check React app loading -->\n    <script>\n      window.addEventListener('load', function() {\n        console.log('Page loaded, checking React app...');\n        setTimeout(function() {\n          const root = document.getElementById('root');\n          if (root && root.children.length === 0) {\n            console.error('React app failed to mount - root element is empty');\n            console.error('Current URL:', window.location.href);\n            console.error('Expected route:', '${route}');\n          } else {\n            console.log('React app mounted successfully');\n            console.log('Root children count:', root ? root.children.length : 0);\n          }\n        }, 2000);\n      });\n    </script>\n</head>`);
   }
   
   return html;
 }
 
 
-// Handle specific routes with proper SEO
-Object.keys(seoData).forEach(route => {
-  app.get(route, (req, res) => {
-    const seo = seoData[route];
-    console.log(`📄 Serving route: ${route} with title: ${seo.title}`);
-    const html = generateHTML(route, seo);
-    res.send(html);
-  });
-});
-
-// Handle all other routes (fallback to homepage SEO)
+// Handle all routes - serve React app with proper SEO
 app.get('*', (req, res) => {
   const route = req.path;
-  const seo = seoData['/'] || {
+  
+  // Get SEO data for this route, fallback to homepage
+  const seo = seoData[route] || seoData['/'] || {
     title: 'Google Autosuggests & AI SEO Agency - Effective Marketer',
     description: 'Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete.',
     keywords: 'AI SEO agency, Google autosuggests optimization, AI SEO solutions',
     canonical: 'https://effectivemarketer.com/'
   };
   
-  console.log(`📄 Serving fallback route: ${route} with title: ${seo.title}`);
+  console.log(`📄 Serving route: ${route} with title: ${seo.title}`);
   
   const html = generateHTML(route, seo);
   res.send(html);
