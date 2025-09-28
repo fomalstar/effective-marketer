@@ -1,2 +1,9 @@
-# Fallback for React Router (all routes)
+# Specific redirects for static pages
+/ai-seo-agency-usa /ai-seo-agency-usa/index.html 200
+/ai-seo-agency-vietnam /ai-seo-agency-vietnam/index.html 200
+/google-autosuggest-ranking /google-autosuggest-ranking/index.html 200
+/ai-seo /ai-seo/index.html 200
+/case-studies /case-studies/index.html 200
+
+# Fallback for React Router (SPA routes)
 /* /index.html 200
