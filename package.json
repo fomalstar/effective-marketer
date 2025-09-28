@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:static": "npm run sitemap && npm run build",
     "start": "node server-setup/express-server.cjs",
     "start:backend": "node server-setup/express-server.cjs",
     "lint": "eslint .",
