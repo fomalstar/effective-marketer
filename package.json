@@ -6,17 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:static": "npm run build && npm run fix:seo",
-    "fix:seo": "node scripts/fix-seo-build.mjs",
+    "start": "node server-setup/express-server.cjs",
+    "start:backend": "node server-setup/express-server.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL",
     "sitemap": "node scripts/generate-sitemap.mjs",
-    "build:full": "npm run sitemap && npm run build:static",
-    "deploy": "npm run sitemap && npm run build:static && npm run indexnow"
+    "deploy:static": "npm run sitemap && npm run build",
+    "deploy:backend": "npm run build && npm run start:backend"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
