@@ -6,13 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:static": "npm run build",
+    "build:static": "npm run build && npm run generate:static",
+    "generate:static": "node scripts/generate-static-pages.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL",
     "sitemap": "node scripts/generate-sitemap.mjs",
-    "build:full": "npm run sitemap && npm run build",
-    "deploy": "npm run sitemap && npm run build && npm run indexnow"
+    "build:full": "npm run sitemap && npm run build:static",
+    "deploy": "npm run sitemap && npm run build:static && npm run indexnow"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
