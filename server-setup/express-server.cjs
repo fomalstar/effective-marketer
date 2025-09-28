@@ -48,6 +48,42 @@ const seoData = {
     description: 'Real client success stories and proven AI SEO results. See how we helped companies achieve 298% traffic increase and 189% lead generation growth with AI SEO strategies.',
     keywords: 'AI SEO case studies, SEO success stories, AI SEO results, client testimonials, SEO agency portfolio, proven SEO results',
     canonical: 'https://effectivemarketer.com/case-studies'
+  },
+  '/ai-topical-map': {
+    title: 'AI Topical Map Services | Effective Marketer',
+    description: 'Advanced AI topical mapping services to dominate your industry keywords. Our AI-powered topical maps help you rank for hundreds of related keywords and establish topical authority.',
+    keywords: 'AI topical map, topical mapping, AI content strategy, keyword mapping, topical authority, content planning, AI SEO strategy',
+    canonical: 'https://effectivemarketer.com/ai-topical-map'
+  },
+  '/lead-gen-ai-automation': {
+    title: 'AI Lead Generation Automation | Effective Marketer',
+    description: 'Automated AI lead generation services that scale your business. Our AI-powered lead generation systems deliver qualified leads 24/7 with advanced automation and optimization.',
+    keywords: 'AI lead generation, lead generation automation, AI marketing automation, automated lead gen, AI sales leads, lead generation services',
+    canonical: 'https://effectivemarketer.com/lead-gen-ai-automation'
+  },
+  '/ai-seo-for-saas-companies': {
+    title: 'AI SEO for SaaS Companies | Effective Marketer',
+    description: 'Specialized AI SEO services for SaaS companies. Dominate search results with our AI-powered SEO strategies designed specifically for software-as-a-service businesses.',
+    keywords: 'AI SEO for SaaS, SaaS SEO services, software SEO, SaaS marketing, AI SEO agency for SaaS, SaaS search optimization',
+    canonical: 'https://effectivemarketer.com/ai-seo-for-saas-companies'
+  },
+  '/ai-seo-for-ecommerce': {
+    title: 'AI SEO for E-commerce | Effective Marketer',
+    description: 'AI SEO services for e-commerce businesses. Boost your online store visibility with our specialized AI SEO strategies for product pages, category optimization, and e-commerce SEO.',
+    keywords: 'AI SEO for ecommerce, ecommerce SEO services, online store SEO, product page SEO, ecommerce marketing, AI SEO for online stores',
+    canonical: 'https://effectivemarketer.com/ai-seo-for-ecommerce'
+  },
+  '/ai-seo-for-healthcare': {
+    title: 'AI SEO for Healthcare | Effective Marketer',
+    description: 'AI SEO services for healthcare providers. HIPAA-compliant SEO strategies that help medical practices, hospitals, and healthcare companies dominate search results.',
+    keywords: 'AI SEO for healthcare, healthcare SEO services, medical SEO, healthcare marketing, HIPAA compliant SEO, medical practice SEO',
+    canonical: 'https://effectivemarketer.com/ai-seo-for-healthcare'
+  },
+  '/onboarding': {
+    title: 'Get Started with AI SEO | Effective Marketer',
+    description: 'Start your AI SEO journey with our comprehensive onboarding process. Get personalized AI SEO strategies and begin dominating search results in your industry.',
+    keywords: 'AI SEO onboarding, get started with AI SEO, AI SEO consultation, SEO strategy consultation, AI SEO setup',
+    canonical: 'https://effectivemarketer.com/onboarding'
   }
 };
 
