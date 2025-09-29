@@ -7,6 +7,28 @@
 
 const fs = require('fs');
 const path = require('path');
+const assetDir = path.join('dist', 'assets');
+
+function getAssetFilename(prefix, ext) {
+  try {
+    const files = fs.readdirSync(assetDir);
+    const match = files.find((file) => file.startsWith(prefix) && file.endsWith(ext));
+    if (match) {
+      return match;
+    }
+  } catch (error) {
+    console.warn(`⚠️ Unable to read assets for prefix ${prefix}:`, error.message);
+  }
+  return '';
+}
+
+function getAssetUrl(prefix, ext, fallback) {
+  const filename = getAssetFilename(prefix, ext);
+  if (filename) {
+    return `/assets/${filename}`;
+  }
+  return fallback;
+}
 
 console.log('🔥 FINAL ULTIMATE EXTRACTOR - ABSOLUTELY EVERYTHING!');
 console.log('=================================================');
@@ -361,9 +383,27 @@ function generateHTML(route, pageData, content) {
     gtag('js', new Date());
     gtag('config', 'G-YK5XTB9L1C');
   </script>
-  <script type="module" crossorigin src="/assets/main-CNtjwS6O.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/vendor-C7oc9blH.js">
-  <link rel="stylesheet" crossorigin href="/assets/main-Ci9Yw_6s.css">
+  ${(() => {
+        const mainJs = getAssetUrl('main-', '.js', '');
+        if (mainJs) {
+          return `<script type="module" crossorigin src="${mainJs}"></script>`;
+        }
+        return '';
+      })()}
+  ${(() => {
+        const vendor = getAssetUrl('vendor-', '.js', '');
+        if (vendor) {
+          return `<link rel="modulepreload" crossorigin href="${vendor}">`;
+        }
+        return '';
+      })()}
+  ${(() => {
+        const cssHref = getAssetUrl('main-', '.css', '');
+        if (cssHref) {
+          return `<link rel="stylesheet" crossorigin href="${cssHref}">`;
+        }
+        return '';
+      })()}
 
   <title>${pageData.title}</title>
   <meta name="description" content="${pageData.description}" />
