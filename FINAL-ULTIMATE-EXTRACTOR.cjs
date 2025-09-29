@@ -331,6 +331,9 @@ function generateHTML(route, pageData, content) {
   <meta name="keywords" content="${pageData.keywords || 'AI SEO, Google Autocomplete, SEO agency'}" />
   <link rel="canonical" href="${pageData.canonical}" />
   
+  <!-- SEO CONTENT IN HEAD - INDEXED BUT NEVER DISPLAYED -->
+  <meta name="page-content" content="${content.join(' ').replace(/"/g, '&quot;').replace(/'/g, '&#39;').substring(0, 8000)}" />
+  
   <!-- Open Graph Tags -->
   <meta property="og:title" content="${pageData.title}" />
   <meta property="og:description" content="${pageData.description}" />
@@ -443,12 +446,7 @@ function generateHTML(route, pageData, content) {
     </div>
   </div>
   
-  <div id="root">
-    <!-- SEO CONTENT - SCREEN READER ACCESSIBLE BUT VISUALLY HIDDEN -->
-    <div class="sr-only">
-      ${content.join('\n      ')}
-    </div>
-  </div>
+  <div id="root"></div>
   
   <script>
     // Hide loading and show content when React loads
