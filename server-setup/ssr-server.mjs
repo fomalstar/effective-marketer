@@ -33,8 +33,18 @@ if (!isProduction) {
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
 
-// Serve HTML
-app.use('*', async (req, res) => {
+// Serve HTML - use a more compatible route pattern
+app.use((req, res, next) => {
+  // Skip API routes and static files
+  if (req.path.startsWith('/api/') || req.path.includes('.')) {
+    return next()
+  }
+  
+  // Handle all other routes for SSR
+  handleSSR(req, res).catch(next)
+})
+
+async function handleSSR(req, res) {
   try {
     const url = req.originalUrl.replace(base, '')
 
@@ -61,7 +71,7 @@ app.use('*', async (req, res) => {
     console.log(e.stack)
     res.status(500).end(e.stack)
   }
-})
+}
 
 // Start http server
 app.listen(port, () => {
