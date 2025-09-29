@@ -76,6 +76,7 @@ async function handleSSR(req, res) {
 
     const html = template
       .replace(`<!--ssr-outlet-->`, rendered.html ?? '')
+      .replace('</head>', `${rendered.helmet?.title?.toString() ?? ''}${rendered.helmet?.meta?.toString() ?? ''}${rendered.helmet?.link?.toString() ?? ''}</head>`)
 
     res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
   } catch (e) {

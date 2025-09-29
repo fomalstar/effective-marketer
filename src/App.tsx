@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Future from './components/Future';
@@ -29,67 +28,63 @@ import SEOHead from './components/SEOHead';
 
 function App() {
   return (
-    <HelmetProvider>
-      <Router>
-          <Routes>
-            <Route path="/" element={
-              <div className="min-h-screen flex flex-col">
-                <Header />
-                <main className="flex-grow">
-                  <SEOHead />
-                  <Hero />
-                  <CaseStudyLogos />
-                  <Future />
-                  <Team />
-                  <Dashboard />
-                  <Roadmap />
-                  <GetStarted />
-                  <Contact />
-                  <FinalCTA />
-                </main>
-                <Footer />
+    <Routes>
+      <Route path="/" element={
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            <SEOHead />
+            <Hero />
+            <CaseStudyLogos />
+            <Future />
+            <Team />
+            <Dashboard />
+            <Roadmap />
+            <GetStarted />
+            <Contact />
+            <FinalCTA />
+          </main>
+          <Footer />
+        </div>
+      } />
+      <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
+      <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
+      <Route path="/ai-seo" element={<AISEO />} />
+      <Route path="/ai-topical-map" element={<AITopicalMap />} />
+      <Route path="/case-studies" element={<CaseStudies />} />
+      <Route path="/ai-seo-for-saas-companies" element={<SaaSCompanies />} />
+      <Route path="/ai-seo-for-ecommerce" element={<EcommerceCompanies />} />
+      <Route path="/ai-seo-for-healthcare" element={<HealthcareCompanies />} />
+      <Route path="/ai-seo-agency-usa" element={<USACountry />} />
+      <Route path="/ai-seo-agency-vietnam" element={<VietnamCountry />} />
+      <Route path="/ai-seo-agency-:location" element={<LocationPage />} />
+      <Route path="*" element={
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            <SEOHead 
+              title="Page Not Found | Effective Marketer"
+              description="The page you're looking for doesn't exist. Explore our AI SEO services and Google Autosuggest optimization solutions."
+              noIndex={true}
+            />
+            <div className="py-20 text-center">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">Page Not Found</h1>
+              <p className="text-xl text-gray-600 mb-8">The page you're looking for doesn't exist.</p>
+              <div className="space-y-4">
+                <a href="/" className="inline-block bg-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors duration-200 mr-4">
+                  Go Home
+                </a>
+                <a href="/google-autosuggest-ranking" className="inline-block bg-cyan-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-cyan-600 transition-colors duration-200">
+                  AI SEO Services
+                </a>
               </div>
-            } />
-            <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/google-autosuggest-ranking" element={<GoogleAutosuggestRanking />} />
-            <Route path="/lead-gen-ai-automation" element={<AIAutomation />} />
-            <Route path="/ai-seo" element={<AISEO />} />
-            <Route path="/ai-topical-map" element={<AITopicalMap />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
-            <Route path="/ai-seo-for-saas-companies" element={<SaaSCompanies />} />
-            <Route path="/ai-seo-for-ecommerce" element={<EcommerceCompanies />} />
-            <Route path="/ai-seo-for-healthcare" element={<HealthcareCompanies />} />
-        <Route path="/ai-seo-agency-usa" element={<USACountry />} />
-        <Route path="/ai-seo-agency-vietnam" element={<VietnamCountry />} />
-            <Route path="/ai-seo-agency-:location" element={<LocationPage />} />
-            <Route path="*" element={
-              <div className="min-h-screen flex flex-col">
-                <Header />
-                <main className="flex-grow">
-                  <SEOHead 
-                    title="Page Not Found | Effective Marketer"
-                    description="The page you're looking for doesn't exist. Explore our AI SEO services and Google Autosuggest optimization solutions."
-                    noIndex={true}
-                  />
-                  <div className="py-20 text-center">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Page Not Found</h1>
-                    <p className="text-xl text-gray-600 mb-8">The page you're looking for doesn't exist.</p>
-                    <div className="space-y-4">
-                      <a href="/" className="inline-block bg-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors duration-200 mr-4">
-                        Go Home
-                      </a>
-                      <a href="/google-autosuggest-ranking" className="inline-block bg-cyan-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-cyan-600 transition-colors duration-200">
-                        AI SEO Services
-                      </a>
-                    </div>
-                  </div>
-                </main>
-                <Footer />
-              </div>
-            } />
-          </Routes>
-      </Router>
-    </HelmetProvider>
+            </div>
+          </main>
+          <Footer />
+        </div>
+      } />
+    </Routes>
   );
 }
 
