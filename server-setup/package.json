@@ -2,11 +2,10 @@
   "name": "effective-marketer-backend",
   "version": "1.0.0",
   "description": "Backend server for Effective Marketer SEO optimization",
-  "type": "module",
-  "main": "ssr-server.mjs",
+  "main": "express-server.cjs",
   "scripts": {
-    "start": "node ssr-server.mjs",
-    "dev": "node ssr-server.mjs"
+    "start": "node express-server.cjs",
+    "dev": "node express-server.cjs"
   },
   "dependencies": {
     "compression": "^1.7.4",
