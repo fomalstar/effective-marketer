@@ -300,6 +300,38 @@ function extractHomepageContent() {
 
 // Function to generate HTML with embedded CSS
 function generateHTML(route, pageData, content) {
+  // Sanitize extracted content into plain text for JSON-LD (no HTML/code)
+  const raw = content.join(' ');
+  // First pass cleanup
+  const cleaned = raw
+    .replace(/<[^>]+>/g, ' ') // strip HTML
+    .replace(/[\{\}\[\]\(\)<>]/g, ' ') // strip braces
+    .replace(/[\/_@#*`~^|]+/g, ' ') // strip symbols
+    .replace(/\b(className|href|src|title|description|label|id|onClick|style|alt|role|aria-[\w-]+)\s*[:=]\s*[^,;\]\}\)]{0,200}(,|;|\]|\)|\}|\s)/g, ' ') // drop prop-like fragments
+    .replace(/\s+[,:;]\s+/g, ', ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Split into sentences and keep only human-readable ones
+  const sentences = cleaned
+    .split(/(?<=[\.!?])\s+/)
+    .map(s => s.trim())
+    .filter(s => {
+      if (s.length < 20) return false;
+      if (s.length > 400) return false;
+      // should contain letters
+      if (!/[a-zA-Z]/.test(s)) return false;
+      // reject utility-class heavy fragments
+      if (/(^|\s)(sm:|md:|lg:|xl:|bg-|text-|mt-|mb-|px-|py-|w-\[|w-|h-|grid|flex|items-|justify-|rounded|border|shadow|hover:|focus:|group-|from-|to-|via-)/.test(s)) return false;
+      // reject leftover attribute like tokens
+      if (/(?:\btype\b|\bname\b|\bvalue\b|\bpriceCurrency\b|\bOffer\b|\bOfferCatalog\b|\bbreadcrumb\b|\bListItem\b)/i.test(s)) return false;
+      return true;
+    });
+
+  const plainText = String(sentences.join(' '))
+    .replace(/"/g, '\\"')
+    .replace(/'/g, "\\'")
+    .substring(0, 20000);
   let css = '';
   try {
     const cssFiles = fs.readdirSync('dist/assets').filter(file => file.endsWith('.css'));
@@ -345,7 +377,7 @@ function generateHTML(route, pageData, content) {
     "@type": "WebPage",
     "mainEntity": {
       "@type": "Article",
-      "articleBody": "${content.join(' ').replace(/"/g, '\\"').replace(/'/g, "\\'").substring(0, 5000)}"
+      "articleBody": "${plainText}"
     }
   }
   </script>
@@ -479,6 +511,11 @@ function generateHTML(route, pageData, content) {
   </div>
   
   <div id="root"></div>
+  
+  <!-- FULL SEO CONTENT INERT TEMPLATE FOR VIEW-SOURCE (NO VISUAL IMPACT) -->
+  <template id="seo-content">
+    ${content.join(' ')}
+  </template>
   
   <script>
     // Hide loading and show content when React loads
