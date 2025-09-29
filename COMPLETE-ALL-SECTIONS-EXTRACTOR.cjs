@@ -419,37 +419,17 @@ function generateHTML(route, pageData, content) {
       opacity: 1;
     }
     
-    /* COMPLETE HIDING OF SEO CONTENT - BULLETPROOF */
-    .final-seo-content {
-      display: none !important;
-      visibility: hidden !important;
-      position: fixed !important;
-      left: -99999px !important;
-      top: -99999px !important;
-      width: 0 !important;
-      height: 0 !important;
-      max-width: 0 !important;
-      max-height: 0 !important;
-      overflow: hidden !important;
-      opacity: 0 !important;
-      z-index: -999999 !important;
-      clip: rect(0,0,0,0) !important;
-      border: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      font-size: 0 !important;
-      line-height: 0 !important;
-      text-indent: -99999px !important;
-    }
-    
-    /* Hide all child elements too */
-    .final-seo-content * {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
+    /* SCREEN READER ONLY - INVISIBLE BUT ACCESSIBLE TO SEARCH ENGINES */
+    .sr-only {
       position: absolute !important;
-      left: -99999px !important;
-      top: -99999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
     }
   </style>
 </head>
@@ -464,8 +444,8 @@ function generateHTML(route, pageData, content) {
   </div>
   
   <div id="root">
-    <!-- FINAL ULTIMATE SEO CONTENT - ABSOLUTELY EVERYTHING -->
-    <div class="final-seo-content">
+    <!-- SEO CONTENT - SCREEN READER ACCESSIBLE BUT VISUALLY HIDDEN -->
+    <div class="sr-only">
       ${content.join('\n      ')}
     </div>
   </div>
