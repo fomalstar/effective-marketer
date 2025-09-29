@@ -354,6 +354,8 @@ function generateHTML(route, pageData, content) {
     .replace(/"/g, '\\"')
     .replace(/'/g, "\\'")
     .substring(0, 20000);
+  const jsonTitle = pageData.title ? pageData.title.replace(/"/g, '\\"') : '';
+  const jsonDescription = pageData.description ? pageData.description.replace(/"/g, '\\"') : '';
   let css = '';
   try {
     const cssFiles = fs.readdirSync('dist/assets').filter(file => file.endsWith('.css'));
@@ -415,10 +417,20 @@ function generateHTML(route, pageData, content) {
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "name": "${jsonTitle}",
+    "description": "${jsonDescription}",
     "mainEntity": {
       "@type": "Article",
       "articleBody": "${plainText}"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Effective Marketer",
+    "url": "https://effectivemarketer.com/"
   }
   </script>
   

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, TrendingUp, Users, Target, Brain, Search, Globe, BarChart3, MapPin } from 'lucide-react';
+import { CheckCircle, TrendingUp, Users, Target, Brain, Search, Globe, BarChart3, MapPin, Mail, Phone } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -619,7 +619,67 @@ const VietnamCountry: React.FC = () => {
           faqs={faqs}
         />
 
-        <Contact />
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Partner With Our Vietnam Growth Team</h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Share your goals for Vietnam. We deliver a geo-targeted AI SEO roadmap covering Ho Chi Minh City, Hanoi, Da Nang, and cross-border priorities.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
+                <Contact 
+                  title="Request Your Vietnam AI SEO Blueprint"
+                  description="Submit your target sectors, target cities, and key services. Our Vietnam specialists send a localized AI SEO plan with rapid execution timeline."
+                  infoTitle="Vietnam AI SEO Desk"
+                  infoDescription="We partner with Vietnamese brands, regional enterprises, and cross-border teams expanding into Southeast Asia."
+                  infoEmailLabel="Vietnam Support"
+                  infoEmail="vietnam@effectivemarketer.com"
+                  infoResponseLabel="Local Response"
+                  infoResponseValue="Vietnam-based strategist replies within 24 hours"
+                  infoLocationsLabel="Vietnam Focus Cities"
+                  infoLocations="Ho Chi Minh City • Hanoi • Da Nang • Can Tho"
+                  stepsTitle="Vietnam Launch Timeline"
+                  steps={[
+                    'Local market discovery call within 24 hours',
+                    'Vietnam keyword & autocomplete map delivered in 5 days',
+                    'AI platform visibility plan executed across Vietnamese search ecosystems'
+                  ]}
+                />
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Vietnam Market Acceleration</h3>
+                  <p className="text-gray-600 text-xl mb-8">
+                    Our Vietnam execution team combines localized keyword intelligence, AI autocomplete dominance, and bilingual content systems to win across Vietnamese and English search journeys.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">178%</div>
+                    <div className="text-gray-900 font-semibold text-lg">Increase in inbound leads</div>
+                    <p className="text-gray-600 mt-2">Typical uplift for Vietnam-focused campaigns within the first 90 days.</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">12</div>
+                    <div className="text-gray-900 font-semibold text-lg">AI & search ecosystems</div>
+                    <p className="text-gray-600 mt-2">Coverage includes Google Vietnam, Coc Coc, Zalo, and major AI assistants.</p>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">Vietnam Expansion Steps</h4>
+                  <ul className="space-y-3 text-lg text-gray-600">
+                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>Localization & compliance audit</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Vietnam AI autocomplete domination playbook</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>On-going bilingual content & AI platform integration</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <GetStarted />
       </main>
       <Footer />

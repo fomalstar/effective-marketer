@@ -2,7 +2,41 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const Contact = () => {
+interface ContactProps {
+  title?: string;
+  description?: string;
+  showInfo?: boolean;
+  infoTitle?: string;
+  infoDescription?: string;
+  infoEmailLabel?: string;
+  infoEmail?: string;
+  infoResponseLabel?: string;
+  infoResponseValue?: string;
+  infoLocationsLabel?: string;
+  infoLocations?: string;
+  stepsTitle?: string;
+  steps?: string[];
+}
+
+const Contact: React.FC<ContactProps> = ({
+  title = 'Get Your Free Autocomplete Analysis',
+  description = 'Ready to dominate Google autocomplete suggestions? Complete the form below for a comprehensive analysis of your autocomplete opportunities and GEO potential.',
+  showInfo = true,
+  infoTitle = 'Connect With Our Experts',
+  infoDescription = 'Ready to dominate search suggestions? Our team of GEO and autocomplete specialists is ready to help you appear in Google autocomplete suggestions and get recommended by AI platforms before your competitors.',
+  infoEmailLabel = 'Email Support',
+  infoEmail = 'contact@effectivemarketer.com',
+  infoResponseLabel = 'Response Guarantee',
+  infoResponseValue = '24-hour response commitment',
+  infoLocationsLabel = 'International Reach',
+  infoLocations = 'USA • France • Vietnam • Bulgaria',
+  stepsTitle = 'Your Next Steps',
+  steps = [
+    'Free autocomplete and GEO analysis of your industry',
+    '30-minute strategy call within 24 hours',
+    'Custom roadmap to dominate autocomplete for your keywords'
+  ]
+}) => {
   const [formData, setFormData] = useState({
     website: '',
     name: '',
@@ -96,10 +130,10 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Get Your Free Autocomplete Analysis
+            {title}
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Ready to dominate Google autocomplete suggestions? Complete the form below for a comprehensive analysis of your autocomplete opportunities and GEO potential.
+            {description}
           </p>
         </div>
 
@@ -276,64 +310,60 @@ const Contact = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">Connect With Our Experts</h3>
-              <p className="text-gray-600 text-xl mb-8">
-                Ready to dominate search suggestions? Our team of GEO and autocomplete specialists is ready to help you appear in Google autocomplete suggestions and get recommended by AI platforms before your competitors.
-              </p>
-            </div>
+          {showInfo && (
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">{infoTitle}</h3>
+                <p className="text-gray-600 text-xl mb-8">
+                  {infoDescription}
+                </p>
+              </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-white" />
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-lg">{infoEmailLabel}</div>
+                    <div className="text-gray-600 text-lg">{infoEmail}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-semibold text-gray-900 text-lg">Email Support</div>
-                  <div className="text-gray-600 text-lg">contact@effectivemarketer.com</div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-lg">{infoResponseLabel}</div>
+                    <div className="text-gray-600 text-lg">{infoResponseValue}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-lg">{infoLocationsLabel}</div>
+                    <div className="text-gray-600 text-lg">{infoLocations}</div>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 text-lg">Response Guarantee</div>
-                  <div className="text-gray-600 text-lg">24-hour response commitment</div>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 text-lg">International Reach</div>
-                  <div className="text-gray-600 text-lg">USA • France • Vietnam • Bulgaria</div>
-                </div>
+              <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-xl p-6">
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">{stepsTitle}</h4>
+                <ul className="space-y-3 text-lg text-gray-600">
+                  {steps.map((step, index) => (
+                    <li key={step} className="flex items-start">
+                      <span className="text-red-500 mr-2">{index + 1}.</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-
-            <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-xl p-6">
-              <h4 className="text-xl font-semibold text-gray-900 mb-4">Your Next Steps</h4>
-              <ul className="space-y-3 text-lg text-gray-600">
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">1.</span>
-                  <span>Free autocomplete and GEO analysis of your industry</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">2.</span>
-                  <span>30-minute strategy call within 24 hours</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">3.</span>
-                  <span>Custom roadmap to dominate autocomplete for your keywords</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

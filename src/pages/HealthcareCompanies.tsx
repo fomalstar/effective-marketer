@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, TrendingUp, Users, Award, Target, Brain, Search, Globe, ArrowRight, Star, Zap, Shield, BarChart3, Clock, DollarSign, Heart, Stethoscope, Activity } from 'lucide-react';
+import { CheckCircle, TrendingUp, Users, Award, Target, Brain, Search, Globe, ArrowRight, Star, Zap, Shield, BarChart3, Clock, DollarSign, Heart, Stethoscope, Activity, Mail, Phone, MapPin } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -681,9 +681,66 @@ const HealthcareCompanies: React.FC = () => {
           subtitle="Common questions about AI SEO for healthcare companies"
           faqs={faqs}
         />
-
-        <Contact />
-        <GetStarted />
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Your Free Autocomplete Analysis</h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Ready to dominate Google autocomplete suggestions? Complete the form below for a comprehensive analysis of your autocomplete opportunities and GEO potential.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
+                <Contact 
+                  title="Book Your Healthcare Strategy Session"
+                  description="Request a HIPAA-compliant AI SEO strategy session. Our healthcare specialists respond within 24 hours with a custom medical marketing plan."
+                  infoTitle="Healthcare SEO Experts"
+                  infoDescription="We help hospitals, clinics, and healthcare tech companies dominate Google Autocomplete, get cited by AI platforms, and accelerate patient acquisition."
+                  infoEmailLabel="Healthcare Inquiries"
+                  infoEmail="healthcare@effectivemarketer.com"
+                  infoResponseLabel="Clinical Response Team"
+                  infoResponseValue="HIPAA-compliant consultations"
+                  infoLocationsLabel="Supported Regions"
+                  infoLocations="USA • UK • Canada • Australia"
+                  stepsTitle="Healthcare Onboarding Timeline"
+                  steps={[
+                    'HIPAA-compliant strategy call within 24 hours',
+                    'Medical keyword & service audit completed in 7 days',
+                    'AI SEO implementation with patient acquisition roadmap'
+                  ]}
+                />
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Healthcare AI SEO Outcomes</h3>
+                  <p className="text-gray-600 text-xl mb-8">
+                    Our team delivers compliant growth strategies for healthcare providers. Expect rapid medical keyword domination, improved patient acquisition funnels, and consistent AI platform citations across ChatGPT, Gemini, and medical directories.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">312%</div>
+                    <div className="text-gray-900 font-semibold text-lg">Average patient inquiries</div>
+                    <p className="text-gray-600 mt-2">Measured within the first 90 days of our healthcare AI SEO campaigns.</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">21</div>
+                    <div className="text-gray-900 font-semibold text-lg">AI & search touchpoints</div>
+                    <p className="text-gray-600 mt-2">Coverage across Google, Bing, ChatGPT, and medical review platforms.</p>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">What Happens Next?</h4>
+                  <ul className="space-y-3 text-lg text-gray-600">
+                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>Receive a medical SEO audit and compliance checklist</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Implement AI autocomplete domination playbook</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>Launch patient acquisition automation with AI reporting</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

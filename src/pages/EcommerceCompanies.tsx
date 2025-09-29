@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, TrendingUp, Users, Award, Target, Brain, Search, Globe, ArrowRight, Star, Zap, Shield, BarChart3, Clock, DollarSign, ShoppingCart, Package, CreditCard } from 'lucide-react';
+import { CheckCircle, TrendingUp, Users, Award, Target, Brain, Search, Globe, ArrowRight, Star, Zap, Shield, BarChart3, Clock, DollarSign, ShoppingCart, Package, CreditCard, Mail, Phone, MapPin } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -681,9 +681,66 @@ const EcommerceCompanies: React.FC = () => {
           subtitle="Common questions about AI SEO for e-commerce companies"
           faqs={faqs}
         />
-
-        <Contact />
-        <GetStarted />
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Book Your E-commerce Growth Audit</h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                We identify the product clusters, search journeys, and AI surfaces that drive conversions for e-commerce brands. Request a tactical growth audit with projections for 30, 60, and 90 days.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
+                <Contact 
+                  title="Request Your E-commerce Growth Blueprint"
+                  description="Share your top SKUs and target categories. We deliver a full AI SEO action plan with SKU-level autocomplete coverage and AI recommendation strategies."
+                  infoTitle="E-commerce AI SEO Desk"
+                  infoDescription="We scale e-commerce revenue by dominating autocomplete for transactional product queries and securing product mentions across AI shopping experiences."
+                  infoEmailLabel="E-commerce Support"
+                  infoEmail="ecommerce@effectivemarketer.com"
+                  infoResponseLabel="Growth Response Team"
+                  infoResponseValue="Conversion-led audits completed in 48 hours"
+                  infoLocationsLabel="Global Fulfillment Regions"
+                  infoLocations="USA • UK • EU • APAC"
+                  stepsTitle="E-commerce Implementation Timeline"
+                  steps={[
+                    'SKU & catalog intake with merchandising review',
+                    'Autocomplete domination strategy delivered in 5 days',
+                    'AI-powered product ranking rollout with CRO enhancements'
+                  ]}
+                />
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">E-commerce Conversion Accelerators</h3>
+                  <p className="text-gray-600 text-xl mb-8">
+                    Our proprietary AI SEO playbooks combine autocomplete clustering, AI-overview targeting, and buyer journey automation to boost high-intent traffic and conversion rates for DTC and marketplace brands.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">4.7x</div>
+                    <div className="text-gray-900 font-semibold text-lg">Average ROAS improvement</div>
+                    <p className="text-gray-600 mt-2">Measured after pairing autocomplete growth with AI-led product discovery. </p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">62%</div>
+                    <div className="text-gray-900 font-semibold text-lg">Increase in search-driven revenue</div>
+                    <p className="text-gray-600 mt-2">Across fashion, beauty, home, and electronics brands we support.</p>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-orange-50 to-cyan-50 rounded-xl p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">Your Launch Sequence</h4>
+                  <ul className="space-y-3 text-lg text-gray-600">
+                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>Product catalog relevance audit</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Autocomplete & AI shelf takeover roadmap</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>Revenue-focused growth sprints with CRO automation</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, TrendingUp, Users, Award, Target, Brain, Search, Globe, ArrowRight, Star, Zap, Shield, BarChart3, Clock, DollarSign } from 'lucide-react';
+import { CheckCircle, TrendingUp, Users, Award, Target, Brain, Search, Globe, ArrowRight, Star, Zap, Shield, BarChart3, Clock, DollarSign, Mail, Phone, MapPin } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -724,9 +724,66 @@ const SaaSCompanies: React.FC = () => {
           subtitle="Common questions about AI SEO for SaaS companies"
           faqs={faqs}
         />
-
-        <Contact />
-        <GetStarted />
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Schedule Your SaaS Growth Sprint</h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                We design AI SEO programs that accelerate ARR, pipeline velocity, and category dominance for B2B SaaS teams. Request a sprint roadmap aligned to your ICP, pricing motion, and product positioning.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
+                <Contact 
+                  title="Request Your SaaS Growth Sprint"
+                  description="Share your ICP, ACV, and product tier priorities. We deliver a sprint-ready AI SEO roadmap to drive demo requests, free trials, and ARR expansion."
+                  infoTitle="SaaS AI SEO Desk"
+                  infoDescription="We partner with B2B SaaS teams to dominate purchasing journeys across Google, AI assistants, and product review ecosystems."
+                  infoEmailLabel="SaaS Inquiries"
+                  infoEmail="saas@effectivemarketer.com"
+                  infoResponseLabel="Pipeline Acceleration Team"
+                  infoResponseValue="Revenue-focused plans within 24 hours"
+                  infoLocationsLabel="Global GTM Regions"
+                  infoLocations="USA • Canada • UK • DACH • APAC"
+                  stepsTitle="SaaS Launch Timeline"
+                  steps={[
+                    'ICP & messaging calibration workshop',
+                    'AI search & autocomplete coverage delivered in 5 days',
+                    'Growth sprint execution with pipeline analytics'
+                  ]}
+                />
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">SaaS KPIs We Influence</h3>
+                  <p className="text-gray-600 text-xl mb-8">
+                    Our AI SEO framework accelerates ARR expansion, improves demo conversion rates, and delivers category ownership for PLG and sales-led teams. Your GTM motion gets a compound growth engine across search and AI platforms.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">189%</div>
+                    <div className="text-gray-900 font-semibold text-lg">Pipeline velocity</div>
+                    <p className="text-gray-600 mt-2">Average lift for SaaS teams prioritizing demo volume & free trials.</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">42%</div>
+                    <div className="text-gray-900 font-semibold text-lg">Expansion ARR increase</div>
+                    <p className="text-gray-600 mt-2">Driven by autocomplete coverage across tiered pricing packages.</p>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-xl p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">Your SaaS Sprint Cadence</h4>
+                  <ul className="space-y-3 text-lg text-gray-600">
+                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>Product, ICP, and positioning deep dive</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Intent map creation for demos, trials, and expansion</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>AI SEO execution with GTM analytics dashboard</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

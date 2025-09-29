@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, TrendingUp, Users, Target, Brain, Search, Globe, BarChart3, MapPin } from 'lucide-react';
+import { CheckCircle, TrendingUp, Users, Target, Brain, Search, Globe, BarChart3, MapPin, Mail, Phone } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -660,7 +660,67 @@ const USACountry: React.FC = () => {
           faqs={faqs}
         />
 
-        <Contact />
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Book Your U.S. AI SEO Strategy Session</h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                Partner with a U.S.-based team that dominates Google Autocomplete, AI platform citations, and localized acquisition funnels across all 50 states.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
+                <Contact 
+                  title="Request Your U.S. Market Blueprint"
+                  description="Tell us your target states, industries, and revenue objectives. Our U.S. strategists design a geography-specific AI SEO program within 24 hours."
+                  infoTitle="United States AI SEO Desk"
+                  infoDescription="We deliver coast-to-coast coverage for enterprise brands, growth-stage startups, and regional category leaders."
+                  infoEmailLabel="U.S. Support Desk"
+                  infoEmail="usa@effectivemarketer.com"
+                  infoResponseLabel="Response Guarantee"
+                  infoResponseValue="Senior strategist replies same business day"
+                  infoLocationsLabel="Regional Expertise"
+                  infoLocations="West Coast • Mountain • Midwest • East Coast • Southeast"
+                  stepsTitle="USA Launch Timeline"
+                  steps={[
+                    'Discovery call and competitive gap analysis within 24 hours',
+                    'State & city-specific autocomplete rollout in 5 business days',
+                    'AI platform coverage with conversion reporting and growth sprints'
+                  ]}
+                />
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">U.S. Growth Outcomes</h3>
+                  <p className="text-gray-600 text-xl mb-8">
+                    We accelerate growth for American brands by aligning AI SEO, category positioning, and local demand capture. Expect faster pipeline velocity, AI dominance, and nationwide brand authority.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">146%</div>
+                    <div className="text-gray-900 font-semibold text-lg">Average ARR lift</div>
+                    <p className="text-gray-600 mt-2">U.S. clients increase ARR by doubling high-intent AI search exposure.</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-red-500 mb-2">28</div>
+                    <div className="text-gray-900 font-semibold text-lg">AI & search entry points</div>
+                    <p className="text-gray-600 mt-2">Coverage includes Google, Bing, Perplexity, ChatGPT, and voice ecosystems.</p>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-xl p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">What Happens Next?</h4>
+                  <ul className="space-y-3 text-lg text-gray-600">
+                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>Receive a geography-specific autocomplete & AI dominance report</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Launch a tailored sprint for local, regional, and national keywords</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>Monitor conversions with our U.S. market intelligence dashboard</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <GetStarted />
       </main>
       <Footer />
