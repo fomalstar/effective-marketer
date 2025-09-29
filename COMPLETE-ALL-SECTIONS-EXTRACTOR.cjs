@@ -31,29 +31,15 @@ function extractAllContent(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   let allContent = [];
   
-  // Method 1: JSX text content
-  const jsxMatches = content.match(/>([^<{}]+)</g) || [];
-  jsxMatches.forEach(match => {
-    const text = match.substring(1).trim();
-    if (text.length > 3 && 
-        !text.includes('{') && 
-        !text.includes('}') &&
-        !text.includes('className')) {
-      
-      if (text.length < 100) {
-        allContent.push(`<h3>${text}</h3>`);
-      } else {
-        allContent.push(`<p>${text}</p>`);
-      }
-    }
-  });
+  // SKIP JSX extraction completely - focus only on safe content types
   
-  // Method 2: String literals with advanced filtering
+  // Method 1: Only extract safe string literals - avoid all JSX patterns
   const stringMatches = content.match(/["']([^"']{15,}?)["']/g) || [];
   stringMatches.forEach(match => {
     const text = match.slice(1, -1).trim();
     
     if (text && 
+        // Basic filters
         !text.includes('className') &&
         !text.includes('import') &&
         !text.includes('export') &&
@@ -65,6 +51,7 @@ function extractAllContent(filePath) {
         !text.includes('http') &&
         !text.includes('src/') &&
         !text.includes('../../') &&
+        // CSS/style filters  
         !text.includes('px-') &&
         !text.includes('py-') &&
         !text.includes('bg-') &&
@@ -72,7 +59,26 @@ function extractAllContent(filePath) {
         !text.includes('hover:') &&
         !text.includes('flex') &&
         !text.includes('grid') &&
-        text.split(' ').length > 3) {
+        // JSX/HTML filters
+        !text.includes('<') &&
+        !text.includes('>') &&
+        !text.includes('href') &&
+        !text.includes('onClick') &&
+        !text.includes('target') &&
+        !text.includes('rel=') &&
+        !text.includes('=') &&
+        !text.includes('{') &&
+        !text.includes('}') &&
+        !text.includes('icon:') &&
+        !text.includes('title:') &&
+        !text.includes('description:') &&
+        !text.includes('},') &&
+        !text.includes('component') &&
+        !text.includes('props') &&
+        text.split(' ').length > 3 &&
+        // Must be actual sentences/phrases
+        /^[A-Z]/.test(text) && // Starts with capital letter
+        text.includes(' ')) { // Contains spaces (real phrases)
       
       if (text.length < 80) {
         allContent.push(`<h3>${text}</h3>`);
