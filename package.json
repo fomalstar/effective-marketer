@@ -7,7 +7,7 @@
     "dev": "vite",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.jsx",
-    "build": "vite build && node PERFECT-CONTENT-EXTRACTOR.cjs",
+    "build": "vite build && node FINAL-ULTIMATE-EXTRACTOR.cjs",
     "build:static": "vite build",
     "build:render": "node build.js",
     "start": "node server-setup/express-server.cjs",
