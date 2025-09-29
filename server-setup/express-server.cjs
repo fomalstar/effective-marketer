@@ -569,6 +569,7 @@ app.listen(PORT, () => {
   console.log(`🔍 Test SEO: http://localhost:${PORT}/ai-seo-agency-usa`);
   console.log(`✅ Each page now has unique titles and meta tags!`);
   console.log(`📝 API endpoints available for n8n integration`);
+  console.log(`🏠 Homepage content should be working now!`);
 });
 
 module.exports = app;
