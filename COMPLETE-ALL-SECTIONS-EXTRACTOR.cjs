@@ -331,8 +331,6 @@ function generateHTML(route, pageData, content) {
   <meta name="keywords" content="${pageData.keywords || 'AI SEO, Google Autocomplete, SEO agency'}" />
   <link rel="canonical" href="${pageData.canonical}" />
   
-  <!-- SEO CONTENT IN HEAD - INDEXED BUT NEVER DISPLAYED -->
-  <meta name="page-content" content="${content.join(' ').replace(/"/g, '&quot;').replace(/'/g, '&#39;').substring(0, 8000)}" />
   
   <!-- Open Graph Tags -->
   <meta property="og:title" content="${pageData.title}" />
@@ -422,18 +420,6 @@ function generateHTML(route, pageData, content) {
       opacity: 1;
     }
     
-    /* SCREEN READER ONLY - INVISIBLE BUT ACCESSIBLE TO SEARCH ENGINES */
-    .sr-only {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
   </style>
 </head>
 <body>
@@ -446,7 +432,12 @@ function generateHTML(route, pageData, content) {
     </div>
   </div>
   
-  <div id="root"></div>
+  <div id="root">
+    <!-- SEO CONTENT - COMPLETELY INVISIBLE BUT INDEXED -->
+    <div style="position:absolute!important;left:-99999px!important;top:-99999px!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(1px,1px,1px,1px)!important;border:0!important;padding:0!important;margin:0!important;white-space:nowrap!important;" aria-hidden="true">
+      ${content.join('\n      ')}
+    </div>
+  </div>
   
   <script>
     // Hide loading and show content when React loads
