@@ -6,12 +6,19 @@ const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'
 
 // Cached production assets
-const templateHtml = isProduction
-  ? await fs.readFile('../dist/client/index.html', 'utf-8')
-  : ''
-const ssrManifest = isProduction
-  ? await fs.readFile('../dist/client/.vite/ssr-manifest.json', 'utf-8')
-  : undefined
+let templateHtml = ''
+let ssrManifest = undefined
+
+if (isProduction) {
+  try {
+    templateHtml = await fs.readFile('../dist/client/index.html', 'utf-8')
+    ssrManifest = await fs.readFile('../dist/client/.vite/ssr-manifest.json', 'utf-8')
+  } catch (error) {
+    console.error('Error loading production assets:', error.message)
+    console.log('Make sure to run "npm run build" before starting the server')
+    process.exit(1)
+  }
+}
 
 // Create http server
 const app = express()
