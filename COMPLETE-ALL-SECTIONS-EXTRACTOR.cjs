@@ -249,14 +249,14 @@ function generateCompleteHTML(route, pageData, allContent) {
       z-index: -999999 !important;
     }
     
-    /* LOADING SCREEN - NO FLASH */
+    /* LOADING SCREEN - BRAND COLORS */
     .loading-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -270,24 +270,32 @@ function generateCompleteHTML(route, pageData, allContent) {
     }
     
     .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-top: 4px solid white;
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255,255,255,0.1);
+      border-top: 4px solid #ef4444;
+      border-right: 4px solid #dc2626;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
+      animation: spin 1.2s linear infinite;
+      margin: 0 auto 24px;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
     }
     
     .loading-text {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      background: linear-gradient(45deg, #ffffff, #ef4444);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     .loading-subtitle {
       font-size: 14px;
-      opacity: 0.8;
+      opacity: 0.7;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
     }
     
     @keyframes spin {
