@@ -1,9 +1,12 @@
 import fs from 'node:fs/promises'
 import express from 'express'
+import { cwd } from 'process'
 
 const isProduction = process.env.NODE_ENV === 'production'
 const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'
+
+console.log('🔧 SSR Server - Working directory:', cwd())
 
 // Cached production assets
 let templateHtml = ''
@@ -11,11 +14,13 @@ let ssrManifest = undefined
 
 if (isProduction) {
   try {
-    templateHtml = await fs.readFile('../dist/client/index.html', 'utf-8')
-    ssrManifest = await fs.readFile('../dist/client/.vite/ssr-manifest.json', 'utf-8')
+    templateHtml = await fs.readFile('./dist/client/index.html', 'utf-8')
+    ssrManifest = await fs.readFile('./dist/client/.vite/ssr-manifest.json', 'utf-8')
     console.log('✅ Production assets loaded successfully')
   } catch (error) {
     console.error('❌ Error loading production assets:', error.message)
+    console.error('🔧 Working directory:', cwd())
+    console.error('🔧 Looking for: ./dist/client/index.html')
     process.exit(1)
   }
 }
@@ -37,7 +42,7 @@ if (!isProduction) {
           const compression = (await import('compression')).default
           const sirv = (await import('sirv')).default
           app.use(compression())
-          app.use(base, sirv('../dist/client', { extensions: [] }))
+          app.use(base, sirv('./dist/client', { extensions: [] }))
         }
 
 // Serve HTML - use a more compatible route pattern
@@ -59,12 +64,12 @@ async function handleSSR(req, res) {
     let render
             if (!isProduction) {
               // Always read fresh template in development
-              template = await fs.readFile('../index.html', 'utf-8')
+              template = await fs.readFile('./index.html', 'utf-8')
               template = await vite.transformIndexHtml(url, template)
               render = (await vite.ssrLoadModule('/src/entry-server.jsx')).render
             } else {
               template = templateHtml
-              render = (await import('../dist/server/entry-server.js')).render
+              render = (await import('./dist/server/entry-server.js')).render
             }
 
     const rendered = await render(url, ssrManifest)
