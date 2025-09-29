@@ -31,95 +31,48 @@ function extractAllContent(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   let allContent = [];
   
-  // 🔒 ROBUST CONTENT EXTRACTION - PROTECTED FROM FUTURE EDITS
-  // This approach extracts ALL valid content while avoiding JSX fragments
+  // 🎯 SIMPLE & ACCURATE EXTRACTION - Gets EVERYTHING real, blocks ALL code
   
-  // Method 1: SAFE JSX text extraction - BULLETPROOF FILTERING
-  const jsxMatches = content.match(/>([^<>{}]+)</g) || [];
-  jsxMatches.forEach(match => {
-    const text = match.substring(1).trim();
-    
-    // 🔒 BULLETPROOF FILTERING - prevent ALL JSX fragments
-    if (text.length > 5 && 
-        text.length < 300 && 
-        // Block ALL JSX/HTML patterns
-        !text.includes('{') && 
-        !text.includes('}') &&
-        !text.includes('<') &&
-        !text.includes('>') &&
-        !text.includes('=') &&
-        !text.includes('href') &&
-        !text.includes('onClick') &&
-        !text.includes('className') &&
-        !text.includes('target') &&
-        !text.includes('rel') &&
-        !text.includes('src') &&
-        !text.includes('import') &&
-        !text.includes('export') &&
-        !text.includes('function') &&
-        !text.includes('const') &&
-        !text.includes('(') &&
-        !text.includes(')') &&
-        !text.includes('[') &&
-        !text.includes(']') &&
-        !text.includes(';') &&
-        !text.includes(':') &&
-        !text.includes('/') &&
-        !text.includes('\\') &&
-        !text.includes('|') &&
-        !text.includes('&') &&
-        !text.includes('%') &&
-        !text.includes('#') &&
-        !text.includes('@') &&
-        !text.includes('*') &&
-        !text.includes('+') &&
-        !text.includes('~') &&
-        !text.includes('`') &&
-        // Must be real readable text
-        text.includes(' ') && // Contains spaces
-        text.split(' ').length >= 3 && // At least 3 words
-        /^[A-Z]/.test(text) && // Starts with capital
-        /[a-z]/.test(text) && // Contains lowercase
-        !/^\d/.test(text) && // Doesn't start with number
-        !text.match(/^[A-Z]+$/) && // Not all caps
-        !text.match(/^\w+$/) && // Not single word
-        !text.match(/^\w+:$/) && // Not object key
-        text.length > 15) { // Minimum meaningful length
-      
-      if (text.length < 80) {
-        allContent.push(`<h3>${text}</h3>`);
-      } else {
-        allContent.push(`<p>${text}</p>`);
-      }
-    }
-  });
-
-  // Method 2: String literals with balanced filtering
-  const stringMatches = content.match(/["']([^"']{10,}?)["']/g) || [];
-  stringMatches.forEach(match => {
+  // Extract ALL quoted strings (the most reliable method)
+  const allQuotedStrings = content.match(/["']([^"']{5,})["']/gs) || [];
+  
+  allQuotedStrings.forEach(match => {
     const text = match.slice(1, -1).trim();
     
+    // ONLY block obvious code patterns - allow all real content
     if (text && 
+        text.length < 3000 && // Very generous length limit
+        // Block only clear code patterns
+        !text.includes('import ') &&
+        !text.includes('export ') &&
         !text.includes('className') &&
-        !text.includes('import') &&
-        !text.includes('export') &&
-        !text.includes('function') &&
-        !text.includes('const') &&
-        !text.includes('React') &&
-        !text.includes('http') &&
+        !text.includes('onClick') &&
+        !text.includes('useState') &&
+        !text.includes('useEffect') &&
+        !text.includes('React.') &&
+        !text.includes('tsx') &&
+        !text.includes('jsx') &&
+        !text.includes('http://') &&
+        !text.includes('https://') &&
         !text.includes('src/') &&
         !text.includes('../../') &&
-        !text.includes('px-') &&
-        !text.includes('py-') &&
-        !text.includes('bg-') &&
-        !text.includes('text-') &&
-        !text.includes('hover:') &&
-        !text.includes('flex') &&
-        !text.includes('grid') &&
-        // Less strict about symbols - allow more content
-        text.split(' ').length > 2) { // Reduced from 3 to 2
+        !text.includes('require(') &&
+        !text.includes('console.') &&
+        !text.includes('document.') &&
+        !text.includes('window.') &&
+        !text.includes('addEventListener') &&
+        !text.includes('querySelector') &&
+        !text.includes('getElementById') &&
+        // Block only obvious CSS classes (not all text with dashes)
+        !text.match(/^[\w-]+$/) && // Single CSS class
+        !text.match(/^(bg|text|border|rounded|shadow|hover|focus|active|disabled|flex|grid|w|h|m|p|space|gap|top|left|right|bottom|z|opacity|transform|transition|duration|ease)-/) &&
+        // Must be real content
+        text.includes(' ') && // Contains spaces (real sentences)
+        text.split(' ').length >= 3 && // At least 3 words
+        /[a-zA-Z]/.test(text)) { // Contains letters
       
-      if (text.length < 80) {
+      // Format based on length - preserve everything
+      if (text.length < 100) {
         allContent.push(`<h3>${text}</h3>`);
       } else {
         allContent.push(`<p>${text}</p>`);
@@ -140,11 +93,11 @@ function extractAllContent(filePath) {
     if (match) {
       const arrayContent = match[2] || match[1]; // Handle with/without const
       
-      // ONLY extract safe quoted content - NO JSX elements
-      const titleMatches = arrayContent.match(/title:\s*["']([^"'<>{}=]+)["']/g) || [];
-      const descMatches = arrayContent.match(/description:\s*["']([^"'<>{}=]+)["']/g) || [];
-      const questionMatches = arrayContent.match(/question:\s*["']([^"'<>{}=]+)["']/g) || [];
-      const answerMatches = arrayContent.match(/answer:\s*["']([^"'<>{}=]+)["']/g) || [];
+      // EXTRACT COMPLETE CONTENT - including multiline strings
+      const titleMatches = arrayContent.match(/title:\s*["']([\s\S]*?)["']/g) || [];
+      const descMatches = arrayContent.match(/description:\s*["']([\s\S]*?)["']/g) || [];
+      const questionMatches = arrayContent.match(/question:\s*["']([\s\S]*?)["']/g) || [];
+      const answerMatches = arrayContent.match(/answer:\s*["']([\s\S]*?)["']/g) || [];
       
       titleMatches.forEach(match => {
         const title = match.replace(/title:\s*["']/, '').replace(/["']$/, '').trim();
@@ -172,8 +125,8 @@ function extractAllContent(filePath) {
       
       answerMatches.forEach(match => {
         const answer = match.replace(/answer:\s*["']/, '').replace(/["']$/, '').trim();
-        // Extra safety check
-        if (answer && answer.length > 10 && !answer.includes('<') && !answer.includes('>') && !answer.includes('{') && !answer.includes('}')) {
+        // Extra safety check - ALLOW LONG ANSWERS
+        if (answer && answer.length > 10 && answer.length < 2000 && !answer.includes('<') && !answer.includes('>') && !answer.includes('{') && !answer.includes('}')) {
           allContent.push(`<p>${answer}</p>`);
         }
       });
