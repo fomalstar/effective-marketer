@@ -18,7 +18,9 @@ if (isProduction) {
     const possiblePaths = [
       './dist/client/index.html',
       '../dist/client/index.html',
-      './server-setup/../dist/client/index.html'
+      './server-setup/../dist/client/index.html',
+      '../src/dist/client/index.html',
+      './src/dist/client/index.html'
     ]
     
     let templatePath = null
@@ -56,7 +58,7 @@ if (isProduction) {
     }
     
     // Check for dist in different locations
-    const distLocations = ['./dist', '../dist', './server-setup/../dist']
+    const distLocations = ['./dist', '../dist', './server-setup/../dist', './src/dist', '../src/dist']
     for (const location of distLocations) {
       try {
         const exists = await fs.access(location).then(() => true).catch(() => false)
@@ -94,7 +96,7 @@ if (!isProduction) {
           const compression = (await import('compression')).default
           const sirv = (await import('sirv')).default
           app.use(compression())
-          app.use(base, sirv('../dist/client', { extensions: [] }))
+          app.use(base, sirv('./dist/client', { extensions: [] }))
         }
 
 // Serve HTML - use a more compatible route pattern
