@@ -87,9 +87,31 @@ const seoData = {
   }
 };
 
-// Function to generate HTML with proper SEO and serve the built React app
+// Function to serve static HTML files with FULL content for SEO
 function generateHTML(route, seo) {
-  // Read the built React app HTML template
+  // Try to read the static HTML file with full content first
+  let staticFilePath;
+  
+  if (route === '/') {
+    staticFilePath = path.join(__dirname, '../dist/index.html');
+  } else {
+    // For routes like /ai-seo-agency-usa, look for dist/ai-seo-agency-usa/index.html
+    const routePath = route.substring(1); // Remove leading slash
+    staticFilePath = path.join(__dirname, '../dist', routePath, 'index.html');
+  }
+  
+  // Try to read the static HTML file with full content
+  try {
+    if (fs.existsSync(staticFilePath)) {
+      const staticHTML = fs.readFileSync(staticFilePath, 'utf-8');
+      console.log(`✅ Serving static HTML with full content: ${staticFilePath}`);
+      return staticHTML;
+    }
+  } catch (error) {
+    console.log(`⚠️ Static file not found: ${staticFilePath}, generating dynamic HTML`);
+  }
+  
+  // Fallback: Read the React template and inject SEO
   let template;
   try {
     template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf-8');
@@ -141,6 +163,7 @@ function generateHTML(route, seo) {
   // Inject our SEO tags before </head>
   htmlWithSEO = htmlWithSEO.replace('</head>', `${seoTags}</head>`);
   
+  console.log(`📄 Serving dynamic HTML with SEO for: ${route}`);
   return htmlWithSEO;
 }
 
