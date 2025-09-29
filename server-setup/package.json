@@ -2,22 +2,28 @@
   "name": "effective-marketer-backend",
   "version": "1.0.0",
   "description": "Backend server for Effective Marketer SEO optimization",
-  "main": "ssr-server.cjs",
+  "type": "module",
+  "main": "ssr-server.mjs",
   "scripts": {
-    "start": "node ssr-server.cjs",
-    "dev": "node ssr-server.cjs"
+    "start": "node ssr-server.mjs",
+    "dev": "node ssr-server.mjs"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "helmet": "^7.1.0",
     "compression": "^1.7.4",
-    "sirv": "^2.0.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "sirv": "^2.0.4"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["seo", "express", "backend", "effective-marketer"],
+  "keywords": [
+    "seo",
+    "express",
+    "backend",
+    "effective-marketer"
+  ],
   "author": "Effective Marketer",
   "license": "MIT"
 }
