@@ -48,14 +48,32 @@ function generateCompleteHTML(route, title, description, allContent) {
   <link rel="canonical" href="https://effectivemarketer.com${route}" />
   <style>
     ${css}
-    /* Hide SEO content from users but keep visible to Google */
+    /* Completely hide SEO content from visual display */
     .seo-content {
+      display: none !important;
+      visibility: hidden !important;
       position: absolute !important;
       left: -10000px !important;
-      top: auto !important;
-      width: 1px !important;
-      height: 1px !important;
+      top: -10000px !important;
+      width: 0 !important;
+      height: 0 !important;
       overflow: hidden !important;
+      opacity: 0 !important;
+    }
+    
+    /* Hide any content until React loads */
+    #root {
+      min-height: 100vh;
+    }
+    
+    /* Ensure no content shows before React hydration */
+    body {
+      overflow: hidden;
+    }
+    
+    /* Show content only after React loads */
+    body.react-loaded {
+      overflow: visible;
     }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YK5XTB9L1C"></script>
@@ -78,6 +96,15 @@ function generateCompleteHTML(route, title, description, allContent) {
   
   <script type="module" crossorigin src="/assets/main-CNtjwS6O.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main-Ci9Yw_6s.css">
+  
+  <script>
+    // Mark body as loaded when React starts
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        document.body.classList.add('react-loaded');
+      }, 100);
+    });
+  </script>
 </body>
 </html>`;
 }
