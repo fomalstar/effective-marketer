@@ -11,6 +11,7 @@ let ssrManifest = undefined
 
 if (isProduction) {
   try {
+    // The SSR server runs from server-setup directory, so we need to go up one level
     templateHtml = await fs.readFile('../dist/client/index.html', 'utf-8')
     ssrManifest = await fs.readFile('../dist/client/.vite/ssr-manifest.json', 'utf-8')
     console.log('✅ Production assets loaded successfully')
