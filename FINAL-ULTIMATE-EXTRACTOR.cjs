@@ -419,18 +419,37 @@ function generateHTML(route, pageData, content) {
       opacity: 1;
     }
     
-    /* COMPLETE HIDING OF SEO CONTENT */
+    /* COMPLETE HIDING OF SEO CONTENT - BULLETPROOF */
     .final-seo-content {
       display: none !important;
       visibility: hidden !important;
-      position: absolute !important;
-      left: -10000px !important;
-      top: -10000px !important;
+      position: fixed !important;
+      left: -99999px !important;
+      top: -99999px !important;
       width: 0 !important;
       height: 0 !important;
+      max-width: 0 !important;
+      max-height: 0 !important;
       overflow: hidden !important;
       opacity: 0 !important;
       z-index: -999999 !important;
+      clip: rect(0,0,0,0) !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      text-indent: -99999px !important;
+    }
+    
+    /* Hide all child elements too */
+    .final-seo-content * {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      left: -99999px !important;
+      top: -99999px !important;
     }
   </style>
 </head>
