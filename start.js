@@ -15,6 +15,13 @@ const distExists = existsSync('./dist/client/index.html');
 console.log('📦 Production mode:', isProduction);
 console.log('📁 Dist directory exists:', distExists);
 
+// Always check if we need to build (in case Render skipped build step)
+if (isProduction && !distExists) {
+  console.log('⚠️ WARNING: Production mode but no dist directory found!');
+  console.log('🔧 This suggests Render did not run the build command properly.');
+  console.log('💡 Please check Render dashboard build settings.');
+}
+
 if (isProduction && !distExists) {
   console.log('📦 Production mode detected but dist directory missing');
   console.log('🔨 Running build process...');

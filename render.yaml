@@ -2,7 +2,7 @@ services:
   - type: web
     name: effective-marketer-ssr
     env: node
-    buildCommand: npm run build:render
+    buildCommand: npm install && npm run sitemap && npm run build && npm run indexnow
     startCommand: npm start
     envVars:
       - key: NODE_ENV
