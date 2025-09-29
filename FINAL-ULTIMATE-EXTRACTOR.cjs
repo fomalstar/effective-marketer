@@ -471,12 +471,12 @@ const allPages = {
     description: 'The #1 AI SEO agency in Vietnam. We\'re 100% focused on AI SEO for Vietnamese companies, combining traditional SEO with Google Autosuggest and AI platform optimization. Fast results in 1-3 months.',
     canonical: 'https://effectivemarketer.com/ai-seo-agency-vietnam'
   },
-  '/ai-seo-agency-uk': {
-    file: 'src/pages/UKCountry.tsx',
-    title: 'Best AI SEO Agency in UK | Effective Marketer',
-    description: 'The #1 AI SEO agency in UK. We\'re 100% focused on AI SEO for UK companies, combining traditional SEO with Google Autosuggest and AI platform optimization. Fast results in 1-3 months.',
-    canonical: 'https://effectivemarketer.com/ai-seo-agency-uk'
-  },
+  // '/ai-seo-agency-uk': {
+  //   file: 'src/pages/UKCountry.tsx',
+  //   title: 'Best AI SEO Agency in UK | Effective Marketer',
+  //   description: 'The #1 AI SEO agency in UK. We\'re 100% focused on AI SEO for UK companies, combining traditional SEO with Google Autosuggest and AI platform optimization. Fast results in 1-3 months.',
+  //   canonical: 'https://effectivemarketer.com/ai-seo-agency-uk'
+  // },
   '/google-autosuggest-ranking': {
     file: 'src/pages/GoogleAutosuggestRanking.tsx',
     title: 'Google Autocomplete SEO Ranking Services | Effective Marketer',
