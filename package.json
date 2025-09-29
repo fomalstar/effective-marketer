@@ -9,6 +9,7 @@
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.jsx",
     "build": "npm run build:client && npm run build:server",
     "build:static": "npm run sitemap && npm run build",
+    "build:render": "node build.js",
     "start": "node server-setup/ssr-server.mjs",
     "start:backend": "node server-setup/ssr-server.mjs",
     "serve": "cross-env NODE_ENV=production node server-setup/ssr-server.mjs",
