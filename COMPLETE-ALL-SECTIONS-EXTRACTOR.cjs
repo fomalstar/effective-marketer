@@ -248,9 +248,80 @@ function generateCompleteHTML(route, pageData, allContent) {
       opacity: 0 !important;
       z-index: -999999 !important;
     }
+    
+    /* LOADING SCREEN - NO FLASH */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+    
+    .loading-content {
+      text-align: center;
+      color: white;
+    }
+    
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    .loading-text {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .loading-subtitle {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Hide loading when React loads */
+    body.react-loaded .loading-screen {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    /* Hide root until React loads */
+    #root {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+    
+    body.react-loaded #root {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
+  <!-- LOADING SCREEN - NO FLASH -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading Effective Marketer</div>
+      <div class="loading-subtitle">AI SEO Agency</div>
+    </div>
+  </div>
+  
   <div id="root">
     <!-- COMPLETE CONTENT INCLUDING ALL SECTIONS -->
     <div class="complete-seo-content">
@@ -259,16 +330,72 @@ function generateCompleteHTML(route, pageData, allContent) {
       
       ${allContent.join('\n      ')}
     </div>
+  </div>
+  
+  <script>
+    // Hide loading and show content when React loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Wait for React to mount
+      setTimeout(() => {
+        document.body.classList.add('react-loaded');
+      }, 500);
+    });
+  </script>
   </body>
 </html>`;
 }
 
-// ALL PAGES INCLUDING HOMEPAGE
+// ALL PAGES INCLUDING HOMEPAGE - COMPLETE LIST
 const allPages = {
   '/': {
     title: 'Google Autosuggests & AI SEO Agency - Effective Marketer',
     description: 'Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete. Our specialized agency provides cutting-edge AI SEO strategies that optimize your brand for maximum visibility in ChatGPT, Gemini, and AI Overviews.',
     isHomepage: true
+  },
+  '/onboarding': {
+    file: 'src/pages/Onboarding.tsx',
+    title: 'AI SEO Onboarding & Consultation | Effective Marketer',
+    description: 'Get started with AI SEO through our comprehensive onboarding and consultation services. Develop a custom AI SEO strategy tailored to your business goals.'
+  },
+  '/google-autosuggest-ranking': {
+    file: 'src/pages/GoogleAutosuggestRanking.tsx',
+    title: 'Google Autosuggest Ranking SEO Services | Effective Marketer',
+    description: 'Dominate Google Autocomplete with our specialized Google Autosuggest Ranking SEO services. Get your brand visible in search suggestions and AI platforms for maximum exposure.'
+  },
+  '/lead-gen-ai-automation': {
+    file: 'src/pages/AIAutomation.tsx',
+    title: 'AI Lead Generation & Automation | Effective Marketer',
+    description: 'Automate your lead generation with AI-powered solutions. Streamline your sales funnel and capture high-quality leads with our advanced AI automation strategies.'
+  },
+  '/ai-seo': {
+    file: 'src/pages/AISEO.tsx',
+    title: 'AI SEO Services & Solutions | Effective Marketer',
+    description: 'Cutting-edge AI SEO services to optimize your brand for Google, ChatGPT, Gemini, and AI Overviews. Future-proof your SEO strategy with our advanced AI solutions.'
+  },
+  '/ai-topical-map': {
+    file: 'src/pages/AITopicalMap.tsx',
+    title: 'AI Topical Map & Content Strategy | Effective Marketer',
+    description: 'Develop a comprehensive AI topical map and content strategy to dominate your niche. Our AI-driven approach ensures complete topic coverage and authority.'
+  },
+  '/case-studies': {
+    file: 'src/pages/CaseStudies.tsx',
+    title: 'AI SEO Case Studies & Success Stories | Effective Marketer',
+    description: 'Explore our AI SEO case studies and success stories. See how Effective Marketer helps businesses achieve top rankings in Google Autocomplete and AI platforms.'
+  },
+  '/ai-seo-for-saas-companies': {
+    file: 'src/pages/SaaSCompanies.tsx',
+    title: 'AI SEO for SaaS Companies | Effective Marketer',
+    description: 'Specialized AI SEO services for SaaS companies. Dominate search results with our AI-powered SEO strategies designed specifically for software-as-a-service businesses.'
+  },
+  '/ai-seo-for-ecommerce': {
+    file: 'src/pages/EcommerceCompanies.tsx',
+    title: 'AI SEO for E-commerce | Effective Marketer',
+    description: 'Boost your e-commerce sales with AI SEO. Optimize product listings, dominate Google Autocomplete, and get recommended by AI platforms for online shoppers.'
+  },
+  '/ai-seo-for-healthcare': {
+    file: 'src/pages/HealthcareCompanies.tsx',
+    title: 'AI SEO for Healthcare & Medical | Effective Marketer',
+    description: 'Specialized AI SEO for healthcare providers and medical practices. Improve patient acquisition, dominate Google Autocomplete, and get cited by AI for health-related searches.'
   },
   '/ai-seo-agency-usa': {
     file: 'src/pages/USACountry.tsx',
@@ -281,51 +408,6 @@ const allPages = {
     title: 'Best AI SEO Agency in Vietnam | Effective Marketer',
     description: 'The #1 AI SEO agency in Vietnam. We\'re 100% focused on AI SEO for Vietnamese companies, combining traditional SEO with Google Autosuggest and AI platform optimization. Fast results in 1-3 months.',
     needsAdditionalSections: true
-  },
-  '/ai-seo': {
-    file: 'src/pages/AISEO.tsx',
-    title: 'AI SEO Services & Solutions | Effective Marketer',
-    description: 'Cutting-edge AI SEO services to optimize your brand for Google, ChatGPT, Gemini, and AI Overviews. Future-proof your SEO strategy with our advanced AI solutions.'
-  },
-  '/ai-seo-for-saas-companies': {
-    file: 'src/pages/SaaSCompanies.tsx',
-    title: 'AI SEO for SaaS Companies | Effective Marketer',
-    description: 'Specialized AI SEO services for SaaS companies. Dominate search results with our AI-powered SEO strategies designed specifically for software-as-a-service businesses.'
-  },
-  '/lead-gen-ai-automation': {
-    file: 'src/pages/AIAutomation.tsx',
-    title: 'AI Lead Generation & Automation | Effective Marketer',
-    description: 'Automate your lead generation with AI-powered solutions. Streamline your sales funnel and capture high-quality leads with our advanced AI automation strategies.'
-  },
-  '/case-studies': {
-    file: 'src/pages/CaseStudies.tsx',
-    title: 'AI SEO Case Studies & Success Stories | Effective Marketer',
-    description: 'Explore our AI SEO case studies and success stories. See how Effective Marketer helps businesses achieve top rankings in Google Autocomplete and AI platforms.'
-  },
-  '/ai-topical-map': {
-    file: 'src/pages/AITopicalMap.tsx',
-    title: 'AI Topical Map & Content Strategy | Effective Marketer',
-    description: 'Develop a comprehensive AI topical map and content strategy to dominate your niche. Our AI-driven approach ensures complete topic coverage and authority.'
-  },
-  '/google-autosuggest-ranking': {
-    file: 'src/pages/GoogleAutosuggestRanking.tsx',
-    title: 'Google Autosuggest Ranking SEO Services | Effective Marketer',
-    description: 'Dominate Google Autocomplete with our specialized Google Autosuggest Ranking SEO services. Get your brand visible in search suggestions and AI platforms for maximum exposure.'
-  },
-  '/ai-seo-for-ecommerce': {
-    file: 'src/pages/EcommerceCompanies.tsx',
-    title: 'AI SEO for E-commerce | Effective Marketer',
-    description: 'Boost your e-commerce sales with AI SEO. Optimize product listings, dominate Google Autocomplete, and get recommended by AI platforms for online shoppers.'
-  },
-  '/ai-seo-for-healthcare': {
-    file: 'src/pages/HealthcareCompanies.tsx',
-    title: 'AI SEO for Healthcare & Medical | Effective Marketer',
-    description: 'Specialized AI SEO for healthcare providers and medical practices. Improve patient acquisition, dominate Google Autocomplete, and get cited by AI for health-related searches.'
-  },
-  '/onboarding': {
-    file: 'src/pages/Onboarding.tsx',
-    title: 'AI SEO Onboarding & Consultation | Effective Marketer',
-    description: 'Get started with AI SEO through our comprehensive onboarding and consultation services. Develop a custom AI SEO strategy tailored to your business goals.'
   }
 };
 
