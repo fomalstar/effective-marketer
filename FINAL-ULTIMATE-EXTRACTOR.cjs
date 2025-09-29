@@ -1,3 +1,10 @@
+// ⚠️ CRITICAL SYSTEM FILE - DO NOT MODIFY! ⚠️
+// This file generates bulletproof SEO content hiding that prevents blank HTML below footer
+// ANY CHANGES TO THE HIDING CSS OR STRUCTURE WILL BREAK THE ENTIRE SEO SYSTEM
+// Contact original developer before making ANY modifications
+// Last working version: Contains bulletproof multi-method content hiding
+// If you see blank HTML content below footer = this file was modified incorrectly
+
 const fs = require('fs');
 const path = require('path');
 
@@ -420,6 +427,50 @@ function generateHTML(route, pageData, content) {
       opacity: 1;
     }
     
+    /* BULLETPROOF SEO CONTENT HIDING - CANNOT BE OVERRIDDEN */
+    #seo-content-bulletproof,
+    #seo-content-bulletproof * {
+      position: fixed !important;
+      left: -99999px !important;
+      top: -99999px !important;
+      width: 0 !important;
+      height: 0 !important;
+      max-width: 0 !important;
+      max-height: 0 !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      clip-path: inset(50%) !important;
+      border: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      white-space: nowrap !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      display: block !important;
+      z-index: -999999 !important;
+      pointer-events: none !important;
+      user-select: none !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      text-indent: -99999px !important;
+      color: transparent !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      outline: none !important;
+      text-shadow: none !important;
+    }
+    
+    /* EMERGENCY BACKUP HIDING */
+    div[id*="seo"],
+    div[aria-hidden="true"][style*="position"] {
+      position: fixed !important;
+      left: -99999px !important;
+      top: -99999px !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+    
   </style>
 </head>
 <body>
@@ -433,8 +484,8 @@ function generateHTML(route, pageData, content) {
   </div>
   
   <div id="root">
-    <!-- SEO CONTENT - COMPLETELY INVISIBLE BUT INDEXED -->
-    <div style="position:absolute!important;left:-99999px!important;top:-99999px!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(1px,1px,1px,1px)!important;border:0!important;padding:0!important;margin:0!important;white-space:nowrap!important;" aria-hidden="true">
+    <!-- SEO CONTENT - BULLETPROOF INVISIBLE BUT INDEXED -->
+    <div id="seo-content-bulletproof" style="position:fixed!important;left:-99999px!important;top:-99999px!important;width:0!important;height:0!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;border:0!important;padding:0!important;margin:0!important;white-space:nowrap!important;opacity:0!important;visibility:hidden!important;display:block!important;z-index:-999999!important;pointer-events:none!important;user-select:none!important;max-width:0!important;max-height:0!important;font-size:0!important;line-height:0!important;" aria-hidden="true" hidden>
       ${content.join('\n      ')}
     </div>
   </div>
