@@ -31,27 +31,84 @@ function extractAllContent(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   let allContent = [];
   
-  // SKIP JSX extraction completely - focus only on safe content types
+  // 🔒 ROBUST CONTENT EXTRACTION - PROTECTED FROM FUTURE EDITS
+  // This approach extracts ALL valid content while avoiding JSX fragments
   
-  // Method 1: Only extract safe string literals - avoid all JSX patterns
-  const stringMatches = content.match(/["']([^"']{15,}?)["']/g) || [];
+  // Method 1: SAFE JSX text extraction - BULLETPROOF FILTERING
+  const jsxMatches = content.match(/>([^<>{}]+)</g) || [];
+  jsxMatches.forEach(match => {
+    const text = match.substring(1).trim();
+    
+    // 🔒 BULLETPROOF FILTERING - prevent ALL JSX fragments
+    if (text.length > 5 && 
+        text.length < 300 && 
+        // Block ALL JSX/HTML patterns
+        !text.includes('{') && 
+        !text.includes('}') &&
+        !text.includes('<') &&
+        !text.includes('>') &&
+        !text.includes('=') &&
+        !text.includes('href') &&
+        !text.includes('onClick') &&
+        !text.includes('className') &&
+        !text.includes('target') &&
+        !text.includes('rel') &&
+        !text.includes('src') &&
+        !text.includes('import') &&
+        !text.includes('export') &&
+        !text.includes('function') &&
+        !text.includes('const') &&
+        !text.includes('(') &&
+        !text.includes(')') &&
+        !text.includes('[') &&
+        !text.includes(']') &&
+        !text.includes(';') &&
+        !text.includes(':') &&
+        !text.includes('/') &&
+        !text.includes('\\') &&
+        !text.includes('|') &&
+        !text.includes('&') &&
+        !text.includes('%') &&
+        !text.includes('#') &&
+        !text.includes('@') &&
+        !text.includes('*') &&
+        !text.includes('+') &&
+        !text.includes('~') &&
+        !text.includes('`') &&
+        // Must be real readable text
+        text.includes(' ') && // Contains spaces
+        text.split(' ').length >= 3 && // At least 3 words
+        /^[A-Z]/.test(text) && // Starts with capital
+        /[a-z]/.test(text) && // Contains lowercase
+        !/^\d/.test(text) && // Doesn't start with number
+        !text.match(/^[A-Z]+$/) && // Not all caps
+        !text.match(/^\w+$/) && // Not single word
+        !text.match(/^\w+:$/) && // Not object key
+        text.length > 15) { // Minimum meaningful length
+      
+      if (text.length < 80) {
+        allContent.push(`<h3>${text}</h3>`);
+      } else {
+        allContent.push(`<p>${text}</p>`);
+      }
+    }
+  });
+
+  // Method 2: String literals with balanced filtering
+  const stringMatches = content.match(/["']([^"']{10,}?)["']/g) || [];
   stringMatches.forEach(match => {
     const text = match.slice(1, -1).trim();
     
     if (text && 
-        // Basic filters
         !text.includes('className') &&
         !text.includes('import') &&
         !text.includes('export') &&
         !text.includes('function') &&
         !text.includes('const') &&
         !text.includes('React') &&
-        !text.includes('tsx') &&
-        !text.includes('jsx') &&
         !text.includes('http') &&
         !text.includes('src/') &&
         !text.includes('../../') &&
-        // CSS/style filters  
         !text.includes('px-') &&
         !text.includes('py-') &&
         !text.includes('bg-') &&
@@ -59,26 +116,8 @@ function extractAllContent(filePath) {
         !text.includes('hover:') &&
         !text.includes('flex') &&
         !text.includes('grid') &&
-        // JSX/HTML filters
-        !text.includes('<') &&
-        !text.includes('>') &&
-        !text.includes('href') &&
-        !text.includes('onClick') &&
-        !text.includes('target') &&
-        !text.includes('rel=') &&
-        !text.includes('=') &&
-        !text.includes('{') &&
-        !text.includes('}') &&
-        !text.includes('icon:') &&
-        !text.includes('title:') &&
-        !text.includes('description:') &&
-        !text.includes('},') &&
-        !text.includes('component') &&
-        !text.includes('props') &&
-        text.split(' ').length > 3 &&
-        // Must be actual sentences/phrases
-        /^[A-Z]/.test(text) && // Starts with capital letter
-        text.includes(' ')) { // Contains spaces (real phrases)
+        // Less strict about symbols - allow more content
+        text.split(' ').length > 2) { // Reduced from 3 to 2
       
       if (text.length < 80) {
         allContent.push(`<h3>${text}</h3>`);
@@ -88,7 +127,7 @@ function extractAllContent(filePath) {
     }
   });
   
-  // Method 3: Extract arrays (features, stats, faqs)
+  // Method 3: SAFE array extraction - ONLY clean quoted strings
   const patterns = [
     /features = \[(.*?)\]/s,
     /stats = \[(.*?)\]/s,
@@ -101,35 +140,90 @@ function extractAllContent(filePath) {
     if (match) {
       const arrayContent = match[1];
       
-      // Extract titles, descriptions, questions, answers
-      const titleMatches = arrayContent.match(/title: ["']([^"']+)["']/g) || [];
-      const descMatches = arrayContent.match(/description: ["']([^"']+)["']/g) || [];
-      const questionMatches = arrayContent.match(/question: ["']([^"']+)["']/g) || [];
-      const answerMatches = arrayContent.match(/answer: ["']([^"']+)["']/g) || [];
+      // ONLY extract safe quoted content - NO JSX elements
+      const titleMatches = arrayContent.match(/title:\s*["']([^"'<>{}=]+)["']/g) || [];
+      const descMatches = arrayContent.match(/description:\s*["']([^"'<>{}=]+)["']/g) || [];
+      const questionMatches = arrayContent.match(/question:\s*["']([^"'<>{}=]+)["']/g) || [];
+      const answerMatches = arrayContent.match(/answer:\s*["']([^"'<>{}=]+)["']/g) || [];
       
       titleMatches.forEach(match => {
-        const title = match.replace(/title: ["']/, '').replace(/["']$/, '');
-        allContent.push(`<h3>${title}</h3>`);
+        const title = match.replace(/title:\s*["']/, '').replace(/["']$/, '').trim();
+        // Extra safety check
+        if (title && title.length > 3 && !title.includes('<') && !title.includes('>') && !title.includes('{') && !title.includes('}')) {
+          allContent.push(`<h3>${title}</h3>`);
+        }
       });
       
       descMatches.forEach(match => {
-        const desc = match.replace(/description: ["']/, '').replace(/["']$/, '');
-        allContent.push(`<p>${desc}</p>`);
+        const desc = match.replace(/description:\s*["']/, '').replace(/["']$/, '').trim();
+        // Extra safety check
+        if (desc && desc.length > 10 && !desc.includes('<') && !desc.includes('>') && !desc.includes('{') && !desc.includes('}')) {
+          allContent.push(`<p>${desc}</p>`);
+        }
       });
       
       questionMatches.forEach(match => {
-        const question = match.replace(/question: ["']/, '').replace(/["']$/, '');
-        allContent.push(`<h4>${question}</h4>`);
+        const question = match.replace(/question:\s*["']/, '').replace(/["']$/, '').trim();
+        // Extra safety check
+        if (question && question.length > 5 && !question.includes('<') && !question.includes('>') && !question.includes('{') && !question.includes('}')) {
+          allContent.push(`<h4>${question}</h4>`);
+        }
       });
       
       answerMatches.forEach(match => {
-        const answer = match.replace(/answer: ["']/, '').replace(/["']$/, '');
-        allContent.push(`<p>${answer}</p>`);
+        const answer = match.replace(/answer:\s*["']/, '').replace(/["']$/, '').trim();
+        // Extra safety check
+        if (answer && answer.length > 10 && !answer.includes('<') && !answer.includes('>') && !answer.includes('{') && !answer.includes('}')) {
+          allContent.push(`<p>${answer}</p>`);
+        }
       });
     }
   });
   
-  return [...new Set(allContent)];
+  // 🔒 PROTECTION: Validate content before returning
+  const uniqueContent = [...new Set(allContent)];
+  
+  // ⚠️ CRITICAL CHECK: Ensure we have substantial content
+  if (uniqueContent.length < 20) {
+    console.warn(`⚠️ WARNING: ${filePath} only has ${uniqueContent.length} content pieces - this seems low!`);
+  }
+  
+  // ⚠️ CRITICAL CHECK: Ensure no broken JSX fragments
+  const brokenElements = uniqueContent.filter(item => 
+    item.includes('href=') || 
+    item.includes('<a ') || 
+    item.includes('onClick') ||
+    item.includes('target=') ||
+    item.includes('}>') ||
+    item.includes('<{')
+  );
+  
+  if (brokenElements.length > 0) {
+    console.error(`❌ ERROR: Found ${brokenElements.length} broken JSX fragments in ${filePath}:`);
+    brokenElements.forEach(item => console.error(`   ${item.substring(0, 50)}...`));
+  }
+  
+  console.log(`📄 ${filePath}: Found ${uniqueContent.length} content pieces (${brokenElements.length} broken)`);
+  
+  // 🔧 POST-PROCESSING: Clean up any remaining broken fragments
+  const cleanedContent = uniqueContent.filter(item => 
+    !item.includes('href=') && 
+    !item.includes('<a ') && 
+    !item.includes('onClick') &&
+    !item.includes('target=') &&
+    !item.includes('}>') &&
+    !item.includes('<{') &&
+    !item.includes('icon:') &&
+    !item.includes('description:') &&
+    !item.includes('},') &&
+    !item.includes('{') &&
+    !item.includes('}') &&
+    item.length > 5 &&
+    item.trim().length > 0
+  );
+  
+  console.log(`🔧 ${filePath}: Cleaned ${uniqueContent.length} → ${cleanedContent.length} pieces`);
+  return cleanedContent;
 }
 
 // Extract content from multiple component files for homepage
