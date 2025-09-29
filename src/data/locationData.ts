@@ -169,6 +169,83 @@ export const locationData: Record<string, LocationData> = {
     canonicalUrl: "https://effectivemarketer.com/ai-seo-agency-vietnam"
   },
   
+  uk: {
+    country: "United Kingdom",
+    countryCode: "UK",
+    currency: "GBP",
+    language: "English",
+    timezone: "GMT / BST",
+
+    marketSize: "67.7 million people",
+    gdp: "£2.2 trillion",
+    internetPenetration: "95.0%",
+    ecommerceGrowth: "12% YoY",
+    digitalAdoption: "Mature digital economy with high AI adoption",
+
+    localCompetitors: [
+      "Brainlabs",
+      "Impression",
+      "The SEO Works",
+      "Builtvisible"
+    ],
+    topIndustries: [
+      "Financial Services",
+      "Professional Services",
+      "Technology",
+      "E-commerce",
+      "Healthcare"
+    ],
+
+    successMetrics: {
+      averageResults: "6-10 weeks",
+      clientSatisfaction: "97%",
+      trafficIncrease: "150%",
+      timeToResults: "45-60 days"
+    },
+
+    heroTitle: "The #1 AI SEO Agency in the United Kingdom",
+    heroSubtitle: "Dominate Google Autosuggest & AI Platform Visibility Across the UK",
+
+    valuePropositions: [
+      "Engineer UK-specific Google Autocomplete wins in weeks",
+      "Get cited by ChatGPT, Gemini, and Claude for UK commercial queries",
+      "6-10 week programmes overseen by senior UK strategists",
+      "Full compliance with UK GDPR and regulated industries",
+      "Integrated AI SEO, PR, and conversion optimisation for UK buyers"
+    ],
+
+    localMarketInsights: [
+      "The UK is one of the most competitive digital markets in Europe",
+      "London, Manchester, Birmingham, and Edinburgh drive regional demand",
+      "High AI adoption among UK marketing leaders",
+      "Strong emphasis on regulated industries needing compliant messaging",
+      "Multi-channel marketing alignment required for enterprise wins"
+    ],
+
+    uniqueAdvantages: [
+      "Deep expertise across UK enterprise and scale-up sectors",
+      "In-house British strategists leading every programme",
+      "Advanced GEO tactics tuned for UK query behaviour",
+      "Transparent attribution and reporting for UK stakeholders",
+      "Strategic partnerships with UK PR and media networks"
+    ],
+
+    targetKeywords: [
+      "AI SEO agency UK",
+      "Google autosuggest UK",
+      "AI SEO services London",
+      "AI search optimisation UK",
+      "AI SEO for British companies",
+      "Best AI SEO agency UK",
+      "AI SEO consultancy UK",
+      "Google autocomplete UK"
+    ],
+
+    metaDescription:
+      "Leading AI SEO agency in the UK. Dominate Google Autocomplete, secure ChatGPT citations, and grow revenue in 6-10 weeks. Book a UK strategy call.",
+    canonicalUrl: "https://effectivemarketer.com/ai-seo-agency-uk"
+  },
+
 };
 
 export const getLocationData = (location: string): LocationData => {

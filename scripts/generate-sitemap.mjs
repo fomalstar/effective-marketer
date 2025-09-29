@@ -11,7 +11,8 @@ const getCurrentDate = () => {
 // Location data for dynamic pages - ONLY include completed countries
 const locations = [
   'usa', 
-  'vietnam'
+  'vietnam',
+  'uk'
 ];
 
 // Static pages data

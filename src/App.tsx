@@ -23,7 +23,7 @@ import EcommerceCompanies from './pages/EcommerceCompanies';
 import HealthcareCompanies from './pages/HealthcareCompanies';
 import USACountry from './pages/USACountry';
 import VietnamCountry from './pages/VietnamCountry';
-// import UKCountry from './pages/UKCountry';
+import UKCountry from './pages/UKCountry';
 
 import SEOHead from './components/SEOHead';
 
@@ -59,7 +59,7 @@ function App() {
       <Route path="/ai-seo-for-healthcare" element={<HealthcareCompanies />} />
       <Route path="/ai-seo-agency-usa" element={<USACountry />} />
       <Route path="/ai-seo-agency-vietnam" element={<VietnamCountry />} />
-      {/* <Route path="/ai-seo-agency-uk" element={<UKCountry />} /> */}
+      <Route path="/ai-seo-agency-uk" element={<UKCountry />} />
       <Route path="/ai-seo-agency-:location" element={<LocationPage />} />
       <Route path="*" element={
         <div className="min-h-screen flex flex-col">
