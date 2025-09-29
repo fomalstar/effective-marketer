@@ -127,18 +127,18 @@ function extractAllContent(filePath) {
     }
   });
   
-  // Method 3: SAFE array extraction - ONLY clean quoted strings
+  // Method 3: SAFE array extraction - ONLY clean quoted strings  
   const patterns = [
-    /features = \[(.*?)\]/s,
-    /stats = \[(.*?)\]/s,
-    /faqs = \[(.*?)\]/s,
-    /teamMembers = \[(.*?)\]/s
+    /(const\s+)?features\s*=\s*\[([\s\S]*?)\];/,
+    /(const\s+)?stats\s*=\s*\[([\s\S]*?)\];/,
+    /(const\s+)?faqs\s*=\s*\[([\s\S]*?)\];/,
+    /(const\s+)?teamMembers\s*=\s*\[([\s\S]*?)\];/
   ];
   
   patterns.forEach(pattern => {
     const match = content.match(pattern);
     if (match) {
-      const arrayContent = match[1];
+      const arrayContent = match[2] || match[1]; // Handle with/without const
       
       // ONLY extract safe quoted content - NO JSX elements
       const titleMatches = arrayContent.match(/title:\s*["']([^"'<>{}=]+)["']/g) || [];
@@ -218,6 +218,19 @@ function extractAllContent(filePath) {
     !item.includes('},') &&
     !item.includes('{') &&
     !item.includes('}') &&
+    !item.includes('classList') &&
+    !item.includes('nextElementSibling') &&
+    !item.includes('addEventListener') &&
+    !item.includes('querySelector') &&
+    !item.includes('max-h-') &&
+    !item.includes('opacity-') &&
+    !item.includes('className') &&
+    !item.includes('remove(') &&
+    !item.includes('add(') &&
+    !item.includes('?.') && // Optional chaining
+    !item.includes(';') && // Semicolons (code)
+    !item.match(/^>\s*\w+$/) && // Just > and a word
+    !item.match(/^>\s*$/) && // Just >
     item.length > 5 &&
     item.trim().length > 0
   );
