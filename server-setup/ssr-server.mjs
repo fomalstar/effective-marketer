@@ -13,9 +13,26 @@ if (isProduction) {
   try {
     templateHtml = await fs.readFile('../dist/client/index.html', 'utf-8')
     ssrManifest = await fs.readFile('../dist/client/.vite/ssr-manifest.json', 'utf-8')
+    console.log('✅ Production assets loaded successfully')
   } catch (error) {
-    console.error('Error loading production assets:', error.message)
-    console.log('Make sure to run "npm run build" before starting the server')
+    console.error('❌ Error loading production assets:', error.message)
+    console.log('📁 Checking if dist directory exists...')
+    
+    try {
+      const distExists = await fs.access('../dist').then(() => true).catch(() => false)
+      if (!distExists) {
+        console.log('❌ dist directory does not exist')
+        console.log('🔧 Please run: npm install && npm run sitemap && npm run build && npm run indexnow')
+      } else {
+        console.log('📁 dist directory exists, checking contents...')
+        const distContents = await fs.readdir('../dist')
+        console.log('📁 dist contents:', distContents)
+      }
+    } catch (checkError) {
+      console.error('❌ Error checking dist directory:', checkError.message)
+    }
+    
+    console.log('💡 Make sure your Render build command is: npm install && npm run sitemap && npm run build && npm run indexnow')
     process.exit(1)
   }
 }
