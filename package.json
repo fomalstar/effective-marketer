@@ -8,7 +8,7 @@
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.jsx",
     "build": "vite build",
-    "build:static": "npm run sitemap && npm run build",
+    "build:static": "vite build",
     "build:render": "node build.js",
     "start": "node server-setup/express-server.cjs",
     "start:backend": "node server-setup/ssr-server.mjs",
