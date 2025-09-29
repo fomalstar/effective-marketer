@@ -690,32 +690,45 @@ const HealthcareCompanies: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
-                <Contact 
-                  title="Book Your Healthcare Strategy Session"
-                  description="Request a HIPAA-compliant AI SEO strategy session. Our healthcare specialists respond within 24 hours with a custom medical marketing plan."
-                  infoTitle="Healthcare SEO Experts"
-                  infoDescription="We help hospitals, clinics, and healthcare tech companies dominate Google Autocomplete, get cited by AI platforms, and accelerate patient acquisition."
-                  infoEmailLabel="Healthcare Inquiries"
-                  infoEmail="healthcare@effectivemarketer.com"
-                  infoResponseLabel="Clinical Response Team"
-                  infoResponseValue="HIPAA-compliant consultations"
-                  infoLocationsLabel="Supported Regions"
-                  infoLocations="USA • UK • Canada • Australia"
-                  stepsTitle="Healthcare Onboarding Timeline"
-                  steps={[
-                    'HIPAA-compliant strategy call within 24 hours',
-                    'Medical keyword & service audit completed in 7 days',
-                    'AI SEO implementation with patient acquisition roadmap'
-                  ]}
-                />
-              </div>
+              <Contact
+                renderFormOnly
+                formWrapperClassName="bg-gray-50 rounded-2xl p-6 lg:p-8"
+              />
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Healthcare AI SEO Outcomes</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Connect With Our Healthcare Experts</h3>
                   <p className="text-gray-600 text-xl mb-8">
-                    Our team delivers compliant growth strategies for healthcare providers. Expect rapid medical keyword domination, improved patient acquisition funnels, and consistent AI platform citations across ChatGPT, Gemini, and medical directories.
+                    Our healthcare SEO specialists understand medical compliance, patient privacy, and the unique challenges of healthcare marketing. We build AI-first strategies for medical practices, hospitals, and healthtech companies.
                   </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Healthcare Inquiries</div>
+                      <div className="text-gray-600 text-lg">healthcare@effectivemarketer.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Medical Response Team</div>
+                      <div className="text-gray-600 text-lg">HIPAA-compliant consultations</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Specialized Regions</div>
+                      <div className="text-gray-600 text-lg">USA • UK • Canada • Australia</div>
+                    </div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">
@@ -730,11 +743,11 @@ const HealthcareCompanies: React.FC = () => {
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4">What Happens Next?</h4>
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4">Healthcare Onboarding Timeline</h4>
                   <ul className="space-y-3 text-lg text-gray-600">
-                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>Receive a medical SEO audit and compliance checklist</span></li>
-                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Implement AI autocomplete domination playbook</span></li>
-                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>Launch patient acquisition automation with AI reporting</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">1.</span><span>HIPAA-compliant strategy call within 24 hours</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">2.</span><span>Medical keyword & service audit completed in 7 days</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-2">3.</span><span>AI SEO implementation with patient acquisition roadmap</span></li>
                   </ul>
                 </div>
               </div>

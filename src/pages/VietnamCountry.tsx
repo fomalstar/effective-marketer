@@ -628,32 +628,45 @@ const VietnamCountry: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
-                <Contact 
-                  title="Request Your Vietnam AI SEO Blueprint"
-                  description="Submit your target sectors, target cities, and key services. Our Vietnam specialists send a localized AI SEO plan with rapid execution timeline."
-                  infoTitle="Vietnam AI SEO Desk"
-                  infoDescription="We partner with Vietnamese brands, regional enterprises, and cross-border teams expanding into Southeast Asia."
-                  infoEmailLabel="Vietnam Support"
-                  infoEmail="vietnam@effectivemarketer.com"
-                  infoResponseLabel="Local Response"
-                  infoResponseValue="Vietnam-based strategist replies within 24 hours"
-                  infoLocationsLabel="Vietnam Focus Cities"
-                  infoLocations="Ho Chi Minh City • Hanoi • Da Nang • Can Tho"
-                  stepsTitle="Vietnam Launch Timeline"
-                  steps={[
-                    'Local market discovery call within 24 hours',
-                    'Vietnam keyword & autocomplete map delivered in 5 days',
-                    'AI platform visibility plan executed across Vietnamese search ecosystems'
-                  ]}
-                />
-              </div>
+              <Contact
+                renderFormOnly
+                formWrapperClassName="bg-gray-50 rounded-2xl p-6 lg:p-8"
+              />
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Vietnam Market Acceleration</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Vietnam AI SEO Desk</h3>
                   <p className="text-gray-600 text-xl mb-8">
-                    Our Vietnam execution team combines localized keyword intelligence, AI autocomplete dominance, and bilingual content systems to win across Vietnamese and English search journeys.
+                    We partner with Vietnamese brands, regional enterprises, and cross-border teams expanding into Southeast Asia.
                   </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Vietnam Support</div>
+                      <div className="text-gray-600 text-lg">vietnam@effectivemarketer.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Local Response</div>
+                      <div className="text-gray-600 text-lg">Vietnam-based strategist replies within 24 hours</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Vietnam Focus Cities</div>
+                      <div className="text-gray-600 text-lg">Ho Chi Minh City • Hanoi • Da Nang • Can Tho</div>
+                    </div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">

@@ -669,32 +669,45 @@ const USACountry: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
-                <Contact 
-                  title="Request Your U.S. Market Blueprint"
-                  description="Tell us your target states, industries, and revenue objectives. Our U.S. strategists design a geography-specific AI SEO program within 24 hours."
-                  infoTitle="United States AI SEO Desk"
-                  infoDescription="We deliver coast-to-coast coverage for enterprise brands, growth-stage startups, and regional category leaders."
-                  infoEmailLabel="U.S. Support Desk"
-                  infoEmail="usa@effectivemarketer.com"
-                  infoResponseLabel="Response Guarantee"
-                  infoResponseValue="Senior strategist replies same business day"
-                  infoLocationsLabel="Regional Expertise"
-                  infoLocations="West Coast • Mountain • Midwest • East Coast • Southeast"
-                  stepsTitle="USA Launch Timeline"
-                  steps={[
-                    'Discovery call and competitive gap analysis within 24 hours',
-                    'State & city-specific autocomplete rollout in 5 business days',
-                    'AI platform coverage with conversion reporting and growth sprints'
-                  ]}
-                />
-              </div>
+              <Contact
+                renderFormOnly
+                formWrapperClassName="bg-gray-50 rounded-2xl p-6 lg:p-8"
+              />
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">U.S. Growth Outcomes</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">United States AI SEO Desk</h3>
                   <p className="text-gray-600 text-xl mb-8">
-                    We accelerate growth for American brands by aligning AI SEO, category positioning, and local demand capture. Expect faster pipeline velocity, AI dominance, and nationwide brand authority.
+                    We deliver coast-to-coast coverage for enterprise brands, growth-stage startups, and regional category leaders.
                   </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">U.S. Support Desk</div>
+                      <div className="text-gray-600 text-lg">usa@effectivemarketer.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Response Guarantee</div>
+                      <div className="text-gray-600 text-lg">Senior strategist replies same business day</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Regional Expertise</div>
+                      <div className="text-gray-600 text-lg">West Coast • Mountain • Midwest • East Coast • Southeast</div>
+                    </div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">

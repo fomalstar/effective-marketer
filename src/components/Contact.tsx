@@ -16,6 +16,8 @@ interface ContactProps {
   infoLocations?: string;
   stepsTitle?: string;
   steps?: string[];
+  renderFormOnly?: boolean;
+  formWrapperClassName?: string;
 }
 
 const Contact: React.FC<ContactProps> = ({
@@ -35,7 +37,9 @@ const Contact: React.FC<ContactProps> = ({
     'Free autocomplete and GEO analysis of your industry',
     '30-minute strategy call within 24 hours',
     'Custom roadmap to dominate autocomplete for your keywords'
-  ]
+  ],
+  renderFormOnly = false,
+  formWrapperClassName,
 }) => {
   const [formData, setFormData] = useState({
     website: '',
@@ -125,22 +129,13 @@ const Contact: React.FC<ContactProps> = ({
     'Over 50,000 monthly visitors'
   ];
 
-  return (
-    <section id="contact" className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {title}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            {description}
-          </p>
-        </div>
+  const formContainerClass = renderFormOnly
+    ? formWrapperClassName || 'bg-gray-50 rounded-2xl p-6 lg:p-8'
+    : 'bg-gray-50 rounded-2xl p-6 lg:p-8';
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+  const formSection = (
+    <div className={formContainerClass}>
+      <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -307,7 +302,28 @@ const Contact: React.FC<ContactProps> = ({
                 )}
               </button>
             </form>
-          </div>
+    </div>
+  );
+
+  if (renderFormOnly) {
+    return formSection;
+  }
+
+  return (
+    <section id="contact" className="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {title}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+            {description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          {formSection}
 
           {/* Contact Information */}
           {showInfo && (

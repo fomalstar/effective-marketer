@@ -733,32 +733,42 @@ const SaaSCompanies: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
-                <Contact 
-                  title="Request Your SaaS Growth Sprint"
-                  description="Share your ICP, ACV, and product tier priorities. We deliver a sprint-ready AI SEO roadmap to drive demo requests, free trials, and ARR expansion."
-                  infoTitle="SaaS AI SEO Desk"
-                  infoDescription="We partner with B2B SaaS teams to dominate purchasing journeys across Google, AI assistants, and product review ecosystems."
-                  infoEmailLabel="SaaS Inquiries"
-                  infoEmail="saas@effectivemarketer.com"
-                  infoResponseLabel="Pipeline Acceleration Team"
-                  infoResponseValue="Revenue-focused plans within 24 hours"
-                  infoLocationsLabel="Global GTM Regions"
-                  infoLocations="USA • Canada • UK • DACH • APAC"
-                  stepsTitle="SaaS Launch Timeline"
-                  steps={[
-                    'ICP & messaging calibration workshop',
-                    'AI search & autocomplete coverage delivered in 5 days',
-                    'Growth sprint execution with pipeline analytics'
-                  ]}
-                />
-              </div>
+              <Contact renderFormOnly formWrapperClassName="bg-gray-50 rounded-2xl p-6 lg:p-8" />
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">SaaS KPIs We Influence</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">SaaS AI SEO Desk</h3>
                   <p className="text-gray-600 text-xl mb-8">
-                    Our AI SEO framework accelerates ARR expansion, improves demo conversion rates, and delivers category ownership for PLG and sales-led teams. Your GTM motion gets a compound growth engine across search and AI platforms.
+                    We partner with B2B SaaS teams to dominate purchasing journeys across Google, AI assistants, and product review ecosystems.
                   </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">SaaS Inquiries</div>
+                      <div className="text-gray-600 text-lg">saas@effectivemarketer.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Pipeline Acceleration Team</div>
+                      <div className="text-gray-600 text-lg">Revenue-focused plans within 24 hours</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Global GTM Regions</div>
+                      <div className="text-gray-600 text-lg">USA • Canada • UK • DACH • APAC</div>
+                    </div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">

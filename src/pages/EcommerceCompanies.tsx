@@ -690,38 +690,51 @@ const EcommerceCompanies: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-gray-50 rounded-2xl p-6 lg:p-8">
-                <Contact 
-                  title="Request Your E-commerce Growth Blueprint"
-                  description="Share your top SKUs and target categories. We deliver a full AI SEO action plan with SKU-level autocomplete coverage and AI recommendation strategies."
-                  infoTitle="E-commerce AI SEO Desk"
-                  infoDescription="We scale e-commerce revenue by dominating autocomplete for transactional product queries and securing product mentions across AI shopping experiences."
-                  infoEmailLabel="E-commerce Support"
-                  infoEmail="ecommerce@effectivemarketer.com"
-                  infoResponseLabel="Growth Response Team"
-                  infoResponseValue="Conversion-led audits completed in 48 hours"
-                  infoLocationsLabel="Global Fulfillment Regions"
-                  infoLocations="USA • UK • EU • APAC"
-                  stepsTitle="E-commerce Implementation Timeline"
-                  steps={[
-                    'SKU & catalog intake with merchandising review',
-                    'Autocomplete domination strategy delivered in 5 days',
-                    'AI-powered product ranking rollout with CRO enhancements'
-                  ]}
-                />
-              </div>
+              <Contact
+                renderFormOnly
+                formWrapperClassName="bg-gray-50 rounded-2xl p-6 lg:p-8"
+              />
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">E-commerce Conversion Accelerators</h3>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">E-commerce AI SEO Desk</h3>
                   <p className="text-gray-600 text-xl mb-8">
-                    Our proprietary AI SEO playbooks combine autocomplete clustering, AI-overview targeting, and buyer journey automation to boost high-intent traffic and conversion rates for DTC and marketplace brands.
+                    We scale e-commerce revenue by dominating autocomplete for transactional product queries and securing product mentions across AI shopping experiences.
                   </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">E-commerce Support</div>
+                      <div className="text-gray-600 text-lg">ecommerce@effectivemarketer.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Growth Response Team</div>
+                      <div className="text-gray-600 text-lg">Conversion-led audits completed in 48 hours</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">Global Fulfillment Regions</div>
+                      <div className="text-gray-600 text-lg">USA • UK • EU • APAC</div>
+                    </div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">
                     <div className="text-4xl font-bold text-red-500 mb-2">4.7x</div>
                     <div className="text-gray-900 font-semibold text-lg">Average ROAS improvement</div>
-                    <p className="text-gray-600 mt-2">Measured after pairing autocomplete growth with AI-led product discovery. </p>
+                    <p className="text-gray-600 mt-2">Measured after pairing autocomplete growth with AI-led product discovery.</p>
                   </div>
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">
                     <div className="text-4xl font-bold text-red-500 mb-2">62%</div>
