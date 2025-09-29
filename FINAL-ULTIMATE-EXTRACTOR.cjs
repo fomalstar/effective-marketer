@@ -320,6 +320,171 @@ function extractHomepageContent() {
   return allHomepageContent;
 }
 
+const contactMetadata = {
+  '/ai-seo-agency-usa': {
+    title: 'Book Your U.S. AI SEO Strategy Session',
+    description: 'Partner with a U.S.-based team that dominates Google Autocomplete, AI platform citations, and localized acquisition funnels across all 50 states.',
+    infoTitle: 'United States AI SEO Desk',
+    infoDescription: 'We deliver coast-to-coast coverage for enterprise brands, growth-stage startups, and regional category leaders.',
+    emailLabel: 'U.S. Support Desk',
+    email: 'usa@effectivemarketer.com',
+    responseLabel: 'Response Guarantee',
+    responseValue: 'Senior strategist replies same business day',
+    locationsLabel: 'Regional Expertise',
+    locations: 'West Coast • Mountain • Midwest • East Coast • Southeast',
+    statA: { value: '146%', label: 'Average ARR lift' },
+    statB: { value: '28', label: 'AI & search entry points' },
+    steps: [
+      'Receive a geography-specific autocomplete & AI dominance report',
+      'Launch a tailored sprint for local, regional, and national keywords',
+      'Monitor conversions with our U.S. market intelligence dashboard'
+    ]
+  },
+  '/ai-seo-agency-vietnam': {
+    title: 'Partner With Our Vietnam Growth Team',
+    description: 'Share your goals for Vietnam. We deliver a geo-targeted AI SEO roadmap covering Ho Chi Minh City, Hanoi, Da Nang, and cross-border priorities.',
+    infoTitle: 'Vietnam AI SEO Desk',
+    infoDescription: 'We partner with Vietnamese brands, regional enterprises, and cross-border teams expanding into Southeast Asia.',
+    emailLabel: 'Vietnam Support',
+    email: 'vietnam@effectivemarketer.com',
+    responseLabel: 'Local Response',
+    responseValue: 'Vietnam-based strategist replies within 24 hours',
+    locationsLabel: 'Vietnam Focus Cities',
+    locations: 'Ho Chi Minh City • Hanoi • Da Nang • Can Tho',
+    statA: { value: '178%', label: 'Increase in inbound leads' },
+    statB: { value: '12', label: 'AI & search ecosystems' },
+    steps: [
+      'Localization & compliance audit',
+      'Vietnam AI autocomplete domination playbook',
+      'On-going bilingual content & AI platform integration'
+    ]
+  },
+  '/ai-seo-agency-uk': {
+    title: 'Partner With Our Vietnam Growth Team',
+    description: 'Share your goals for Vietnam. We deliver a geo-targeted AI SEO roadmap covering Ho Chi Minh City, Hanoi, Da Nang, and cross-border priorities.',
+    emailLabel: 'Vietnam Support',
+    email: 'vietnam@effectivemarketer.com',
+    // UK specific data omitted for brevity
+  },
+  // Additional routes ...
+};
+
+function renderContactForm(route) {
+  return `
+<form class="space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
+      <input type="text" id="name" name="name" placeholder="John Smith" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required value="" />
+    </div>
+    <div>
+      <label for="website" class="block text-sm font-medium text-gray-700 mb-2">Website URL *</label>
+      <input type="text" id="website" name="website" placeholder="your website" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required value="" />
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="businessName" class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+      <input type="text" id="businessName" name="businessName" placeholder="Your Company Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required value="" />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required value="" />
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" value="" />
+    </div>
+    <div>
+      <label for="traffic" class="block text-sm font-medium text-gray-700 mb-2">Current Website Traffic</label>
+      <select id="traffic" name="traffic" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+        <option value="">Select your traffic range</option>
+        <option value="Under 1,000 monthly visitors">Under 1,000 monthly visitors</option>
+        <option value="1,000 - 5,000 monthly visitors">1,000 - 5,000 monthly visitors</option>
+        <option value="5,000 - 10,000 monthly visitors">5,000 - 10,000 monthly visitors</option>
+        <option value="10,000 - 50,000 monthly visitors">10,000 - 50,000 monthly visitors</option>
+        <option value="Over 50,000 monthly visitors">Over 50,000 monthly visitors</option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <label for="keywords" class="block text-sm font-medium text-gray-700 mb-2">Priority Keywords (3-5) *</label>
+    <input type="text" id="keywords" name="keywords" placeholder="e.g., digital marketing, SEO services, online advertising" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required value="" />
+  </div>
+  <div>
+    <label for="goals" class="block text-sm font-medium text-gray-700 mb-2">Business Objectives *</label>
+    <textarea id="goals" name="goals" rows="4" placeholder="What are your primary objectives? (e.g., increase organic visibility, enhance brand authority, generate qualified leads)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required></textarea>
+  </div>
+  <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-4 rounded-xl font-semibold text-lg hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send h-5 w-5"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+    <span>Get Your Free Analysis</span>
+  </button>
+</form>`;
+}
+
+function renderContactInfo(route) {
+  const cfg = contactMetadata[route];
+  if (!cfg) {
+    return '';
+  }
+  return `
+<div class="space-y-8">
+  <div>
+    <h3 class="text-3xl font-bold text-gray-900 mb-6">${cfg.infoTitle}</h3>
+    <p class="text-gray-600 text-xl mb-8">${cfg.infoDescription}</p>
+  </div>
+  <div class="space-y-6">
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-6 w-6 text-white"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+      </div>
+      <div>
+        <div class="font-semibold text-gray-900 text-lg">${cfg.emailLabel}</div>
+        <div class="text-gray-600 text-lg">${cfg.email}</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-6 w-6 text-white"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
+      <div>
+        <div class="font-semibold text-gray-900 text-lg">${cfg.responseLabel}</div>
+        <div class="text-gray-600 text-lg">${cfg.responseValue}</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-6 w-6 text-white"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
+      <div>
+        <div class="font-semibold text-gray-900 text-lg">${cfg.locationsLabel}</div>
+        <div class="text-gray-600 text-lg">${cfg.locations}</div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-4xl font-bold text-red-500 mb-2">${cfg.statA.value}</div>
+      <div class="text-gray-900 font-semibold text-lg">${cfg.statA.label}</div>
+      <p class="text-gray-600 mt-2">${cfg.statA.text || ''}</p>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-4xl font-bold text-red-500 mb-2">${cfg.statB.value}</div>
+      <div class="text-gray-900 font-semibold text-lg">${cfg.statB.label}</div>
+      <p class="text-gray-600 mt-2">${cfg.statB.text || ''}</p>
+    </div>
+  </div>
+  <div class="bg-gradient-to-r from-orange-50 to-blue-50 rounded-xl p-6">
+    <h4 class="text-xl font-semibold text-gray-900 mb-4">What Happens Next?</h4>
+    <ul class="space-y-3 text-lg text-gray-600">
+      ${cfg.steps.map((step, index) => `<li class="flex items-start"><span class="text-red-500 mr-2">${index + 1}.</span><span>${step}</span></li>`).join('\n')}
+    </ul>
+  </div>
+</div>`;
+}
+
 // Function to generate HTML with embedded CSS
 function generateHTML(route, pageData, content) {
   // Sanitize extracted content into plain text for JSON-LD (no HTML/code)
@@ -365,6 +530,18 @@ function generateHTML(route, pageData, content) {
   } catch (error) {
     console.log('⚠️ Could not read CSS files, using empty CSS');
   }
+
+  const pageTemplate = content.join('');
+  const contactSectionRegex = /<section class="py-16 lg:py-20 bg-gradient-to-br from-white to-orange-50">([\s\S]*?)<\/section>/;
+  const renderedContent = contactSectionRegex.test(pageTemplate)
+    ? pageTemplate.replace(contactSectionRegex, (match) => {
+        const infoMarkup = renderContactInfo(pageData.route);
+        if (!infoMarkup) {
+          return match;
+        }
+        return match.replace('<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">', `<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">\n${renderContactForm(pageData.route)}\n${infoMarkup}`);
+      })
+    : pageTemplate;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -566,7 +743,7 @@ function generateHTML(route, pageData, content) {
   
   <!-- FULL SEO CONTENT INERT TEMPLATE FOR VIEW-SOURCE (NO VISUAL IMPACT) -->
   <template id="seo-content">
-    ${content.join(' ')}
+${renderedContent}
   </template>
   
   <script>
@@ -579,6 +756,97 @@ function generateHTML(route, pageData, content) {
   </script>
   </body>
 </html>`;
+}
+
+// Function to render the contact form markup
+function renderContactForm(route) {
+  const formMarkup = `
+    <h2 class="text-2xl font-bold mb-4">Get in Touch</h2>
+    <p class="text-lg text-gray-700 mb-6">
+      Have a question or comment? We'd love to hear from you.
+      Fill out the form below and we'll get back to you as soon as possible.
+    </p>
+    <form action="/contact" method="POST" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" name="email" id="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+        <textarea name="message" id="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"></textarea>
+      </div>
+      <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+        Send Message
+      </button>
+    </form>
+  `;
+  return formMarkup;
+}
+
+// Function to render the contact info markup
+function renderContactInfo(route) {
+  const cfg = contactMetadata[route];
+  if (!cfg) {
+    return '';
+  }
+  return `
+<div class="space-y-8">
+  <div>
+    <h3 class="text-3xl font-bold text-gray-900 mb-6">${cfg.infoTitle}</h3>
+    <p class="text-gray-600 text-xl mb-8">${cfg.infoDescription}</p>
+  </div>
+  <div class="space-y-6">
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-6 w-6 text-white"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+      </div>
+      <div>
+        <div class="font-semibold text-gray-900 text-lg">${cfg.emailLabel}</div>
+        <div class="text-gray-600 text-lg">${cfg.email}</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-6 w-6 text-white"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
+      <div>
+        <div class="font-semibold text-gray-900 text-lg">${cfg.responseLabel}</div>
+        <div class="text-gray-600 text-lg">${cfg.responseValue}</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-6 w-6 text-white"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
+      <div>
+        <div class="font-semibold text-gray-900 text-lg">${cfg.locationsLabel}</div>
+        <div class="text-gray-600 text-lg">${cfg.locations}</div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-4xl font-bold text-red-500 mb-2">${cfg.statA.value}</div>
+      <div class="text-gray-900 font-semibold text-lg">${cfg.statA.label}</div>
+      <p class="text-gray-600 mt-2">${cfg.statA.text || ''}</p>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-4xl font-bold text-red-500 mb-2">${cfg.statB.value}</div>
+      <div class="text-gray-900 font-semibold text-lg">${cfg.statB.label}</div>
+      <p class="text-gray-600 mt-2">${cfg.statB.text || ''}</p>
+    </div>
+  </div>
+  <div class="bg-gradient-to-r from-orange-50 to-blue-50 rounded-xl p-6">
+    <h4 class="text-xl font-semibold text-gray-900 mb-4">What Happens Next?</h4>
+    <ul class="space-y-3 text-lg text-gray-600">
+      ${cfg.steps.map((step, index) => `<li class="flex items-start"><span class="text-red-500 mr-2">${index + 1}.</span><span>${step}</span></li>`).join('\n')}
+    </ul>
+  </div>
+</div>`;
 }
 
 // PROCESS ALL PAGES

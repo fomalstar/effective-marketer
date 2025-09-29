@@ -154,7 +154,22 @@ async function main() {
 
       const innerHTML = await page.evaluate(() => {
         const root = document.getElementById('root');
-        return root ? root.innerHTML : '';
+        if (!root) return '';
+        const clone = root.cloneNode(true);
+        const templates = clone.querySelectorAll('template');
+        templates.forEach((tpl) => tpl.remove());
+        const forms = clone.querySelectorAll('form');
+        forms.forEach((form) => {
+          form.removeAttribute('action');
+          form.removeAttribute('method');
+        });
+        const inputs = clone.querySelectorAll('input, textarea, select');
+        inputs.forEach((el) => {
+          if ('value' in el) {
+            el.value = '';
+          }
+        });
+        return clone.innerHTML;
       });
 
       if (!innerHTML) {
@@ -170,8 +185,11 @@ async function main() {
 
       let html = fs.readFileSync(distPath, 'utf-8');
       // Prefer updating existing seo-content template if present
-      if (/id=\"seo-content\"/.test(html)) {
-        html = html.replace(/(<template id=\"seo-content\">)[\s\S]*?(<\/template>)/, `$1\n${innerHTML}\n  $2`);
+      if (/id="seo-content"/.test(html)) {
+        html = html.replace(
+          /(<template id="seo-content">)[\s\S]*?(<\/template>)/,
+          (_match, start, end) => `${start}\n${innerHTML}\n  ${end}`
+        );
       } else {
         const templateBlock = `\n  <!-- FULL RENDERED HTML FOR VIEW-SOURCE -->\n  <template id=\"seo-content\">\n${innerHTML}\n  </template>\n`;
         if (html.includes('<div id=\"root\"></div>')) {
