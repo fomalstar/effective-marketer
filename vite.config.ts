@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  ssr: {
+    noExternal: ['react-helmet-async']
+  },
   server: {
     proxy: {
       '/api': {
@@ -18,10 +21,19 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          helmet: ['react-helmet-async']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor'
+            }
+            if (id.includes('react-router')) {
+              return 'router'
+            }
+            if (id.includes('react-helmet')) {
+              return 'helmet'
+            }
+            return 'vendor'
+          }
         }
       },
       input: {
