@@ -447,9 +447,6 @@ function generateHTML(route, pageData, content) {
   <div id="root">
     <!-- FINAL ULTIMATE SEO CONTENT - ABSOLUTELY EVERYTHING -->
     <div class="final-seo-content">
-      <h1>${pageData.title}</h1>
-      <p>${pageData.description}</p>
-      
       ${content.join('\n      ')}
     </div>
   </div>
