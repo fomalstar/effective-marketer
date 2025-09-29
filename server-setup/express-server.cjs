@@ -167,8 +167,13 @@ function generateHTML(route, seo) {
   return htmlWithSEO;
 }
 
-// Handle all routes - serve React app with proper SEO
-app.use((req, res) => {
+// Handle HTML routes only - let static files be served normally
+app.use((req, res, next) => {
+  // Skip if it's a static file (has file extension)
+  if (req.path.includes('.') && !req.path.endsWith('.html')) {
+    return next();
+  }
+  
   const route = req.path;
   
   // Get SEO data for this route, fallback to homepage

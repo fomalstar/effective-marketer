@@ -338,6 +338,17 @@ function generateHTML(route, pageData, content) {
   <meta name="keywords" content="${pageData.keywords || 'AI SEO, Google Autocomplete, SEO agency'}" />
   <link rel="canonical" href="${pageData.canonical}" />
   
+  <!-- SEO CONTENT IN HEAD - INDEXED BUT NEVER DISPLAYED -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "mainEntity": {
+      "@type": "Article",
+      "articleBody": "${content.join(' ').replace(/"/g, '\\"').replace(/'/g, "\\'").substring(0, 5000)}"
+    }
+  }
+  </script>
   
   <!-- Open Graph Tags -->
   <meta property="og:title" content="${pageData.title}" />
@@ -427,48 +438,32 @@ function generateHTML(route, pageData, content) {
       opacity: 1;
     }
     
-    /* BULLETPROOF SEO CONTENT HIDING - CANNOT BE OVERRIDDEN */
-    #seo-content-bulletproof,
-    #seo-content-bulletproof * {
-      position: fixed !important;
+    /* BULLETPROOF SEO CONTENT HIDING - SCREEN READER ONLY TECHNIQUE */
+    #seo-content-hidden {
+      position: absolute !important;
       left: -99999px !important;
       top: -99999px !important;
-      width: 0 !important;
-      height: 0 !important;
-      max-width: 0 !important;
-      max-height: 0 !important;
+      width: 1px !important;
+      height: 1px !important;
       overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
+      clip: rect(1px, 1px, 1px, 1px) !important;
       clip-path: inset(50%) !important;
       border: 0 !important;
       padding: 0 !important;
-      margin: 0 !important;
+      margin: -1px !important;
       white-space: nowrap !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      display: block !important;
-      z-index: -999999 !important;
-      pointer-events: none !important;
-      user-select: none !important;
-      font-size: 0 !important;
-      line-height: 0 !important;
-      text-indent: -99999px !important;
-      color: transparent !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      outline: none !important;
-      text-shadow: none !important;
     }
     
-    /* EMERGENCY BACKUP HIDING */
-    div[id*="seo"],
-    div[aria-hidden="true"][style*="position"] {
-      position: fixed !important;
-      left: -99999px !important;
-      top: -99999px !important;
-      opacity: 0 !important;
+    /* BACKUP HIDING - MULTIPLE METHODS */
+    #seo-content-hidden,
+    #seo-content-hidden * {
       visibility: hidden !important;
+      opacity: 0 !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: transparent !important;
       pointer-events: none !important;
+      user-select: none !important;
     }
     
   </style>
@@ -483,12 +478,7 @@ function generateHTML(route, pageData, content) {
     </div>
   </div>
   
-  <div id="root">
-    <!-- SEO CONTENT - BULLETPROOF INVISIBLE BUT INDEXED -->
-    <div id="seo-content-bulletproof" style="position:fixed!important;left:-99999px!important;top:-99999px!important;width:0!important;height:0!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;border:0!important;padding:0!important;margin:0!important;white-space:nowrap!important;opacity:0!important;visibility:hidden!important;display:block!important;z-index:-999999!important;pointer-events:none!important;user-select:none!important;max-width:0!important;max-height:0!important;font-size:0!important;line-height:0!important;" aria-hidden="true" hidden>
-      ${content.join('\n      ')}
-    </div>
-  </div>
+  <div id="root"></div>
   
   <script>
     // Hide loading and show content when React loads
