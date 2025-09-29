@@ -485,56 +485,56 @@ const allPages = {
   },
   '/google-autosuggest-ranking': {
     file: 'src/pages/GoogleAutosuggestRanking.tsx',
-    title: 'Google Autosuggest Ranking SEO Services | Effective Marketer',
+    title: 'Google Autocomplete SEO Ranking Services | Effective Marketer',
     description: 'Dominate Google Autocomplete with our specialized Google Autosuggest Ranking SEO services. Get your brand visible in search suggestions and AI platforms for maximum exposure.',
     canonical: 'https://effectivemarketer.com/google-autosuggest-ranking'
   },
   '/ai-seo': {
     file: 'src/pages/AISEO.tsx',
-    title: 'AI SEO Services & Solutions | Effective Marketer',
-    description: 'Cutting-edge AI SEO services to optimize your brand for Google, ChatGPT, Gemini, and AI Overviews. Future-proof your SEO strategy with our advanced AI solutions.',
+    title: 'AI SEO Agency Services | Effective Marketer',
+    description: 'Win AI Search with platform visibility, Reddit growth, and AI Topical Maps. Get cited in ChatGPT, Gemini, and AI Overviews.',
     canonical: 'https://effectivemarketer.com/ai-seo'
   },
   '/case-studies': {
     file: 'src/pages/CaseStudies.tsx',
-    title: 'AI SEO Case Studies & Success Stories | Effective Marketer',
+    title: 'Case Studies | Effective Marketer - Proven AI SEO Results',
     description: 'Explore our AI SEO case studies and success stories. See how Effective Marketer helps businesses achieve top rankings in Google Autocomplete and AI platforms.',
     canonical: 'https://effectivemarketer.com/case-studies'
   },
   '/ai-topical-map': {
     file: 'src/pages/AITopicalMap.tsx',
-    title: 'AI Topical Map & Content Strategy | Effective Marketer',
+    title: 'AI Topical Map Services | Effective Marketer',
     description: 'Develop a comprehensive AI topical map and content strategy to dominate your niche. Our AI-driven approach ensures complete topic coverage and authority.',
     canonical: 'https://effectivemarketer.com/ai-topical-map'
   },
   '/lead-gen-ai-automation': {
     file: 'src/pages/AIAutomation.tsx',
-    title: 'AI Lead Generation & Automation | Effective Marketer',
+    title: 'AI Automation Lead Generation Service | Effective Marketer',
     description: 'Automate your lead generation with AI-powered solutions. Streamline your sales funnel and capture high-quality leads with our advanced AI automation strategies.',
     canonical: 'https://effectivemarketer.com/lead-gen-ai-automation'
   },
   '/ai-seo-for-saas-companies': {
     file: 'src/pages/SaaSCompanies.tsx',
-    title: 'AI SEO for SaaS Companies | Effective Marketer',
+    title: 'Best AI SEO Agency for SaaS Companies | Effective Marketer',
     description: 'Specialized AI SEO services for SaaS companies. Dominate search results with our AI-powered SEO strategies designed specifically for software-as-a-service businesses.',
     canonical: 'https://effectivemarketer.com/ai-seo-for-saas-companies'
   },
   '/ai-seo-for-ecommerce': {
     file: 'src/pages/EcommerceCompanies.tsx',
-    title: 'AI SEO for E-commerce | Effective Marketer',
+    title: 'Best AI SEO Agency for E-commerce Companies | Effective Marketer',
     description: 'Boost your e-commerce sales with AI SEO. Optimize product listings, dominate Google Autocomplete, and get recommended by AI platforms for online shoppers.',
     canonical: 'https://effectivemarketer.com/ai-seo-for-ecommerce'
   },
   '/ai-seo-for-healthcare': {
     file: 'src/pages/HealthcareCompanies.tsx',
-    title: 'AI SEO for Healthcare & Medical | Effective Marketer',
+    title: 'Best AI SEO Agency for Healthcare Companies | Effective Marketer',
     description: 'Specialized AI SEO for healthcare providers and medical practices. Improve patient acquisition, dominate Google Autocomplete, and get cited by AI for health-related searches.',
     canonical: 'https://effectivemarketer.com/ai-seo-for-healthcare'
   },
   '/onboarding': {
     file: 'src/pages/Onboarding.tsx',
-    title: 'AI SEO Onboarding & Consultation | Effective Marketer',
-    description: 'Get started with AI SEO through our comprehensive onboarding and consultation services. Develop a custom AI SEO strategy tailored to your business goals.',
+    title: 'Client Onboarding - Effective Marketer',
+    description: 'Complete your onboarding process to begin your GEO and autocomplete optimization journey with Effective Marketer.',
     canonical: 'https://effectivemarketer.com/onboarding'
   }
 };
