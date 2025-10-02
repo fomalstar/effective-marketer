@@ -250,8 +250,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         "AI Overviews Optimization",
         "Reddit Growth Automation",
         "AI Topical Map Generation"
-      ],
-      "screenshot": "https://effectivemarketer.com/Effective%20Marketer.jpg"
+      ]
     }
   ];
 
