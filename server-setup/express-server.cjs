@@ -90,43 +90,77 @@ const seoData = {
     description: 'Start your AI SEO journey with our comprehensive onboarding process. Get personalized AI SEO strategies and begin dominating search results in your industry.',
     keywords: 'AI SEO onboarding, get started with AI SEO, AI SEO consultation, SEO strategy consultation, AI SEO setup',
     canonical: 'https://effectivemarketer.com/onboarding'
-  }
+  },
+  '/ai-seo-agency-uae': {
+    title: 'Best AI SEO Agency in UAE | Effective Marketer',
+    description: 'Top AI SEO agency in the UAE delivering Google Autosuggest wins across Dubai, Abu Dhabi, and Sharjah. Secure AI citations and dominate Generative AI answers.',
+    keywords: 'AI SEO agency UAE, Google autosuggest UAE, AI SEO Dubai, AI SEO Abu Dhabi, AI search optimisation UAE, best AI SEO agency UAE',
+    canonical: 'https://effectivemarketer.com/ai-seo-agency-uae'
+  },
+  '/ai-seo-agency-malaysia': {
+    title: 'AI SEO Agency in Malaysia | Effective Marketer',
+    description: 'Leading Malaysian AI SEO agency helping brands rank in Google Autocomplete and AI Overviews. Fast wins in Kuala Lumpur, Penang, Johor Bahru.',
+    keywords: 'AI SEO agency Malaysia, Google autosuggest Malaysia, AI SEO Kuala Lumpur, AI SEO Penang, AI SEO Johor Bahru',
+    canonical: 'https://effectivemarketer.com/ai-seo-agency-malaysia'
+  },
+  '/ai-seo-agency-france': {
+    title: 'Agence SEO IA en France | Effective Marketer',
+    description: "Agence d'IA SEO leader en France. Obtenez des citations ChatGPT, dominez les suggestions Google Autocomplete et gagnez la recherche générative.",
+    keywords: 'agence IA SEO France, Google Autocomplete France, agence SEO AI Paris, SEO IA Lyon, SEO IA Marseille',
+    canonical: 'https://effectivemarketer.com/ai-seo-agency-france'
+  },
+  '/ai-seo-agency-bulgaria': {
+    title: 'AI SEO Agency in Bulgaria | Effective Marketer',
+    description: 'Premier AI SEO agency in Bulgaria delivering autosuggest wins for Sofia, Plovdiv, Varna, and beyond. 45-60 day results with 98% satisfaction.',
+    keywords: 'AI SEO agency Bulgaria, Google autosuggest Bulgaria, AI SEO Sofia, AI SEO Varna, best SEO agency Bulgaria',
+    canonical: 'https://effectivemarketer.com/ai-seo-agency-bulgaria'
+  },
 };
 
-// Function to serve static HTML files with FULL content for SEO
-function generateHTML(route, seo) {
-  // Try to read the static HTML file with full content first
-  let staticFilePath;
-  
-  if (route === '/') {
-    staticFilePath = path.join(__dirname, '../dist/index.html');
-  } else {
-    // For routes like /ai-seo-agency-usa, look for dist/ai-seo-agency-usa/index.html
-    const routePath = route.substring(1); // Remove leading slash
-    staticFilePath = path.join(__dirname, '../dist', routePath, 'index.html');
-  }
-  
-  // Try to read the static HTML file with full content
-  try {
-    if (fs.existsSync(staticFilePath)) {
-      const staticHTML = fs.readFileSync(staticFilePath, 'utf-8');
-      console.log(`✅ Serving static HTML with full content: ${staticFilePath}`);
-      return staticHTML;
-    }
-  } catch (error) {
-    console.log(`⚠️ Static file not found: ${staticFilePath}, generating dynamic HTML`);
-  }
-  
-  // Fallback: Read the React template and inject SEO
-  let template;
-  try {
-    template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf-8');
-  } catch (error) {
-    console.error('Error reading dist/index.html:', error);
-    template = `<!doctype html><html><head><title>Effective Marketer</title></head><body><div id="root"></div></body></html>`;
-  }
-  
-  // Inject SEO meta tags into the template
+function applySEO(html, seo) {
+  if (!html || !seo) return html;
+
+  let output = html;
+
+  const removalPatterns = [
+    /<title>[\s\S]*?<\/title>/gi,
+    /<meta[^>]+name="description"[^>]*>/gi,
+    /<meta[^>]+name="keywords"[^>]*>/gi,
+    /<meta[^>]+property="og:[^"]+"[^>]*>/gi,
+    /<meta[^>]+name="twitter:[^"]+"[^>]*>/gi,
+    /<link[^>]+rel="canonical"[^>]*>/gi,
+    /<meta[^>]+name="robots"[^>]*>/gi,
+    /<meta[^>]+name="googlebot"[^>]*>/gi,
+    /<meta[^>]+name="bingbot"[^>]*>/gi,
+    /<meta[^>]+name="language"[^>]*>/gi,
+    /<meta[^>]+name="revisit-after"[^>]*>/gi,
+    /<meta[^>]+name="author"[^>]*>/gi,
+    /<meta[^>]+name="copyright"[^>]*>/gi,
+    /<meta[^>]+name="theme-color"[^>]*>/gi,
+    /<meta[^>]+name="msapplication-TileColor"[^>]*>/gi,
+    /<meta[^>]+name="viewport"[^>]*>/gi,
+    /<meta[^>]+name="format-detection"[^>]*>/gi,
+    /<meta[^>]+name="mobile-web-app-capable"[^>]*>/gi,
+    /<meta[^>]+name="apple-mobile-web-app-capable"[^>]*>/gi,
+    /<meta[^>]+name="apple-mobile-web-app-status-bar-style"[^>]*>/gi,
+    /<script[^>]+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi,
+    /<link[^>]+rel="icon"[^>]*>/gi,
+    /<link[^>]+rel="apple-touch-icon"[^>]*>/gi,
+    /<link[^>]+rel="manifest"[^>]*>/gi,
+    /<link[^>]+rel="preconnect"[^>]*>/gi,
+    /<link[^>]+rel="dns-prefetch"[^>]*>/gi
+  ];
+
+  removalPatterns.forEach((pattern) => {
+    output = output.replace(pattern, '');
+  });
+
+  const structuredData = Array.isArray(seo.structuredData)
+    ? seo.structuredData
+    : seo.structuredData
+    ? [seo.structuredData]
+    : [];
+
   const seoTags = `
     <title>${seo.title}</title>
     <meta name="description" content="${seo.description}" />
@@ -156,21 +190,83 @@ function generateHTML(route, seo) {
     <meta name="revisit-after" content="7 days" />
     <meta name="author" content="Effective Marketer" />
     <meta name="copyright" content="© 2024 Effective Marketer. All rights reserved." />
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    
+    <!-- Structured Data -->
+    ${structuredData
+      .map(
+        (data) => `
+    <script type="application/ld+json">${JSON.stringify(data)}</script>`
+      )
+      .join('\n')}
+
+    <!-- Performance and Core Web Vitals Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://calendly.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://effectivemarketer.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    
+    <meta name="theme-color" content="#ff312b" />
+    <meta name="msapplication-TileColor" content="#ff312b" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   `;
+
+  if (/<\/head>/i.test(output)) {
+    output = output.replace(/<\/head>/i, `${seoTags}\n</head>`);
+  }
+
+  return output;
+}
+
+// Function to serve static HTML files with FULL content for SEO
+function generateHTML(route, seo) {
+  // Try to read the static HTML file with full content first
+  let staticFilePath;
   
-  // Replace or add SEO tags to the template
-  let htmlWithSEO = template;
+  if (route === '/') {
+    staticFilePath = path.join(__dirname, '../dist/index.html');
+  } else {
+    // For routes like /ai-seo-agency-usa, look for dist/ai-seo-agency-usa/index.html
+    const routePath = route.substring(1); // Remove leading slash
+    staticFilePath = path.join(__dirname, '../dist', routePath, 'index.html');
+  }
   
-  // Remove existing title and meta tags if any, then add our SEO tags
-  htmlWithSEO = htmlWithSEO.replace(/<title>.*?<\/title>/i, '');
-  htmlWithSEO = htmlWithSEO.replace(/<meta name="description".*?>/i, '');
-  htmlWithSEO = htmlWithSEO.replace(/<link rel="canonical".*?>/i, '');
+  // Try to read the static HTML file with full content
+  try {
+    if (fs.existsSync(staticFilePath)) {
+      const staticHTML = fs.readFileSync(staticFilePath, 'utf-8');
+      console.log(`✅ Serving static HTML with full content: ${staticFilePath}`);
+      return applySEO(staticHTML, seo);
+    }
+  } catch (error) {
+    console.log(`⚠️ Static file not found: ${staticFilePath}, generating dynamic HTML`);
+  }
   
-  // Inject our SEO tags before </head>
-  htmlWithSEO = htmlWithSEO.replace('</head>', `${seoTags}</head>`);
+  // Fallback: Read the React template and inject SEO
+  let template;
+  try {
+    template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf-8');
+  } catch (error) {
+    console.error('Error reading dist/index.html:', error);
+    template = `<!doctype html><html><head><title>Effective Marketer</title></head><body><div id="root"></div></body></html>`;
+  }
   
   console.log(`📄 Serving dynamic HTML with SEO for: ${route}`);
-  return htmlWithSEO;
+  return applySEO(template, seo);
 }
 
 // Handle HTML routes only - let static files be served normally

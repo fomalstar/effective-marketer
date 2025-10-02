@@ -17,6 +17,7 @@
     "preview": "vite preview",
     "indexnow": "node scripts/indexnow-submit.mjs --host=$SITE_URL",
     "sitemap": "node scripts/generate-sitemap.mjs",
+    "generate-sitemap": "npm run sitemap",
     "deploy:static": "npm run sitemap && npm run build",
     "deploy:backend": "npm run build && npm run start:backend"
   },

@@ -12,7 +12,11 @@ const getCurrentDate = () => {
 const locations = [
   'usa', 
   'vietnam',
-  'uk'
+  'uk',
+  'uae',
+  'malaysia',
+  'france',
+  'bulgaria'
 ];
 
 // Static pages data

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://effectivemarketer.com/</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/google-autosuggest-ranking</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -24,7 +24,7 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-topical-map</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/lead-gen-ai-automation</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -57,7 +57,7 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/case-studies</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -68,31 +68,31 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo-for-saas-companies</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo-for-ecommerce</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo-for-healthcare</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://effectivemarketer.com/onboarding</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo-agency-usa</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -103,13 +103,68 @@
   </url>
   <url>
     <loc>https://effectivemarketer.com/ai-seo-agency-vietnam</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://effectivemarketer.com/og-image.jpg</image:loc>
       <image:title>Best AI SEO Agency in Vietnam</image:title>
       <image:caption>Leading AI SEO agency specializing in Google Autosuggest ranking in Vietnam</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://effectivemarketer.com/ai-seo-agency-uk</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/og-image.jpg</image:loc>
+      <image:title>Best AI SEO Agency in Uk</image:title>
+      <image:caption>Leading AI SEO agency specializing in Google Autosuggest ranking in Uk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://effectivemarketer.com/ai-seo-agency-uae</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/og-image.jpg</image:loc>
+      <image:title>Best AI SEO Agency in Uae</image:title>
+      <image:caption>Leading AI SEO agency specializing in Google Autosuggest ranking in Uae</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://effectivemarketer.com/ai-seo-agency-malaysia</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/og-image.jpg</image:loc>
+      <image:title>Best AI SEO Agency in Malaysia</image:title>
+      <image:caption>Leading AI SEO agency specializing in Google Autosuggest ranking in Malaysia</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://effectivemarketer.com/ai-seo-agency-france</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/og-image.jpg</image:loc>
+      <image:title>Best AI SEO Agency in France</image:title>
+      <image:caption>Leading AI SEO agency specializing in Google Autosuggest ranking in France</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://effectivemarketer.com/ai-seo-agency-bulgaria</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://effectivemarketer.com/og-image.jpg</image:loc>
+      <image:title>Best AI SEO Agency in Bulgaria</image:title>
+      <image:caption>Leading AI SEO agency specializing in Google Autosuggest ranking in Bulgaria</image:caption>
     </image:image>
   </url>
 </urlset>
