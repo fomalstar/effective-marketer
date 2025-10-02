@@ -906,6 +906,12 @@ const allPages = {
     title: 'Client Onboarding - Effective Marketer',
     description: 'Complete your onboarding process to begin your GEO and autocomplete optimization journey with Effective Marketer.',
     canonical: 'https://effectivemarketer.com/onboarding'
+  },
+  '/client-presentation': {
+    file: 'src/pages/ClientPresentation.tsx',
+    title: 'Client Presentation | Effective Marketer',
+    description: 'Slide-style presentation for prospective clients covering Effective Marketer’s AI SEO methodology, team, results, and engagement framework.',
+    canonical: 'https://effectivemarketer.com/client-presentation'
   }
 };
 

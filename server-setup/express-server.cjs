@@ -151,6 +151,12 @@ const seoData = {
     keywords: 'AI SEO agency Bulgaria, Google autosuggest Bulgaria, AI SEO Sofia, AI SEO Varna, best SEO agency Bulgaria',
     canonical: 'https://effectivemarketer.com/ai-seo-agency-bulgaria'
   },
+  '/client-presentation': {
+    title: 'Client Presentation | Effective Marketer',
+    description: 'Slide-style overview of Effective Marketer\'s AI SEO methodology, team, results, and engagement framework for prospective clients.',
+    keywords: 'Effective Marketer presentation, AI SEO overview, Google autosuggest presentation, client deck',
+    canonical: 'https://effectivemarketer.com/client-presentation'
+  },
 };
 
 function applySEO(html, seo) {
@@ -213,6 +219,8 @@ function applySEO(html, seo) {
     ? [seo.structuredData]
     : defaultStructuredData;
 
+  const safeStructuredData = Array.isArray(structuredData) ? structuredData : []; // Safety check
+
   const seoTags = `
     <title>${seo.title}</title>
     <meta name="description" content="${seo.description}" />
@@ -251,7 +259,7 @@ function applySEO(html, seo) {
     <link rel="manifest" href="/favicon/site.webmanifest" />
     
     <!-- Structured Data -->
-    ${structuredData
+    ${safeStructuredData
       .map(
         (data) => `
     <script type="application/ld+json">${JSON.stringify(data)}</script>`

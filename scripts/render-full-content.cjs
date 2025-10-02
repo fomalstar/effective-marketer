@@ -98,7 +98,8 @@ async function main() {
     '/ai-seo-for-saas-companies',
     '/ai-seo-for-ecommerce',
     '/ai-seo-for-healthcare',
-    '/onboarding'
+    '/onboarding',
+    '/client-presentation'
   ];
 
   const { child, baseUrl } = await startLocalServer();
