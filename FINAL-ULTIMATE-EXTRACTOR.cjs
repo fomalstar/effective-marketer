@@ -589,28 +589,6 @@ function generateHTML(route, pageData, content) {
   <meta name="keywords" content="${pageData.keywords || 'AI SEO, Google Autocomplete, SEO agency'}" />
   <link rel="canonical" href="${pageData.canonical}" />
   
-  <!-- SEO CONTENT IN HEAD - INDEXED BUT NEVER DISPLAYED -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "${jsonTitle}",
-    "description": "${jsonDescription}",
-    "mainEntity": {
-      "@type": "Article",
-      "articleBody": "${plainText}"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Effective Marketer",
-    "url": "https://effectivemarketer.com/"
-  }
-  </script>
-  
   <!-- Open Graph Tags -->
   <meta property="og:title" content="${pageData.title}" />
   <meta property="og:description" content="${pageData.description}" />
