@@ -34,223 +34,28 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "@type": "Organization",
       "name": "Effective Marketer",
       "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
-      "url": "https://effectivemarketer.com",
+      "url": "https://effectivemarketer.com/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://effectivemarketer.com/EM%20LOGO.png",
-        "width": 200,
-        "height": 200
-      },
-      "image": "https://effectivemarketer.com/Effective%20Marketer.jpg",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-555-123-4567",
-        "contactType": "customer service",
-        "email": "contact@effectivemarketer.com",
-        "availableLanguage": "English"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "US"
+        "url": "https://effectivemarketer.com/EM%20LOGO.png"
       },
       "sameAs": [
         "https://www.linkedin.com/company/effective-marketer",
-        "https://twitter.com/effectivemarketer",
-        "https://www.facebook.com/effective-marketer"
+        "https://www.facebook.com/effectivemarketercom"
       ],
-      "founder": {
-        "@type": "Person",
-        "name": "Yavor Stoyanov"
-      },
-      "numberOfEmployees": "30",
-      "foundingDate": "2020",
-      "areaServed": [
-        {
-          "@type": "Country",
-          "name": "United States"
-        },
-        {
-          "@type": "Country", 
-          "name": "France"
-        },
-        {
-          "@type": "Country",
-          "name": "Vietnam"
-        },
-        {
-          "@type": "Country",
-          "name": "Bulgaria"
-        }
-      ],
-      "serviceType": [
-        "AI SEO Services",
-        "Google Autosuggests Optimization",
-        "Ranking Optimization",
-        "Digital Marketing Agency Services",
-        "Search Suggestion Optimization"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "AI SEO Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Google Autosuggest Ranking",
-              "description": "Get your brand ranked in Google Autocomplete suggestions"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "AI SEO Services",
-              "description": "AI platform visibility and citation optimization"
-            }
-          }
-        ]
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@effectivemarketer.com",
+        "contactType": "customer service",
+        "availableLanguage": "English"
       }
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Effective Marketer",
-      "url": "https://effectivemarketer.com",
-      "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Effective Marketer"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://effectivemarketer.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://effectivemarketer.com/#business",
-      "name": "Effective Marketer",
-      "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions",
-      "url": "https://effectivemarketer.com",
-      "telephone": "+1-555-123-4567",
-      "email": "contact@effectivemarketer.com",
-      "logo": "https://effectivemarketer.com/EM%20LOGO.png",
-      "image": "https://effectivemarketer.com/Effective%20Marketer.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "40.7128",
-        "longitude": "-74.0060"
-      },
-      "openingHours": "Mo-Fr 09:00-17:00",
-      "priceRange": "$$$",
-      "currenciesAccepted": "USD",
-      "paymentAccepted": "Credit Card, PayPal, Bank Transfer",
-      "areaServed": [
-        {
-          "@type": "Country",
-          "name": "United States"
-        },
-        {
-          "@type": "Country",
-          "name": "France"
-        },
-        {
-          "@type": "Country",
-          "name": "Vietnam"
-        },
-        {
-          "@type": "Country",
-          "name": "Bulgaria"
-        }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "AI SEO Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Google Autosuggest Ranking",
-              "description": "Get your brand ranked in Google Autocomplete suggestions"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "AI SEO Services",
-              "description": "AI platform visibility and citation optimization"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "AI Lead Generation",
-              "description": "Automated multi-channel lead generation with AI"
-            }
-          }
-        ]
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "127",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Sarah Johnson"
-          },
-          "reviewBody": "Exceptional AI SEO services that delivered results in just 45 days. Our Google Autosuggest rankings improved dramatically."
-        }
-      ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Effective Marketer AI SEO Platform",
-      "description": "AI-powered SEO platform for Google Autosuggest optimization and AI platform visibility",
-      "url": "https://effectivemarketer.com",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "2997",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Effective Marketer",
-        "url": "https://effectivemarketer.com"
-      },
-      "featureList": [
-        "Google Autosuggest Optimization",
-        "AI Platform Visibility",
-        "ChatGPT Citation Optimization",
-        "Gemini Ranking",
-        "AI Overviews Optimization",
-        "Reddit Growth Automation",
-        "AI Topical Map Generation"
-      ]
+      "url": "https://effectivemarketer.com/",
+      "description": "Leading AI SEO agency specializing in Google autosuggests optimization and advanced ranking solutions"
     }
   ];
 
