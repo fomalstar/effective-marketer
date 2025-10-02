@@ -155,7 +155,8 @@ const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
-              title="Dashboard"
+              title="Open SEO dashboard"
+              aria-label="Open Effective Marketer dashboard in a new tab"
             >
               <Monitor className="h-6 w-6" />
             </a>
@@ -236,6 +237,8 @@ const Header = () => {
                 rel="noopener noreferrer"
                 className="flex items-center px-3 py-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Open Effective Marketer dashboard in a new tab"
+                title="Open SEO dashboard"
               >
                 <Monitor className="h-5 w-5 mr-2" />
                 Dashboard

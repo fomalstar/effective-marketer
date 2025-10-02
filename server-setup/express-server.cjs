@@ -41,13 +41,49 @@ const seoData = {
     title: 'Google Autosuggest Ranking Services | Effective Marketer',
     description: 'Get your brand ranked in Google Autocomplete suggestions. Our AI SEO experts help you dominate Google Autosuggest with proven strategies and fast results in 45-60 days.',
     keywords: 'Google Autosuggest ranking, Google Autocomplete optimization, autosuggest SEO, Google suggestions ranking, autocomplete SEO services, Google Autosuggest agency',
-    canonical: 'https://effectivemarketer.com/google-autosuggest-ranking'
+    canonical: 'https://effectivemarketer.com/google-autosuggest-ranking',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      'headline': 'Google Autosuggest Ranking Services',
+      'description': 'SEO optimization for autosuggests, brand visibility in Google Autocomplete and AI chats.',
+      'author': {
+        '@type': 'Organization',
+        'name': 'Effective Marketer'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'Effective Marketer',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://effectivemarketer.com/EM%20LOGO.png'
+        }
+      }
+    }
   },
   '/ai-seo': {
     title: 'AI SEO Services | Effective Marketer',
     description: 'Advanced AI SEO services including AI platform visibility, ChatGPT citations, Gemini optimization, and AI Overviews. Get cited by AI platforms and dominate AI search results.',
     keywords: 'AI SEO services, AI platform visibility, ChatGPT citations, Gemini optimization, AI Overviews, AI SEO agency, generative engine optimization, GEO',
-    canonical: 'https://effectivemarketer.com/ai-seo'
+    canonical: 'https://effectivemarketer.com/ai-seo',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      'headline': 'AI SEO Services',
+      'description': 'AI platform visibility, Reddit growth, and advanced AI Topical Maps to win AI search.',
+      'author': {
+        '@type': 'Organization',
+        'name': 'Effective Marketer'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'Effective Marketer',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://effectivemarketer.com/EM%20LOGO.png'
+        }
+      }
+    }
   },
   '/case-studies': {
     title: 'AI SEO Case Studies | Effective Marketer',
@@ -155,11 +191,27 @@ function applySEO(html, seo) {
     output = output.replace(pattern, '');
   });
 
+  const defaultStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Effective Marketer",
+    "url": "https://effectivemarketer.com",
+    "logo": "https://effectivemarketer.com/og-image.jpg",
+    "description": "Leading AI SEO agency delivering advanced autosuggests solutions to optimize your ranking and dominate Google Autocomplete. Our specialized agency provides cutting-edge AI SEO strategies that optimize your brand for maximum visibility in ChatGPT, Gemini, and AI Overviews.",
+    "keywords": "AI SEO agency, Google autosuggests optimization, AI SEO solutions, autosuggests ranking, Google Autocomplete optimization, AI SEO services, search suggestion optimization, ranking optimization, digital marketing agency, SEO agency, ChatGPT ranking, Gemini optimization, AI Overviews, generative engine optimization, GEO, AI platform visibility",
+    "sameAs": [
+      "https://www.facebook.com/effectivemarketer",
+      "https://twitter.com/effectivemarketer",
+      "https://www.linkedin.com/company/effectivemarketer",
+      "https://www.instagram.com/effectivemarketer"
+    ]
+  };
+
   const structuredData = Array.isArray(seo.structuredData)
     ? seo.structuredData
     : seo.structuredData
     ? [seo.structuredData]
-    : [];
+    : defaultStructuredData;
 
   const seoTags = `
     <title>${seo.title}</title>
@@ -232,6 +284,42 @@ function applySEO(html, seo) {
   return output;
 }
 
+function routeExists(route) {
+  if (seoData[route]) return true;
+  if (route === '/') return true;
+  const routePath = route.startsWith('/') ? route.substring(1) : route;
+  const staticFilePath = route === '/' ? path.join(__dirname, '../dist/index.html') : path.join(__dirname, '../dist', routePath, 'index.html');
+  return fs.existsSync(staticFilePath);
+}
+
+function generateNotFoundHTML() {
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Page Not Found | Effective Marketer</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <style>
+    body { margin:0; font-family: 'Inter', sans-serif; background:#0f172a; color:#f8fafc; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .wrapper { text-align:center; padding:40px 24px; max-width:480px; }
+    h1 { font-size:2.5rem; margin-bottom:16px; }
+    p { margin-bottom:24px; line-height:1.6; }
+    a { display:inline-block; padding:12px 24px; border-radius:12px; background:#ef4444; color:white; font-weight:600; text-decoration:none; }
+    a:hover { background:#dc2626; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Page Not Found</h1>
+    <p>The page you are looking for doesn’t exist. Return to the homepage or explore our services to learn how we can help your brand dominate AI search.</p>
+    <a href="https://effectivemarketer.com/">Back to Homepage</a>
+  </div>
+</body>
+</html>`;
+}
+
 // Function to serve static HTML files with FULL content for SEO
 function generateHTML(route, seo) {
   // Try to read the static HTML file with full content first
@@ -275,9 +363,14 @@ app.use((req, res, next) => {
   if (req.path.includes('.') && !req.path.endsWith('.html')) {
     return next();
   }
-  
+
   const route = req.path;
-  
+
+  if (!routeExists(route)) {
+    console.log(`⚠️ Route not found, returning 404: ${route}`);
+    return res.status(404).send(generateNotFoundHTML());
+  }
+
   // Get SEO data for this route, fallback to homepage
   const seo = seoData[route] || seoData['/'] || {
     title: 'Google Autosuggests & AI SEO Agency - Effective Marketer',
@@ -285,9 +378,9 @@ app.use((req, res, next) => {
     keywords: 'AI SEO agency, Google autosuggests optimization, AI SEO solutions',
     canonical: 'https://effectivemarketer.com/'
   };
-  
+
   console.log(`📄 Serving route: ${route} with title: ${seo.title}`);
-  
+
   const html = generateHTML(route, seo);
   res.send(html);
 });

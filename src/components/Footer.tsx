@@ -3,8 +3,8 @@ import { Mail, Globe, Facebook, Linkedin, Search, Brain, Map, Mail as MailIcon }
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/effectivemarketercom' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/company/effective-marketer' }
+    { icon: Facebook, href: 'https://www.facebook.com/effectivemarketercom', label: 'Facebook page' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/effective-marketer', label: 'LinkedIn page' }
   ];
 
   const services = [
@@ -114,6 +114,8 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-500 transition-colors duration-200"
+                  aria-label={social.label}
+                  title={social.label}
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -122,10 +124,10 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div className="flex space-x-6 text-gray-400">
-              <a href="#" className="hover:text-primary-500 transition-colors duration-200">
+              <a href="#" className="hover:text-primary-500 transition-colors duration-200" aria-label="Privacy Policy" title="Privacy Policy">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-primary-500 transition-colors duration-200">
+              <a href="#" className="hover:text-primary-500 transition-colors duration-200" aria-label="Terms of Service" title="Terms of Service">
                 Terms of Service
               </a>
             </div>
