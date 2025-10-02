@@ -97,18 +97,6 @@ const GoogleAutosuggestRanking = () => {
             }
           }
         ]
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "4.9",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Client Review"
-        }
       }
     },
     {
