@@ -3,21 +3,19 @@
 import fs from 'fs';
 import path from 'path';
 
+const workspaceRoot = process.cwd();
+const nextPublicDirCandidate = path.join(workspaceRoot, 'next', 'public');
+const publicDir = fs.existsSync(nextPublicDirCandidate)
+  ? nextPublicDirCandidate
+  : path.join(workspaceRoot, 'public');
+
 // Get current date in YYYY-MM-DD format
 const getCurrentDate = () => {
   return new Date().toISOString().split('T')[0];
 };
 
 // Location data for dynamic pages - ONLY include completed countries
-const locations = [
-  'usa', 
-  'vietnam',
-  'uk',
-  'uae',
-  'malaysia',
-  'france',
-  'bulgaria'
-];
+const locations = ['usa', 'uk', 'vietnam'];
 
 // Static pages data
 const staticPages = [
@@ -98,12 +96,6 @@ const staticPages = [
     priority: '0.8',
     changefreq: 'weekly',
     image: null // No image until we have proper industry-specific images
-  },
-  {
-    url: 'https://effectivemarketer.com/onboarding',
-    priority: '0.5',
-    changefreq: 'monthly',
-    image: null
   }
 ];
 
@@ -158,7 +150,7 @@ const generateSitemap = () => {
 
 // Write sitemap to file
 const sitemapContent = generateSitemap();
-const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+const sitemapPath = path.join(publicDir, 'sitemap.xml');
 
 try {
   fs.writeFileSync(sitemapPath, sitemapContent, 'utf8');

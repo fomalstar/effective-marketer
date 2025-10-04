@@ -1,5 +1,7 @@
 # 🤖 AI INSTRUCTIONS FOR CREATING NEW PAGES
 
+> ⚠️ Migration Notice: A Next.js based SEO system is being prepared. Review `docs/NEXTJS_SEO_STRATEGY.md` before relying on the extractor workflow described below.
+
 ## ⚠️ CRITICAL: READ THIS BEFORE CREATING ANY NEW PAGES
 
 This document provides **COMPLETE INSTRUCTIONS** for future AI assistants on how to create new pages that automatically generate perfect View Page Source content for SEO.

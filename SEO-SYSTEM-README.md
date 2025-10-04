@@ -1,5 +1,7 @@
 # 🎯 SEO Content System - WORKING VERSION
 
+> ⚠️ Migration Notice: A Next.js native SEO approach is being drafted. Review `docs/NEXTJS_SEO_STRATEGY.md` before modifying or extending the extractor workflow described here.
+
 ## ⚠️ **DO NOT MODIFY - THIS VERSION WORKS PERFECTLY**
 
 This is the **FINAL WORKING VERSION** of the SEO content extraction system.
