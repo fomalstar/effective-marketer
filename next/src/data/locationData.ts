@@ -25,6 +25,7 @@ export interface LocationData {
   targetKeywords: string[];
   metaDescription: string;
   canonicalUrl: string;
+  metaTitle?: string;
 }
 
 const locationData: Record<string, LocationData> = {
@@ -114,7 +115,9 @@ const locationData: Record<string, LocationData> = {
       timeToResults: "6-10 weeks",
     },
     heroTitle: "The #1 AI SEO Agency in Vietnam",
-    heroSubtitle: "Dominate Google Autosuggest & AI Platform Visibility Across Vietnam",
+    metaTitle: "Best AI SEO Agency in Vietnam | Effective Marketer",
+    heroSubtitle:
+      "We're 100% focused on AI SEO for Vietnamese companies, combining bilingual Google Autocomplete domination, AI citation wins, and localized execution. Get fast results — just 45 to 60 days is enough to start seeing ROI in Vietnam.",
     valuePropositions: [
       "Get cited by ChatGPT, Gemini, and Claude AI in Vietnam",
       "Dominate Google Autocomplete for Vietnamese keywords",
@@ -170,7 +173,9 @@ const locationData: Record<string, LocationData> = {
       timeToResults: "45-60 days",
     },
     heroTitle: "The #1 AI SEO Agency in the United Kingdom",
-    heroSubtitle: "Dominate Google Autosuggest & AI Platform Visibility Across the UK",
+    metaTitle: "Best AI SEO Agency in UK | Effective Marketer",
+    heroSubtitle:
+      "We're 100% focused on AI SEO for UK companies, combining Autocomplete domination, AI recommendation engineering, and compliant storytelling. Get fast results — just 6 to 10 weeks is enough to start seeing ROI across the UK market.",
     valuePropositions: [
       "Engineer UK-specific Google Autocomplete wins in weeks",
       "Get cited by ChatGPT, Gemini, and Claude for UK commercial queries",
@@ -205,6 +210,75 @@ const locationData: Record<string, LocationData> = {
     metaDescription:
       "Leading AI SEO agency in the UK. Dominate Google Autocomplete, secure ChatGPT citations, and grow revenue in 6-10 weeks. Book a UK strategy call.",
     canonicalUrl: "https://effectivemarketer.com/ai-seo-agency-uk",
+  },
+  brazil: {
+    country: "Brazil",
+    countryCode: "BR",
+    currency: "BRL",
+    language: "Portuguese, English",
+    timezone: "GMT-3 (BRT)",
+    marketSize: "203 million people",
+    gdp: "$2.13 trillion",
+    internetPenetration: "81.0%",
+    ecommerceGrowth: "24% YoY",
+    digitalAdoption: "Largest digital economy in Latin America",
+    localCompetitors: [
+      "Agência Mestre",
+      "Conversion",
+      "Cadastra",
+      "Orgânica Digital",
+    ],
+    topIndustries: [
+      "E-commerce",
+      "Financial Services",
+      "Technology",
+      "Agribusiness",
+      "Retail",
+    ],
+    successMetrics: {
+      averageResults: "45-60 days",
+      clientSatisfaction: "98%",
+      trafficIncrease: "155%",
+      timeToResults: "6-10 weeks",
+    },
+    heroTitle: "The #1 AI SEO Agency in Brazil",
+    metaTitle: "Best AI SEO Agency in Brazil | Effective Marketer",
+    heroSubtitle:
+      "We're 100% focused on AI SEO for Brazilian companies, blending Portuguese and English Autocomplete wins with AI citation engineering. Get fast results — just 45 to 60 days is enough to start seeing ROI in Brazil.",
+    valuePropositions: [
+      "Engineer Google Autocomplete wins for Portuguese and English keywords",
+      "Secure citations across ChatGPT, Gemini, Copilot, and Perplexity for Brazilian queries",
+      "Deploy 45-60 day AI SEO roadmaps with real-time performance tracking",
+      "Blend digital PR, content, and authority programs to reach Brazilian buyers",
+      "Senior AI SEO strategists aligned with in-country marketing and sales teams",
+    ],
+    localMarketInsights: [
+      "81% of Brazilians are online with strong mobile adoption",
+      "Brazilian e-commerce surpassed R$185 billion in 2023",
+      "Fintech and banking innovation drive nationwide digital transformation",
+      "Voice assistants like Alexa and Google Assistant are used in over 30% of connected homes",
+      "Southeast and South regions lead digital marketing investment in Brazil",
+    ],
+    uniqueAdvantages: [
+      "Deep SEO expertise for Portuguese-speaking and multilingual markets",
+      "Entity and topical mapping aligned to Brazilian search behaviour",
+      "Compliance with LGPD and national advertising regulations",
+      "Alignment with Brazilian marketing squads and global stakeholders",
+      "Bilingual dashboards tracking autocomplete wins, AI citations, and revenue impact",
+    ],
+    targetKeywords: [
+      "agencia SEO IA Brasil",
+      "melhor agencia SEO Brasil",
+      "AI SEO agency Brazil",
+      "otimizacao Google Autocomplete Brasil",
+      "citar ChatGPT empresa Brasil",
+      "servicos SEO IA Sao Paulo",
+      "consultoria SEO IA Brasil",
+      "marketing digital IA Brasil",
+    ],
+    metaDescription:
+      "Brazil's leading AI SEO agency. Dominate Google Autocomplete, secure ChatGPT citations, and unlock bilingual organic growth in 45-60 days.",
+    canonicalUrl: "https://effectivemarketer.com/ai-seo-agency-brazil",
   },
 };
 

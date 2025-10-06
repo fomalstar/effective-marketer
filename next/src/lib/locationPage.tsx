@@ -9,11 +9,6 @@ import {
   Clock,
   Award,
   TrendingUp,
-  Brain,
-  Target,
-  Globe,
-  Zap,
-  Shield,
 } from "lucide-react";
 import Team from "@/components/home/Team";
 import CaseStudyLogos from "@/components/home/CaseStudyLogos";
@@ -26,10 +21,10 @@ import type { CountryFaqEntry } from "@/data/countryFaqs";
 export function buildCountryMetadata(countryCode: string) {
   const location = getLocationData(countryCode);
   return {
-    title: location.heroTitle,
+    title: location.metaTitle ?? location.heroTitle,
     description: location.metaDescription,
     canonical: location.canonicalUrl,
-    ogTitle: `${location.heroTitle} | Effective Marketer`,
+    ogTitle: `${location.metaTitle ?? location.heroTitle} | Effective Marketer`,
     ogDescription: location.metaDescription,
   };
 }
@@ -37,6 +32,7 @@ export function buildCountryMetadata(countryCode: string) {
 export interface CountryPageOptions {
   countryCode: string;
   heroCtaLabel: string;
+  heroParagraphs?: string[];
   competitorIntro?: string;
   competitorTitle?: string;
   pricingNotes?: string;
@@ -56,6 +52,7 @@ export interface CountryPageOptions {
 export function CountryPageTemplate({
   countryCode,
   heroCtaLabel,
+  heroParagraphs,
   competitorIntro,
   competitorTitle,
   pricingNotes,
@@ -68,102 +65,135 @@ export function CountryPageTemplate({
   const competitors = countryCompetitors[countryCode] ?? [];
   const faqs = customFaqs ?? [];
 
+  const heroStats = [
+    {
+      label: "Average Results",
+      value: location.successMetrics.averageResults,
+    },
+    {
+      label: "Client Satisfaction",
+      value: location.successMetrics.clientSatisfaction,
+    },
+    {
+      label: "Traffic Increase",
+      value: location.successMetrics.trafficIncrease,
+    },
+    {
+      label: "Time to Results",
+      value: location.successMetrics.timeToResults,
+    },
+  ];
+
+  const hiringLookFor = [
+    `Proven ${location.country} market experience`,
+    "AI platform optimisation expertise",
+    `Results within ${location.successMetrics.averageResults}`,
+    "Senior in-house strategists",
+    "Transparent reporting and analytics",
+  ];
+
+  const hiringAvoid = [
+    "Guaranteed ranking promises",
+    "Black-hat or automation hacks",
+    `Agencies with no ${location.country} track record`,
+    "Poor communication and unclear ownership",
+    "Unrealistic pricing packages",
+  ];
+
   return (
     <div className="flex flex-col">
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-red-900 to-slate-900 py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 mb-6 border border-primary-500/30">
-            <MapPin className="h-5 w-5 text-primary-500" />
-            <span className="text-primary-300 font-medium text-sm lg:text-base">{location.country}</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            {location.heroTitle}
-          </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-4xl mx-auto">{location.heroSubtitle}</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto text-white/90">
-            <div className="bg-white/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-white mb-1">{location.marketSize}</div>
-              <div className="text-sm">Market Size</div>
-            </div>
-            <div className="bg-white/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-white mb-1">{location.internetPenetration}</div>
-              <div className="text-sm">Internet Penetration</div>
-            </div>
-            <div className="bg-white/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-white mb-1">{location.ecommerceGrowth}</div>
-              <div className="text-sm">E-commerce Growth</div>
-            </div>
-            <div className="bg-white/10 rounded-lg p-4">
-              <div className="text-2xl font-bold text-white mb-1">{location.successMetrics.clientSatisfaction}</div>
-              <div className="text-sm">Client Satisfaction</div>
-            </div>
-          </div>
-          <Link
-            href="https://calendly.com/effectivemarketer/demo"
-            className="inline-block bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-600 transform hover:scale-105 transition-all duration-300 shadow-lg"
-          >
-            {heroCtaLabel}
-          </Link>
-        </div>
-      </section>
-
-      {/* Differentiators */}
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Why Choose Effective Marketer in
-              <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"> {location.country}</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {location.valuePropositions.map((item) => (
-              <div key={item} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-primary-500 flex-shrink-0 mt-1" />
-                  <p className="text-gray-700">{item}</p>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full px-4 py-2 border border-primary-500/30">
+                <MapPin className="h-5 w-5 text-primary-500" />
+                <span className="text-primary-300 font-medium text-sm lg:text-base">
+                  Best AI SEO Agency in {location.country}
+                </span>
               </div>
-            ))}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                {location.heroTitle}
+              </h1>
+              <div className="space-y-4 text-lg text-white/85">
+                <p>{location.heroSubtitle}</p>
+                {heroParagraphs?.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div>
+                <Link
+                  href="https://calendly.com/effectivemarketer/demo"
+                  className="inline-block bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-600 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                >
+                  {heroCtaLabel}
+                </Link>
+              </div>
+            </div>
+            <div className="bg-white/10 rounded-2xl border border-white/20 p-8 backdrop-blur">
+              <div className="grid grid-cols-2 gap-6">
+                {heroStats.map((stat) => (
+                  <div key={stat.label} className="bg-white/10 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-sm text-white/70">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Our AI SEO Services in {location.country}
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Effective Marketer is the Best AI SEO Agency in {location.country}
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Comprehensive AI SEO solutions tailored for the {location.country} market
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              {heroParagraphs?.[0] ??
+                "We engineer AI SEO programmes that combine Google Autocomplete domination, AI platform visibility, and local market expertise to keep your brand ahead."}
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[Brain, Target, Globe, Zap, TrendingUp, Shield].map((Icon, idx) => (
-              <div key={idx} className="bg-gradient-to-br from-slate-50 to-red-50 rounded-xl p-6 border border-gray-100 shadow-sm">
-                <Icon className="h-6 w-6 text-primary-500 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {location.uniqueAdvantages[idx % location.uniqueAdvantages.length] ?? "AI SEO Advantage"}
-                </h3>
-                <p className="text-gray-600">
-                  {location.uniqueAdvantages[idx % location.uniqueAdvantages.length] ??
-                    "Tailored execution for local market nuances and regulatory expectations."}
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Next-Gen AI SEO for {location.country} Companies
+              </h3>
+              <div className="space-y-5">
+                {location.valuePropositions.map((item) => (
+                  <div key={item} className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-primary-500 mt-1" />
+                    <p className="text-gray-700 text-lg">{item}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border border-primary-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                {location.country} AI SEO Services
+              </h3>
+              <ul className="space-y-3 text-gray-700">
+                {location.uniqueAdvantages.map((advantage) => (
+                  <li key={advantage} className="flex items-start space-x-3">
+                    <div className="w-2 h-2 rounded-full bg-primary-500 mt-2" />
+                    <span>{advantage}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Market Insights */}
       <section className="py-16 bg-gradient-to-br from-slate-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{location.country} Market Insights</h2>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {location.country} Market Insights
+            </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Data-led view of the {location.country} digital ecosystem to guide AI SEO investment
+              Data-led view of the {location.country} digital ecosystem to guide AI SEO investment.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -172,19 +202,27 @@ export function CountryPageTemplate({
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <Users className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>Population:</strong> {location.marketSize}</span>
+                  <span className="text-gray-700">
+                    <strong>Population:</strong> {location.marketSize}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <DollarSign className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>GDP:</strong> {location.gdp}</span>
+                  <span className="text-gray-700">
+                    <strong>GDP:</strong> {location.gdp}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Wifi className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>Internet Penetration:</strong> {location.internetPenetration}</span>
+                  <span className="text-gray-700">
+                    <strong>Internet Penetration:</strong> {location.internetPenetration}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <ShoppingCart className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>E-commerce Growth:</strong> {location.ecommerceGrowth}</span>
+                  <span className="text-gray-700">
+                    <strong>E-commerce Growth:</strong> {location.ecommerceGrowth}
+                  </span>
                 </div>
               </div>
             </div>
@@ -193,19 +231,27 @@ export function CountryPageTemplate({
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <Clock className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>Average Results:</strong> {location.successMetrics.averageResults}</span>
+                  <span className="text-gray-700">
+                    <strong>Average Results:</strong> {location.successMetrics.averageResults}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Award className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>Client Satisfaction:</strong> {location.successMetrics.clientSatisfaction}</span>
+                  <span className="text-gray-700">
+                    <strong>Client Satisfaction:</strong> {location.successMetrics.clientSatisfaction}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <TrendingUp className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>Traffic Increase:</strong> {location.successMetrics.trafficIncrease}</span>
+                  <span className="text-gray-700">
+                    <strong>Traffic Increase:</strong> {location.successMetrics.trafficIncrease}
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Award className="h-5 w-5 text-primary-500" />
-                  <span className="text-gray-700"><strong>Time to Results:</strong> {location.successMetrics.timeToResults}</span>
+                  <span className="text-gray-700">
+                    <strong>Time to Results:</strong> {location.successMetrics.timeToResults}
+                  </span>
                 </div>
               </div>
             </div>
@@ -227,7 +273,6 @@ export function CountryPageTemplate({
       <Team />
       <CaseStudyLogos />
 
-      {/* Competitor Table */}
       {competitors.length > 0 && (
         <section className="py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-red-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -272,7 +317,7 @@ export function CountryPageTemplate({
                           <div className="font-bold text-lg text-gray-900">{row.company}</div>
                           <div className="text-sm text-primary-600 font-semibold">{row.position}</div>
                         </td>
-                        <td className="px-6 py-6 text-sm text-gray-700">{row.description}</td>
+                        <td className="px-6 py-6 text-sm text-gray-700 whitespace-pre-line">{row.description}</td>
                         <td className="px-6 py-6 text-center font-semibold text-primary-600">{row.price}</td>
                         <td className="px-6 py-6 text-center">{row.team}</td>
                         <td className="px-6 py-6 text-center font-semibold">{row.monthly}</td>
@@ -288,12 +333,52 @@ export function CountryPageTemplate({
         </section>
       )}
 
-      {/* FAQ */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {location.country} AI SEO Hiring Guide
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Use this checklist when selecting an AI SEO partner in {location.country}.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="bg-gradient-to-br from-green-50 to-white border border-green-100 rounded-2xl p-8 shadow-sm">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">What to Look For</h3>
+              <ul className="space-y-3 text-gray-700 text-lg">
+                {hiringLookFor.map((item) => (
+                  <li key={item} className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-1" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-gradient-to-br from-red-50 to-white border border-red-100 rounded-2xl p-8 shadow-sm">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">What to Avoid</h3>
+              <ul className="space-y-3 text-gray-700 text-lg">
+                {hiringAvoid.map((item) => (
+                  <li key={item} className="flex items-start space-x-3">
+                    <div className="w-5 h-5 rounded-full border border-red-400 flex items-center justify-center mt-1 text-red-500 font-semibold">
+                      ×
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600">{faqIntro ?? `Everything you need to know about AI SEO in ${location.country}`}</p>
+            <p className="text-xl text-gray-600">
+              {faqIntro ?? `Everything you need to know about AI SEO in ${location.country}`}
+            </p>
           </div>
           <FAQ
             title={`${location.country} AI SEO`}

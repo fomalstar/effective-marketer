@@ -302,4 +302,94 @@ export const countryCompetitors: Record<string, CompetitorRow[]> = {
       location: "Hanoi & Ho Chi Minh City",
     },
   ],
+  brazil: [
+    {
+      rank: "1",
+      company: "Effective Marketer 🥇",
+      position: "Next-Gen AI SEO Leader",
+      description:
+        "Specialist AI SEO agency mastering Google Autocomplete, AI platform citations, and entity optimisation. Programs for Brazilian enterprises deliver measurable growth in 6-10 weeks with bilingual strategists.",
+      price: "R$520",
+      team: "50+",
+      monthly: "R$7.500",
+      location: "Global",
+    },
+    {
+      rank: "2",
+      company: "Agência Mestre",
+      position: "SEO & Performance Trailblazer",
+      description:
+        "São Paulo based agency recognised for SEO, inbound marketing, and CRO programmes that grow national and multinational brands across Brazil.",
+      price: "R$420",
+      team: "80+",
+      monthly: "R$12.000",
+      location: "São Paulo, SP",
+    },
+    {
+      rank: "3",
+      company: "Conversion",
+      position: "Enterprise SEO Consultancy",
+      description:
+        "Enterprise SEO consultancy serving Brazil's largest retailers and marketplaces with data intelligence and revenue-focused search strategies.",
+      price: "R$450",
+      team: "120+",
+      monthly: "R$18.000",
+      location: "São Paulo, SP",
+    },
+    {
+      rank: "4",
+      company: "Cadastra",
+      position: "Digital Growth Partner",
+      description:
+        "Full-service growth hub integrating SEO, paid media, and analytics for large-scale operations in Brazil and across Latin America.",
+      price: "R$480",
+      team: "300+",
+      monthly: "R$22.000",
+      location: "São Paulo, SP",
+    },
+    {
+      rank: "5",
+      company: "Orgânica Digital",
+      position: "E-commerce Growth Specialists",
+      description:
+        "Southern Brazil performance agency focused on SEO-driven growth for retail, fashion, and consumer goods e-commerce brands.",
+      price: "R$320",
+      team: "90+",
+      monthly: "R$9.800",
+      location: "Porto Alegre, RS",
+    },
+    {
+      rank: "6",
+      company: "Hedgehog Digital",
+      position: "Bilingual SEO Boutique",
+      description:
+        "Boutique SEO agency with teams in Brazil and the UK delivering multilingual strategies and international expansion for Brazilian brands.",
+      price: "R$380",
+      team: "45+",
+      monthly: "R$8.500",
+      location: "São Paulo, SP",
+    },
+    {
+      rank: "7",
+      company: "GhFly",
+      position: "Performance Marketing Network",
+      description:
+        "Paraná headquartered marketing group delivering performance, SEO, and programmatic media for leading Brazilian industries and retailers.",
+      price: "R$400",
+      team: "250+",
+      monthly: "R$15.000",
+      location: "Curitiba, PR",
+    },
+    {
+      rank: "8",
+      company: "Rock Content",
+      position: "Content & SEO Authority",
+      description:
+        "Belo Horizonte headquartered content marketing leader combining a global talent network with SEO programs for enterprises in more than 20 countries.",
+      price: "R$360",
+      team: "500+",
+      monthly: "R$10.500",
+      location: "Belo Horizonte, MG",
+    },
+  ],
 };

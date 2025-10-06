@@ -100,6 +100,38 @@ const entries: Record<string, CountryFaqEntry[]> = {
         "We work with diverse Vietnamese companies ranging from small Vietnamese startups to large enterprise corporations. Our clients include technology companies, manufacturing firms, e-commerce businesses, healthcare providers, financial services, and tourism companies. We specialize in serving Vietnamese companies looking to establish or expand their digital presence, especially those targeting competitive Southeast Asian markets and requiring specialized AI SEO expertise for Vietnamese business websites.",
     },
   ],
+  brazil: [
+    {
+      question: "Why should I hire an AI SEO agency for my Brazilian business?",
+      answer:
+        "Brazilian companies operate in highly competitive organic search results and AI-generated recommendations. An AI SEO agency combines entity engineering, Google Autocomplete optimisation, and AI citations to position your brand first in both Portuguese and English.",
+    },
+    {
+      question: "What AI SEO services do you offer for Brazilian companies?",
+      answer:
+        "We deliver complete AI SEO programmes covering Google Autocomplete engineering, ChatGPT and Gemini citation campaigns, bilingual topical mapping, technical SEO, digital PR, and LGPD-aligned content operations.",
+    },
+    {
+      question: "How long does it take to see AI SEO results in Brazil?",
+      answer:
+        "Most Brazilian AI SEO programmes reveal new autocomplete suggestions and AI mentions within 45-60 days. Larger authority initiatives take roughly 3-6 months to compound traffic and revenue gains.",
+    },
+    {
+      question: "How much do AI SEO services cost for Brazilian companies?",
+      answer:
+        "Strategic retainers usually start around R$7,500 per month, while enterprise programmes that integrate content, PR, and data activation can exceed R$25,000. Technical audits typically begin at R$12,000.",
+    },
+    {
+      question: "What should I look for in a Brazilian AI SEO agency?",
+      answer:
+        "Choose partners with documented Brazilian case studies, deep LGPD knowledge, and integration with in-house teams. Bilingual strategists who connect SEO, brand storytelling, media, and revenue operations accelerate outcomes.",
+    },
+    {
+      question: "What types of Brazilian companies do you work with?",
+      answer:
+        "We support scale-ups, retailers, fintechs, industrial manufacturers, and education groups looking to dominate autocomplete, capture qualified demand, and lead AI assistant recommendations across every channel.",
+    },
+  ],
 };
 
 export function getCountryFaqs(countryCode: string): CountryFaqEntry[] {
