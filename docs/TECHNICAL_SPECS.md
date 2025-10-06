@@ -36,9 +36,15 @@ Main Site (Static) → Redirects → Backend Server (SEO) → Serves React App
 ### SEO Data Structure
 ```javascript
 const seoData = {
-  '/': { title: 'Google Autosuggests & AI SEO Agency - Effective Marketer' },
-  '/ai-seo-agency-usa': { title: 'Best AI SEO Agency in USA | Effective Marketer' },
-  '/ai-seo-agency-vietnam': { title: 'Best AI SEO Agency in Vietnam | Effective Marketer' }
+  '/': {
+    title: 'Effective Marketer: Google Autosuggests & AI SEO Agency',
+  },
+  '/ai-seo-agency-usa': {
+    title: 'Best AI SEO Agency in USA | Effective Marketer',
+  },
+  '/ai-seo-agency-vietnam': {
+    title: 'Best AI SEO Agency in Vietnam | Effective Marketer',
+  }
   // ... more routes
 };
 ```

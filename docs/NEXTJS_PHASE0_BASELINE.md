@@ -13,11 +13,17 @@
 - Backend: `server-setup/express-server.cjs` serves generated HTML with route specific metadata overrides
 
 ## Build and Deployment Workflow Snapshot
-1. `npm run build`
-   - Runs `vite build` to emit static assets into `dist`
-   - Executes `FINAL-ULTIMATE-EXTRACTOR.cjs` to inject hidden marketing content into each route
-   - Executes `scripts/render-full-content.cjs` to embed fully rendered HTML inside `<template id="seo-content">`
-2. Deployment uses both the static bundle and the Express SEO server (Render Web Service configuration documented in `docs/SEO_BACKEND_SOLUTION.md`).
+1. Legacy React/Vite:
+   - `npm run build`
+     - Runs `vite build` to emit static assets into `dist`
+     - Executes `FINAL-ULTIMATE-EXTRACTOR.cjs` to inject hidden marketing content into each route
+     - Executes `scripts/render-full-content.cjs` to embed fully rendered HTML inside `<template id="seo-content">`
+   - Deployment uses both the static bundle and the Express SEO server (Render Web Service configuration documented in `docs/SEO_BACKEND_SOLUTION.md`).
+2. Next.js App Router (new pipeline):
+   - Render build command: `npm install && npm run sitemap && (cd next && npm install && npm run build) && npm run indexnow`
+   - Render start command: `cd next && npm run start`
+   - Render environment variables include `NODE_VERSION=20.11.1`, `NEXT_PUBLIC_EMAILJS_*`, and legacy `SITE_URL` for sitemap/IndexNow.
+   - `next/next.config.ts` sets `output: "standalone"` and `outputFileTracingRoot` so the Render bundle remains self-contained.
 
 ## SEO Content Baseline (From Existing Documentation)
 - Total pages processed: 12
@@ -36,7 +42,7 @@
 - Current pipeline depends on Vite specific tooling and manual extractor scripts; these must be replaced with native Next.js rendering.
 - Metadata is applied twice: React Helmet during runtime and Express middleware during SSR. Next.js implementation must consolidate metadata generation.
 - Breadcrumb and structured data are embedded in page components today and need one to one equivalents in Next.js server components.
-- Hosting model relies on Render: static hosting plus Express worker. Next.js will deploy as a dynamic Render web app using the standalone output.
+- Hosting model relies on Render: static hosting plus Express worker. Next.js deploys as a dynamic Render web app using the standalone output, requiring Node 20.11.1 at build/run time.
 
 ## Pending Decisions and Follow Up
 - Create dedicated migration branch before implementation work begins.

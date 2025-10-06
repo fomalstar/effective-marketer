@@ -102,7 +102,7 @@ Future contributors must append entries after every major change. Keep the most 
 | 2025-10-05 | Phase 2 | Ported AI lead generation route into Next.js with full legacy content, imagery, and structured data | AI Assistant | `next/src/app/lead-gen-ai-automation/page.tsx` | Migrate country/location routes (USA, UK, Vietnam) |
 | 2025-10-05 | Phase 2 | Ported AI SEO agency USA location page with data-driven content, FAQs, and structured data | AI Assistant | `next/src/app/ai-seo-agency-usa/page.tsx`, `next/src/data/locationData.ts` | Migrate UK and Vietnam location pages |
 | 2025-10-05 | Phase 2 | Migrated UK and Vietnam AI SEO agency pages with data-driven content, localized FAQs, and structured data | AI Assistant | `next/src/app/ai-seo-agency-uk/page.tsx`, `next/src/app/ai-seo-agency-vietnam/page.tsx` | Audit image paths and styling differences from legacy site |
-|  |  |  |  |  |  |
+| 2025-10-05 | Phase 5 | Aligned Render build pipeline for Next.js: added Node 20 runtime, separate `next/` install, and Next standalone start command | AI Assistant | `render.yaml`, `next/next.config.ts` | Monitor first Render deploy and remove Vite pipeline after cutover |
 
 ### Progress Logging Guidelines for AI Agents
 - **Frequency**: Update the log whenever a phase completes or a significant subsystem (routing, metadata, extractor) is migrated.

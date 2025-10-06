@@ -680,7 +680,7 @@ npm run build:static
 ### **Title Synchronization Issue**
 **Problem**: Chrome tab title and page source title were different
 - **Chrome Tab**: "#1 Google Autosuggests & AI SEO Agency - Effective Marketer"
-- **Page Source**: "Google Autosuggests & AI SEO Agency - Effective Marketer"
+- **Page Source**: "Effective Marketer: Google Autosuggests & AI SEO Agency"
 
 **Solution**: Updated static HTML title in `index.html` to match React Helmet default
 - **Result**: Both Chrome tab and page source now show same title

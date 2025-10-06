@@ -43,7 +43,7 @@ Main Site (Static) → Redirects → Backend Server (SEO) → Serves React App
 ```javascript
 const seoData = {
   '/': {
-    title: 'Google Autosuggests & AI SEO Agency - Effective Marketer',
+    title: 'Effective Marketer: Google Autosuggests & AI SEO Agency',
     description: 'Leading AI SEO agency...',
     keywords: 'AI SEO agency, Google autosuggests...',
     canonical: 'https://effectivemarketer.com/'
@@ -100,17 +100,18 @@ server-setup/
 ### **Before (Problem)**
 ```html
 <!-- All pages had the same title -->
-<title>Google Autosuggests & AI SEO Agency - Effective Marketer</title>
+<title>Effective Marketer: Google Autosuggests & AI SEO Agency</title>
+<title>Effective Marketer: Google Autosuggests & AI SEO Agency</title>
 ```
 
 ### **After (Fixed)**
 ```html
 <!-- Homepage -->
-<title>Google Autosuggests & AI SEO Agency - Effective Marketer</title>
+<title>Effective Marketer: Google Autosuggests & AI SEO Agency</title>
 <div id="root">
   <header>...</header>
   <main>
-    <h1>Google Autosuggests & AI SEO Agency - Effective Marketer</h1>
+    <h1>Effective Marketer: Google Autosuggests & AI SEO Agency</h1>
     <p>Leading AI SEO agency delivering advanced autosuggests solutions...</p>
     <!-- Full content visible in HTML source -->
   </main>
